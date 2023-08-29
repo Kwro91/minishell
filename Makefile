@@ -6,13 +6,13 @@
 #    By: besalort <besalort@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/29 14:05:28 by besalort          #+#    #+#              #
-#    Updated: 2023/08/29 14:06:35 by besalort         ###   ########.fr        #
+#    Updated: 2023/08/29 14:25:12 by besalort         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 
-SRC = ./src/main.c
+SRC = ./src/echo.c
 	
 LIBFT_PATH = ./src/libft/
 
