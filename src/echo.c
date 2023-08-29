@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 14:08:19 by besalort          #+#    #+#             */
-/*   Updated: 2023/08/29 15:08:04 by besalort         ###   ########.fr       */
+/*   Updated: 2023/08/29 15:20:16 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ void    ft_echo(char **text)
     
 }
 
-int main(int ac, char **av)
-{
-    (void)ac;
-        ft_echo(&av[1]);
-}
+// int main(int ac, char **av)
+// {
+//     (void)ac;
+//         ft_echo(&av[1]);
+// }
