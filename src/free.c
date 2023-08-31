@@ -1,38 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   echo.c                                             :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/29 14:08:19 by besalort          #+#    #+#             */
-/*   Updated: 2023/08/29 16:01:25 by besalort         ###   ########.fr       */
+/*   Created: 2023/08/29 16:14:52 by besalort          #+#    #+#             */
+/*   Updated: 2023/08/31 16:26:02 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void    ft_echo(char **text)
+void    ft_free_mini(t_mdata *data)
 {
     int i;
     
     i = 0;
-    if (text && ft_strncmp(text[0], "-n\0", 3) == 0)
-        i++;
-    while (text[i])
+    while (data->paths[i])
     {
-        write(1, text[i], ft_strlen(text[i]));
+        free(data->paths[i]);
         i++;
-        if (text[i])
-            write(1, " ", 1);
     }
-    if (text && ft_strncmp(text[0], "-n\0", 3) != 0)
-        write(1, "\n", 1);
-    
+    free(data->paths);
 }
-
-// int main(int ac, char **av)
-// {
-//     (void)ac;
-//         ft_echo(&av[1]);
-// }

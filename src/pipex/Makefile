@@ -5,54 +5,56 @@
 #                                                     +:+ +:+         +:+      #
 #    By: besalort <besalort@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/08/29 14:05:28 by besalort          #+#    #+#              #
-#    Updated: 2023/08/31 16:38:28 by besalort         ###   ########.fr        #
+#    Created: 2023/03/29 14:19:30 by besalort          #+#    #+#              #
+#    Updated: 2023/08/31 16:35:53 by besalort         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = minishell
+NAME = pipex.a
 
-SRC = ./src/main.c \
-	./src/free.c \
-	./src/ft_path.c \
-	./src/prompt.c \
-	./src/echo.c \
-	
-LIBFT_PATH = ./src/libft/
-
-PIPEX_PATH = ./src/pipex/
+SRC = ./pipex.c \
+	./ft_free.c \
+	./ft_open.c \
+	./ft_path.c \
+	./ft_load.c \
+	./ft_access.c \
+	./ft_processes.c \
+	./ft_cmd.c \
+	./ft_list.c \
+	./ft_run.c \
+	./ft_here_doc.c \
 
 LIBFT = $(LIBFT_PATH)libft.a
 
-PIPEX = $(PIPEX_PATH)pipex.a
+LIBFT_PATH = ../libft/
 
 CC = gcc
 
-CFLAGS = -Wall -Werror -Wextra -g
+CFLAGS = -Wall -Wextra -Werror
 
-AR =  ar rcs
+AR = ar rcs
 
-.c.o:	
-		${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
+.c.o:
+	${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
+
 
 OBJ = $(SRC:.c=.o)
 
-$(NAME)	:	${OBJ}
-		make -C $(LIBFT_PATH)
-		# make -C $(PIPEX_PATH)
-		$(CC) $(CFLAGS) $(OBJ) $(LIBFT) -o $(NAME)
+$(NAME) : $(OBJ)
+	make -C $(LIBFT_PATH)
+	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) -o $(NAME)
+	${AR} $(NAME) ${OBJ}
 
-all	:	$(NAME)
+
+all : $(NAME)
 
 clean :
-		rm -rf $(OBJ)
-		make clean -C $(LIBFT_PATH)
-		make clean -C $(PIPEX_PATH)
+	rm -rf $(OBJ)
+	make clean -C $(LIBFT_PATH)
 
-fclean :	clean
-		rm -rf $(NAME)
-		make fclean -C $(LIBFT_PATH)
-		make fclean -C $(PIPEX_PATH)
+fclean : clean
+	rm -f $(NAME)
+	make fclean -C $(LIBFT_PATH)
 
 re : fclean all
 

@@ -1,19 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_cmd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/28 17:10:52 by besalort          #+#    #+#             */
-/*   Updated: 2023/08/29 16:06:34 by besalort         ###   ########.fr       */
+/*   Created: 2023/04/11 17:40:12 by besalort          #+#    #+#             */
+/*   Updated: 2023/07/04 15:51:29 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "pipex.h"
 
-int main(int ac, char **av, char **env)
+char	**ft_command(char *command)
 {
-    prompt(ac, av, env);
-    return (0);
+	char	*ptr;
+	char	**commandp;
+
+	ptr = ft_strchr(command, ' ');
+	if (ptr != NULL)
+		commandp = ft_split(command, ' ');
+	else
+	{
+		commandp = ft_calloc(2, sizeof(char *));
+		commandp[0] = ft_strdup(command);
+		commandp[1] = NULL;
+	}
+	return (commandp);
 }
