@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 15:53:50 by besalort          #+#    #+#             */
-/*   Updated: 2023/09/06 12:05:55 by besalort         ###   ########.fr       */
+/*   Updated: 2023/09/06 13:44:21 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char	*ft_access_mini(t_mdata *data, char *cmd)
 	{
 		tmp = ft_strjoin(data->paths[i], "/");
 		join = ft_strjoin(tmp, cmd);
-		ft_printf("%s : %i\n", join, access(join, X_OK));
+		// ft_printf("%s : %i\n", join, access(join, X_OK));
 		if (access(join, X_OK) == 0)
 			return (free(tmp), join);
 		free(join);
@@ -51,7 +51,7 @@ void	launch_cmd(t_mdata *data, char *cmd, char **cmdtotal, char **env)
 	// }
 	if (pid == 0)
 	{
-		printf("je me lance %s\n", cmd);
+		// printf("je me lance %s\n", cmd);
 		execve(ft_access_mini(data, cmd), cmdtotal, env);
 		exit(0);
 	}
@@ -59,12 +59,15 @@ void	launch_cmd(t_mdata *data, char *cmd, char **cmdtotal, char **env)
 
 int	verif_cmd(t_mdata *data, char *cmd, char **cmd_total, char **env)
 {
-	(void)data;
 	(void)cmd;
 	(void)env;
 	if (is_echo(cmd_total) == 1)
 		return (1);
-	return (0);
+    else if (is_pwd(cmd_total, data) == 1)
+        return (1);
+    else
+	    return (0);
+    return (0);
 }
 
 void    prompt(int ac, char **av, char **env)
@@ -76,6 +79,7 @@ void    prompt(int ac, char **av, char **env)
     char	**cmdtotal;
 
     data.paths = ft_path_mini(env);
+    setup_pwd(&data, env);
     while(1)
     {
         ft_printf("type a command>\n");

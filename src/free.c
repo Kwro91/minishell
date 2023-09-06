@@ -6,13 +6,13 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 16:14:52 by besalort          #+#    #+#             */
-/*   Updated: 2023/08/31 16:26:02 by besalort         ###   ########.fr       */
+/*   Updated: 2023/09/06 12:56:30 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void    ft_free_mini(t_mdata *data)
+void    ft_free_mpaths(t_mdata *data)
 {
     int i;
     
@@ -23,4 +23,10 @@ void    ft_free_mini(t_mdata *data)
         i++;
     }
     free(data->paths);
+}
+
+void    ft_free_mini(t_mdata *data)
+{
+    ft_free_mpaths(data);
+    free(data->pwd);
 }
