@@ -12,6 +12,7 @@
 
 #include "./libft/libft.h"
 #include "./pipex/pipex.h"
+#include <signal.h>
 
 typedef struct s_mdata
 {
