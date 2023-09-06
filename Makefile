@@ -6,13 +6,14 @@
 #    By: besalort <besalort@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/29 14:05:28 by besalort          #+#    #+#              #
-#    Updated: 2023/08/31 16:38:28 by besalort         ###   ########.fr        #
+#    Updated: 2023/09/01 16:32:59 by besalort         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 
 SRC = ./src/main.c \
+	./src/is_cmd.c \
 	./src/free.c \
 	./src/ft_path.c \
 	./src/prompt.c \

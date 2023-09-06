@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 15:53:50 by besalort          #+#    #+#             */
-/*   Updated: 2023/08/31 17:19:56 by besalort         ###   ########.fr       */
+/*   Updated: 2023/09/06 12:05:55 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,18 @@ char	*ft_access_mini(t_mdata *data, char *cmd)
 	{
 		tmp = ft_strjoin(data->paths[i], "/");
 		join = ft_strjoin(tmp, cmd);
+		ft_printf("%s : %i\n", join, access(join, X_OK));
 		if (access(join, X_OK) == 0)
 			return (free(tmp), join);
 		free(join);
 		free(tmp);
 		i++;
 	}
-	tmp = ft_strjoin(": command not found: ", cmd);
-	join = ft_strjoin(tmp, "\n");
-	ft_printf("%s\n", join);
-	return (free(join), free(tmp), cmd);
+	// tmp = ft_strjoin(": command not found: ", cmd);
+	// join = ft_strjoin(tmp, "\n");
+	// ft_printf("%s\n", join);
+	// return (free(join), free(tmp), cmd);
+	return (cmd);
 }
 
 void	launch_cmd(t_mdata *data, char *cmd, char **cmdtotal, char **env)
@@ -42,12 +44,27 @@ void	launch_cmd(t_mdata *data, char *cmd, char **cmdtotal, char **env)
 	int pid;
 
 	pid = fork();
+	// int i = 0;
+	// while (cmdtotal[i])
+	// {
+	// 	printf("%s\n", cmdtotal[i++]);
+	// }
 	if (pid == 0)
 	{
-		printf("%s\n", cmd);
+		printf("je me lance %s\n", cmd);
 		execve(ft_access_mini(data, cmd), cmdtotal, env);
 		exit(0);
 	}
+}
+
+int	verif_cmd(t_mdata *data, char *cmd, char **cmd_total, char **env)
+{
+	(void)data;
+	(void)cmd;
+	(void)env;
+	if (is_echo(cmd_total) == 1)
+		return (1);
+	return (0);
 }
 
 void    prompt(int ac, char **av, char **env)
@@ -59,20 +76,16 @@ void    prompt(int ac, char **av, char **env)
     char	**cmdtotal;
 
     data.paths = ft_path_mini(env);
-    (void)data;
-    int i = 0;
-    
-    while (data.paths[i])
-    {
-        ft_printf("%s\n", data.paths[i]);
-        i++;
-    }
     while(1)
     {
         ft_printf("type a command>\n");
         cmd = get_next_line(0);
-		cmdtotal= ft_split(cmd, 32);
-		if (ft_access_mini(&data, cmd) != NULL)
-			launch_cmd(&data, cmd, cmdtotal, env);
+		cmdtotal= ft_split(cmd, ' ');
+		if (verif_cmd(&data, cmd, cmdtotal, env) == 0)
+		{
+			if (ft_access_mini(&data, cmd) != NULL)
+				launch_cmd(&data, cmd, cmdtotal, env);
+			cmd = NULL;
+		}
     }
 }
