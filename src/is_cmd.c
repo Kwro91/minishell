@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 16:26:03 by besalort          #+#    #+#             */
-/*   Updated: 2023/09/06 11:54:08 by besalort         ###   ########.fr       */
+/*   Updated: 2023/09/06 13:43:45 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,29 @@
 
 int is_echo(char **cmd_total)
 {
-    char *name;
+    char    *name0;
+    char    *namen;
     
-    name = "echo\0";
-    if (ft_strncmp(name, cmd_total[0], 5) == 0)
+    name0 = "echo\0";
+    namen = "echo\n\0";
+    if (ft_strncmp(name0, cmd_total[0], 5) == 0 || ft_strncmp(namen, cmd_total[0], 6) == 0)
     {
         ft_echo(&cmd_total[1]);
+        return (1);
+    }
+    return (0);
+}
+
+int is_pwd(char **cmd_total, t_mdata *data)
+{
+    char    *name0;
+    char    *namen;
+    
+    name0 = "pwd\0";
+    namen = "pwd\n\0";
+    if (ft_strncmp(name0, cmd_total[0], 4) == 0 || ft_strncmp(namen, cmd_total[0], 5) == 0)
+    {
+        pwd(data);
         return (1);
     }
     return (0);
