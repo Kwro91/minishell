@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 12:11:42 by besalort          #+#    #+#             */
-/*   Updated: 2023/09/06 12:14:15 by besalort         ###   ########.fr       */
+/*   Updated: 2023/09/06 12:42:06 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,6 @@ void    pwd(t_mdata *data, char **env)
     i = 0;
     while (ft_strncmp("PWD=", env[i], 4))
     {
-        
+        test;
     }
 }
