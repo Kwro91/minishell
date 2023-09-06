@@ -14,6 +14,7 @@
 
 int main(int ac, char **av, char **env)
 {
+	handle_signals();
     prompt(ac, av, env);
     return (0);
 }
