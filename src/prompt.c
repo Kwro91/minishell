@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 15:53:50 by besalort          #+#    #+#             */
-/*   Updated: 2023/09/06 13:44:21 by besalort         ###   ########.fr       */
+/*   Updated: 2023/09/06 17:51:56 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,22 +57,23 @@ void	launch_cmd(t_mdata *data, char *cmd, char **cmdtotal, char **env)
 	}
 }
 
-int	verif_cmd(t_mdata *data, char *cmd, char **cmd_total, char **env)
+int	verif_cmd(t_mdata *data, char **cmd_total, char **env)
 {
-	(void)cmd;
 	(void)env;
 	if (is_echo(cmd_total) == 1)
 		return (1);
     else if (is_pwd(cmd_total, data) == 1)
         return (1);
+	else if (is_exit(cmd_total, data) == 1)
+		return (1);
     else
-	    return (0);
-    return (0);
+	    return (-1);
+    return (-1);
 }
 
 void    prompt(int ac, char **av, char **env)
 {
-    (void)ac;
+	(void)ac;
     (void)av;
     t_mdata	data;
     char	*cmd;
@@ -85,7 +86,7 @@ void    prompt(int ac, char **av, char **env)
         ft_printf("type a command>\n");
         cmd = get_next_line(0);
 		cmdtotal= ft_split(cmd, ' ');
-		if (verif_cmd(&data, cmd, cmdtotal, env) == 0)
+		if (verif_cmd(&data, cmdtotal, env) == 0)
 		{
 			if (ft_access_mini(&data, cmd) != NULL)
 				launch_cmd(&data, cmd, cmdtotal, env);

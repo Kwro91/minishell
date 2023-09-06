@@ -6,13 +6,13 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 16:31:41 by besalort          #+#    #+#             */
-/*   Updated: 2023/09/06 16:38:01 by besalort         ###   ########.fr       */
+/*   Updated: 2023/09/06 17:39:24 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void    exit_minishell(t_mdata *data)
+void    exit_mini(t_mdata *data)
 {
     ft_free_mini(data);
     exit(0);

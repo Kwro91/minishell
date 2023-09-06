@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 14:08:19 by besalort          #+#    #+#             */
-/*   Updated: 2023/09/06 13:41:10 by besalort         ###   ########.fr       */
+/*   Updated: 2023/09/06 18:19:04 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,26 @@ int nb_word(char **text)
 	return (i);
 }
 
+int	echo_bis(char **text, int nb)
+{
+	char	*word0;
+	char	*wordn;
+
+	word0 = "-n\0";
+	wordn = "-n\n";
+	if (nb == 0)
+	{
+		write(1, "\n", 1);
+		return (1);
+	}
+	if (nb == 1)
+	{
+		if (strncmp(text[0], word0, 3) == 0 || strncmp(text[0], wordn, 3) == 0)
+			return (1);
+	}
+	return (0);
+}
+
 void    ft_echo(char **text)
 {
     int i;
@@ -31,6 +51,8 @@ void    ft_echo(char **text)
     
     i = 0;
 	nb = nb_word(text);
+	if (echo_bis(text, nb) == 1)
+		return ;
     if (text && ft_strncmp(text[0], "-n\0", 3) == 0)
         i++;
     while (text[i])
@@ -45,5 +67,4 @@ void    ft_echo(char **text)
     }
     if (text && ft_strncmp(text[0], "-n\0", 3) != 0)
         write(1, "\n", 1);
-    
 }
