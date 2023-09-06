@@ -19,6 +19,7 @@ SRC = ./src/main.c \
 	./src/prompt.c \
 	./src/echo.c \
 	./src/pwd.c \
+	./src/signals.c \
 	
 LIBFT_PATH = ./src/libft/
 
