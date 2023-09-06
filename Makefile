@@ -43,7 +43,7 @@ OBJ = $(SRC:.c=.o)
 $(NAME)	:	${OBJ}
 		make -C $(LIBFT_PATH)
 		# make -C $(PIPEX_PATH)
-		$(CC) $(CFLAGS) $(OBJ) $(LIBFT) -o $(NAME)
+		$(CC) $(CFLAGS) $(OBJ) $(LIBFT) -o $(NAME) -lreadline
 
 all	:	$(NAME)
 
