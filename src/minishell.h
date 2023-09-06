@@ -10,9 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./libft/libft.h"
-#include "./pipex/pipex.h"
-#include <signal.h>
+# include "./libft/libft.h"
+# include "./pipex/pipex.h"
+# include <signal.h>
+# include <readline.h>
+# include <readline/history.h>
 
 typedef struct s_mdata
 {
