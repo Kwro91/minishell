@@ -6,7 +6,7 @@
 #    By: besalort <besalort@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/29 14:05:28 by besalort          #+#    #+#              #
-#    Updated: 2023/09/06 17:29:49 by besalort         ###   ########.fr        #
+#    Updated: 2023/09/08 16:05:44 by besalort         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ SRC = ./src/main.c \
 	./src/pwd.c \
 	./src/signals.c \
 	./src/exit.c \
+	./src/env.c \
 	
 LIBFT_PATH = ./src/libft/
 

@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 14:10:34 by besalort          #+#    #+#             */
-/*   Updated: 2023/09/06 17:52:12 by besalort         ###   ########.fr       */
+/*   Updated: 2023/09/08 16:04:44 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 
 typedef struct s_mdata
 {
+    char    **env;
     char    **paths;
     char    *pwd;
 }   t_mdata;
@@ -35,12 +36,18 @@ char	**ft_path_mini(char **env);
 void    ft_free_mini(t_mdata *data);
 
 //IsCmd
-int     is_exit(char **cmd_total, t_mdata *data);
 int     is_echo(char **cmd_total);
+int     is_exit(char **cmd_total, t_mdata *data);
 int     is_pwd(char **cmd_total, t_mdata *data);
+int     is_env(char **cmd_total, t_mdata *data);
 
 //Echo
+int     nb_word(char **text);
 void    ft_echo(char **text);
+
+//Env
+void    env_setup(t_mdata *data, char **env);
+void	env_cmd(t_mdata *data);
 
 //Pwd
 void	setup_pwd(t_mdata *data, char **env);

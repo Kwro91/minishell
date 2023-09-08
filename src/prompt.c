@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 15:53:50 by besalort          #+#    #+#             */
-/*   Updated: 2023/09/06 17:51:56 by besalort         ###   ########.fr       */
+/*   Updated: 2023/09/08 16:06:48 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,8 @@ int	verif_cmd(t_mdata *data, char **cmd_total, char **env)
         return (1);
 	else if (is_exit(cmd_total, data) == 1)
 		return (1);
+	else if (is_env(cmd_total, data) == 1)
+		return (1);
     else
 	    return (-1);
     return (-1);
@@ -81,6 +83,7 @@ void    prompt(int ac, char **av, char **env)
 
     data.paths = ft_path_mini(env);
     setup_pwd(&data, env);
+	env_setup(&data, env);
     while(1)
     {
         ft_printf("type a command>\n");
