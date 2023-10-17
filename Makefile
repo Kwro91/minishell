@@ -6,22 +6,22 @@
 #    By: besalort <besalort@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/29 14:05:28 by besalort          #+#    #+#              #
-#    Updated: 2023/09/08 16:05:44 by besalort         ###   ########.fr        #
+#    Updated: 2023/10/17 16:47:33 by besalort         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 
 SRC = ./src/main.c \
-	./src/is_cmd.c \
-	./src/free.c \
-	./src/ft_path.c \
+	./src/built_in/echo.c \
+	./src/built_in/pwd.c \
+	./src/built_in/exit.c \
+	./src/built_in/env.c \
 	./src/prompt.c \
-	./src/echo.c \
-	./src/pwd.c \
+	./src/ft_path.c \
+	./src/is_cmd.c \
 	./src/signals.c \
-	./src/exit.c \
-	./src/env.c \
+	./src/free.c \
 	
 LIBFT_PATH = ./src/libft/
 

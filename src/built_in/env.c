@@ -6,11 +6,11 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 15:55:35 by besalort          #+#    #+#             */
-/*   Updated: 2023/09/08 16:06:03 by besalort         ###   ########.fr       */
+/*   Updated: 2023/10/17 16:42:57 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
 void    env_setup(t_mdata *data, char **env)
 {
@@ -19,7 +19,18 @@ void    env_setup(t_mdata *data, char **env)
 
 	i = 0;
 	nb = nb_word(env);
-	data->env = malloc(sizeof(char *) * nb + 1);
+	if (nb > 0)
+		data->env = malloc(sizeof(char *) * nb + 1);
+	else
+	{
+		data->env = malloc(sizeof(char *) * 1);
+		data->env = NULL;
+	}
+	if (!data->env)
+	{
+		ft_free_mini(data);
+		exit(0);
+	}
 	while (env[i])
 	{
 		data->env[i] = ft_strdup(env[i]);

@@ -6,18 +6,18 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 14:08:19 by besalort          #+#    #+#             */
-/*   Updated: 2023/09/06 18:19:04 by besalort         ###   ########.fr       */
+/*   Updated: 2023/10/17 16:42:52 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
 int nb_word(char **text)
 {
     int	i;
 
 	i = 0;
-	while (text[i])
+	while (text && text[i])
 	{
 		i++;
 	}

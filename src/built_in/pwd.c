@@ -1,19 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit.c                                             :+:      :+:    :+:   */
+/*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/06 16:31:41 by besalort          #+#    #+#             */
-/*   Updated: 2023/09/06 17:39:24 by besalort         ###   ########.fr       */
+/*   Created: 2023/09/06 12:11:42 by besalort          #+#    #+#             */
+/*   Updated: 2023/10/17 16:43:03 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
-void    exit_mini(t_mdata *data)
+void	setup_pwd(t_mdata *data, char **env)
 {
-    ft_free_mini(data);
-    exit(0);
+    int		i;
+
+    i = 0;
+    while (ft_strncmp("PWD=", env[i], 4) != 0)
+        i++;
+    data->pwd = ft_strdup(env[i]+4);
+}
+
+void    pwd(t_mdata *data)
+{
+	ft_printf("%s\n", data->pwd);
 }
