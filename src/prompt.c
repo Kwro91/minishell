@@ -6,7 +6,7 @@
 /*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 15:53:50 by besalort          #+#    #+#             */
-/*   Updated: 2023/10/17 16:58:14 by afontain         ###   ########.fr       */
+/*   Updated: 2023/10/17 17:40:45 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ char	*get_readline(char *str)
 		write(STDERR_FILENO, "exit\n", 5);
 		exit(1);
 	}
-	add_history(str);
+	// add_history(str);
 	return (str);
 }
 
@@ -101,7 +101,7 @@ void    prompt(int ac, char **av, char **env)
     while(1)
     {
 		read_line = get_readline("Minishell>");
-		if (read_line != NULL)
+		if (*read_line)
 			add_history(read_line);
         // ft_printf("type a command>\n");
         // cmd = get_next_line(0);
