@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
+/*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 15:53:50 by besalort          #+#    #+#             */
-/*   Updated: 2023/09/08 16:06:48 by besalort         ###   ########.fr       */
+/*   Updated: 2023/10/17 16:55:50 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,22 +78,26 @@ void    prompt(int ac, char **av, char **env)
 	(void)ac;
     (void)av;
     t_mdata	data;
-    char	*cmd;
-    char	**cmdtotal;
+    // char	*cmd;
+    // char	**cmdtotal;
+	char	*read_line;
 
     data.paths = ft_path_mini(env);
     setup_pwd(&data, env);
 	env_setup(&data, env);
     while(1)
     {
-        ft_printf("type a command>\n");
-        cmd = get_next_line(0);
-		cmdtotal= ft_split(cmd, ' ');
-		if (verif_cmd(&data, cmdtotal, env) == 0)
-		{
-			if (ft_access_mini(&data, cmd) != NULL)
-				launch_cmd(&data, cmd, cmdtotal, env);
-			cmd = NULL;
-		}
+		read_line = get_readline("Minishell>");
+		if (read_line != NULL)
+			add_history(read_line);
+        // ft_printf("type a command>\n");
+        // cmd = get_next_line(0);
+		// cmdtotal= ft_split(cmd, ' ');
+		// if (verif_cmd(&data, cmdtotal, env) == 0)
+		// {
+		// 	if (ft_access_mini(&data, cmd) != NULL)
+		// 		launch_cmd(&data, cmd, cmdtotal, env);
+		// 	cmd = NULL;
+		// }
     }
 }
