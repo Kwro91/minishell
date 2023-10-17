@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: besalort <besalort@student.42.fr>          +#+  +:+       +#+         #
+#    By: afontain <afontain@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/29 14:05:28 by besalort          #+#    #+#              #
-#    Updated: 2023/10/17 16:47:33 by besalort         ###   ########.fr        #
+#    Updated: 2023/10/17 17:46:53 by afontain         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,8 @@ SRC = ./src/main.c \
 	./src/prompt.c \
 	./src/ft_path.c \
 	./src/is_cmd.c \
-	./src/signals.c \
+	./src/signal/signals.c \
+	./src/signal/signals2.c \
 	./src/free.c \
 	
 LIBFT_PATH = ./src/libft/

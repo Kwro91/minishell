@@ -6,11 +6,11 @@
 /*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 12:59:04 by afontain          #+#    #+#             */
-/*   Updated: 2023/09/30 15:30:31 by afontain         ###   ########.fr       */
+/*   Updated: 2023/10/17 17:47:16 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
 void	handle_sigquit(int sigquit)
 {
