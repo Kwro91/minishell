@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 15:55:35 by besalort          #+#    #+#             */
-/*   Updated: 2023/10/17 16:42:57 by besalort         ###   ########.fr       */
+/*   Updated: 2023/10/18 18:34:27 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,18 +20,15 @@ void    env_setup(t_mdata *data, char **env)
 	i = 0;
 	nb = nb_word(env);
 	if (nb > 0)
-		data->env = malloc(sizeof(char *) * nb + 1);
+		data->env = malloc(sizeof(char *) * (nb + 1));
 	else
 	{
 		data->env = malloc(sizeof(char *) * 1);
 		data->env = NULL;
 	}
 	if (!data->env)
-	{
-		ft_free_mini(data);
-		exit(0);
-	}
-	while (env[i])
+		exit_mini(data);
+	while (i < nb)
 	{
 		data->env[i] = ft_strdup(env[i]);
 		i++;
@@ -44,6 +41,8 @@ void	env_cmd(t_mdata *data)
 	int i;
 
 	i = 0;
+	if (!data->env)
+		return ;
 	while (data->env[i])
 	{
 		ft_printf("%s\n", data->env[i]);

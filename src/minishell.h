@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
+/*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 14:10:34 by besalort          #+#    #+#             */
-/*   Updated: 2023/10/17 16:57:54 by afontain         ###   ########.fr       */
+/*   Updated: 2023/10/18 16:29:59 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void    env_setup(t_mdata *data, char **env);
 void	env_cmd(t_mdata *data);
 
 //Pwd
-void	setup_pwd(t_mdata *data, char **env);
+void	setup_pwd(t_mdata *data, char **env, int first);
 void    pwd(t_mdata *data);
 
 //Exit
