@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 15:53:50 by besalort          #+#    #+#             */
-/*   Updated: 2023/11/27 12:32:24 by besalort         ###   ########.fr       */
+/*   Updated: 2023/11/27 16:18:07 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ int	verif_cmd(t_mdata *data, char **cmd_total, char **env)
 		return (1);
 	else if (is_env(cmd_total, data) == 1)
 		return (1);
+	else if (is_export(cmd_total, data) == 1)
+		return (1);
     else
 	    return (-1);
     return (-1);
@@ -85,29 +87,28 @@ char	*get_readline(t_mdata *data, char *str)
 	return (str);
 }
 
-void    prompt(int ac, char **av, char **env)
+void    prompt(t_mdata *data, int ac, char **av, char **env)
 {
 	(void)ac;
     (void)av;
-    t_mdata	data;
     char	*cmd;
     char	**cmdtotal;
 
-    data.paths = ft_path_mini(env);
-	env_setup(&data, env);
-    setup_pwd(&data, env, 1);
+    data->paths = ft_path_mini(env);
+	env_setup(data, env);
+    setup_pwd(data, env, 1);
     while(1)
     {
-		cmd = get_readline(&data, "Minishell>");
+		cmd = get_readline(data, "Minishell>");
 		if (*cmd)
 		{
 			add_history(cmd);
 			cmdtotal= ft_split(cmd, ' ');
 		}
-		if (*cmd && verif_cmd(&data, cmdtotal, env) == 0)
+		if (*cmd && verif_cmd(data, cmdtotal, env) == 0)
 		{
-			if (ft_access_mini(&data, cmd) != NULL)
-				launch_cmd(&data, cmd, cmdtotal, env);
+			if (ft_access_mini(data, cmd) != NULL)
+				launch_cmd(data, cmd, cmdtotal, env);
 			cmd = NULL;
 		}
 		if (*cmd)

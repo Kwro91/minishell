@@ -6,17 +6,19 @@
 #    By: besalort <besalort@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/29 14:05:28 by besalort          #+#    #+#              #
-#    Updated: 2023/11/27 12:29:09 by besalort         ###   ########.fr        #
+#    Updated: 2023/11/27 16:16:14 by besalort         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 
 SRC = ./src/main.c \
+	./src/built_in/init_builtin.c \
 	./src/built_in/echo.c \
 	./src/built_in/pwd.c \
 	./src/built_in/exit.c \
 	./src/built_in/env.c \
+	./src/built_in/export.c \
 	./src/prompt.c \
 	./src/ft_path.c \
 	./src/is_cmd.c \

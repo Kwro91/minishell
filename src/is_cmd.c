@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 16:26:03 by besalort          #+#    #+#             */
-/*   Updated: 2023/09/08 16:04:01 by besalort         ###   ########.fr       */
+/*   Updated: 2023/11/27 16:03:14 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,3 +71,22 @@ int is_env(char **cmd_total, t_mdata *data)
     }
     return (-1);
 }
+
+int is_export(char **cmd_total, t_mdata *data)
+{
+    char    *name0;
+    char    *namen;
+    
+    name0 = "export\0";
+    namen = "export\n\0";
+    if (ft_strncmp(name0, cmd_total[0], 7) == 0 || ft_strncmp(namen, cmd_total[0], 8) == 0)
+    {
+		if (cmd_total[1] != NULL)
+        	export_cmd(data, cmd_total[1]);
+		else
+			export_cmd(data, NULL);
+        return (1);
+    }
+    return (-1);
+}
+

@@ -6,42 +6,31 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 16:14:52 by besalort          #+#    #+#             */
-/*   Updated: 2023/10/18 16:42:45 by besalort         ###   ########.fr       */
+/*   Updated: 2023/11/27 15:15:30 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void    ft_free_menv(t_mdata *data)
+void    ft_free_lines(char	**lines)
 {
     int i;
     
     i = 0;
-    while (data->env && data->env[i])
+	if (!lines)
+		return ;
+    while (lines[i])
     {
-        free(data->env[i]);
+        free(lines[i]);
         i++;
     }
-    free(data->env);
-}
-
-void    ft_free_mpaths(t_mdata *data)
-{
-    int i;
-    
-    i = 0;
-    while (data->paths[i])
-    {
-        free(data->paths[i]);
-        i++;
-    }
-    free(data->paths);
+    free(lines);
 }
 
 void    ft_free_mini(t_mdata *data)
 {
-    ft_free_menv(data);
-    ft_free_mpaths(data);
+    ft_free_lines(data->env);
+    ft_free_lines(data->paths);
     free(data->pwd);
 	rl_clear_history();
 }

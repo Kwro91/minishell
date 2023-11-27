@@ -1,27 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   init_builtin.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/28 17:10:52 by besalort          #+#    #+#             */
-/*   Updated: 2023/11/27 16:18:38 by besalort         ###   ########.fr       */
+/*   Created: 2023/11/27 16:14:31 by besalort          #+#    #+#             */
+/*   Updated: 2023/11/27 16:19:09 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
-int main(int ac, char **av, char **env)
+void	init_built_int(t_mdata *data)
 {
-	t_mdata data;
-	if (ac == 1)
-	{
-		init_built_int(&data);
-		handle_signals();
-		prompt(&data, ac, av, env);
-	}
-	else
-		ft_printf("No args needed for minishell, please use : ./minishell\n");
-    return (0);
+	data->env = NULL;
+	data->export = NULL;
+	data->paths = NULL;
+	data->pwd = NULL;
 }

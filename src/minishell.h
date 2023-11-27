@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 14:10:34 by besalort          #+#    #+#             */
-/*   Updated: 2023/10/18 16:29:59 by besalort         ###   ########.fr       */
+/*   Updated: 2023/11/27 16:18:22 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,24 +22,30 @@
 typedef struct s_mdata
 {
     char    **env;
+	char	**export;
     char    **paths;
     char    *pwd;
 }   t_mdata;
 
+//Init
+void	init_built_int(t_mdata *data);
+
 //Prompt
-void    prompt(int ac, char **av, char **env);
+void    prompt(t_mdata *data, int ac, char **av, char **env);
 
 //Path
 void	ft_path_all(t_mdata *data, char **paths);
 void	ft_path_no_env(t_mdata *data);
 char	**ft_path_mini(char **env);
 void    ft_free_mini(t_mdata *data);
+void    ft_free_lines(char	**lines);
 
 //IsCmd
 int     is_echo(char **cmd_total);
 int     is_exit(char **cmd_total, t_mdata *data);
 int     is_pwd(char **cmd_total, t_mdata *data);
 int     is_env(char **cmd_total, t_mdata *data);
+int 	is_export(char **cmd_total, t_mdata *data);
 
 //Echo
 int     nb_word(char **text);
@@ -55,6 +61,9 @@ void    pwd(t_mdata *data);
 
 //Exit
 void    exit_mini(t_mdata *data);
+
+//Export
+void	export_cmd(t_mdata *data, char *line);
 
 //Signal
 void	handle_signals(void);
