@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 14:54:46 by besalort          #+#    #+#             */
-/*   Updated: 2023/11/29 16:39:37 by besalort         ###   ########.fr       */
+/*   Updated: 2023/11/29 17:36:07 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	copy_export(t_mdata *data, char *line, int i)
 		new[j] = ft_strdup(data->export[j]);
 		j++;
 	}
-	new[j] = ft_strdup(line);
+	new[j] = ft_strdup(modif_export(line));
 	new[j + 1] = NULL;
 	ft_free_lines(data->export);
 	data->export = new;
@@ -44,7 +44,7 @@ void	init_export(t_mdata *data, char *line)
 	if (!data->export)
 	{
 		data->export = malloc(sizeof(char *) * 2);
-		data->export[0] = ft_strdup(line);
+		data->export[0] = ft_strdup(modif_export(line));
 		data->export[1] = NULL;	
 	}
 	else

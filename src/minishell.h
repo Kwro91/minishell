@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 14:10:34 by besalort          #+#    #+#             */
-/*   Updated: 2023/11/27 16:18:22 by besalort         ###   ########.fr       */
+/*   Updated: 2023/11/29 17:34:33 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ void    exit_mini(t_mdata *data);
 
 //Export
 void	export_cmd(t_mdata *data, char *line);
+char	*modif_export(char *line);
 
 //Signal
 void	handle_signals(void);

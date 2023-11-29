@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 15:55:35 by besalort          #+#    #+#             */
-/*   Updated: 2023/11/28 16:03:02 by besalort         ###   ########.fr       */
+/*   Updated: 2023/11/29 18:19:33 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ void    env_setup(t_mdata *data, char **env)
 
 	i = 0;
 	nb = nb_word(env);
-	if (nb > 0)
+	if (nb >= 0)
 		data->env = malloc(sizeof(char *) * (nb + 1));
 	else
 	{
-		data->env = malloc(sizeof(char *) * 1);
+		// data->env = malloc(sizeof(char *) * 1)
 		data->env = NULL;
 	}
 	if (!data->env)
@@ -48,4 +48,5 @@ void	env_cmd(t_mdata *data)
 		ft_printf("%s\n", data->env[i]);
 		i++;
 	}
+	export_cmd(data, NULL);
 }

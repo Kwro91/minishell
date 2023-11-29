@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 14:08:19 by besalort          #+#    #+#             */
-/*   Updated: 2023/11/28 13:11:13 by besalort         ###   ########.fr       */
+/*   Updated: 2023/11/29 17:58:39 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,7 @@ int nb_word(char **text)
 
 	i = 0;
 	while (text && text[i])
-	{
 		i++;
-	}
 	return (i);
 }
 

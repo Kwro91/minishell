@@ -6,7 +6,7 @@
 #    By: besalort <besalort@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/29 14:05:28 by besalort          #+#    #+#              #
-#    Updated: 2023/11/27 16:16:14 by besalort         ###   ########.fr        #
+#    Updated: 2023/11/29 17:34:55 by besalort         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ SRC = ./src/main.c \
 	./src/built_in/exit.c \
 	./src/built_in/env.c \
 	./src/built_in/export.c \
+	./src/built_in/export_bis.c \
 	./src/prompt.c \
 	./src/ft_path.c \
 	./src/is_cmd.c \
