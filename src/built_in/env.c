@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 15:55:35 by besalort          #+#    #+#             */
-/*   Updated: 2023/10/18 18:34:27 by besalort         ###   ########.fr       */
+/*   Updated: 2023/11/28 16:03:02 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	env_cmd(t_mdata *data)
 	i = 0;
 	if (!data->env)
 		return ;
-	while (data->env[i])
+	while (data->env && data->env[i])
 	{
 		ft_printf("%s\n", data->env[i]);
 		i++;

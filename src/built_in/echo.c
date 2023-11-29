@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 14:08:19 by besalort          #+#    #+#             */
-/*   Updated: 2023/10/17 16:42:52 by besalort         ###   ########.fr       */
+/*   Updated: 2023/11/28 13:11:13 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void    ft_echo(char **text)
 		if (i != nb-1)
         	write(1, text[i], ft_strlen(text[i]));
 		else
-			write(1, text[i], ft_strlen(text[i])-1);
+			write(1, text[i], ft_strlen(text[i]));
         i++;
         if (text[i])
             write(1, " ", 1);
