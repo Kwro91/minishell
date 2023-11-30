@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 14:54:46 by besalort          #+#    #+#             */
-/*   Updated: 2023/11/30 17:20:52 by besalort         ###   ########.fr       */
+/*   Updated: 2023/11/30 18:53:53 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,14 @@ char	**copy_add(char **base, char **add, int size)
 		j++;
 	while (i < size && add[i])
 	{
-		base[j + i] = ft_strdup(add[i]);
+		if (reset_line(base, add[i]) == -1)
+			base[j + i] = ft_strdup(add[i]);
 		i++;
 	}
 	return (base);
 }
 
-void	copy_export(t_mdata *data, char **line)
+void	copy_export(t_mdata *data, char **line, int count)
 {
 	char	**new;
 	int		base;
@@ -37,24 +38,36 @@ void	copy_export(t_mdata *data, char **line)
 
 	base = nb_word(data->export);
 	count_l = nb_word(line);
-	new = ft_calloc(sizeof(char *), (base + count_l + 2));
+	new = ft_calloc(sizeof(char *), (base + (count_l - count) + 2));
 	if (!new)
 		return ;
 	new = copy_add(new, data->export, base);
 	new = copy_add(new, line, count_l);
-	new[base + count_l + 1] = NULL;
+	new[base + (count_l - count) + 1] = NULL;
 	ft_free_lines(data->export);
 	data->export = new;
 }
 
 void	init_export(t_mdata *data, char **line)
 {
+	int	i;
+	int	count;
+
+	i = 1;
+	count = 0;
 	if (!line)
 		return ;
 	if (!data->export)
 		data->export = modif_export(&line[1]);
 	else
-		copy_export(data, modif_export(&line[1]));
+	{
+		while (line[i])
+		{
+			 if (do_line_exist((data->export), modif_utils(line[i++])) != 0)
+				count++;
+		}
+		copy_export(data, modif_export(&line[1]), count);
+	}
 }
 
 void	print_export(t_mdata *data)

@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 14:10:34 by besalort          #+#    #+#             */
-/*   Updated: 2023/11/30 16:34:13 by besalort         ###   ########.fr       */
+/*   Updated: 2023/11/30 18:22:27 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,8 @@ void	unset_option(t_mdata *data, char *arg);
 
 //Export
 void	export_cmd(t_mdata *data, char **line);
+int		do_line_exist(char **export, char *line);
+int		reset_line(char **export, char *line);
 char	**modif_export(char **line);
 char	*modif_utils(char *line);
 
