@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 16:26:03 by besalort          #+#    #+#             */
-/*   Updated: 2023/11/30 15:28:04 by besalort         ###   ########.fr       */
+/*   Updated: 2023/11/30 16:11:16 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int is_export(char **cmd_total, t_mdata *data)
     if (ft_strncmp(name0, cmd_total[0], 7) == 0 || ft_strncmp(namen, cmd_total[0], 8) == 0)
     {
 		if (cmd_total[1] != NULL)
-        	export_cmd(data, cmd_total[1]);
+        	export_cmd(data, cmd_total);
 		else
 			export_cmd(data, NULL);
         return (1);

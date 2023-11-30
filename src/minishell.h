@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 14:10:34 by besalort          #+#    #+#             */
-/*   Updated: 2023/11/30 15:32:05 by besalort         ###   ########.fr       */
+/*   Updated: 2023/11/30 16:34:13 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,9 @@ int		ft_unset(char **args, t_mdata *mdata);
 void	unset_option(t_mdata *data, char *arg);
 
 //Export
-void	export_cmd(t_mdata *data, char *line);
-char	*modif_export(char *line);
+void	export_cmd(t_mdata *data, char **line);
+char	**modif_export(char **line);
+char	*modif_utils(char *line);
 
 //Signal
 void	handle_signals(void);

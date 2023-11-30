@@ -6,49 +6,55 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 14:54:46 by besalort          #+#    #+#             */
-/*   Updated: 2023/11/29 17:36:07 by besalort         ###   ########.fr       */
+/*   Updated: 2023/11/30 17:20:52 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	copy_export(t_mdata *data, char *line, int i)
+char	**copy_add(char **base, char **add, int size)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (base[j] != NULL)
+		j++;
+	while (i < size && add[i])
+	{
+		base[j + i] = ft_strdup(add[i]);
+		i++;
+	}
+	return (base);
+}
+
+void	copy_export(t_mdata *data, char **line)
 {
 	char	**new;
-	int		j;
+	int		base;
+	int		count_l;
 
-	j = 0;
-	while (data->export && data->export[i])
-			i++;
-	new = malloc(sizeof(char *) * (i + 2));
+	base = nb_word(data->export);
+	count_l = nb_word(line);
+	new = ft_calloc(sizeof(char *), (base + count_l + 2));
 	if (!new)
 		return ;
-	while (j < i)
-	{
-		new[j] = ft_strdup(data->export[j]);
-		j++;
-	}
-	new[j] = ft_strdup(modif_export(line));
-	new[j + 1] = NULL;
+	new = copy_add(new, data->export, base);
+	new = copy_add(new, line, count_l);
+	new[base + count_l + 1] = NULL;
 	ft_free_lines(data->export);
 	data->export = new;
 }
 
-void	init_export(t_mdata *data, char *line)
+void	init_export(t_mdata *data, char **line)
 {
-	int	i;
-
-	i = 0;
 	if (!line)
 		return ;
 	if (!data->export)
-	{
-		data->export = malloc(sizeof(char *) * 2);
-		data->export[0] = ft_strdup(modif_export(line));
-		data->export[1] = NULL;	
-	}
+		data->export = modif_export(&line[1]);
 	else
-		copy_export(data, line, i);
+		copy_export(data, modif_export(&line[1]));
 }
 
 void	print_export(t_mdata *data)
@@ -63,7 +69,7 @@ void	print_export(t_mdata *data)
 	}
 }
 
-void	export_cmd(t_mdata *data, char *line)
+void	export_cmd(t_mdata *data, char **line)
 {
 	if (!line)
 		return (print_export(data));
