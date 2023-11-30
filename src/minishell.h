@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 14:10:34 by besalort          #+#    #+#             */
-/*   Updated: 2023/11/29 17:34:33 by besalort         ###   ########.fr       */
+/*   Updated: 2023/11/30 14:16:53 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,12 @@ int     is_pwd(char **cmd_total, t_mdata *data);
 int     is_env(char **cmd_total, t_mdata *data);
 int 	is_export(char **cmd_total, t_mdata *data);
 
-//Echo
+//BUILT_IN
+
+//Utils
 int     nb_word(char **text);
+
+//Echo
 void    ft_echo(char **text);
 
 //Env

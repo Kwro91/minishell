@@ -6,21 +6,11 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 14:08:19 by besalort          #+#    #+#             */
-/*   Updated: 2023/11/29 17:58:39 by besalort         ###   ########.fr       */
+/*   Updated: 2023/11/30 14:16:16 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-
-int nb_word(char **text)
-{
-    int	i;
-
-	i = 0;
-	while (text && text[i])
-		i++;
-	return (i);
-}
 
 int	echo_bis(char **text, int nb)
 {
