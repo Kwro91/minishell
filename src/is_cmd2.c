@@ -1,25 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   is_cmd2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/28 17:10:52 by besalort          #+#    #+#             */
-/*   Updated: 2023/11/27 22:36:47 by afontain         ###   ########.fr       */
+/*   Created: 2023/11/27 15:01:29 by afontain          #+#    #+#             */
+/*   Updated: 2023/11/30 14:28:16 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	main(int ac, char **av, char **env)
+int	is_unset(char **cmd_total, t_mdata *data)
 {
-	if (ac == 1)
-	{
-		handle_signals();
-		prompt(ac, av, env);
-	}
-	else
-		ft_printf("No args needed for minishell, please use : ./minishell\n");
-    return (0);
+	char    *name0;
+    char    *namen;
+    
+    name0 = "unset\0";
+    namen = "unset\n\0";
+    if (ft_strncmp(name0, cmd_total[0], 6) == 0 || ft_strncmp(namen, cmd_total[0], 7) == 0)
+    {
+        ft_unset(cmd_total, data);
+        return (1);
+    }
+    return (-1);
 }

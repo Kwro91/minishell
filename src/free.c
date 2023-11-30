@@ -3,14 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
+/*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 16:14:52 by besalort          #+#    #+#             */
-/*   Updated: 2023/10/18 16:42:45 by besalort         ###   ########.fr       */
+/*   Updated: 2023/11/30 14:23:47 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void	ft_free_adr(void *adr)
+{
+	if (adr)
+		free(adr);
+	adr = NULL;
+}
 
 void    ft_free_menv(t_mdata *data)
 {

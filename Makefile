@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: besalort <besalort@student.42.fr>          +#+  +:+       +#+         #
+#    By: afontain <afontain@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/29 14:05:28 by besalort          #+#    #+#              #
-#    Updated: 2023/11/27 12:29:09 by besalort         ###   ########.fr        #
+#    Updated: 2023/11/27 17:42:32 by afontain         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,9 +17,11 @@ SRC = ./src/main.c \
 	./src/built_in/pwd.c \
 	./src/built_in/exit.c \
 	./src/built_in/env.c \
+	./src/built_in/unset.c \
 	./src/prompt.c \
 	./src/ft_path.c \
 	./src/is_cmd.c \
+	./src/is_cmd2.c \
 	./src/signal/signals.c \
 	./src/signal/signals2.c \
 	./src/free.c \

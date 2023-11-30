@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
+/*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 15:53:50 by besalort          #+#    #+#             */
-/*   Updated: 2023/11/27 12:32:24 by besalort         ###   ########.fr       */
+/*   Updated: 2023/11/30 14:27:10 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,8 @@ int	verif_cmd(t_mdata *data, char **cmd_total, char **env)
 		return (1);
 	else if (is_env(cmd_total, data) == 1)
 		return (1);
-    else
-	    return (-1);
+    else if (is_unset(cmd_total, data) == 1)
+	    return (1);
     return (-1);
 }
 
