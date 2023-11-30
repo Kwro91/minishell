@@ -6,13 +6,13 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 17:10:52 by besalort          #+#    #+#             */
-/*   Updated: 2023/11/27 16:18:38 by besalort         ###   ########.fr       */
+/*   Updated: 2023/11/30 15:23:45 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int main(int ac, char **av, char **env)
+int	main(int ac, char **av, char **env)
 {
 	t_mdata data;
 	if (ac == 1)

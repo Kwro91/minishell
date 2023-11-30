@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 16:26:03 by besalort          #+#    #+#             */
-/*   Updated: 2023/11/28 13:09:51 by besalort         ###   ########.fr       */
+/*   Updated: 2023/11/30 15:28:04 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int is_echo(char **cmd_total)
 {
     char    *name0;
     char    *namen;
-    
+
     name0 = "echo\0";
     namen = "echo\n\0";
     if (ft_strncmp(name0, cmd_total[0], 5) == 0 || ft_strncmp(namen, cmd_total[0], 6) == 0)

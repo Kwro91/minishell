@@ -6,11 +6,18 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 16:14:52 by besalort          #+#    #+#             */
-/*   Updated: 2023/11/28 15:30:45 by besalort         ###   ########.fr       */
+/*   Updated: 2023/11/30 15:29:39 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void	ft_free_adr(void *adr)
+{
+	if (adr)
+		free(adr);
+	adr = NULL;
+}
 
 void    ft_free_lines(char	**lines)
 {
