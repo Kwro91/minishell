@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 17:24:18 by besalort          #+#    #+#             */
-/*   Updated: 2023/11/30 18:53:44 by besalort         ###   ########.fr       */
+/*   Updated: 2023/12/01 16:52:39 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ int	reset_line(char **export, char *line)
 	
 	i = 0;
 	i = do_line_exist(export, line);
-	printf("do line exist = %i\n", i);
 	if (i != -1)
 	{
 		free(export[i]);
