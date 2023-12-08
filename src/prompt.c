@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 15:53:50 by besalort          #+#    #+#             */
-/*   Updated: 2023/11/30 15:33:15 by besalort         ###   ########.fr       */
+/*   Updated: 2023/12/06 16:14:54 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,8 @@ int	verif_cmd(t_mdata *data, char **cmd_total, char **env)
 	else if (is_export(cmd_total, data) == 1)
 		return (1);
     else if (is_unset(cmd_total, data) == 1)
+	    return (1);
+	else if (is_cd(cmd_total, data) == 1)
 	    return (1);
     return (-1);
 }

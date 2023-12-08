@@ -1,0 +1,55 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cd.c                                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/12/06 15:30:43 by besalort          #+#    #+#             */
+/*   Updated: 2023/12/08 15:20:35 by besalort         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../minishell.h"
+
+char	*return_home(t_mdata *data)
+{
+	int	i;
+
+	i = 0;
+	if (!data->env)
+		return (NULL);
+	while (data->env[i])
+	{
+		if (ft_strncmp(data->env[i], "HOME=", 5) == 0)
+			return (ft_strdup(&data->env[i][5]));
+		i++;
+	}
+	return (NULL);
+}
+
+char	*verif_cd(t_mdata *data, char *line)
+{
+	if (ft_strncmp(line, "~\0", 2) == 0)
+		return (return_home(data));
+	return (NULL);
+}
+
+void	cd_cmd(t_mdata *data, char *line)
+{
+	char	*modif;
+
+	modif = verif_cd(data, line);
+	if (modif != NULL)
+	{
+		if (chdir(modif) != 0)
+			ft_printf("Error : chdir\n");
+		return (setup_pwd(data, data->env, 0));
+	}
+	else
+	{
+		if (chdir(line) != 0)
+			ft_printf("Error : chdir\n");	
+	}
+	setup_pwd(data, data->env, 0);
+}

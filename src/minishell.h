@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 14:10:34 by besalort          #+#    #+#             */
-/*   Updated: 2023/11/30 18:22:27 by besalort         ###   ########.fr       */
+/*   Updated: 2023/12/06 16:14:13 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ int     is_pwd(char **cmd_total, t_mdata *data);
 int     is_env(char **cmd_total, t_mdata *data);
 int 	is_export(char **cmd_total, t_mdata *data);
 int		is_unset(char **cmd_total, t_mdata *data);
+int		is_cd(char **cmd_total, t_mdata *data);
 
 //BUILT_IN
 
@@ -87,6 +88,9 @@ int		do_line_exist(char **export, char *line);
 int		reset_line(char **export, char *line);
 char	**modif_export(char **line);
 char	*modif_utils(char *line);
+
+//Cd
+void	cd_cmd(t_mdata *data, char *line);
 
 //Signal
 void	handle_signals(void);
