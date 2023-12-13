@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 12:11:42 by besalort          #+#    #+#             */
-/*   Updated: 2023/10/18 16:31:54 by besalort         ###   ########.fr       */
+/*   Updated: 2023/12/13 15:33:05 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,9 @@ void	setup_pwd_env(t_mdata *data)
 
 	i = 0;
 	tmp = ft_strdup("PWD=");
-	while (data->env[i] && ft_strncmp(tmp, data->env[i], 5) != 0)
+	if (!data->env)
+		return ;
+	while (data->env[i] && (ft_strncmp(tmp, data->env[i], 4) != 0))
 		i++;
 	if (data->env[i])
 		free(data->env[i]);

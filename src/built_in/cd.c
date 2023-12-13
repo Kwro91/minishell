@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 15:30:43 by besalort          #+#    #+#             */
-/*   Updated: 2023/12/08 15:20:35 by besalort         ###   ########.fr       */
+/*   Updated: 2023/12/08 16:15:54 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ char	*verif_cd(t_mdata *data, char *line)
 {
 	if (ft_strncmp(line, "~\0", 2) == 0)
 		return (return_home(data));
+	else if (ft_strncmp(line, "-\0", 2) == 0)
+		return (pwd(data), NULL);
 	return (NULL);
 }
 
@@ -48,7 +50,7 @@ void	cd_cmd(t_mdata *data, char *line)
 	}
 	else
 	{
-		if (chdir(line) != 0)
+		if (chdir(line) != 0 && (ft_strncmp(line, "-\0", 2) != 0))
 			ft_printf("Error : chdir\n");	
 	}
 	setup_pwd(data, data->env, 0);
