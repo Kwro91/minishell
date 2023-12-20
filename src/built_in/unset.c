@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 14:41:18 by afontain          #+#    #+#             */
-/*   Updated: 2023/12/18 18:05:47 by besalort         ###   ########.fr       */
+/*   Updated: 2023/12/20 15:51:36 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	erase_it(t_mdata *data, char **tab, int nb)
 
 	len = 0;
 	i = 0;
+	j = 0;
 	while (tab[len])
 		len++;
 	newtab = malloc(sizeof(char *) * len);
@@ -54,16 +55,33 @@ void	erase_it(t_mdata *data, char **tab, int nb)
 
 int	line_exist(char **tab, char *line)
 {
-	int	len = ft_strlen(line);
+	int	lenl;
+	int	lent;
 	int	i;
 
 	i = 0;
-	while (tab[i])
+	lenl = ft_strlen(line);
+	if (!tab)
+		return (-1);
+	printf("%s est la premiere ligne de tab\n", tab[0]);
+	while (tab && tab[i])
 	{
-		if (ft_strncmp(tab[i], line, len) == 0)
+		lent = ft_strlen(tab[i]);
+		if (lenl <= lent)
 		{
-			if (tab[i][len] == '=')
-				return (i);
+			if (ft_strncmp(tab[i], line, lenl - 1) == 0)
+			{
+				if (tab[i][lenl] == '=')
+					return (i);
+			}
+		}
+		else
+		{
+			if (ft_strncmp(tab[i], line, lent - 1) == 0)
+			{
+				if (tab[i][lent] == '=')
+					return (i);
+			}
 		}
 		i++;
 	}
@@ -76,7 +94,8 @@ void	unset_utils(t_mdata *data, char *str)
 	int	line_export;
 	
 	line_env = line_exist(data->env, str);
-	line_export = line_exist(data->env, str);
+	line_export = line_exist(data->export, str);
+	printf("env = %i | export = %i\n", line_env, line_export);
 	if (line_env >= 0)
 		erase_it(data, data->env, line_env);
 	else if (line_export >= 0)
@@ -88,11 +107,12 @@ int	ft_unset(char **args, t_mdata *data)
 {
 	int		i;
 
-	i = 0;
+	i = 1;
 	if (!args || !args[0])
 		return (0);
 	while (args[i])
 	{
+		printf("Oui : %s\n", args[i]);
 		unset_utils(data, args[i]);
 		i++;
 	}
