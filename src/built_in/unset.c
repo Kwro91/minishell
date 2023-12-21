@@ -3,74 +3,117 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
+/*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 14:41:18 by afontain          #+#    #+#             */
-/*   Updated: 2023/11/30 14:57:10 by afontain         ###   ########.fr       */
+/*   Updated: 2023/12/20 15:51:36 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-int	is_same(char *s1, char *s2)
+void	free_tab(char	**tab)
 {
 	int	i;
 
 	i = 0;
-	if (!s1 || !s2)
-		return (0);
-	while (s1[i] && s2[i] && s1[i] == s2[i])
+	if (!tab)
+		return ;
+	while (tab[i])
+	{
+		free(tab[i]);
 		i++;
-	if (!s1[i] && (!s2[i] || (s2[i] == '+' && !s2[i + 1])))
-		return (1);
-	return (0);
-}
-
-t_envi	*search_node(t_envi *envi, char *str)
-{
-	t_envi	*travel;
-
-	travel = envi;
-	if (!str)
-		return (NULL);
-	while (travel)
-	{
-		if (is_same(travel->tab[0], str))
-			return (travel);
-		travel = travel->next;
 	}
-	return (NULL);
+	free(tab);
 }
 
-void	unset_option(t_mdata *data, char *arg)
+void	erase_it(t_mdata *data, char **tab, int nb)
 {
-	t_envi	*before;
-	t_envi	*node;
+	char	**newtab;
+	int		len;
+	int		i;
+	int		j;
 
-	before = data->envi;
-	node = search_node(data->envi, arg);
-	if (node)
+	len = 0;
+	i = 0;
+	j = 0;
+	while (tab[len])
+		len++;
+	newtab = malloc(sizeof(char *) * len);
+	if (!newtab)
+		exit_mini(data);
+	while (j < len)
 	{
-		while (before->next && !strcmp(before->next->tab[0], arg))
-			before = before->next;
-		if (!before->next)
-			data->envi = node->next;
+		if (i != nb)
+			newtab[i++] = ft_strdup(tab[j]);
+		j++;
+	}
+	newtab[i] = NULL;
+	free_tab(tab);
+	tab = newtab;
+}
+
+int	line_exist(char **tab, char *line)
+{
+	int	lenl;
+	int	lent;
+	int	i;
+
+	i = 0;
+	lenl = ft_strlen(line);
+	if (!tab)
+		return (-1);
+	printf("%s est la premiere ligne de tab\n", tab[0]);
+	while (tab && tab[i])
+	{
+		lent = ft_strlen(tab[i]);
+		if (lenl <= lent)
+		{
+			if (ft_strncmp(tab[i], line, lenl - 1) == 0)
+			{
+				if (tab[i][lenl] == '=')
+					return (i);
+			}
+		}
 		else
-			before->next = node->next;
-		ft_free_adr(node);
+		{
+			if (ft_strncmp(tab[i], line, lent - 1) == 0)
+			{
+				if (tab[i][lent] == '=')
+					return (i);
+			}
+		}
+		i++;
 	}
+	return (-1);
+}
+
+void	unset_utils(t_mdata *data, char *str)
+{
+	int	line_env;
+	int	line_export;
+	
+	line_env = line_exist(data->env, str);
+	line_export = line_exist(data->export, str);
+	printf("env = %i | export = %i\n", line_env, line_export);
+	if (line_env >= 0)
+		erase_it(data, data->env, line_env);
+	else if (line_export >= 0)
+		erase_it(data, data->export, line_export);
+	return ;
 }
 
 int	ft_unset(char **args, t_mdata *data)
 {
 	int		i;
 
-	i = 0;
+	i = 1;
 	if (!args || !args[0])
 		return (0);
 	while (args[i])
 	{
-		unset_option(data, args[i]);
+		printf("Oui : %s\n", args[i]);
+		unset_utils(data, args[i]);
 		i++;
 	}
 	return (0);
