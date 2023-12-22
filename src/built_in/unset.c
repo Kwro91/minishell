@@ -6,13 +6,13 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 14:41:18 by afontain          #+#    #+#             */
-/*   Updated: 2023/12/20 15:51:36 by besalort         ###   ########.fr       */
+/*   Updated: 2023/12/22 17:35:56 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	free_tab(char	**tab)
+void	free_tab(char **tab)
 {
 	int	i;
 
@@ -27,7 +27,7 @@ void	free_tab(char	**tab)
 	free(tab);
 }
 
-void	erase_it(t_mdata *data, char **tab, int nb)
+char	**erase_it(t_mdata *data, char **tab, int nb)
 {
 	char	**newtab;
 	int		len;
@@ -42,46 +42,33 @@ void	erase_it(t_mdata *data, char **tab, int nb)
 	newtab = malloc(sizeof(char *) * len);
 	if (!newtab)
 		exit_mini(data);
-	while (j < len)
+	while (tab[j])
 	{
-		if (i != nb)
+		if (j != nb)
 			newtab[i++] = ft_strdup(tab[j]);
 		j++;
 	}
 	newtab[i] = NULL;
-	free_tab(tab);
-	tab = newtab;
+	return (newtab);
 }
 
 int	line_exist(char **tab, char *line)
 {
 	int	lenl;
-	int	lent;
+	int	lenm;
 	int	i;
 
 	i = 0;
 	lenl = ft_strlen(line);
 	if (!tab)
 		return (-1);
-	printf("%s est la premiere ligne de tab\n", tab[0]);
 	while (tab && tab[i])
 	{
-		lent = ft_strlen(tab[i]);
-		if (lenl <= lent)
+		lenm = lenl;
+		if (ft_strncmp(tab[i], line, lenm - 1) == 0)
 		{
-			if (ft_strncmp(tab[i], line, lenl - 1) == 0)
-			{
-				if (tab[i][lenl] == '=')
-					return (i);
-			}
-		}
-		else
-		{
-			if (ft_strncmp(tab[i], line, lent - 1) == 0)
-			{
-				if (tab[i][lent] == '=')
-					return (i);
-			}
+			if (tab[i][lenm] == '=' || tab[i][lenm] == '\0')
+				return (i);
 		}
 		i++;
 	}
@@ -92,14 +79,22 @@ void	unset_utils(t_mdata *data, char *str)
 {
 	int	line_env;
 	int	line_export;
+	char	**newtab;
 	
 	line_env = line_exist(data->env, str);
 	line_export = line_exist(data->export, str);
-	printf("env = %i | export = %i\n", line_env, line_export);
 	if (line_env >= 0)
-		erase_it(data, data->env, line_env);
+	{
+		newtab = erase_it(data, data->env, line_env);
+		free_tab(data->env);
+		data->env = newtab;
+	}
 	else if (line_export >= 0)
-		erase_it(data, data->export, line_export);
+	{
+		newtab = erase_it(data, data->export, line_export);
+		free_tab(data->export);
+		data->export = newtab;
+	}
 	return ;
 }
 
@@ -112,7 +107,6 @@ int	ft_unset(char **args, t_mdata *data)
 		return (0);
 	while (args[i])
 	{
-		printf("Oui : %s\n", args[i]);
 		unset_utils(data, args[i]);
 		i++;
 	}

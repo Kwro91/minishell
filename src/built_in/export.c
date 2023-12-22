@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 14:54:46 by besalort          #+#    #+#             */
-/*   Updated: 2023/12/01 16:52:17 by besalort         ###   ########.fr       */
+/*   Updated: 2023/12/22 17:10:32 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,8 @@ void	print_export(t_mdata *data)
 	int	i;
 	
 	i = 0;
+	if (!data->export)
+		return ;
 	while (data->export && data->export[i])
 	{
 		ft_printf("%s\n", data->export[i]);
