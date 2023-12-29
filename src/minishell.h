@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 14:10:34 by besalort          #+#    #+#             */
-/*   Updated: 2023/12/22 17:34:15 by besalort         ###   ########.fr       */
+/*   Updated: 2023/12/29 16:48:42 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ int		is_cd(char **cmd_total, t_mdata *data);
 
 //Utils
 int     nb_word(char **text);
+void	good_print(char	*line);
 
 //Echo
 void    ft_echo(char **text);
@@ -85,8 +86,6 @@ int		ft_unset(char **args, t_mdata *mdata);
 void	export_cmd(t_mdata *data, char **line);
 int		do_line_exist(char **export, char *line);
 int		reset_line(char **export, char *line);
-char	**modif_export(char **line);
-char	*modif_utils(char *line);
 
 //Cd
 void	cd_cmd(t_mdata *data, char *line);

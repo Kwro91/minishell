@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 15:55:35 by besalort          #+#    #+#             */
-/*   Updated: 2023/11/30 16:29:37 by besalort         ###   ########.fr       */
+/*   Updated: 2023/12/29 16:47:16 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,10 @@ void	env_cmd(t_mdata *data)
 		ft_printf("%s\n", data->env[i]);
 		i++;
 	}
-	export_cmd(data, NULL);
+	i = 0;
+	while (data->export && data->export[i])
+	{
+		ft_printf("%s\n", data->export[i]);
+		i++;
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 17:24:18 by besalort          #+#    #+#             */
-/*   Updated: 2023/12/21 16:01:14 by besalort         ###   ########.fr       */
+/*   Updated: 2023/12/29 16:48:23 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,42 +60,4 @@ int	reset_line(char **export, char *line)
 		return (i);
 	}
 	return (-1);
-}
-
-char	*modif_utils(char *line)
-{
-	int	i;
-
-	i = 0;
-	while (line && line[i])
-	{
-		if (line[i] == '=')
-		{
-			if (line[i + 1] != '\0')
-				return (line);
-			else
-				return (ft_strjoin(line, "''"));
-		}
-		i++;
-	}
-	return (ft_strjoin(line, "=''"));
-}
-
-
-char	**modif_export(char **line)
-{
-	int		i;
-	char	**new;
-
-	i = 0;
-	new = ft_calloc(sizeof(char *), (nb_word(line) + 1));
-	if (!new)
-		return (NULL);
-	while (line && line[i])
-	{
-		new[i] = ft_strdup(modif_utils(line[i]));
-		i++;
-	}
-	new[i] = NULL;
-	return (new);
 }
