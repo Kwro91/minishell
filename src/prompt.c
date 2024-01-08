@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 15:53:50 by besalort          #+#    #+#             */
-/*   Updated: 2023/12/06 16:14:54 by besalort         ###   ########.fr       */
+/*   Updated: 2024/01/08 17:23:20 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ char	*ft_access_mini(t_mdata *data, char *cmd)
 void	launch_cmd(t_mdata *data, char *cmd, char **cmdtotal, char **env)
 {
 	int pid;
+	int	value;
+	int	status;
 
 	pid = fork();
 	// int i = 0;
@@ -52,9 +54,12 @@ void	launch_cmd(t_mdata *data, char *cmd, char **cmdtotal, char **env)
 	if (pid == 0)
 	{
 		// printf("je me lance %s\n", cmd);
-		execve(ft_access_mini(data, cmd), cmdtotal, env);
-		exit(0);
+		value = execve(ft_access_mini(data, cmd), cmdtotal, env);
+		//ICI FAUDRA TOUT FREE
+		exit(value);
 	}
+	else
+		waitpid(-1, &status, 0);
 }
 
 int	verif_cmd(t_mdata *data, char **cmd_total, char **env)
@@ -74,12 +79,12 @@ int	verif_cmd(t_mdata *data, char **cmd_total, char **env)
 	    return (1);
 	else if (is_cd(cmd_total, data) == 1)
 	    return (1);
-    return (-1);
+    return (0);
 }
 
 char	*get_readline(t_mdata *data, char *str)
 {
-	str = readline("Minishell>");
+	str = readline("Minishell> ");
 	if (!str)
 	{
 		rl_clear_history();
@@ -101,21 +106,19 @@ void    prompt(t_mdata *data, int ac, char **av, char **env)
     setup_pwd(data, env, 1);
     while(1)
     {
-		cmd = get_readline(data, "Minishell>");
-		if (*cmd)
+		cmd = get_readline(data, "Minishell> ");
+		if (*cmd && ft_strncmp(cmd, "/n", 1) != 0)
 		{
 			add_history(cmd);
 			cmdtotal = ft_split(cmd, ' ');
-		}
-		if (*cmd && verif_cmd(data, cmdtotal, env) == 0)
-		{
-			if (ft_access_mini(data, cmd) != NULL)
-				launch_cmd(data, cmd, cmdtotal, env);
-			cmd = NULL;
-		}
-		if (*cmd)
+			if (verif_cmd(data, cmdtotal, env) == 0)
+			{
+				if (ft_access_mini(data, cmd) != NULL)
+					launch_cmd(data, cmd, cmdtotal, env);
+			}
 			free (cmd);
-		if (*cmdtotal)
-			ft_free_lines(cmdtotal);
+			if (*cmdtotal)
+				ft_free_lines(cmdtotal);
+		}
     }
 }
