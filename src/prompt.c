@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 15:53:50 by besalort          #+#    #+#             */
-/*   Updated: 2024/01/08 17:23:20 by besalort         ###   ########.fr       */
+/*   Updated: 2024/01/08 17:47:14 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ char	*ft_access_mini(t_mdata *data, char *cmd)
 	return (cmd);
 }
 
-void	launch_cmd(t_mdata *data, char *cmd, char **cmdtotal, char **env)
+void	launch_cmd(t_mdata *data, char **cmdtotal, char **env)
 {
 	int pid;
 	int	value;
@@ -54,7 +54,7 @@ void	launch_cmd(t_mdata *data, char *cmd, char **cmdtotal, char **env)
 	if (pid == 0)
 	{
 		// printf("je me lance %s\n", cmd);
-		value = execve(ft_access_mini(data, cmd), cmdtotal, env);
+		value = execve(ft_access_mini(data, cmdtotal[0]), cmdtotal, env);
 		//ICI FAUDRA TOUT FREE
 		exit(value);
 	}
@@ -114,7 +114,7 @@ void    prompt(t_mdata *data, int ac, char **av, char **env)
 			if (verif_cmd(data, cmdtotal, env) == 0)
 			{
 				if (ft_access_mini(data, cmd) != NULL)
-					launch_cmd(data, cmd, cmdtotal, env);
+					launch_cmd(data, cmdtotal, env);
 			}
 			free (cmd);
 			if (*cmdtotal)
