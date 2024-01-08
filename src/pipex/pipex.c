@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 14:18:52 by besalort          #+#    #+#             */
-/*   Updated: 2023/07/06 14:59:28 by besalort         ###   ########.fr       */
+/*   Updated: 2024/01/08 16:42:13 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,10 @@ int	ft_pipex(int ac, char **av, char **env)
 	return (value);
 }
 
-int	main(int ac, char **av, char **env)
-{
-	if (ac >= 5)
-		return (ft_pipex(ac, av, env));
-	else
-		ft_msg("Error, Wrong nb of arg\n");
-}
+// int	main(int ac, char **av, char **env)
+// {
+// 	if (ac >= 5)
+// 		return (ft_pipex(ac, av, env));
+// 	else
+// 		ft_msg("Error, Wrong nb of arg\n");
+// }
