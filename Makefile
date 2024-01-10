@@ -6,7 +6,7 @@
 #    By: besalort <besalort@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/29 14:05:28 by besalort          #+#    #+#              #
-#    Updated: 2024/01/08 16:50:25 by besalort         ###   ########.fr        #
+#    Updated: 2024/01/10 16:01:26 by besalort         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,8 +41,11 @@ SRC = ./src/main.c \
 	$(PIPEX_PATH)ft_list.c \
 	$(PIPEX_PATH)ft_run.c \
 	$(PIPEX_PATH)ft_here_doc.c \
+	$(EXECUTION_PATH)execution.c \
 	
 BUILT_IN_PATH = ./src/built_in/
+
+EXECUTION_PATH = ./src/execution/
 
 SIGNAL_PATH = ./src/signal/
 

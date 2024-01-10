@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 14:10:34 by besalort          #+#    #+#             */
-/*   Updated: 2023/12/29 16:48:42 by besalort         ###   ########.fr       */
+/*   Updated: 2024/01/10 16:00:33 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,5 +92,9 @@ void	cd_cmd(t_mdata *data, char *line);
 
 //Signal
 void	handle_signals(void);
+
+//EXECUTION
+char	*ft_access_mini(t_mdata *data, char *cmd);
+void	launch_cmd(t_mdata *data, char **cmdtotal, char **env);
 
 #endif 
