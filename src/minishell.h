@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 14:10:34 by besalort          #+#    #+#             */
-/*   Updated: 2024/01/10 16:00:33 by besalort         ###   ########.fr       */
+/*   Updated: 2024/01/11 18:01:32 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,21 +19,21 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 
-typedef struct s_envi
-{
-	char			**tab;
-	struct s_envi	*next;
-}t_envi;
+// typedef struct s_envi
+// {
+// 	char			**tab;
+// 	struct s_envi	*next;
+// }t_envi;
 
-typedef struct s_mdata
-{
-    char    **env;
-	char	**export;
-    char    **paths;
-    char    *pwd;
-	char	**unset;
-	t_envi	*envi;
-}   t_mdata;
+// typedef struct s_mdata
+// {
+//     char    **env;
+// 	char	**export;
+//     char    **paths;
+//     char    *pwd;
+// 	char	**unset;
+// 	t_envi	*envi;
+// }   t_mdata;
 
 //Init
 void	init_built_int(t_mdata *data);
@@ -51,6 +51,7 @@ void    ft_free_lines(char	**lines);
 void    ft_free_mini(t_mdata *data);
 void	ft_free_adr(void *adr);
 //IsCmd
+int		verif_cmd(t_mdata *data, char **cmd_total, char **env);
 int     is_echo(char **cmd_total);
 int     is_exit(char **cmd_total, t_mdata *data);
 int     is_pwd(char **cmd_total, t_mdata *data);

@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 16:27:50 by besalort          #+#    #+#             */
-/*   Updated: 2023/07/06 16:24:41 by besalort         ###   ########.fr       */
+/*   Updated: 2024/01/11 17:57:28 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,22 @@
 # include <sys/stat.h>
 # include <errno.h>
 # include <fcntl.h>
+
+typedef struct s_envi
+{
+	char			**tab;
+	struct s_envi	*next;
+}t_envi;
+
+typedef struct s_mdata
+{
+    char    **env;
+	char	**export;
+    char    **paths;
+    char    *pwd;
+	char	**unset;
+	t_envi	*envi;
+}   t_mdata;
 
 typedef struct s_lst
 {
@@ -85,16 +101,16 @@ void	ft_load_env(t_pipex *data, char **env);
 void	ft_load_values(t_pipex *data, int ac, char **av);
 int		ft_load(t_pipex *data, int ac, char **av, char **env);
 // FT_PIPEX.C //
-int		ft_pipex(int ac, char **av, char **env);
+int		ft_pipex(int ac, char **av, char **env, t_mdata *mini);
 void	ft_msg(char *msg);
 // PROCESSES.C //
-void	ft_first_process(t_pipex *data, char **cmdp, int pipes[2]);
-void	ft_last_process(t_pipex *data, char **cmdp, int pipes[2]);
-void	ft_processes(t_pipex *data, char **cmdp, int pipes[2]);
+void	ft_first_process(t_pipex *data, char **cmdp, int pipes[2], t_mdata *mini);
+void	ft_last_process(t_pipex *data, char **cmdp, int pipes[2], t_mdata *mini);
+void	ft_processes(t_pipex *data, char **cmdp, int pipes[2], t_mdata *mini);
 // FT_RUN.C //
-void	run_first(t_pipex *data, t_lst *tmp);
-t_lst	*run_other(t_pipex *data, t_lst *tmp);
-void	run_last(t_pipex *data, t_lst *tmp);
+void	run_first(t_pipex *data, t_lst *tmp, t_mdata *mini);
+t_lst	*run_other(t_pipex *data, t_lst *tmp, t_mdata *mini);
+void	run_last(t_pipex *data, t_lst *tmp, t_mdata *mini);
 void	wait_childs(t_pipex *data);
-void	run_processes(t_pipex *data);
+void	run_processes(t_pipex *data, t_mdata *mini);
 #endif

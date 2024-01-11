@@ -6,32 +6,32 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 16:32:19 by besalort          #+#    #+#             */
-/*   Updated: 2024/01/11 17:03:32 by besalort         ###   ########.fr       */
+/*   Updated: 2024/01/11 17:45:04 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	run_first(t_pipex *data, t_lst *tmp)
+void	run_first(t_pipex *data, t_lst *tmp, t_mdata *mini)
 {
 	if (pipe(data->pipes) < 0)
 		return (perror("Error pipe\n"), ft_free(data));
 	if (data->fd_in >= 0)
 	{
-		ft_first_process(data, tmp->command, data->pipes);
+		ft_first_process(data, tmp->command, data->pipes, mini);
 	}
 	close(data->pipes[1]);
 	close (data->fd_in);
 	data->fd_in = data->pipes[0];
 }
 
-t_lst	*run_other(t_pipex *data, t_lst *tmp)
+t_lst	*run_other(t_pipex *data, t_lst *tmp, t_mdata* mini)
 {
 	while (tmp->next)
 	{
 		if (pipe(data->pipes) < 0)
 			return (perror("Error pipe\n"), ft_free(data), tmp);
-		ft_processes(data, tmp->command, data->pipes);
+		ft_processes(data, tmp->command, data->pipes, mini);
 		close(data->pipes[1]);
 		close(data->fd_in);
 		data->fd_in = data->pipes[0];
@@ -40,9 +40,9 @@ t_lst	*run_other(t_pipex *data, t_lst *tmp)
 	return (tmp);
 }
 
-void	run_last(t_pipex *data, t_lst *tmp)
+void	run_last(t_pipex *data, t_lst *tmp, t_mdata *mini)
 {
-	ft_last_process(data, tmp->command, data->pipes);
+	ft_last_process(data, tmp->command, data->pipes, mini);
 	close_give_fd(data->pipes[0], data->pipes[1]);
 	close(data->fd_in);
 }
@@ -70,15 +70,15 @@ void	wait_childs(t_pipex *data)
 		data->status = WTERMSIG(status);
 }
 
-void	run_processes(t_pipex *data)
+void	run_processes(t_pipex *data, t_mdata *mini)
 {
 	t_lst	*tmp;
 
 	data->fd_in = data->file1.fd;
 	tmp = data->lst;
-	run_first(data, tmp);
+	run_first(data, tmp, mini);
 	tmp = tmp->next;
-	tmp = run_other(data, tmp);
-	run_last(data, tmp);
+	tmp = run_other(data, tmp, mini);
+	run_last(data, tmp, mini);
 	wait_childs(data);
 }
