@@ -6,11 +6,11 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 15:44:57 by besalort          #+#    #+#             */
-/*   Updated: 2023/07/04 14:29:45 by besalort         ###   ########.fr       */
+/*   Updated: 2024/01/11 17:03:32 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "../minishell.h"
 
 char	*ft_modify_cmd(char *cmd)
 {

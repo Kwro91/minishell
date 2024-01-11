@@ -6,11 +6,11 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 14:51:40 by besalort          #+#    #+#             */
-/*   Updated: 2024/01/11 16:22:36 by besalort         ###   ########.fr       */
+/*   Updated: 2024/01/11 17:08:37 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "../minishell.h"
 
 void	ft_load_av(t_pipex *data, int ac, char **av)
 {
@@ -56,6 +56,7 @@ void	ft_load_values(t_pipex *data, int ac, char **av)
 	data->data.av = av;
 	if (ft_check_here_doc(data) != 0)
 	{
+		printf("bonsoir\n");
 		data->cmds = ac - 2;
 		data->here_doc = 0;
 	}

@@ -6,11 +6,11 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 17:30:21 by besalort          #+#    #+#             */
-/*   Updated: 2023/07/04 17:42:29 by besalort         ###   ########.fr       */
+/*   Updated: 2024/01/11 17:03:32 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "../minishell.h"
 
 t_lst	*createlist(int size, char **command)
 {
