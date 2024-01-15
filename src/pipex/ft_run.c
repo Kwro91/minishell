@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 16:32:19 by besalort          #+#    #+#             */
-/*   Updated: 2024/01/11 17:45:04 by besalort         ###   ########.fr       */
+/*   Updated: 2024/01/15 13:57:11 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	run_first(t_pipex *data, t_lst *tmp, t_mdata *mini)
 	data->fd_in = data->pipes[0];
 }
 
-t_lst	*run_other(t_pipex *data, t_lst *tmp, t_mdata* mini)
+t_lst	*run_other(t_pipex *data, t_lst *tmp, t_mdata *mini)
 {
 	while (tmp->next)
 	{

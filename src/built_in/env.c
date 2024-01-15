@@ -6,13 +6,13 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 15:55:35 by besalort          #+#    #+#             */
-/*   Updated: 2023/12/29 16:47:16 by besalort         ###   ########.fr       */
+/*   Updated: 2024/01/15 13:47:07 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void    env_setup(t_mdata *data, char **env)
+void	env_setup(t_mdata *data, char **env)
 {
 	int	i;
 	int	nb;
@@ -22,10 +22,7 @@ void    env_setup(t_mdata *data, char **env)
 	if (nb >= 0)
 		data->env = malloc(sizeof(char *) * (nb + 1));
 	else
-	{
-		// data->env = malloc(sizeof(char *) * 1)
 		data->env = NULL;
-	}
 	if (!data->env)
 		exit_mini(data);
 	while (i < nb)
@@ -38,7 +35,7 @@ void    env_setup(t_mdata *data, char **env)
 
 void	env_cmd(t_mdata *data)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (!data->env)

@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 14:41:18 by afontain          #+#    #+#             */
-/*   Updated: 2023/12/22 17:35:56 by besalort         ###   ########.fr       */
+/*   Updated: 2024/01/15 13:45:03 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,10 +77,10 @@ int	line_exist(char **tab, char *line)
 
 void	unset_utils(t_mdata *data, char *str)
 {
-	int	line_env;
-	int	line_export;
+	int		line_env;
+	int		line_export;
 	char	**newtab;
-	
+
 	line_env = line_exist(data->env, str);
 	line_export = line_exist(data->export, str);
 	if (line_env >= 0)

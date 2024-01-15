@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 12:11:42 by besalort          #+#    #+#             */
-/*   Updated: 2023/12/13 15:33:05 by besalort         ###   ########.fr       */
+/*   Updated: 2024/01/15 13:52:21 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ void	setup_pwd_env(t_mdata *data)
 
 void	setup_pwd(t_mdata *data, char **env, int first)
 {
-	(void)env;
-	char pwd[150];
+	char	pwd[150];
 
+	(void)env;
 	if (first == 1)
 	{
 		data->pwd = malloc(sizeof(char) * 1);
@@ -41,14 +41,14 @@ void	setup_pwd(t_mdata *data, char **env, int first)
 	}
 	if (data->pwd)
 		free(data->pwd);
-    getcwd(pwd, 150);
+	getcwd(pwd, 150);
 	data->pwd = ft_strdup(pwd);
 	if (!data->pwd)
 		exit_mini(data);
 	setup_pwd_env(data);
 }
 
-void    pwd(t_mdata *data)
+void	pwd(t_mdata *data)
 {
 	ft_printf("%s\n", data->pwd);
 }
