@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 16:27:50 by besalort          #+#    #+#             */
-/*   Updated: 2024/01/15 14:39:54 by besalort         ###   ########.fr       */
+/*   Updated: 2024/01/15 15:21:33 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,12 @@
 # include <sys/stat.h>
 # include <errno.h>
 # include <fcntl.h>
+
+typedef struct s_file
+{
+	char	*file;
+	int		fd;
+}	t_file;
 
 typedef struct s_envi
 {
@@ -35,6 +41,8 @@ typedef struct s_mdata
 	char	*pwd;
 	char	*eof;
 	int		here_doc;
+	t_file	in;
+	t_file	out;
 	t_envi	*envi;
 }	t_mdata;
 
@@ -52,11 +60,6 @@ typedef struct s_data
 	char	**env;
 }	t_data;
 
-typedef struct s_file
-{
-	char	*file;
-	int		fd;
-}	t_file;
 
 typedef struct s_pipex
 {

@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 15:53:50 by besalort          #+#    #+#             */
-/*   Updated: 2024/01/15 13:35:07 by besalort         ###   ########.fr       */
+/*   Updated: 2024/01/15 16:12:24 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,13 @@ void	prompt(t_mdata *data, int ac, char **av, char **env)
 			if (verif_cmd(data, cmdtotal, env) == 0)
 			{
 				if (cmd != NULL)
+				{
+					redir(data, cmd);
 					launch_cmd(data, cmdtotal, env);
+				}
 			}
 			free (cmd);
+			// Ici va falloir free les redir aussi
 			if (*cmdtotal)
 				ft_free_lines(cmdtotal);
 		}

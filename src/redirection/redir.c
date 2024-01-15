@@ -6,11 +6,11 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 15:38:43 by besalort          #+#    #+#             */
-/*   Updated: 2024/01/15 14:40:36 by besalort         ###   ########.fr       */
+/*   Updated: 2024/01/15 16:06:49 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
 char	*dup_word(char	*line, int len)
 {
@@ -19,12 +19,12 @@ char	*dup_word(char	*line, int len)
 
 	i = 0;
 	word = malloc(sizeof(char) * len + 1);
-	while (i < len)
+	while (i < len && line[i])
 	{
 		word[i] = line[i];
 		i++;
 	}
-	word[i] = NULL;
+	word[i] = '\0';
 	return (word);
 }
 
@@ -36,6 +36,7 @@ char	*next_word(char *line)
 
 	i = 0;
 	apo = 0;
+	count = 0;
 	while (line[i] && line[i] == ' ')
 		i++;
 	while (line[i])
@@ -47,12 +48,14 @@ char	*next_word(char *line)
 		}
 		if (line[i] == '"' && apo == 1)
 			break ;
+		if (apo == 0 && ft_isalnum(line[i]) == 0)
+			break ;
 		i++;
 		count++;
 	}
 	if (count == 0)
 		return (NULL);
-	return (dup_word(&line[i], count));
+	return (dup_word(&line[i - count], count));
 }
 
 char	*is_here_doc(char *line)
@@ -64,7 +67,7 @@ char	*is_here_doc(char *line)
 	{
 		if (line[i] == '<' && line[i + 1] == '<')
 		{
-			return (next_word(&line[i + 1]));
+			return (next_word(&line[i + 2]));
 		}
 		i++;
 	}
@@ -73,11 +76,24 @@ char	*is_here_doc(char *line)
 
 void	redir(t_mdata *data, char *line)
 {
-	int	i;
+	// int	i;
 
-	i = 0;
-	while (i)
+	// i = 0;
+	data->eof = is_here_doc(line);
+	data->here_doc = 1;
+	if (!data->eof)
 	{
-		break ;
+		data->here_doc = 0;
+		if (is_fd_in(data, line) == 1 && data->in.file)
+			printf("fd_in = %s\n", data->in.file);
 	}
+	if (data->here_doc == 1)
+		printf("EOF = %s\n", data->eof);
+	if (is_fd_out(data, line) == 1 && data->out.file)
+			printf("fd_out = %s\n", data->out.file);
+	// while (line[i])
+	// {
+	// 	break ;
+	// }
+	
 }
