@@ -6,30 +6,17 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 15:53:50 by besalort          #+#    #+#             */
-/*   Updated: 2024/01/15 16:12:24 by besalort         ###   ########.fr       */
+/*   Updated: 2024/01/15 17:16:27 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	verif_cmd(t_mdata *data, char **cmd_total, char **env)
+void	setup_mvar(t_mdata *data)
 {
-	(void)env;
-	if (is_echo(cmd_total) == 1)
-		return (1);
-	else if (is_pwd(cmd_total, data) == 1)
-		return (1);
-	else if (is_exit(cmd_total, data) == 1)
-		return (1);
-	else if (is_env(cmd_total, data) == 1)
-		return (1);
-	else if (is_export(cmd_total, data) == 1)
-		return (1);
-	else if (is_unset(cmd_total, data) == 1)
-		return (1);
-	else if (is_cd(cmd_total, data) == 1)
-		return (1);
-	return (0);
+	data->eof = NULL;
+	data->in.file = NULL;
+	data->out.file = NULL;
 }
 
 char	*get_readline(t_mdata *data, char *str)
@@ -44,6 +31,30 @@ char	*get_readline(t_mdata *data, char *str)
 	return (str);
 }
 
+void	loop(t_mdata *data, char **env, char *cmd, char **cmdtotal)
+{
+	cmd = get_readline(data, "Minishell> ");
+	if (*cmd && ft_strncmp(cmd, "/n", 2) != 0)
+	{
+		add_history(cmd);
+		cmdtotal = ft_split(cmd, ' ');
+		if (verif_cmd(data, cmdtotal, env) == 0)
+		{
+			if (cmd != NULL)
+			{
+				cmd = redir(data, cmd);
+				launch_cmd(data, cmdtotal, env);
+			}
+			// if (cmd != NULL)
+				// ft_pipex(4, cmdtotal, data->env, data);
+		}
+		free (cmd);
+		// Ici va falloir free les redir aussi
+		if (*cmdtotal)
+			ft_free_lines(cmdtotal);
+	}
+}
+
 void	prompt(t_mdata *data, int ac, char **av, char **env)
 {
 	char	*cmd;
@@ -51,28 +62,12 @@ void	prompt(t_mdata *data, int ac, char **av, char **env)
 
 	(void)ac;
 	(void)av;
+	cmd = NULL;
+	cmdtotal = NULL;
 	data->paths = ft_path_mini(env);
+	setup_mvar(data);
 	env_setup(data, env);
 	setup_pwd(data, env, 1);
 	while (1)
-	{
-		cmd = get_readline(data, "Minishell> ");
-		if (*cmd && ft_strncmp(cmd, "/n", 2) != 0)
-		{
-			add_history(cmd);
-			cmdtotal = ft_split(cmd, ' ');
-			if (verif_cmd(data, cmdtotal, env) == 0)
-			{
-				if (cmd != NULL)
-				{
-					redir(data, cmd);
-					launch_cmd(data, cmdtotal, env);
-				}
-			}
-			free (cmd);
-			// Ici va falloir free les redir aussi
-			if (*cmdtotal)
-				ft_free_lines(cmdtotal);
-		}
-	}
+		loop(data, env, cmd, cmdtotal);
 }

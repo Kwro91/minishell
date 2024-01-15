@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 15:38:43 by besalort          #+#    #+#             */
-/*   Updated: 2024/01/15 16:06:49 by besalort         ###   ########.fr       */
+/*   Updated: 2024/01/15 16:50:46 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,13 @@ char	*next_word(char *line)
 	return (dup_word(&line[i - count], count));
 }
 
-char	*is_here_doc(char *line)
+char	*is_here_doc(t_mdata *data, char *line)
 {
 	int	i;
 
 	i = 0;
+	if (data->eof)
+		free(data->eof);
 	while (line[i + 1])
 	{
 		if (line[i] == '<' && line[i + 1] == '<')
@@ -74,12 +76,12 @@ char	*is_here_doc(char *line)
 	return (NULL);
 }
 
-void	redir(t_mdata *data, char *line)
+char	*redir(t_mdata *data, char *line)
 {
 	// int	i;
 
 	// i = 0;
-	data->eof = is_here_doc(line);
+	data->eof = is_here_doc(data, line);
 	data->here_doc = 1;
 	if (!data->eof)
 	{
@@ -91,6 +93,7 @@ void	redir(t_mdata *data, char *line)
 		printf("EOF = %s\n", data->eof);
 	if (is_fd_out(data, line) == 1 && data->out.file)
 			printf("fd_out = %s\n", data->out.file);
+	return (redir_rewrite(data, line));
 	// while (line[i])
 	// {
 	// 	break ;

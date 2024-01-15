@@ -6,11 +6,41 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 15:54:38 by besalort          #+#    #+#             */
-/*   Updated: 2024/01/15 16:05:32 by besalort         ###   ########.fr       */
+/*   Updated: 2024/01/15 16:50:36 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+int	get_count(t_mdata *data, int count)
+{
+	if (data->here_doc == 1)
+	{
+		count += 2;
+		count += ft_strlen(data->eof);
+	}
+	if (data->in.file != NULL)
+	{
+		count++;
+		count += ft_strlen(data->in.file);
+	}
+	if (data->out.file != NULL)
+	{
+		count++;
+		count += ft_strlen(data->out.file);
+	}
+	printf("count = %i\n", count);
+	return (count);
+}
+
+char	*redir_rewrite(t_mdata *data, char *line)
+{
+	int	count;
+
+	count = 0;
+	get_count(data, count);
+	return (line);
+}
 
 int	is_fd_in(t_mdata *data, char *line)
 {
