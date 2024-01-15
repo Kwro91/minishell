@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 16:27:50 by besalort          #+#    #+#             */
-/*   Updated: 2024/01/11 17:57:28 by besalort         ###   ########.fr       */
+/*   Updated: 2024/01/12 16:10:24 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,12 @@ typedef struct s_envi
 typedef struct s_mdata
 {
     char    **env;
-	char	**export;
     char    **paths;
-    char    *pwd;
+	char	**export;
 	char	**unset;
+    char    *pwd;
+	char	*eof;
+	int		here_doc;
 	t_envi	*envi;
 }   t_mdata;
 
