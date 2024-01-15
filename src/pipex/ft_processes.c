@@ -6,13 +6,14 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 16:00:04 by besalort          #+#    #+#             */
-/*   Updated: 2024/01/11 17:48:22 by besalort         ###   ########.fr       */
+/*   Updated: 2024/01/15 13:57:29 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	ft_first_process(t_pipex *data, char **cmdp, int pipes[2], t_mdata *mini)
+void	ft_first_process(t_pipex *data, char **cmdp,
+			int pipes[2], t_mdata *mini)
 {
 	int		pid;
 	int		value;

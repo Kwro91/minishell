@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 16:27:50 by besalort          #+#    #+#             */
-/*   Updated: 2024/01/12 16:10:24 by besalort         ###   ########.fr       */
+/*   Updated: 2024/01/15 14:34:08 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ typedef struct s_mdata
 	char	*eof;
 	int		here_doc;
 	t_envi	*envi;
-}   t_mdata;
+}	t_mdata;
 
 typedef struct s_lst
 {
@@ -106,8 +106,10 @@ int		ft_load(t_pipex *data, int ac, char **av, char **env);
 int		ft_pipex(int ac, char **av, char **env, t_mdata *mini);
 void	ft_msg(char *msg);
 // PROCESSES.C //
-void	ft_first_process(t_pipex *data, char **cmdp, int pipes[2], t_mdata *mini);
-void	ft_last_process(t_pipex *data, char **cmdp, int pipes[2], t_mdata *mini);
+void	ft_first_process(t_pipex *data, char **cmdp,
+			int pipes[2], t_mdata *mini);
+void	ft_last_process(t_pipex *data, char **cmdp,
+			int pipes[2], t_mdata *mini);
 void	ft_processes(t_pipex *data, char **cmdp, int pipes[2], t_mdata *mini);
 // FT_RUN.C //
 void	run_first(t_pipex *data, t_lst *tmp, t_mdata *mini);

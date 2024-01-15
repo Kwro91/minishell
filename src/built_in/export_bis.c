@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 17:24:18 by besalort          #+#    #+#             */
-/*   Updated: 2023/12/29 16:48:23 by besalort         ###   ########.fr       */
+/*   Updated: 2024/01/15 13:44:42 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 int	nb_char_equal(char	*line)
 {
 	int	i;
-	
+
 	i = 0;
 	if (!line)
 		return (0);
 	while (line[i] && ft_isalnum(line[i]) == 1)
 		i++;
-	return(i);
+	return (i);
 }
 
 int	do_line_exist(char **export, char *line)
@@ -50,7 +50,7 @@ int	do_line_exist(char **export, char *line)
 int	reset_line(char **export, char *line)
 {
 	int	i;
-	
+
 	i = 0;
 	i = do_line_exist(export, line);
 	if (i != -1)

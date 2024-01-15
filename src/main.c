@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 17:10:52 by besalort          #+#    #+#             */
-/*   Updated: 2024/01/11 17:51:44 by besalort         ###   ########.fr       */
+/*   Updated: 2024/01/15 13:32:54 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,15 @@
 
 int	main(int ac, char **av, char **env)
 {
-	t_mdata data;
+	t_mdata	data;
+
 	if (ac == 1)
 	{
 		init_built_int(&data);
 		handle_signals();
 		prompt(&data, ac, av, env);
 	}
-	// if (ac >= 5)
-	// 	ft_pipex(ac -1, &av[1], env);
 	else
 		ft_printf("No args needed for minishell, please use : ./minishell\n");
-    return (0);
+	return (0);
 }
