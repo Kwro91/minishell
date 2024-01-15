@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 15:38:43 by besalort          #+#    #+#             */
-/*   Updated: 2024/01/12 17:08:40 by besalort         ###   ########.fr       */
+/*   Updated: 2024/01/15 14:40:36 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*dup_word(char	*line, int len)
 
 	i = 0;
 	word = malloc(sizeof(char) * len + 1);
-	while(i < len)
+	while (i < len)
 	{
 		word[i] = line[i];
 		i++;
@@ -76,5 +76,8 @@ void	redir(t_mdata *data, char *line)
 	int	i;
 
 	i = 0;
-	while ()
+	while (i)
+	{
+		break ;
+	}
 }
