@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 16:27:50 by besalort          #+#    #+#             */
-/*   Updated: 2024/01/15 15:21:33 by besalort         ###   ########.fr       */
+/*   Updated: 2024/01/17 17:35:56 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,13 @@
 # include <sys/stat.h>
 # include <errno.h>
 # include <fcntl.h>
+
+typedef struct s_files
+{
+	char	*here_doc;
+	char	**files;
+	int		fd;
+}	t_files;
 
 typedef struct s_file
 {
@@ -41,8 +48,8 @@ typedef struct s_mdata
 	char	*pwd;
 	char	*eof;
 	int		here_doc;
-	t_file	in;
-	t_file	out;
+	t_files	in;
+	t_files	out;
 	t_envi	*envi;
 }	t_mdata;
 

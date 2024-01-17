@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 14:53:13 by besalort          #+#    #+#             */
-/*   Updated: 2024/01/11 17:03:32 by besalort         ###   ########.fr       */
+/*   Updated: 2024/01/17 16:56:04 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	ft_open_files(t_pipex *data, char *file1, char *file2)
 			S_IRWXU);
 	if (data->file1.fd < 0)
 	{
-		ft_msg(": no such file or directory: ");
+		ft_msg("minishell : no such file or directory: ");
 		ft_msg(file1);
 		ft_msg("\n");
 	}

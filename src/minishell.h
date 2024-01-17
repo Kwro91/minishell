@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 14:10:34 by besalort          #+#    #+#             */
-/*   Updated: 2024/01/15 16:50:53 by besalort         ###   ########.fr       */
+/*   Updated: 2024/01/17 18:07:52 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ void	ft_free_lines(char	**lines);
 //Free
 void	ft_free_mini(t_mdata *data);
 void	ft_free_adr(void *adr);
+void	ft_error(t_mdata *data, char *line, int close);
 //IsCmd
 int		verif_cmd(t_mdata *data, char **cmd_total, char **env);
 int		is_echo(char **cmd_total);
@@ -106,5 +107,6 @@ char	*is_here_doc(t_mdata *data, char *line);
 int		is_fd_in(t_mdata *data, char *line);
 int		is_fd_out(t_mdata *data, char *line);
 char	*redir_rewrite(t_mdata *data, char *line);
+void	ft_open_mfiles(t_mdata *data);
 
 #endif 

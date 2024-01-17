@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 15:38:43 by besalort          #+#    #+#             */
-/*   Updated: 2024/01/15 16:50:46 by besalort         ###   ########.fr       */
+/*   Updated: 2024/01/17 18:09:42 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,13 +86,16 @@ char	*redir(t_mdata *data, char *line)
 	if (!data->eof)
 	{
 		data->here_doc = 0;
-		if (is_fd_in(data, line) == 1 && data->in.file)
-			printf("fd_in = %s\n", data->in.file);
+		// if (is_fd_in(data, line) == 1 && data->in.files)
+		// 	printf("fd_in = %s\n", data->in.files);
 	}
 	if (data->here_doc == 1)
 		printf("EOF = %s\n", data->eof);
-	if (is_fd_out(data, line) == 1 && data->out.file)
-			printf("fd_out = %s\n", data->out.file);
+	// if (is_fd_out(data, line) == 1 && data->out.files)
+	// 		printf("fd_out = %s\n", data->out.files);
+	is_fd_in(data, line);
+	is_fd_out(data, line);
+	ft_open_mfiles(data);
 	return (redir_rewrite(data, line));
 	// while (line[i])
 	// {

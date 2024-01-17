@@ -6,11 +6,25 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 16:14:52 by besalort          #+#    #+#             */
-/*   Updated: 2024/01/15 13:42:21 by besalort         ###   ########.fr       */
+/*   Updated: 2024/01/17 17:10:55 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void	ft_error(t_mdata *data, char *line, int close)
+{
+	int	i;
+
+	i = 0;
+	while (line[i])
+	{
+		write(2, &line[i], 1);
+		i++;
+	}
+	if (close == 1)
+		exit_mini(data);
+}
 
 void	ft_free_adr(void *adr)
 {
