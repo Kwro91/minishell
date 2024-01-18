@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 16:14:52 by besalort          #+#    #+#             */
-/*   Updated: 2024/01/17 17:10:55 by besalort         ###   ########.fr       */
+/*   Updated: 2024/01/18 18:11:18 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,22 @@ void	ft_error(t_mdata *data, char *line, int close)
 	}
 	if (close == 1)
 		exit_mini(data);
+}
+
+void	ft_free_files(t_files *files)
+{
+	t_files	*tmp;
+
+	tmp = files;
+	while (tmp)
+	{
+		if (tmp->fd > 1)
+			close(tmp->fd);
+		if (tmp->files)
+			free(tmp->files);
+		free(tmp);
+		tmp = tmp->next;
+	}
 }
 
 void	ft_free_adr(void *adr)

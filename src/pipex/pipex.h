@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 16:27:50 by besalort          #+#    #+#             */
-/*   Updated: 2024/01/17 17:35:56 by besalort         ###   ########.fr       */
+/*   Updated: 2024/01/18 16:26:02 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,10 @@
 
 typedef struct s_files
 {
-	char	*here_doc;
-	char	**files;
+	int		here_doc;
 	int		fd;
+	char	*files;
+	void	*next;
 }	t_files;
 
 typedef struct s_file
@@ -48,8 +49,8 @@ typedef struct s_mdata
 	char	*pwd;
 	char	*eof;
 	int		here_doc;
-	t_files	in;
-	t_files	out;
+	t_files	*in;
+	t_files	*out;
 	t_envi	*envi;
 }	t_mdata;
 

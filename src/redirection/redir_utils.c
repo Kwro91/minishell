@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 15:54:38 by besalort          #+#    #+#             */
-/*   Updated: 2024/01/17 18:06:38 by besalort         ###   ########.fr       */
+/*   Updated: 2024/01/18 18:11:38 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,52 +14,48 @@
 
 void	open_out_files(t_mdata *data)
 {
-	int	i;
+	t_files	*tmp;
 
-	i = 0;
-	if (!data->out.files)
+	tmp = data->out;
+	if (tmp == NULL)
 		return ;
-	while (data->out.files[i])
+	while (tmp)
 	{
-		if (data->out.fd > 1)
-			close(data->out.fd);
-		data->out.fd = open(data->out.files[i], O_RDWR | O_TRUNC | O_CREAT,
+		tmp->fd = open(tmp->files, O_RDWR | O_TRUNC | O_CREAT,
 			S_IRWXU);
-		printf("On open %s out file\n", data->out.files[i]);
-		i++;
+		printf("On open %s out file\n", tmp->files);
+		tmp = tmp->next;
 	}
 }
 
 void	open_in_files(t_mdata *data)
 {
-	int	i;
+	t_files	*tmp;
 
-	i = 0;
-	if (!data->in.files)
+	tmp = data->in;
+	if (tmp == NULL)
 		return ;
-	while (data->in.files[i])
+	while (tmp)
 	{
-		if (data->in.fd > 1)
-			close(data->in.fd);
-		data->in.fd = open(data->in.files[i], O_RDONLY);
-		printf("On open %s in file\n", data->out.files[i]);
-			if (data->in.fd == 0)
-			{
-				ft_error(data, "minishell: ", 0);
-				ft_error(data, data->in.files[i], 0);
-				ft_error(data, ": no such file or directory\n", 0);
-			}
-		i++;
+		tmp->fd = open(tmp->files, O_RDONLY);
+		printf("On open %s in file\n", tmp->files);
+		if (tmp->fd < 0)
+		{
+			ft_error(data, "minishell: ", 0);
+			ft_error(data, tmp->files, 0);
+			ft_error(data, ": no such file or directory\n", 0);
+		}
+		tmp = tmp->next;
 	}
 }
 
 void	ft_open_mfiles(t_mdata *data)
 {
-	if (data->here_doc == 0)
-		open_in_files(data);
-	else
-		data->in.fd = open(".here_doc_tmp",
-			O_CREAT | O_WRONLY | O_TRUNC, 0000644);
+	// if (data->here_doc == 0)
+	open_in_files(data);
+	// else
+	// 	tmp->fd = open(".here_doc_tmp",
+	// 		O_CREAT | O_WRONLY | O_TRUNC, 0000644);
 	open_out_files(data);
 }
 

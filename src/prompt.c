@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 15:53:50 by besalort          #+#    #+#             */
-/*   Updated: 2024/01/17 18:03:24 by besalort         ###   ########.fr       */
+/*   Updated: 2024/01/18 17:01:27 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,12 @@ void	setup_mvar(t_mdata *data)
 	if (data->eof)
 		free(data->eof);
 	data->eof = NULL;
-	if (data->in.files)
-		ft_free_lines(data->in.files);
-	data->in.files = NULL;
-	if (data->out.files)
-		ft_free_lines(data->out.files);
-	data->out.files = NULL;
-	if (data->in.fd > 0)
-		close(data->in.fd);
-	data->in.fd = 0;
-	if (data->out.fd > 1)
-		close(data->in.fd);
-	data->out.fd = 1;
+	if (data->in)
+		ft_free_files(data->in);
+	data->in = NULL;
+	if (data->out)
+		ft_free_files(data->out);
+	data->out = NULL;
 }
 
 char	*get_readline(t_mdata *data, char *str)
@@ -78,10 +72,10 @@ void	prompt(t_mdata *data, int ac, char **av, char **env)
 	cmd = NULL;
 	cmdtotal = NULL;
 	data->eof = NULL;
-	data->in.files = NULL;
-	data->out.files = NULL;
-	data->in.fd = 0;
-	data->out.fd = 1;
+	data->in = NULL;
+	data->out = NULL;
+	// data->in.fd = 0;
+	// data->out.fd = 1;
 	data->paths = ft_path_mini(env);
 	setup_mvar(data);
 	env_setup(data, env);
