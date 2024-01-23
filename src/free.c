@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 16:14:52 by besalort          #+#    #+#             */
-/*   Updated: 2024/01/18 18:11:18 by besalort         ###   ########.fr       */
+/*   Updated: 2024/01/18 18:42:45 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ void	ft_free_files(t_files *files)
 	tmp = files;
 	while (tmp)
 	{
+		if (tmp->here_doc == 1)
+			unlink(".here_doc_tmp");
 		if (tmp->fd > 1)
 			close(tmp->fd);
 		if (tmp->files)

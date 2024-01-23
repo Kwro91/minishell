@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 15:54:38 by besalort          #+#    #+#             */
-/*   Updated: 2024/01/18 18:11:38 by besalort         ###   ########.fr       */
+/*   Updated: 2024/01/23 14:18:07 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	open_out_files(t_mdata *data)
 	{
 		tmp->fd = open(tmp->files, O_RDWR | O_TRUNC | O_CREAT,
 			S_IRWXU);
-		printf("On open %s out file\n", tmp->files);
+		// printf("On open %s en out file\n", tmp->files);
 		tmp = tmp->next;
 	}
 }
@@ -37,8 +37,17 @@ void	open_in_files(t_mdata *data)
 		return ;
 	while (tmp)
 	{
-		tmp->fd = open(tmp->files, O_RDONLY);
-		printf("On open %s in file\n", tmp->files);
+		if (tmp->here_doc == 0)
+		{
+			tmp->fd = open(tmp->files, O_RDONLY);
+			// printf("On open %s en in file\n", tmp->files);
+		}
+		else
+		{
+			tmp->fd = open(".here_doc_tmp",
+			O_CREAT | O_WRONLY | O_TRUNC, 0000644);
+			// printf("On open un here_doc avec %s en EOF\n", tmp->files);
+		}
 		if (tmp->fd < 0)
 		{
 			ft_error(data, "minishell: ", 0);
