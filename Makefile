@@ -6,7 +6,7 @@
 #    By: besalort <besalort@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/29 14:05:28 by besalort          #+#    #+#              #
-#    Updated: 2024/01/17 17:51:21 by besalort         ###   ########.fr        #
+#    Updated: 2024/01/24 14:19:20 by besalort         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,10 +45,13 @@ SRC = ./src/main.c \
 	$(REDIRECTION_PATH)redir.c \
 	$(REDIRECTION_PATH)redir_utils.c \
 	$(REDIRECTION_PATH)redir_in_out.c \
+	$(PARSE_PATH)split_parse.c \
 	
 BUILT_IN_PATH = ./src/built_in/
 
 EXECUTION_PATH = ./src/execution/
+
+PARSE_PATH = ./src/parse/
 
 REDIRECTION_PATH = ./src/redirection/
 

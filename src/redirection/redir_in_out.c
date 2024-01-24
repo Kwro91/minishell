@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 15:29:29 by besalort          #+#    #+#             */
-/*   Updated: 2024/01/18 18:31:00 by besalort         ###   ########.fr       */
+/*   Updated: 2024/01/24 14:16:25 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,44 +73,46 @@ int	is_fd_out(t_mdata *data, char *line)
 	return (value);
 }
 
-int	is_fd_in(t_mdata *data, char *line)
+int	is_fd_in(t_mdata *data, t_command *cmd)
 {
 	int	i;
 	int	value;
 	t_files	*tmp;
 
+	(void)data;
 	i = 0;
 	value = 0;
-	while (line[i])
+	if (!cmd)
+		return (-1);
+	while (cmd->line[i])
 	{
-		if (line[i] == '<' && line[i + 1])
+		if (cmd->line[i] == '<' && cmd->line[i + 1])
 		{
 			if (value == 0)
 			{
-				if (line[i + 1] == '<')
+				if (cmd->line[i + 1] == '<')
 				{
 					i++;
-					tmp = get_new_file(&line[i + 1], 1);
+					tmp = get_new_file(&cmd->line[i + 1], 1);
 				}
 				else
-					tmp = get_new_file(&line[i + 1], 0);
-				data->in = tmp;
+					tmp = get_new_file(&cmd->line[i + 1], 0);
+				cmd->in = tmp;
 			}
 			else
 			{
-				if (line[i + 1] == '<')
+				if (cmd->line[i + 1] == '<')
 				{
 					i++;
-					tmp = get_new_file(&line[i + 1], 1);
+					tmp = get_new_file(&cmd->line[i + 1], 1);
 				}
 				else
-					tmp = get_new_file(&line[i + 1], 0);
+					tmp = get_new_file(&cmd->line[i + 1], 0);
 				tmp = tmp->next;
 			}
 			value++;
 		}
 		i++;
 	}
-	
 	return (value);
 }

@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 14:10:34 by besalort          #+#    #+#             */
-/*   Updated: 2024/01/23 15:47:47 by besalort         ###   ########.fr       */
+/*   Updated: 2024/01/24 14:25:48 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,51 +65,51 @@ int		is_cd(char **cmd_total, t_mdata *data);
 //BUILT_IN
 
 //Utils
-int		nb_word(char **text);
-void	good_print(char	*line);
+int			nb_word(char **text);
+void		good_print(char	*line);
 
 //Echo
-void	ft_echo(char **text);
+void		ft_echo(char **text);
 
 //Env
-void	env_setup(t_mdata *data, char **env);
-void	env_cmd(t_mdata *data);
+void		env_setup(t_mdata *data, char **env);
+void		env_cmd(t_mdata *data);
 
 //Pwd
-void	setup_pwd(t_mdata *data, char **env, int first);
-void	pwd(t_mdata *data);
+void		setup_pwd(t_mdata *data, char **env, int first);
+void		pwd(t_mdata *data);
 
 //Exit
-void	exit_mini(t_mdata *data);
+void		exit_mini(t_mdata *data);
 
 //Unset
-int		ft_unset(char **args, t_mdata *mdata);
+int			ft_unset(char **args, t_mdata *mdata);
 
 //Export
-void	export_cmd(t_mdata *data, char **line);
-int		do_line_exist(char **export, char *line);
-int		reset_line(char **export, char *line);
+void		export_cmd(t_mdata *data, char **line);
+int			do_line_exist(char **export, char *line);
+int			reset_line(char **export, char *line);
 
 //Cd
-void	cd_cmd(t_mdata *data, char *line);
+void		cd_cmd(t_mdata *data, char *line);
 
 //Signal
-void	handle_signals(void);
+void		handle_signals(void);
 
 //EXECUTION
-char	*ft_access_mini(t_mdata *data, char *cmd);
-void	launch_cmd(t_mdata *data, char **cmdtotal, char **env);
+char		*ft_access_mini(t_mdata *data, char *cmd);
+void		launch_cmd(t_mdata *data, char **cmdtotal, char **env);
 
 //REDIRECTION
-char	*redir(t_mdata *data, char *line);
-char	*next_word(char *line);
-char	*dup_word(char	*line, int len);
+char		*redir(t_mdata *data, t_command *cmd);
+char		*next_word(char *line);
+char		*dup_word(char	*line, int len);
 // char	*is_here_doc(t_mdata *data, char *line);
-int		is_fd_in(t_mdata *data, char *line);
-int		is_fd_out(t_mdata *data, char *line);
-char	*redir_rewrite(t_mdata *data, char *line);
-void	ft_open_mfiles(t_mdata *data);
+int			is_fd_in(t_mdata *data, t_command *cmd);
+int			is_fd_out(t_mdata *data, char *line);
+char		*redir_rewrite(t_mdata *data, t_command *cmd);
+void		ft_open_mfiles(t_mdata *data, t_command *cmd);
 
+void		split_parse(t_mdata *data, char *line);
 
-t_command	*split_parse(t_mdata *data, char *line);
 #endif 

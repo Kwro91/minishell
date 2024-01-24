@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 15:38:43 by besalort          #+#    #+#             */
-/*   Updated: 2024/01/18 18:32:39 by besalort         ###   ########.fr       */
+/*   Updated: 2024/01/24 14:08:36 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ char	*next_word(char *line)
 // 	return (0);
 // }
 
-char	*redir(t_mdata *data, char *line)
+char	*redir(t_mdata *data, t_command *cmd)
 {
 	// int	i;
 
@@ -95,10 +95,10 @@ char	*redir(t_mdata *data, char *line)
 		// printf("EOF = %s\n", data->eof);
 	// if (is_fd_out(data, line) == 1 && data->out.files)
 	// 		printf("fd_out = %s\n", data->out.files);
-	is_fd_in(data, line);
-	is_fd_out(data, line);
-	ft_open_mfiles(data);
-	return (redir_rewrite(data, line));
+	is_fd_in(data, cmd);
+	// is_fd_out(data, line);
+	ft_open_mfiles(data, cmd);
+	return (redir_rewrite(data, cmd));
 	// while (line[i])
 	// {
 	// 	break ;

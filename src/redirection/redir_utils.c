@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 15:54:38 by besalort          #+#    #+#             */
-/*   Updated: 2024/01/23 14:18:07 by besalort         ###   ########.fr       */
+/*   Updated: 2024/01/24 14:08:59 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,11 @@ void	open_out_files(t_mdata *data)
 	}
 }
 
-void	open_in_files(t_mdata *data)
+void	open_in_files(t_mdata *data, t_command *cmd)
 {
 	t_files	*tmp;
 
-	tmp = data->in;
+	tmp =	cmd->in;
 	if (tmp == NULL)
 		return ;
 	while (tmp)
@@ -58,14 +58,14 @@ void	open_in_files(t_mdata *data)
 	}
 }
 
-void	ft_open_mfiles(t_mdata *data)
+void	ft_open_mfiles(t_mdata *data, t_command *cmd)
 {
 	// if (data->here_doc == 0)
-	open_in_files(data);
+	open_in_files(data, cmd);
 	// else
 	// 	tmp->fd = open(".here_doc_tmp",
 	// 		O_CREAT | O_WRONLY | O_TRUNC, 0000644);
-	open_out_files(data);
+	// open_out_files(data);
 }
 
 int	get_count(t_mdata *data, int count)
@@ -91,11 +91,11 @@ int	get_count(t_mdata *data, int count)
 	return (count);
 }
 
-char	*redir_rewrite(t_mdata *data, char *line)
+char	*redir_rewrite(t_mdata *data, t_command *cmd)
 {
 	int	count;
 
 	count = 0;
 	get_count(data, count);
-	return (line);
+	return (cmd->line);
 }

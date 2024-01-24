@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 14:22:53 by besalort          #+#    #+#             */
-/*   Updated: 2024/01/23 15:45:29 by besalort         ###   ########.fr       */
+/*   Updated: 2024/01/24 14:40:25 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,38 +15,42 @@
 t_command	*create_command(t_mdata *data, char *lines)
 {
 	t_command	*new;
-	int			i;
+	// int			i;
 
-	i = 0;
+	// i = 0;
+	new = NULL;
 	new = malloc(sizeof(t_command));
 	if (!new)
 		ft_error(data, "Error: malloc", 1);
 	new->line = ft_strdup(lines);
-	//on choppe les fd_in
+	new->in = NULL;
+	new->out = NULL;
+	is_fd_in(data, new);
 	//on choppe les fd_out
 	//on formate la ligne et on la split pour la preparer a execve dans new->cmd
 	return (new);
 }
 
-t_command	*split_parse(t_mdata *data, char *line)
+void	split_parse(t_mdata *data, char *line)
 {
 	t_command	*new;
-	t_command	*tmp;
 	char		**split;
 	int			i;
 
-	&tmp = &new;
+	new = NULL;
 	i = 0;
 	split = ft_split(line, '|');
 	while (split && split[i])
 	{
 		if (i == 0)
-			tmp = create_command(split[i++]);
+		{
+			new = create_command(data, split[i++]);
+			data->cmd = new;
+		}
 		else
 		{
-			tmp->next = create_command(split[i++]);
-			tmp = tmp->next;
+			new->next = create_command(data, split[i++]);
+			new = new->next;
 		}
 	}
-	return (new);
 }
