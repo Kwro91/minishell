@@ -6,19 +6,20 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 15:54:38 by besalort          #+#    #+#             */
-/*   Updated: 2024/01/24 14:08:59 by besalort         ###   ########.fr       */
+/*   Updated: 2024/01/24 15:48:49 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	open_out_files(t_mdata *data)
+void	open_out_files(t_mdata *data, t_command *cmd)
 {
 	t_files	*tmp;
 
-	tmp = data->out;
-	if (tmp == NULL)
+	(void)data;
+	if (!cmd->out)
 		return ;
+	tmp = cmd->out;
 	while (tmp)
 	{
 		tmp->fd = open(tmp->files, O_RDWR | O_TRUNC | O_CREAT,
@@ -32,9 +33,9 @@ void	open_in_files(t_mdata *data, t_command *cmd)
 {
 	t_files	*tmp;
 
-	tmp =	cmd->in;
-	if (tmp == NULL)
+	if (cmd->in == NULL)
 		return ;
+	tmp = cmd->in;
 	while (tmp)
 	{
 		if (tmp->here_doc == 0)
@@ -65,7 +66,7 @@ void	ft_open_mfiles(t_mdata *data, t_command *cmd)
 	// else
 	// 	tmp->fd = open(".here_doc_tmp",
 	// 		O_CREAT | O_WRONLY | O_TRUNC, 0000644);
-	// open_out_files(data);
+	open_out_files(data, cmd);
 }
 
 int	get_count(t_mdata *data, int count)

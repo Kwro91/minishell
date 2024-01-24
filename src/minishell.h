@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 14:10:34 by besalort          #+#    #+#             */
-/*   Updated: 2024/01/24 14:25:48 by besalort         ###   ########.fr       */
+/*   Updated: 2024/01/24 17:21:14 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,10 +106,10 @@ char		*next_word(char *line);
 char		*dup_word(char	*line, int len);
 // char	*is_here_doc(t_mdata *data, char *line);
 int			is_fd_in(t_mdata *data, t_command *cmd);
-int			is_fd_out(t_mdata *data, char *line);
+int			is_fd_out(t_mdata *data, t_command *cmd);
 char		*redir_rewrite(t_mdata *data, t_command *cmd);
 void		ft_open_mfiles(t_mdata *data, t_command *cmd);
-
+//PARSE
 void		split_parse(t_mdata *data, char *line);
-
+int			check_before(t_mdata *data, char *line);
 #endif 
