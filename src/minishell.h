@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 14:10:34 by besalort          #+#    #+#             */
-/*   Updated: 2024/01/18 18:31:58 by besalort         ###   ########.fr       */
+/*   Updated: 2024/01/23 15:47:47 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,4 +110,6 @@ int		is_fd_out(t_mdata *data, char *line);
 char	*redir_rewrite(t_mdata *data, char *line);
 void	ft_open_mfiles(t_mdata *data);
 
+
+t_command	*split_parse(t_mdata *data, char *line);
 #endif 

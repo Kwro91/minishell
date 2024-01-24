@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 16:27:50 by besalort          #+#    #+#             */
-/*   Updated: 2024/01/23 14:19:03 by besalort         ###   ########.fr       */
+/*   Updated: 2024/01/23 14:30:33 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ typedef struct s_envi
 
 typedef struct s_command
 {
+	char	*line;
 	char	**cmd;
 	t_files	in;
 	t_files	out;
