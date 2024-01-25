@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 14:22:53 by besalort          #+#    #+#             */
-/*   Updated: 2024/01/24 15:45:43 by besalort         ###   ########.fr       */
+/*   Updated: 2024/01/25 14:05:07 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ t_command	*create_command(t_mdata *data, char *lines)
 	new->out = NULL;
 	is_fd_in(data, new);
 	is_fd_out(data, new);
+	new->next = NULL;
 	//on choppe les fd_out
 	//on formate la ligne et on la split pour la preparer a execve dans new->cmd
 	return (new);
