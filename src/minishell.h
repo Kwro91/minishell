@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 14:10:34 by besalort          #+#    #+#             */
-/*   Updated: 2024/01/26 15:08:14 by besalort         ###   ########.fr       */
+/*   Updated: 2024/01/26 15:40:02 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,7 @@ void		launch_cmd(t_mdata *data, t_command *cmd);
 char		*redir(t_mdata *data, t_command *cmd);
 char		*next_word(char *line);
 char		*dup_word(char	*line, int len);
+void		sub_files(t_mdata *data, t_command *cmd);
 // char	*is_here_doc(t_mdata *data, char *line);
 void		is_fd_in(t_mdata *data, t_command *cmd);
 void		is_fd_out(t_mdata *data, t_command *cmd);

@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 15:53:50 by besalort          #+#    #+#             */
-/*   Updated: 2024/01/26 14:14:21 by besalort         ###   ########.fr       */
+/*   Updated: 2024/01/26 15:40:22 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ void	loop(t_mdata *data, char **env, char *cmd, char **cmdtotal)
 						printf("le out : %s\n", fileout->files);
 						fileout = fileout->next;
 					}
+					sub_files(data, tmp);
 					tmp = tmp->next;
 				}
 				launch_cmd(data, data->cmd);

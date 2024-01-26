@@ -6,72 +6,81 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 15:15:57 by besalort          #+#    #+#             */
-/*   Updated: 2024/01/26 14:00:08 by besalort         ###   ########.fr       */
+/*   Updated: 2024/01/26 16:15:17 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-int	count_file(t_files *files)
+char	*ft_strndup(t_mdata *data, char	*str, int len)
 {
-	t_files	*tmp;
-	int		count;
+	char	*new;
+	int		i;
 
-	tmp = files;
-	count = 0;
-	while (tmp)
+	if (!str || len <= 0 || (int)ft_strlen(str) < len)
+		return (NULL);
+	i = 0;
+	new = malloc(sizeof(char) * len + 1);
+	if (!new)
+		ft_error(data, "Error: malloc\n", 1);
+	while (str[i] && i < len)
 	{
-		if (tmp->files)
-			count++;
-		tmp = tmp->next;
+		new[i] = str[i];
+		i++;
 	}
-	return (count);
+	new[i] = '\0';
+	return (new);
 }
 
-int	is_redir_and_file(t_mdata *data, t_command *cmd)
+char	*sub_files_utils(t_mdata *data, t_command *cmd, t_files *tmp, char c)
 {
-	int			i;
-	int			j;
-	t_command	*tmp;
+	int		i;
+	char	*new;
+	char	*one;
+	char	*two;
 
 	i = 0;
-	j = 0;
-	tmp = cmd;
-	while (tmp->cmd[i])
+	one = NULL;
+	two = NULL;
+	while (cmd->line[i] && one == NULL)
 	{
-		while (cmd->cmd[i][j])
+		if (cmd->line[i] == c)
+			one = ft_strndup(data, cmd->line, i);
+		i++;
+	}
+	while (cmd->line[i])
+	{
+		if (ft_strncmp(&cmd->line[i], tmp->files, ft_strlen(tmp->files)) == 0)
 		{
-			if (cmd->cmd[i][j] == '<' || cmd->cmd[i][j] == '>')
-			j++;
+			two = ft_strdup(&cmd->line[i + ft_strlen(tmp->files)]);
+			break ;
 		}
 		i++;
 	}
+	new = ft_strjoin(one, two);
+	if (!new)
+		ft_error(data, "Error: malloc\n", 1);
+	return (new);
 }
 
-int	is_same_len(char *s1, char	*s2)
+void	sub_files(t_mdata *data, t_command *cmd)
 {
-	int	one;
-	int	two;
+	t_files	*tmp;
 
-	one = ft_strlen(s1);
-	two = ft_strlen(s2);
-	if (one == two)
-		return (one);
-	return (0);
-}
-
-void	modif_cmd(t_mdata *data, t_command *cmd)
-{
-	t_command	*tmp;
-	char		**new;
-	int			i;
-	int			len;
-
-	i = 0;
-	tmp = cmd;
-	new = NULL;
-	while (tmp->cmd[i])
+	tmp = NULL;
+	tmp = cmd->in;
+	while (tmp)
 	{
-		len = is_same_len(tmp->cmd[i], tmp->in->files);
+		if (cmd->in)
+			cmd->line = sub_in_files(data, cmd, tmp, '<');
+		tmp = tmp->next;
 	}
+	tmp = cmd->out;
+	while (tmp)
+	{
+		if (cmd->in)
+			cmd->line = sub_in_files(data, cmd, tmp, '>');
+		tmp = tmp->next;
+	}
+	printf("newline:%s\n", cmd->line);
 }
