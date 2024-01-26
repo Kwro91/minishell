@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 17:12:09 by besalort          #+#    #+#             */
-/*   Updated: 2024/01/24 17:42:15 by besalort         ###   ########.fr       */
+/*   Updated: 2024/01/26 14:06:20 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	is_allowed(char c)
 	int		i;
 
 	i = 0;
-	string = (" \"'<>?|$");
+	string = (" \"'<>?|$.");
 	while (string && string[i])
 	{
 		if (c == string[i])

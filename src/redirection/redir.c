@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 15:38:43 by besalort          #+#    #+#             */
-/*   Updated: 2024/01/25 15:18:25 by besalort         ###   ########.fr       */
+/*   Updated: 2024/01/26 14:07:47 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,8 @@ char	*next_word(char *line)
 			apo = 1;
 			i++;
 		}
-		if (line[i] == '"' && apo == 1)
-			break ;
-		if (apo == 0 && ft_isalnum(line[i]) == 0)
+		if ((line[i] == '"' && apo == 1)
+			|| (apo == 0 && ft_isalnum(line[i]) == 0))
 			break ;
 		i++;
 		count++;
@@ -70,7 +69,7 @@ char	*next_word(char *line)
 // 	{
 // 		if (line[i] == '<' && line[i + 1] == '<')
 // 		{
-			
+
 // 			return (next_word(&line[i + 2]));
 // 		}
 // 		i++;
@@ -80,29 +79,6 @@ char	*next_word(char *line)
 
 char	*redir(t_mdata *data, t_command *cmd)
 {
-	// int	i;
-
-	// i = 0;
-	// data->eof = is_here_doc(data, line);
-	// data->here_doc = 1;
-	// if (!data->eof)
-	// {
-		data->here_doc = 0;
-		// if (is_fd_in(data, line) == 1 && data->in.files)
-		// 	printf("fd_in = %s\n", data->in.files);
-	// }
-	// if (data->here_doc == 1)
-		// printf("EOF = %s\n", data->eof);
-	// if (is_fd_out(data, line) == 1 && data->out.files)
-	// 		printf("fd_out = %s\n", data->out.files);
-	is_fd_in(data, cmd);
-	// is_fd_out(data, line);
 	ft_open_mfiles(data, cmd);
 	return (redir_rewrite(data, cmd));
-	// while (line[i])
-	// {
-	// 	break ;
-	// }
-	
 }
-

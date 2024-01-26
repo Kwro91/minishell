@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 15:29:29 by besalort          #+#    #+#             */
-/*   Updated: 2024/01/24 15:37:33 by besalort         ###   ########.fr       */
+/*   Updated: 2024/01/26 13:58:04 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,75 +45,75 @@ t_files	*get_new_file(t_mdata *data, char *line, int here_doc)
 	return (new);
 }
 
-int	is_fd_out(t_mdata *data, t_command *cmd)
+t_files	*create_new_files(t_mdata *data, t_files *files, char *line, int hd)
 {
-	int	i;
-	int	value;
+	t_files	*new;
 	t_files	*tmp;
 
-	i = 0;
-	value = 0;
-	// data->out.files = size_my_file(data, line, '>');
-	while (cmd->line[i])
+	new = get_new_file(data, line, 0);
+	tmp = files;
+	if (hd == 1)
+		new->here_doc = 1;
+	if (!tmp)
+		return (new);
+	else
 	{
-		if (cmd->line[i] == '>' && cmd->line[i + 1])
-		{
-			if (value == 0)
-			{
-				tmp = get_new_file(data, &cmd->line[i + 1], 0);
-				cmd->out = tmp;
-			}
-			else
-			{
-				tmp->next = get_new_file(data, &cmd->line[i + 1], 0);
-				tmp = tmp->next;
-			}
-			value++;
-		}
-		i++;
+		while (tmp->next)
+			tmp = tmp->next;
+		tmp->next = new;
 	}
-	return (value);
+	return (files);
 }
 
-int	is_fd_in(t_mdata *data, t_command *cmd)
+void	is_fd_out(t_mdata *data, t_command *cmd)
 {
-	int	i;
-	int	value;
-	t_files	*tmp;
+	int		i;
+	int		quote;
+	int		squote;
 
 	i = 0;
-	value = 0;
+	quote = -1;
+	squote = -1;
 	if (!cmd)
-		return (-1);
+		return ;
 	while (cmd->line[i])
 	{
-		if (cmd->line[i] == '<' && cmd->line[i + 1])
+		if (cmd->line[i] == '"')
+			quote *= -1;
+		if (cmd->line[i] == '\'')
+			squote *= -1;
+		if (cmd->line[i] == '>' && cmd->line[i + 1]
+			&& quote == -1 && squote == -1)
+			cmd->out = create_new_files(data, cmd->out, &cmd->line[i + 1], 0);
+		i++;
+	}
+}
+
+void	is_fd_in(t_mdata *data, t_command *cmd)
+{
+	int			i;
+	t_quotes	quote;
+
+	i = 0;
+	quote.quote = -1;
+	quote.squote = -1;
+	while (cmd->line[i])
+	{
+		if (cmd->line[i] == '"')
+			quote.quote *= -1;
+		if (cmd->line[i] == '\'')
+			quote.squote *= -1;
+		if (cmd->line[i] == '<' && cmd->line[i + 1]
+			&& quote.quote == -1 && quote.squote == -1)
 		{
-			if (value == 0)
+			if (cmd->line[i + 1] == '<')
 			{
-				if (cmd->line[i + 1] == '<')
-				{
-					i++;
-					tmp = get_new_file(data, &cmd->line[i + 1], 1);
-				}
-				else
-					tmp = get_new_file(data, &cmd->line[i + 1], 0);
-				cmd->in = tmp;
+				i++;
+				cmd->in = create_new_files(data, cmd->in, &cmd->line[i + 1], 1);
 			}
 			else
-			{
-				if (cmd->line[i + 1] == '<')
-				{
-					i++;
-					tmp->next = get_new_file(data, &cmd->line[i + 1], 1);
-				}
-				else
-					tmp->next = get_new_file(data, &cmd->line[i + 1], 0);
-				tmp = tmp->next;
-			}
-			value++;
+				cmd->in = create_new_files(data, cmd->in, &cmd->line[i + 1], 0);
 		}
 		i++;
 	}
-	return (value);
 }

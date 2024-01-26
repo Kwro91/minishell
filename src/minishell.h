@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 14:10:34 by besalort          #+#    #+#             */
-/*   Updated: 2024/01/25 14:20:44 by besalort         ###   ########.fr       */
+/*   Updated: 2024/01/26 13:56:58 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,12 @@
 // 	char	**unset;
 // 	t_envi	*envi;
 // }   t_mdata;
+
+typedef struct s_quotes
+{
+	int	quote;
+	int squote;
+}	t_quotes;
 
 //Init
 void	init_built_int(t_mdata *data);
@@ -105,8 +111,8 @@ char		*redir(t_mdata *data, t_command *cmd);
 char		*next_word(char *line);
 char		*dup_word(char	*line, int len);
 // char	*is_here_doc(t_mdata *data, char *line);
-int			is_fd_in(t_mdata *data, t_command *cmd);
-int			is_fd_out(t_mdata *data, t_command *cmd);
+void		is_fd_in(t_mdata *data, t_command *cmd);
+void		is_fd_out(t_mdata *data, t_command *cmd);
 char		*redir_rewrite(t_mdata *data, t_command *cmd);
 void		ft_open_mfiles(t_mdata *data, t_command *cmd);
 //PARSE
