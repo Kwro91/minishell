@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 14:22:53 by besalort          #+#    #+#             */
-/*   Updated: 2024/01/25 14:26:58 by besalort         ###   ########.fr       */
+/*   Updated: 2024/01/26 14:11:05 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,7 @@
 t_command	*create_command(t_mdata *data, char *lines)
 {
 	t_command	*new;
-	// int			i;
 
-	// i = 0;
 	new = NULL;
 	new = malloc(sizeof(t_command));
 	if (!new)
@@ -25,7 +23,6 @@ t_command	*create_command(t_mdata *data, char *lines)
 	new->line = ft_strdup(lines);
 	new->in = NULL;
 	new->out = NULL;
-	//on formate la ligne et on la split pour la preparer a execve dans new->cmd
 	new->cmd = ft_split(new->line, ' ');
 	if (!new->cmd)
 		ft_error(data, "Error: malloc", 1);

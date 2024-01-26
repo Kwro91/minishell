@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 16:27:50 by besalort          #+#    #+#             */
-/*   Updated: 2024/01/24 14:14:09 by besalort         ###   ########.fr       */
+/*   Updated: 2024/01/26 15:10:54 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,17 +51,17 @@ typedef struct s_command
 
 typedef struct s_mdata
 {
-	char	**env;
-	char	**paths;
-	char	**export;
-	char	**unset;
-	char	*pwd;
-	char	*eof;
-	int		here_doc;
+	char		**env;
+	char		**paths;
+	char		**export;
+	char		**unset;
+	char		*pwd;
+	char		*eof;
+	int			here_doc;
 	t_command	*cmd;
-	t_files	*in;
-	t_files	*out;
-	t_envi	*envi;
+	t_files		*in;
+	t_files		*out;
+	t_envi		*envi;
 }	t_mdata;
 
 typedef struct s_lst
@@ -77,7 +77,6 @@ typedef struct s_data
 	char	**av;
 	char	**env;
 }	t_data;
-
 
 typedef struct s_pipex
 {

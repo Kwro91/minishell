@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 14:10:34 by besalort          #+#    #+#             */
-/*   Updated: 2024/01/26 13:56:58 by besalort         ###   ########.fr       */
+/*   Updated: 2024/01/26 15:08:14 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,35 +38,35 @@
 typedef struct s_quotes
 {
 	int	quote;
-	int squote;
+	int	squote;
 }	t_quotes;
 
 //Init
-void	init_built_int(t_mdata *data);
+void		init_built_int(t_mdata *data);
 
 //Prompt
-void	prompt(t_mdata *data, int ac, char **av, char **env);
+void		prompt(t_mdata *data, int ac, char **av, char **env);
 
 //Path
-void	ft_path_all(t_mdata *data, char **paths);
-void	ft_path_no_env(t_mdata *data);
-char	**ft_path_mini(char **env);
-void	ft_free_lines(char	**lines);
+void		ft_path_all(t_mdata *data, char **paths);
+void		ft_path_no_env(t_mdata *data);
+char		**ft_path_mini(char **env);
+void		ft_free_lines(char	**lines);
 
 //Free
-void	ft_free_mini(t_mdata *data);
-void	ft_free_adr(void *adr);
-void	ft_free_files(t_files *files);
-void	ft_error(t_mdata *data, char *line, int close);
+void		ft_free_mini(t_mdata *data);
+void		ft_free_adr(void *adr);
+void		ft_free_files(t_files *files);
+void		ft_error(t_mdata *data, char *line, int close);
 //IsCmd
-int		verif_cmd(t_mdata *data, char **cmd_total, char **env);
-int		is_echo(char **cmd_total);
-int		is_exit(char **cmd_total, t_mdata *data);
-int		is_pwd(char **cmd_total, t_mdata *data);
-int		is_env(char **cmd_total, t_mdata *data);
-int		is_export(char **cmd_total, t_mdata *data);
-int		is_unset(char **cmd_total, t_mdata *data);
-int		is_cd(char **cmd_total, t_mdata *data);
+int			verif_cmd(t_mdata *data, char **cmd_total, char **env);
+int			is_echo(char **cmd_total);
+int			is_exit(char **cmd_total, t_mdata *data);
+int			is_pwd(char **cmd_total, t_mdata *data);
+int			is_env(char **cmd_total, t_mdata *data);
+int			is_export(char **cmd_total, t_mdata *data);
+int			is_unset(char **cmd_total, t_mdata *data);
+int			is_cd(char **cmd_total, t_mdata *data);
 
 //BUILT_IN
 
