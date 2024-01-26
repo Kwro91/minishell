@@ -1,30 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   dollar.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/28 17:10:52 by besalort          #+#    #+#             */
-/*   Updated: 2024/01/22 17:59:34 by afontain         ###   ########.fr       */
+/*   Created: 2023/12/21 12:52:09 by afontain          #+#    #+#             */
+/*   Updated: 2024/01/18 18:04:50 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
-int g_retval;
 
-int	main(int ac, char **av, char **env)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+int	count_dollars(char *str)
 {
-	g_retval = 0;
-	t_mdata data;
-	if (ac == 1)
+	int	i;
+	int	result;
+
+	i = 0;
+	result = 0;
+	if (!str)
+		return (0);
+	while (str[i])
 	{
-		init_built_int(&data);
-		handle_signals();
-		prompt(&data, ac, av, env);
+		if (str[i] == '$')
+			result++;
+		i++;
 	}
-	else
-		ft_printf("No args needed for minishell, please use : ./minishell\n");
-    return (0);
+	return (result);
 }

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: besalort <besalort@student.42.fr>          +#+  +:+       +#+         #
+#    By: afontain <afontain@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/29 14:05:28 by besalort          #+#    #+#              #
-#    Updated: 2023/12/06 15:31:18 by besalort         ###   ########.fr        #
+#    Updated: 2024/01/18 16:40:53 by afontain         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,10 @@ SRC = ./src/main.c \
 	./src/signal/signals.c \
 	./src/signal/signals2.c \
 	./src/free.c \
+	./src/parsing/parsing.c \
+	./src/parsing/quotes.c \
+	# ./src/parsing/dollar.c \
+	
 	
 LIBFT_PATH = ./src/libft/
 

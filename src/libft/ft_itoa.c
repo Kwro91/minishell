@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
+/*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 11:40:48 by besalort          #+#    #+#             */
-/*   Updated: 2022/11/23 14:57:50 by besalort         ###   ########.fr       */
+/*   Updated: 2024/01/18 17:26:59 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static char	*revtab(char *tab)
 	char	c;
 
 	i = 0;
-	j = ft_strlen((const char *)tab) - 1;
+	j = ft_strlen(tab) - 1;
 	if (tab[i] == '-')
 		i++;
 	while (i < j)

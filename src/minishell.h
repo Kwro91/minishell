@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
+/*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 14:10:34 by besalort          #+#    #+#             */
-/*   Updated: 2023/12/06 16:14:13 by besalort         ###   ########.fr       */
+/*   Updated: 2024/01/22 17:44:33 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 # include <signal.h>
 # include <readline/readline.h>
 # include <readline/history.h>
+
+extern int g_retval;
 
 typedef struct s_envi
 {
@@ -94,5 +96,15 @@ void	cd_cmd(t_mdata *data, char *line);
 
 //Signal
 void	handle_signals(void);
+
+//Parsing
+int		parsing(char *cmd);
+
+//Quotes
+int		check_quotes(char *str);
+char	*remove_quotes(char *cmd_total);
+void	remove_double(char *cmd_total, char *new_cmd, int i, int j);
+void	remove_single(char *cmd_total, char *new_cmd, int i, int j);
+int		nb_quotes(char *cmd_total);
 
 #endif 

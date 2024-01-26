@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
+/*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 15:53:50 by besalort          #+#    #+#             */
-/*   Updated: 2023/12/06 16:14:54 by besalort         ###   ########.fr       */
+/*   Updated: 2024/01/18 18:02:19 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ void	launch_cmd(t_mdata *data, char *cmd, char **cmdtotal, char **env)
 int	verif_cmd(t_mdata *data, char **cmd_total, char **env)
 {
 	(void)env;
+	if (*cmd_total == NULL)
+		return (-1);
 	if (is_echo(cmd_total) == 1)
 		return (1);
     else if (is_pwd(cmd_total, data) == 1)
@@ -99,23 +101,34 @@ void    prompt(t_mdata *data, int ac, char **av, char **env)
     data->paths = ft_path_mini(env);
 	env_setup(data, env);
     setup_pwd(data, env, 1);
+	cmdtotal = NULL;
     while(1)
     {
 		cmd = get_readline(data, "Minishell>");
-		if (*cmd)
+		if (cmd != NULL)
 		{
 			add_history(cmd);
 			cmdtotal = ft_split(cmd, ' ');
 		}
-		if (*cmd && verif_cmd(data, cmdtotal, env) == 0)
+		if (nb_quotes(cmd) > 0)
+		{
+			if (parsing(cmd) == 1)
+				return ;
+			else
+			{
+				remove_quotes(cmd);
+				printf("%s\n", cmd);
+			}
+		}		
+		if (cmd && verif_cmd(data, cmdtotal, env) == 0)
 		{
 			if (ft_access_mini(data, cmd) != NULL)
 				launch_cmd(data, cmd, cmdtotal, env);
 			cmd = NULL;
 		}
-		if (*cmd)
+		if (cmd)
 			free (cmd);
-		if (*cmdtotal)
+		if (cmdtotal)
 			ft_free_lines(cmdtotal);
     }
 }
