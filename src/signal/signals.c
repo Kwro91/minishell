@@ -6,7 +6,7 @@
 /*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 12:59:04 by afontain          #+#    #+#             */
-/*   Updated: 2023/10/17 17:47:16 by afontain         ###   ########.fr       */
+/*   Updated: 2024/01/26 12:50:51 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	handle_sigquit(int sigquit)
 {
 	(void)sigquit;
+	g_retval = 131;
 	write(STDOUT_FILENO, "Quit (core dump)\n", 17);
 }
 
@@ -27,6 +28,7 @@ void	handle_sigsegv(int sigsegv)
 void	handle_sigint(int sigint)
 {
 	(void)sigint;
+	g_retval = 130;
 	write(STDOUT_FILENO, "\n", 1);
 	rl_on_new_line();
 	rl_replace_line("", 0);
@@ -35,10 +37,8 @@ void	handle_sigint(int sigint)
 
 void	handle_signals(void)
 {
-	// signal(SIGINT, SIG_IGN);
 	signal(SIGQUIT, SIG_IGN);
 	signal(SIGTSTP, SIG_IGN);
 	signal(SIGSEGV, handle_sigsegv);
 	signal(SIGINT, handle_sigint);
-	// signal(SIGQUIT, handle_sigquit);
 }

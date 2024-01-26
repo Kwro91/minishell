@@ -6,7 +6,7 @@
 /*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 14:10:34 by besalort          #+#    #+#             */
-/*   Updated: 2024/01/22 17:44:33 by afontain         ###   ########.fr       */
+/*   Updated: 2024/01/26 15:38:46 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,14 @@ typedef struct s_envi
 	char			**tab;
 	struct s_envi	*next;
 }t_envi;
+
+typedef struct s_string
+{
+	char			*str;
+	int				type;
+	int				*dollar;
+	struct s_string	*next;
+}t_string;
 
 typedef struct s_mdata
 {
@@ -98,7 +106,11 @@ void	cd_cmd(t_mdata *data, char *line);
 void	handle_signals(void);
 
 //Parsing
-int		parsing(char *cmd);
+// int		parsing(char *cmd);
+
+//Dollar
+void	handle_dollar(t_mdata *data, char *cmd);
+
 
 //Quotes
 int		check_quotes(char *str);

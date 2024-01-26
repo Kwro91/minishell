@@ -6,7 +6,7 @@
 #    By: afontain <afontain@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/29 14:05:28 by besalort          #+#    #+#              #
-#    Updated: 2024/01/18 16:40:53 by afontain         ###   ########.fr        #
+#    Updated: 2024/01/26 15:39:44 by afontain         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,9 +30,8 @@ SRC = ./src/main.c \
 	./src/signal/signals.c \
 	./src/signal/signals2.c \
 	./src/free.c \
-	./src/parsing/parsing.c \
 	./src/parsing/quotes.c \
-	# ./src/parsing/dollar.c \
+	./src/parsing/dollar.c \
 	
 	
 LIBFT_PATH = ./src/libft/

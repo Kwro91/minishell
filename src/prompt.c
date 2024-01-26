@@ -6,7 +6,7 @@
 /*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 15:53:50 by besalort          #+#    #+#             */
-/*   Updated: 2024/01/18 18:02:19 by afontain         ###   ########.fr       */
+/*   Updated: 2024/01/26 15:38:00 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,16 +110,9 @@ void    prompt(t_mdata *data, int ac, char **av, char **env)
 			add_history(cmd);
 			cmdtotal = ft_split(cmd, ' ');
 		}
-		if (nb_quotes(cmd) > 0)
-		{
-			if (parsing(cmd) == 1)
-				return ;
-			else
-			{
-				remove_quotes(cmd);
-				printf("%s\n", cmd);
-			}
-		}		
+		handle_dollar(data, cmd);
+		if ((nb_quotes(cmd) > 0) && (check_quotes(cmd) == 0))
+				cmd = remove_quotes(cmd);
 		if (cmd && verif_cmd(data, cmdtotal, env) == 0)
 		{
 			if (ft_access_mini(data, cmd) != NULL)

@@ -6,7 +6,7 @@
 /*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 10:40:00 by afontain          #+#    #+#             */
-/*   Updated: 2024/01/22 17:32:24 by afontain         ###   ########.fr       */
+/*   Updated: 2024/01/26 12:36:54 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	check_quotes(char *str)
 			while (str[i] && str[i] != '"')
 				i++;
 			if (str[i] == '\0')
-				return (printf("double quotes is not closed\n"), 1);
+				return (1);
 		}
 		if (str[i] == 39)
 		{
@@ -35,7 +35,7 @@ int	check_quotes(char *str)
 			while (str[i] && str[i] != 39)
 				i++;
 			if (str[i] == '\0')
-				return (printf("single quote is not closed\n"), 1);
+				return (1);
 		}
 		i++;
 	}
