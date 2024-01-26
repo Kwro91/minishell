@@ -6,16 +6,18 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 17:10:52 by besalort          #+#    #+#             */
-/*   Updated: 2024/01/15 13:32:54 by besalort         ###   ########.fr       */
+/*   Updated: 2024/01/26 16:42:01 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+int g_retval;
+
 int	main(int ac, char **av, char **env)
 {
-	t_mdata	data;
-
+	g_retval = 0;
+	t_mdata data;
 	if (ac == 1)
 	{
 		init_built_int(&data);

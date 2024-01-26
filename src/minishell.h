@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 14:10:34 by besalort          #+#    #+#             */
-/*   Updated: 2024/01/26 15:40:02 by besalort         ###   ########.fr       */
+/*   Updated: 2024/01/26 16:53:26 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,21 +19,15 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 
-// typedef struct s_envi
-// {
-// 	char			**tab;
-// 	struct s_envi	*next;
-// }t_envi;
+extern int g_retval;
 
-// typedef struct s_mdata
-// {
-//     char    **env;
-// 	char	**export;
-//     char    **paths;
-//     char    *pwd;
-// 	char	**unset;
-// 	t_envi	*envi;
-// }   t_mdata;
+typedef struct s_string
+{
+	char			*str;
+	int				type;
+	int				*dollar;
+	struct s_string	*next;
+}	t_string;
 
 typedef struct s_quotes
 {
@@ -119,4 +113,18 @@ void		ft_open_mfiles(t_mdata *data, t_command *cmd);
 //PARSE
 void		split_parse(t_mdata *data, char *line);
 int			check_before(t_mdata *data, char *line);
+//Parsing
+// int		parsing(char *cmd);
+
+//Dollar
+void	handle_dollar(t_mdata *data, char *cmd);
+
+
+//Quotes
+int		check_quotes(char *str);
+char	*remove_quotes(char *cmd_total);
+void	remove_double(char *cmd_total, char *new_cmd, int i, int j);
+void	remove_single(char *cmd_total, char *new_cmd, int i, int j);
+int		nb_quotes(char *cmd_total);
+
 #endif 

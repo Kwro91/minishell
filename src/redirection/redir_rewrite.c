@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 15:15:57 by besalort          #+#    #+#             */
-/*   Updated: 2024/01/26 16:15:17 by besalort         ###   ########.fr       */
+/*   Updated: 2024/01/26 16:54:17 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,14 +72,14 @@ void	sub_files(t_mdata *data, t_command *cmd)
 	while (tmp)
 	{
 		if (cmd->in)
-			cmd->line = sub_in_files(data, cmd, tmp, '<');
+			cmd->line = sub_files_utils(data, cmd, tmp, '<');
 		tmp = tmp->next;
 	}
 	tmp = cmd->out;
 	while (tmp)
 	{
 		if (cmd->in)
-			cmd->line = sub_in_files(data, cmd, tmp, '>');
+			cmd->line = sub_files_utils(data, cmd, tmp, '>');
 		tmp = tmp->next;
 	}
 	printf("newline:%s\n", cmd->line);

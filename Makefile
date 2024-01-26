@@ -6,7 +6,7 @@
 #    By: besalort <besalort@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/29 14:05:28 by besalort          #+#    #+#              #
-#    Updated: 2024/01/26 15:40:55 by besalort         ###   ########.fr        #
+#    Updated: 2024/01/26 16:52:51 by besalort         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,6 +48,9 @@ SRC = ./src/main.c \
 	$(REDIRECTION_PATH)redir_rewrite.c \
 	$(PARSE_PATH)split_parse.c \
 	$(PARSE_PATH)check_line.c \
+	./src/parsing/quotes.c \
+	./src/parsing/dollar.c \
+	
 	
 BUILT_IN_PATH = ./src/built_in/
 

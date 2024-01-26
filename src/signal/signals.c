@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 12:59:04 by afontain          #+#    #+#             */
-/*   Updated: 2024/01/15 13:43:40 by besalort         ###   ########.fr       */
+/*   Updated: 2024/01/26 16:46:19 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	handle_sigquit(int sigquit)
 {
 	(void)sigquit;
+	g_retval = 131;
 	write(STDOUT_FILENO, "Quit (core dump)\n", 17);
 }
 
@@ -27,6 +28,7 @@ void	handle_sigsegv(int sigsegv)
 void	handle_sigint(int sigint)
 {
 	(void)sigint;
+	g_retval = 130;
 	write(STDOUT_FILENO, "\n", 1);
 	rl_on_new_line();
 	rl_replace_line("", 0);
