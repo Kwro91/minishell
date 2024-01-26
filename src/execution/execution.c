@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 15:59:33 by besalort          #+#    #+#             */
-/*   Updated: 2024/01/15 13:54:42 by besalort         ###   ########.fr       */
+/*   Updated: 2024/01/25 14:33:12 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ char	*ft_access_mini(t_mdata *data, char *cmd)
 	return (free(join), free(tmp), cmd);
 }
 
-void	launch_cmd(t_mdata *data, char **cmdtotal, char **env)
+void	launch_cmd(t_mdata *data, t_command *cmd)
 {
 	int	pid;
 	int	value;
@@ -46,7 +46,7 @@ void	launch_cmd(t_mdata *data, char **cmdtotal, char **env)
 	pid = fork();
 	if (pid == 0)
 	{
-		value = execve(ft_access_mini(data, cmdtotal[0]), cmdtotal, env);
+		value = execve(ft_access_mini(data, cmd->cmd[0]), cmd->cmd, data->env);
 		//ICI FAUDRA TOUT FREE
 		exit(value);
 	}
