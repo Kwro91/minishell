@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 15:29:29 by besalort          #+#    #+#             */
-/*   Updated: 2024/01/26 13:58:04 by besalort         ###   ########.fr       */
+/*   Updated: 2024/01/30 13:31:09 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,15 @@ void	is_fd_out(t_mdata *data, t_command *cmd)
 			squote *= -1;
 		if (cmd->line[i] == '>' && cmd->line[i + 1]
 			&& quote == -1 && squote == -1)
-			cmd->out = create_new_files(data, cmd->out, &cmd->line[i + 1], 0);
+		{
+			if (cmd->line[i + 1] == '>')
+			{
+				i++;
+				cmd->out = create_new_files(data, cmd->out, &cmd->line[i + 1], 1);
+			}
+			else
+				cmd->out = create_new_files(data, cmd->out, &cmd->line[i + 1], 0);
+		}
 		i++;
 	}
 }

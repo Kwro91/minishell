@@ -6,28 +6,27 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 14:15:35 by besalort          #+#    #+#             */
-/*   Updated: 2024/01/15 16:59:02 by besalort         ###   ########.fr       */
+/*   Updated: 2024/01/30 14:36:42 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-int	verif_cmd(t_mdata *data, char **cmd_total, char **env)
+int	verif_cmd(t_mdata *data, t_command *cmd)
 {
-	(void)env;
-	if (is_echo(cmd_total) == 1)
+	if (is_echo(cmd->cmd) == 1)
 		return (1);
-	else if (is_pwd(cmd_total, data) == 1)
+	else if (is_pwd(cmd->cmd, data) == 1)
 		return (1);
-	else if (is_exit(cmd_total, data) == 1)
+	else if (is_exit(cmd->cmd, data) == 1)
 		return (1);
-	else if (is_env(cmd_total, data) == 1)
+	else if (is_env(cmd->cmd, data) == 1)
 		return (1);
-	else if (is_export(cmd_total, data) == 1)
+	else if (is_export(cmd->cmd, data) == 1)
 		return (1);
-	else if (is_unset(cmd_total, data) == 1)
+	else if (is_unset(cmd->cmd, data) == 1)
 		return (1);
-	else if (is_cd(cmd_total, data) == 1)
+	else if (is_cd(cmd->cmd, data) == 1)
 		return (1);
 	return (0);
 }

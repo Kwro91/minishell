@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 15:53:50 by besalort          #+#    #+#             */
-/*   Updated: 2024/01/26 16:45:57 by besalort         ###   ########.fr       */
+/*   Updated: 2024/01/30 14:50:41 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,11 @@ char	*get_readline(t_mdata *data, char *str)
 	return (str);
 }
 
-void	loop(t_mdata *data, char **env, char *cmd, char **cmdtotal)
+void	loop(t_mdata *data, char *cmd, char **cmdtotal)
 {
+	t_command *tmp;
+	t_files *filein;
+	t_files *fileout;
 	cmd = get_readline(data, "Minishell> ");
 	if (*cmd && ft_strncmp(cmd, "/n", 2) != 0)
 	{
@@ -46,34 +49,28 @@ void	loop(t_mdata *data, char **env, char *cmd, char **cmdtotal)
 		cmdtotal = ft_split(cmd, ' ');
 		if (cmd != NULL && check_before(data, cmd) == 1)
 		{
-			if (verif_cmd(data, cmdtotal, env) == 0)
+			data->cmd = NULL;
+			split_parse(data, cmd);
+			tmp = data->cmd;
+			while (tmp)
 			{
-				data->cmd = NULL;
-				split_parse(data, cmd);
-				t_command *tmp;
-				t_files *filein;
-				t_files *fileout;
-				tmp = data->cmd;
-				while (tmp)
+				filein = tmp->in;
+				fileout = tmp->out;
+				printf("La ligne : %s\n", tmp->line);
+				while (filein)
 				{
-					filein = tmp->in;
-					fileout = tmp->out;
-					printf("La ligne : %s\n", tmp->line);
-					while (filein)
-					{
-						printf("le in : %s\n", filein->files);
-						filein = filein->next;
-					}
-					while (fileout)
-					{
-						printf("le out : %s\n", fileout->files);
-						fileout = fileout->next;
-					}
-					sub_files(data, tmp);
-					tmp = tmp->next;
+					printf("le in : %s\n", filein->files);
+					filein = filein->next;
 				}
-				launch_cmd(data, data->cmd);
+				while (fileout)
+				{
+					printf("le out : %s\n", fileout->files);
+					fileout = fileout->next;
+				}
+				sub_files(data, tmp);
+				tmp = tmp->next;
 			}
+			launch_cmd(data, data->cmd);
 			// if (cmd != NULL)
 			// 	ft_pipex(4, cmdtotal, data->env, data);
 		}
@@ -104,5 +101,5 @@ void	prompt(t_mdata *data, int ac, char **av, char **env)
 	env_setup(data, env);
 	setup_pwd(data, env, 1);
 	while (1)
-		loop(data, env, cmd, cmdtotal);
+		loop(data, cmd, cmdtotal);
 }

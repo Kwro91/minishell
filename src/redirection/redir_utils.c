@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 15:54:38 by besalort          #+#    #+#             */
-/*   Updated: 2024/01/26 14:01:22 by besalort         ###   ########.fr       */
+/*   Updated: 2024/01/30 14:06:05 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,11 @@ void	open_out_files(t_mdata *data, t_command *cmd)
 	tmp = cmd->out;
 	while (tmp)
 	{
-		tmp->fd = open(tmp->files, O_RDWR | O_TRUNC | O_CREAT,
-				S_IRWXU);
+		if (tmp->here_doc == 0)
+			tmp->fd = open(tmp->files, O_RDWR | O_TRUNC | O_CREAT,
+					S_IRWXU);
+		else
+			tmp->fd = open(tmp->files, O_RDWR | O_CREAT, S_IRWXU);
 		tmp = tmp->next;
 	}
 }
@@ -58,20 +61,4 @@ void	ft_open_mfiles(t_mdata *data, t_command *cmd)
 {
 	open_in_files(data, cmd);
 	open_out_files(data, cmd);
-}
-
-int	get_count(t_mdata *data, int count)
-{
-	(void)data;
-	(void)count;
-	return (count);
-}
-
-char	*redir_rewrite(t_mdata *data, t_command *cmd)
-{
-	int	count;
-
-	count = 0;
-	get_count(data, count);
-	return (cmd->line);
 }

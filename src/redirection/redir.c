@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 15:38:43 by besalort          #+#    #+#             */
-/*   Updated: 2024/01/26 14:07:47 by besalort         ###   ########.fr       */
+/*   Updated: 2024/01/30 14:32:37 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,46 @@ char	*next_word(char *line)
 // 	return (0);
 // }
 
-char	*redir(t_mdata *data, t_command *cmd)
+int	do_out_redir(t_mdata *data, t_command *cmd)
 {
+	t_files	*tmp;
+
+	tmp = cmd->out;
+	while(tmp)
+	{
+		if (tmp->next == NULL && tmp->fd >= 0)
+			if (dup2(tmp->fd, 1) < 0)
+				return (ft_error(data, "Error: dup2\n", 0), -1);
+		tmp = tmp->next;
+	}
+	return (0);
+}
+
+int	do_in_redir(t_mdata *data, t_command *cmd)
+{
+	t_files	*tmp;
+
+	tmp = cmd->in;
+	while(tmp)
+	{
+		if (tmp->next == NULL && tmp->fd >= 0)
+			if (dup2(tmp->fd, 0) < 0)
+				return (ft_error(data, "Error: dup2\n", 0), -1);
+		tmp = tmp->next;
+	}
+	return (0);
+}
+
+int	redir(t_mdata *data, t_command *cmd)
+{
+	int	value;
+
+	value = 0;
 	ft_open_mfiles(data, cmd);
-	return (redir_rewrite(data, cmd));
+	if (cmd->in)
+		value = do_in_redir(data, cmd);
+	if (cmd->out)
+		do_out_redir(data, cmd);
+	cmd->cmd = ft_split(cmd->line, ' ');
+	return (value);
 }
