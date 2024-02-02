@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 15:59:33 by besalort          #+#    #+#             */
-/*   Updated: 2024/01/30 14:49:56 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/02 15:43:46 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ char	*ft_access_mini(t_mdata *data, char *cmd)
 	}
 	tmp = ft_strjoin("minishell: command not found: ", cmd);
 	join = ft_strjoin(tmp, "\n");
-	ft_printf("%s", join);
+	ft_error(data, join, 0);
 	return (free(join), free(tmp), cmd);
 }
 
@@ -54,5 +54,8 @@ void	launch_cmd(t_mdata *data, t_command *cmd)
 		exit(value);
 	}
 	else
+	{
 		waitpid(-1, &status, 0);
+		close_all_files(data, cmd);
+	}
 }

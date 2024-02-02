@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 15:54:38 by besalort          #+#    #+#             */
-/*   Updated: 2024/01/30 14:06:05 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/02 15:44:37 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	open_out_files(t_mdata *data, t_command *cmd)
 			tmp->fd = open(tmp->files, O_RDWR | O_TRUNC | O_CREAT,
 					S_IRWXU);
 		else
-			tmp->fd = open(tmp->files, O_RDWR | O_CREAT, S_IRWXU);
+			tmp->fd = open(tmp->files, O_RDWR | O_APPEND | O_CREAT, S_IRWXU);
 		tmp = tmp->next;
 	}
 }
@@ -43,10 +43,7 @@ void	open_in_files(t_mdata *data, t_command *cmd)
 		if (tmp->here_doc == 0)
 			tmp->fd = open(tmp->files, O_RDONLY);
 		else
-		{
-			tmp->fd = open(".here_doc_tmp",
-					O_CREAT | O_WRONLY | O_TRUNC, 0000644);
-		}
+			ft_mhere_doc(data, tmp);
 		if (tmp->fd < 0)
 		{
 			ft_error(data, "minishell: ", 0);
