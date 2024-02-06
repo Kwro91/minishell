@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 14:10:34 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/06 13:06:43 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/06 15:51:51 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ void		init_built_int(t_mdata *data);
 
 //Prompt
 void		prompt(t_mdata *data, char **env);
-
+void		end_loop(t_mdata *data);
+void		close_end(t_mdata *data);
 //Path
 void		ft_path_all(t_mdata *data, char **paths);
 void		ft_path_no_env(t_mdata *data);
@@ -120,14 +121,25 @@ int			check_before(t_mdata *data, char *line);
 // int		parsing(char *cmd);
 
 //Dollar
-void	handle_dollar(t_mdata *data, char *cmd);
+void		handle_dollar(t_mdata *data, char *cmd);
 
 
 //Quotes
-int		check_quotes(char *str);
-char	*remove_quotes(char *cmd_total);
-void	remove_double(char *cmd_total, char *new_cmd, int i, int j);
-void	remove_single(char *cmd_total, char *new_cmd, int i, int j);
-int		nb_quotes(char *cmd_total);
+int			check_quotes(char *str);
+char		*remove_quotes(char *cmd_total);
+void		remove_double(char *cmd_total, char *new_cmd, int i, int j);
+void		remove_single(char *cmd_total, char *new_cmd, int i, int j);
+int			nb_quotes(char *cmd_total);
 
+
+//Pipe
+void		mpipex(t_mdata *data);
+void		ft_first_child(t_mdata *data, t_command *cmd);
+void		ft_mid_childs(t_mdata *data, t_command *cmd);
+void		ft_last_child(t_mdata *data, t_command *cmd);
+void		rfirst(t_mdata * data, t_command *cmd);
+t_command	*rmiddle(t_mdata *data, t_command *cmd);
+void		rlast(t_mdata *data, t_command *cmd);
+void		mwait_childs(t_mdata *data);
+void		run_all(t_mdata *data);
 #endif 

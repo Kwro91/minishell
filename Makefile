@@ -6,7 +6,7 @@
 #    By: besalort <besalort@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/29 14:05:28 by besalort          #+#    #+#              #
-#    Updated: 2024/01/30 17:39:19 by besalort         ###   ########.fr        #
+#    Updated: 2024/02/06 15:35:16 by besalort         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,7 +52,10 @@ SRC = ./src/main.c \
 	$(PARSE_PATH)check_line.c \
 	./src/parsing/quotes.c \
 	./src/parsing/dollar.c \
-	
+	$(PIPE_PATH)child.c \
+	$(PIPE_PATH)mpipex.c \
+	$(PIPE_PATH)parent.c \
+	./src/end_loop.c \
 	
 BUILT_IN_PATH = ./src/built_in/
 
@@ -65,6 +68,8 @@ REDIRECTION_PATH = ./src/redirection/
 SIGNAL_PATH = ./src/signal/
 
 LIBFT_PATH = ./src/libft/
+
+PIPE_PATH = ./src/new_pipex/
 
 PIPEX_PATH = ./src/pipex/
 

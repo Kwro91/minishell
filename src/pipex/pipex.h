@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 16:27:50 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/06 13:09:56 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/06 16:48:47 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ typedef struct s_mdata
 	char		*pwd;
 	int			nb_cmd;
 	int			pipes[2];
+	int			pipe_save;
 	t_command	*cmd;
 	t_envi		*envi;
 }	t_mdata;

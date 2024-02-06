@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 15:59:33 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/06 13:39:19 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/06 15:50:01 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,23 +44,23 @@ void	solo_cmd(t_mdata *data, t_command *cmd)
 	int	status;
 
 	pid = fork();
+	if (pid == -1)
+		return (ft_error(data, "Error: fork\n", 0));
 	if (pid == 0)
 	{
 		value = redir(data, cmd);
+		close_all_files(data, cmd);
 		if (cmd->good == -1)
 			return ;
 		if (value == 0 && verif_cmd(data, cmd) == 0)
-		{
 			value = execve(ft_access_mini(data, cmd->cmd[0]), cmd->cmd, data->env);
-		}
 		//ICI FAUDRA TOUT FREE && PASSER LA VALUE EN GLOBALE POUR LE $?
-		close_all_files(data, cmd);
 		exit(value);
 	}
 	else
 	{
-		waitpid(-1, &status, 0);
 		close_all_files(data, cmd);
+		waitpid(-1, &status, 0);
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 15:38:43 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/06 12:43:10 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/06 15:59:04 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,5 +130,6 @@ int	redir(t_mdata *data, t_command *cmd)
 	if (cmd->out)
 		do_out_redir(data, cmd);
 	cmd->cmd = ft_split(cmd->line, ' ');
+	close_end(data);
 	return (value);
 }

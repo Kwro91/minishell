@@ -1,19 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mpipex.c                                           :+:      :+:    :+:   */
+/*   end_loop.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/02 17:36:17 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/06 15:18:58 by besalort         ###   ########.fr       */
+/*   Created: 2024/02/06 15:32:02 by besalort          #+#    #+#             */
+/*   Updated: 2024/02/06 15:51:41 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "minishell.h"
 
-void	mpipex(t_mdata *data)
+void	close_end(t_mdata *data)
 {
-	run_all(data);
-	return ;
+	t_command *tmp;
+	
+	tmp = data->cmd;
+	while (tmp)
+	{
+		close_all_files(data, tmp);
+		tmp = tmp->next;
+	}
+}
+
+void	end_loop(t_mdata *data)
+{
+	close_end(data);
 }
