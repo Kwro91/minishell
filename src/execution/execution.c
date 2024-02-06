@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 15:59:33 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/06 15:50:01 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/06 17:17:05 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,8 @@ void	solo_cmd(t_mdata *data, t_command *cmd)
 	}
 	else
 	{
-		close_all_files(data, cmd);
 		waitpid(-1, &status, 0);
+		close_all_files(data, cmd);
 	}
 }
 

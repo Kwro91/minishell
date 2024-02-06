@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 16:15:18 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/02 15:46:47 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/06 17:18:43 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,6 @@ void	close_all_in(t_mdata *data, t_command *cmd)
 	{
 		if (tmp->fd > 1)
 			close(tmp->fd);
-		if (tmp->here_doc == 1)
-			unlink(".here_doc_tmp");
 		tmp = tmp->next;
 	}
 }

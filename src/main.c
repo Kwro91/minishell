@@ -6,18 +6,18 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 17:10:52 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/06 13:00:46 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/06 17:52:30 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int g_retval;
+int	g_retval;
 
 int	main(int ac, char **av, char **env)
 {
-	t_mdata data;
-	
+	t_mdata	data;
+
 	(void)av;
 	g_retval = 0;
 	if (ac == 1)

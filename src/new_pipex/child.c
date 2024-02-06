@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 17:40:14 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/06 16:54:43 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/06 17:55:40 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	ft_first_child(t_mdata *data, t_command *cmd)
 		close(data->pipes[0]);
 		if (!cmd->out)
 			if (dup2(data->pipes[1], 1) < 0)
-				return (ft_error(data, "Error: dup2\n", -1));
+				return (ft_error(data, "Error: dup2\n", -1)); //changer les erreur pour que ca bloque les cmd avec good ?
 		launch_cmd(data, cmd);
 		//free all ici et dans les autre
 		exit(0);
