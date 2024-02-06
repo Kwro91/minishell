@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 17:38:09 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/02 17:53:16 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/06 13:43:57 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	rfirst(t_mdata * data, t_command *cmd)
 {
 	if (pipe(data->pipes) < 0)
-		return ("Error: pipe\n", ft_exit(data), NULL);
+		return (ft_error(data, "Error: pipe\n", 0), ft_exit(data), NULL);
 }
 
 t_command	*rmiddle(t_mdata *data, t_command *cmd)

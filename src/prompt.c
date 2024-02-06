@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 15:53:50 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/06 13:10:20 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/06 13:47:07 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,10 @@ void	loop(t_mdata *data, char *cmd)
 				sub_files(data, tmp);
 				tmp = tmp->next;
 			}
-			launch_cmd(data, data->cmd);
+			if (data->nb_cmd == 1)
+			 	launch_cmd(data, data->cmd);
+			else if (data->nb_cmd > 1)
+				mpipex(data);
 			// if (cmd != NULL)
 			// 	ft_pipex(4, cmdtotal, data->env, data);
 		}
