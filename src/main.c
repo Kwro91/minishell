@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 17:10:52 by besalort          #+#    #+#             */
-/*   Updated: 2024/01/26 16:42:01 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/06 13:00:46 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,15 @@ int g_retval;
 
 int	main(int ac, char **av, char **env)
 {
-	g_retval = 0;
 	t_mdata data;
+	
+	(void)av;
+	g_retval = 0;
 	if (ac == 1)
 	{
 		init_built_int(&data);
 		handle_signals();
-		prompt(&data, ac, av, env);
+		prompt(&data, env);
 	}
 	else
 		ft_printf("No args needed for minishell, please use : ./minishell\n");

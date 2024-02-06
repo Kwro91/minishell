@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 14:22:53 by besalort          #+#    #+#             */
-/*   Updated: 2024/01/26 14:11:05 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/06 13:13:42 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ t_command	*create_command(t_mdata *data, char *lines)
 	if (!new)
 		ft_error(data, "Error: malloc", 1);
 	new->line = ft_strdup(lines);
+	new->good = 0;
 	new->in = NULL;
 	new->out = NULL;
 	new->cmd = ft_split(new->line, ' ');
@@ -54,4 +55,5 @@ void	split_parse(t_mdata *data, char *line)
 			new = new->next;
 		}
 	}
+	data->nb_cmd = i;
 }

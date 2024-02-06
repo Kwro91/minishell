@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 14:10:34 by besalort          #+#    #+#             */
-/*   Updated: 2024/01/30 17:38:56 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/06 13:06:43 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ typedef struct s_quotes
 void		init_built_int(t_mdata *data);
 
 //Prompt
-void		prompt(t_mdata *data, int ac, char **av, char **env);
+void		prompt(t_mdata *data, char **env);
 
 //Path
 void		ft_path_all(t_mdata *data, char **paths);

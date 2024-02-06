@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 15:38:43 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/02 15:45:25 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/06 12:43:10 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,10 @@ int	do_out_redir(t_mdata *data, t_command *cmd)
 		if (tmp->next == NULL && tmp->fd >= 0)
 		{
 			if (dup2(tmp->fd, 1) < 0)
+			{
+				cmd->good = -1;
 				return (ft_error(data, "Error: dup2\n", 0), -1);
+			}
 			close(tmp->fd);
 		}
 		tmp = tmp->next;
@@ -105,7 +108,10 @@ int	do_in_redir(t_mdata *data, t_command *cmd)
 		if (tmp->next == NULL && tmp->fd >= 0)
 		{
 			if (dup2(tmp->fd, 0) < 0)
+			{
+				cmd->good = -1;
 				return (ft_error(data, "Error: dup2\n", 0), -1);
+			}
 			close(tmp->fd);
 		}
 		tmp = tmp->next;

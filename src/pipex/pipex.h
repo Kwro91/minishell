@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 16:27:50 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/02 17:42:06 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/06 13:09:56 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ typedef struct s_command
 {
 	char	*line;
 	char	**cmd;
+	int		good;
 	t_files	*in;
 	t_files	*out;
 	void	*next;
@@ -56,12 +57,9 @@ typedef struct s_mdata
 	char		**export;
 	char		**unset;
 	char		*pwd;
-	char		*eof;
-	int			here_doc;
+	int			nb_cmd;
 	int			pipes[2];
 	t_command	*cmd;
-	t_files		*in;
-	t_files		*out;
 	t_envi		*envi;
 }	t_mdata;
 

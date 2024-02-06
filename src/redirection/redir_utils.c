@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 15:54:38 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/02 15:44:37 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/06 12:38:53 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void	open_in_files(t_mdata *data, t_command *cmd)
 			ft_mhere_doc(data, tmp);
 		if (tmp->fd < 0)
 		{
+			cmd->good = -1;
 			ft_error(data, "minishell: ", 0);
 			ft_error(data, tmp->files, 0);
 			ft_error(data, ": no such file or directory\n", 0);
