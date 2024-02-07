@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 15:59:33 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/06 17:17:05 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/07 16:58:10 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	solo_cmd(t_mdata *data, t_command *cmd)
 		close_all_files(data, cmd);
 		if (cmd->good == -1)
 			return ;
-		if (value == 0 && verif_cmd(data, cmd) == 0)
+		if (value == 0)
 			value = execve(ft_access_mini(data, cmd->cmd[0]), cmd->cmd, data->env);
 		//ICI FAUDRA TOUT FREE && PASSER LA VALUE EN GLOBALE POUR LE $?
 		exit(value);
@@ -78,7 +78,8 @@ void	pipe_cmd(t_mdata *data, t_command *cmd)
 void	launch_cmd(t_mdata *data, t_command *cmd)
 {
 	if (data->nb_cmd == 1)
-		solo_cmd(data, cmd);
+		if (verif_cmd(data, cmd) == 0)
+			solo_cmd(data, cmd);
 	if (data->nb_cmd > 1)
 		pipe_cmd(data, cmd);
 }

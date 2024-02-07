@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 14:54:46 by besalort          #+#    #+#             */
-/*   Updated: 2024/01/15 13:50:56 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/07 17:15:28 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,12 +61,19 @@ void	init_export(t_mdata *data, char **line)
 	if (!line)
 		return ;
 	if (!data->export)
-		copy_export(data, &line[1], 0);
+	{
+		if (check_export_line(data, line[i]) == -1)
+				error_export(data, line[i]);
+		else
+			copy_export(data, &line[1], 0);
+	}
 	else
 	{
 		while (line[i])
 		{
-			if (do_line_exist((data->export), line[i]) > -1)
+			if (check_export_line(data, line[i]) == -1)
+				error_export(data, line[i]);
+			else if (do_line_exist((data->export), line[i]) > -1)
 				count++;
 			i++;
 		}

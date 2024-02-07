@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 16:15:18 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/06 17:18:43 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/07 16:06:32 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,13 @@ void	close_all_files(t_mdata *data, t_command *cmd)
 		close_all_out(data, tmp);
 		tmp = tmp->next;
 	}
+}
+
+void	close_two(t_mdata *data, int fd1, int fd2)
+{
+	(void)data;
+	if (fd1 >= 0)
+		close(fd1);
+	if (fd2 >= 0)
+		close(fd2);
 }

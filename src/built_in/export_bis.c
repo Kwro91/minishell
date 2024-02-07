@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 17:24:18 by besalort          #+#    #+#             */
-/*   Updated: 2024/01/15 13:44:42 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/07 17:13:12 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,4 +60,19 @@ int	reset_line(char **export, char *line)
 		return (i);
 	}
 	return (-1);
+}
+
+void	error_export(t_mdata *data, char *error)
+{
+	ft_error(data, "minishell: export: << ", 0);
+	ft_error(data, error, 0);
+	ft_error(data, " >> is not allowed\n", 0);
+}
+
+int	check_export_line(t_mdata *data, char *line)
+{
+	(void)data;
+	if (ft_isalpha(line[0]) == 0)
+		return (-1);
+	return (0);
 }

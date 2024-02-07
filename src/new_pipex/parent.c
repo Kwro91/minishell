@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 17:38:09 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/06 16:51:20 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/07 16:57:46 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,7 @@ t_command	*rmiddle(t_mdata *data, t_command *cmd)
 void	rlast(t_mdata *data, t_command *cmd)
 {
 	ft_last_child(data, cmd);
-	close(data->pipes[0]);
-	close(data->pipes[1]);
+	close_two(data, data->pipes[0], data->pipes[1]);
 	close(data->pipe_save);
 }
 

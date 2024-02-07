@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 14:10:34 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/06 15:51:51 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/07 17:12:56 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,8 @@ int			ft_unset(char **args, t_mdata *mdata);
 void		export_cmd(t_mdata *data, char **line);
 int			do_line_exist(char **export, char *line);
 int			reset_line(char **export, char *line);
+int			check_export_line(t_mdata *data, char *line);
+void		error_export(t_mdata *data, char *error);
 
 //Cd
 void		cd_cmd(t_mdata *data, char *line);
@@ -107,6 +109,7 @@ char		*next_word(char *line);
 char		*dup_word(char	*line, int len);
 void		sub_files(t_mdata *data, t_command *cmd);
 void		close_all_files(t_mdata *data, t_command *cmd);
+void		close_two(t_mdata *data, int fd1, int fd2);
 void		ft_mhere_doc(t_mdata *data, t_files *file);
 
 // char	*is_here_doc(t_mdata *data, char *line);
