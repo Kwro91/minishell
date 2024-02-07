@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 17:24:18 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/07 17:13:12 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/07 19:16:31 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	do_line_exist(char **export, char *line)
 
 	i = 0;
 	if (export == NULL || !line)
-		return (0);
+		return (-1);
 	len_b = nb_char_equal(line);
 	while (export[i])
 	{
@@ -47,13 +47,14 @@ int	do_line_exist(char **export, char *line)
 	return (-1);
 }
 
-int	reset_line(char **export, char *line)
+int	reset_line(t_mdata *data, char **export, char *line)
 {
 	int	i;
+	int	j;
 
-	i = 0;
 	i = do_line_exist(export, line);
-	if (i != -1)
+	j = check_export_line(data, line, 0);
+	if (i != -1 && j == 0)
 	{
 		free(export[i]);
 		export[i] = ft_strdup(line);
@@ -69,10 +70,14 @@ void	error_export(t_mdata *data, char *error)
 	ft_error(data, " >> is not allowed\n", 0);
 }
 
-int	check_export_line(t_mdata *data, char *line)
+int	check_export_line(t_mdata *data, char *line, int show)
 {
 	(void)data;
 	if (ft_isalpha(line[0]) == 0)
+	{
+		if (show == 1)
+			error_export(data, line);
 		return (-1);
+	}
 	return (0);
 }

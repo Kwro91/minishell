@@ -6,13 +6,13 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 14:54:46 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/07 17:15:28 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/07 19:32:07 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-char	**copy_add(char **base, char **add, int size)
+char	**copy_add(t_mdata *data, char **base, char **add, int size)
 {
 	int	i;
 	int	j;
@@ -21,12 +21,15 @@ char	**copy_add(char **base, char **add, int size)
 	j = 0;
 	while (base[j] != NULL)
 		j++;
-	while (i < size && add[i])
+	while (add && add[i] && i < size)
 	{
-		if (reset_line(base, add[i]) == -1)
+		if (reset_line(data, base, add[i]) == -1)
 		{
-			base[j] = ft_strdup(add[i]);
-			j++;
+			if (check_export_line(data, add[i], 0) == 0)
+			{
+				base[j] = ft_strdup(add[i]);
+				j++;
+			}
 		}
 		i++;
 	}
@@ -44,8 +47,8 @@ void	copy_export(t_mdata *data, char **line, int count)
 	new = ft_calloc(sizeof(char *), (base + (count_l - count) + 1));
 	if (!new)
 		return ;
-	new = copy_add(new, data->export, base);
-	new = copy_add(new, line, count_l);
+	new = copy_add(data, new, data->export, base);
+	new = copy_add(data, new, line, count_l);
 	new[base + (count_l - count)] = NULL;
 	ft_free_lines(data->export);
 	data->export = new;
@@ -59,26 +62,15 @@ void	init_export(t_mdata *data, char **line)
 	i = 1;
 	count = 0;
 	if (!line)
-		return ;
-	if (!data->export)
+		return ;	
+	while (line[i])
 	{
-		if (check_export_line(data, line[i]) == -1)
-				error_export(data, line[i]);
-		else
-			copy_export(data, &line[1], 0);
+		if (check_export_line(data, line[i], 1) == -1
+			|| do_line_exist((data->export), line[i]) > -1)
+			count++;
+		i++;
 	}
-	else
-	{
-		while (line[i])
-		{
-			if (check_export_line(data, line[i]) == -1)
-				error_export(data, line[i]);
-			else if (do_line_exist((data->export), line[i]) > -1)
-				count++;
-			i++;
-		}
-		copy_export(data, &line[1], count);
-	}
+	copy_export(data, &line[1], count);
 }
 
 void	print_export(t_mdata *data)
