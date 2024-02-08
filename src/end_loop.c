@@ -6,11 +6,19 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 15:32:02 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/06 17:42:54 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/08 17:16:41 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void	free_cmd(t_command *cmd)
+{
+	if (cmd->line)
+		free(cmd->line);
+	if (cmd->cmd)
+		ft_free_lines(cmd->cmd);
+}
 
 void	close_here_doc()
 {
@@ -26,14 +34,18 @@ void	close_here_doc()
 
 void	close_end(t_mdata *data)
 {
-	t_command *tmp;
+	t_command 	*tmp;
+	t_command	*next;
 	
 	tmp = data->cmd;
 	while (tmp)
 	{
+		free_cmd(tmp);
 		close_all_files(data, tmp);
 		close_here_doc();
-		tmp = tmp->next;
+		next = tmp->next;
+		free(tmp);
+		tmp = next;
 	}
 }
 

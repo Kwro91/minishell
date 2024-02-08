@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 17:43:20 by besalort          #+#    #+#             */
-/*   Updated: 2023/04/07 13:32:57 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/08 17:33:05 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static char	*ft_fill(char *src, size_t i, char c)
 		count++;
 		j++;
 	}
-	str = (char *)malloc(sizeof(char) * (count + 1));
+	str = malloc(sizeof(char) * (count + 1));
 	if (!str)
 		return (0);
 	j = 0;
@@ -78,7 +78,7 @@ static int	splitnorm(char **tab, char const *str, char c)
 			i++;
 		if (str[i] && str[i] != c)
 		{
-			tab[j] = (char *)ft_fill((char *)str, i, c);
+			tab[j] = ft_fill((char *)str, i, c);
 			if (!tab[j])
 			{
 				libere(tab, j);
@@ -103,6 +103,6 @@ char	**ft_split(char const	*str, char c)
 	if (!tab)
 		return (NULL);
 	if (splitnorm(tab, str, c) == 0)
-		return (NULL);
+		return (free(tab), NULL);
 	return (tab);
 }

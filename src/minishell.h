@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 14:10:34 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/07 18:01:19 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/08 16:51:14 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ void		env_cmd(t_mdata *data);
 //Pwd
 void		setup_pwd(t_mdata *data, char **env, int first);
 void		pwd(t_mdata *data);
+void		add_pwd(t_mdata *data);
 
 //Exit
 void		exit_mini(t_mdata *data);
