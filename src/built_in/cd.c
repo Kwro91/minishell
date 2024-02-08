@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 15:30:43 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/07 16:40:35 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/08 18:02:58 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ void	cd_cmd(t_mdata *data, char *line)
 {
 	char	*modif;
 
+	if (!line)
+		line = "~";
 	modif = verif_cd(data, line);
 	if (modif != NULL)
 	{
