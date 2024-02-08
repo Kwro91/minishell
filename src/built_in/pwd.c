@@ -6,11 +6,20 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 12:11:42 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/07 16:40:14 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/08 14:07:56 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+void	add_pwd(t_mdata *data)
+{
+	char	**new;
+
+	new = malloc(sizeof(char *) * (nb_word(data->env) + 2));
+	if (!new)
+		return (ft_error(data, "Error: malloc\n", 1));
+}
 
 void	setup_pwd_env(t_mdata *data)
 {
@@ -50,5 +59,7 @@ void	setup_pwd(t_mdata *data, char **env, int first)
 
 void	pwd(t_mdata *data)
 {
+	if (do_line_exist(data->env, "PWD") == -1)
+	
 	ft_printf("%s\n", data->pwd);
 }

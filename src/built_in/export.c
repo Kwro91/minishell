@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 14:54:46 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/07 19:32:07 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/08 14:07:28 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	copy_export(t_mdata *data, char **line, int count)
 	count_l = nb_word(line);
 	new = ft_calloc(sizeof(char *), (base + (count_l - count) + 1));
 	if (!new)
-		return ;
+		return (ft_error(data, "Error: calloc\n", 1));
 	new = copy_add(data, new, data->export, base);
 	new = copy_add(data, new, line, count_l);
 	new[base + (count_l - count)] = NULL;
