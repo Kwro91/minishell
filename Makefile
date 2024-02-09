@@ -6,7 +6,7 @@
 #    By: besalort <besalort@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/29 14:05:28 by besalort          #+#    #+#              #
-#    Updated: 2024/02/07 16:02:24 by besalort         ###   ########.fr        #
+#    Updated: 2024/02/09 16:34:39 by besalort         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,6 +56,7 @@ SRC = ./src/main.c \
 	$(PIPE_PATH)mpipex.c \
 	$(PIPE_PATH)parent.c \
 	./src/end_loop.c \
+	./src/parsing/parsing.c \
 	
 BUILT_IN_PATH = ./src/built_in/
 

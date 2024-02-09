@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 16:15:18 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/07 16:06:32 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/09 18:45:22 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	close_all_out(t_mdata *data, t_command *cmd)
 	{
 		if (tmp->fd > 1)
 			close(tmp->fd);
+		tmp->fd = -1;
 		tmp = tmp->next;
 	}
 }
@@ -40,6 +41,7 @@ void	close_all_in(t_mdata *data, t_command *cmd)
 	{
 		if (tmp->fd > 1)
 			close(tmp->fd);
+		tmp->fd = -1;
 		tmp = tmp->next;
 	}
 }

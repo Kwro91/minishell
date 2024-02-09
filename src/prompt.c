@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 15:53:50 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/08 17:06:37 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/09 19:15:32 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ void	loop(t_mdata *data, char *cmd)
 	if (*cmd && ft_strncmp(cmd, "/n", 2) != 0)
 	{
 		add_history(cmd);
+		data->cmd = NULL;
 		if (cmd != NULL && check_before(data, cmd) == 1)
 		{
-			data->cmd = NULL;
 			split_parse(data, cmd);
 			tmp = data->cmd;
 			while (tmp)
@@ -49,8 +49,6 @@ void	loop(t_mdata *data, char *cmd)
 			 	launch_cmd(data, data->cmd);
 			else if (data->nb_cmd > 1)
 				mpipex(data);
-			// if (cmd != NULL)
-			// 	ft_pipex(4, cmdtotal, data->env, data);
 		}
 		end_loop(data);
 		free (cmd);
