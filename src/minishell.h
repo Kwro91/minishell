@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 14:10:34 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/12 15:14:27 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/12 15:23:02 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 
-extern int g_retval;
+extern int	g_retval;
 
 typedef struct s_string
 {
@@ -122,11 +122,10 @@ void		ft_open_mfiles(t_mdata *data, t_command *cmd);
 void		split_parse(t_mdata *data, char *line);
 int			check_before(t_mdata *data, char *line);
 //Parsing
-void	parse_cmd(t_mdata *data, t_command *cmd);
+void		parse_cmd(t_mdata *data, t_command *cmd);
 
 //Dollar
 void		handle_dollar(t_mdata *data, char *cmd);
-
 
 //Quotes
 int			check_quotes(char *str);
@@ -135,13 +134,12 @@ void		remove_double(char *cmd_total, char *new_cmd, int i, int j);
 void		remove_single(char *cmd_total, char *new_cmd, int i, int j);
 int			nb_quotes(char *cmd_total);
 
-
 //Pipe
 void		mpipex(t_mdata *data);
 void		ft_first_child(t_mdata *data, t_command *cmd, char *path);
 void		ft_mid_childs(t_mdata *data, t_command *cmd, char *path);
 void		ft_last_child(t_mdata *data, t_command *cmd, char *path);
-void		rfirst(t_mdata * data, t_command *cmd);
+void		rfirst(t_mdata	*data, t_command *cmd);
 t_command	*rmiddle(t_mdata *data, t_command *cmd);
 void		rlast(t_mdata *data, t_command *cmd);
 void		mwait_childs(t_mdata *data);

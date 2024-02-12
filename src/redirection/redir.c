@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 15:38:43 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/06 17:46:07 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/12 15:49:36 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int	do_out_redir(t_mdata *data, t_command *cmd)
 	t_files	*tmp;
 
 	tmp = cmd->out;
-	while(tmp)
+	while (tmp)
 	{
 		if (tmp->next == NULL && tmp->fd >= 0)
 		{
@@ -103,7 +103,7 @@ int	do_in_redir(t_mdata *data, t_command *cmd)
 	t_files	*tmp;
 
 	tmp = cmd->in;
-	while(tmp)
+	while (tmp)
 	{
 		if (tmp->next == NULL && tmp->fd >= 0)
 		{

@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 15:15:57 by besalort          #+#    #+#             */
-/*   Updated: 2024/01/29 14:36:34 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/12 15:38:30 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,10 @@ char	*sub_files_utils(t_mdata *data, t_command *cmd, t_files *tmp, char c)
 	two = NULL;
 	while (cmd->line[i] && one == NULL)
 	{
-		if (cmd->line[i] == c)
+		if (one == NULL && cmd->line[i] == c)
 			one = ft_strndup(data, cmd->line, i);
-		i++;
-	}
-	while (cmd->line[i])
-	{
-		if (ft_strncmp(&cmd->line[i], tmp->files, ft_strlen(tmp->files)) == 0)
+		else if (ft_strncmp(&cmd->line[i], tmp->files,
+				ft_strlen(tmp->files)) == 0)
 		{
 			two = ft_strdup(&cmd->line[i + ft_strlen(tmp->files)]);
 			break ;

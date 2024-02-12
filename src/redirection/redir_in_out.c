@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 15:29:29 by besalort          #+#    #+#             */
-/*   Updated: 2024/01/30 13:31:09 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/12 15:48:25 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,24 +45,15 @@ t_files	*get_new_file(t_mdata *data, char *line, int here_doc)
 	return (new);
 }
 
-t_files	*create_new_files(t_mdata *data, t_files *files, char *line, int hd)
+t_files	*get_fd_out(t_mdata *data, t_command *cmd, int i)
 {
-	t_files	*new;
-	t_files	*tmp;
-
-	new = get_new_file(data, line, 0);
-	tmp = files;
-	if (hd == 1)
-		new->here_doc = 1;
-	if (!tmp)
-		return (new);
-	else
+	if (cmd->line[i + 1] == '>')
 	{
-		while (tmp->next)
-			tmp = tmp->next;
-		tmp->next = new;
+		i++;
+		return (create_new_files(data, cmd->out, &cmd->line[i + 1], 1));
 	}
-	return (files);
+	else
+		return (create_new_files(data, cmd->out, &cmd->line[i + 1], 0));
 }
 
 void	is_fd_out(t_mdata *data, t_command *cmd)
@@ -84,16 +75,9 @@ void	is_fd_out(t_mdata *data, t_command *cmd)
 			squote *= -1;
 		if (cmd->line[i] == '>' && cmd->line[i + 1]
 			&& quote == -1 && squote == -1)
-		{
-			if (cmd->line[i + 1] == '>')
-			{
-				i++;
-				cmd->out = create_new_files(data, cmd->out, &cmd->line[i + 1], 1);
-			}
-			else
-				cmd->out = create_new_files(data, cmd->out, &cmd->line[i + 1], 0);
-		}
-		i++;
+		cmd->out = get_fd_out(data, cmd, i);
+		if (cmd->line[i + 1] == '>')
+			i++;
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 15:59:33 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/12 15:12:52 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/12 15:52:56 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	pipe_cmd(t_mdata *data, t_command *cmd)
 	value = 0;
 	if (verif_cmd(data, cmd) == 0)
 		value = execve(ft_access_mini(data,
-			cmd->cmd[0]), cmd->cmd, data->env);
+					cmd->cmd[0]), cmd->cmd, data->env);
 	close_all_files(data, cmd);
 	exit(value);
 }
@@ -79,7 +79,7 @@ void	pipe_cmd(t_mdata *data, t_command *cmd)
 void	launch_cmd(t_mdata *data, t_command *cmd)
 {
 	if (cmd->good == -1)
-			return ;
+		return ;
 	if (data->nb_cmd == 1)
 		if (verif_cmd(data, cmd) == 0)
 			solo_cmd(data, cmd, ft_access_mini(data, cmd->cmd[0]));

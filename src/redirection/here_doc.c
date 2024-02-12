@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 16:06:24 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/06 17:45:44 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/12 15:49:10 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	ft_mhere_doc(t_mdata *data, t_files *file)
 	if (file->fd < 0)
 	{
 		unlink(".here_doc_tmp");
-		return (ft_error(data, "Error, here_doc\n" , 0));
+		return (ft_error(data, "Error, here_doc\n", 0));
 	}
 	while (1)
 	{

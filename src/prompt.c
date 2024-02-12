@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 15:53:50 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/12 14:41:27 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/12 15:22:00 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,10 @@ char	*get_readline(t_mdata *data, char *str)
 
 void	loop(t_mdata *data, char *cmd)
 {
-	t_command *tmp;
-	
+	t_command	*tmp;
+
 	data->nb_cmd = 0;
 	cmd = get_readline(data, "Minishell> ");
-	if (do_line_exist(data->env, "PWD") == -1)
-		add_pwd(data);
 	if (*cmd && ft_strncmp(cmd, "\n\0", 2) != 0)
 	{
 		add_history(cmd);
@@ -46,13 +44,12 @@ void	loop(t_mdata *data, char *cmd)
 				tmp = tmp->next;
 			}
 			if (data->nb_cmd == 1)
-			 	launch_cmd(data, data->cmd);
+				launch_cmd(data, data->cmd);
 			else if (data->nb_cmd > 1)
 				mpipex(data);
 		}
 		end_loop(data);
 		free (cmd);
-		// Ici va falloir free les redir et les cmd
 	}
 }
 
@@ -65,5 +62,9 @@ void	prompt(t_mdata *data, char **env)
 	env_setup(data, env);
 	setup_pwd(data, env, 1);
 	while (1)
+	{
+		if (do_line_exist(data->env, "PWD") == -1)
+			add_pwd(data);
 		loop(data, cmd);
+	}
 }

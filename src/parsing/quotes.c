@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quotes.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
+/*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 10:40:00 by afontain          #+#    #+#             */
-/*   Updated: 2024/01/26 12:36:54 by afontain         ###   ########.fr       */
+/*   Updated: 2024/02/12 15:31:03 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	check_quotes(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (!str)

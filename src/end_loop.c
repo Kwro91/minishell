@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 15:32:02 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/09 17:09:19 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/12 15:20:16 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	free_cmd(t_command *cmd)
 		ft_free_lines(cmd->cmd);
 }
 
-void	close_here_doc()
+void	close_here_doc(void)
 {
 	int	fd;
 
@@ -34,9 +34,9 @@ void	close_here_doc()
 
 void	close_end(t_mdata *data)
 {
-	t_command 	*tmp;
+	t_command	*tmp;
 	t_command	*next;
-	
+
 	tmp = data->cmd;
 	if (!tmp)
 		return ;
