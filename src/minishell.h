@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 14:10:34 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/09 16:38:57 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/12 15:14:27 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,9 +138,9 @@ int			nb_quotes(char *cmd_total);
 
 //Pipe
 void		mpipex(t_mdata *data);
-void		ft_first_child(t_mdata *data, t_command *cmd);
-void		ft_mid_childs(t_mdata *data, t_command *cmd);
-void		ft_last_child(t_mdata *data, t_command *cmd);
+void		ft_first_child(t_mdata *data, t_command *cmd, char *path);
+void		ft_mid_childs(t_mdata *data, t_command *cmd, char *path);
+void		ft_last_child(t_mdata *data, t_command *cmd, char *path);
 void		rfirst(t_mdata * data, t_command *cmd);
 t_command	*rmiddle(t_mdata *data, t_command *cmd);
 void		rlast(t_mdata *data, t_command *cmd);

@@ -6,16 +6,18 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 17:40:14 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/07 15:57:17 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/12 15:12:14 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	ft_first_child(t_mdata *data, t_command *cmd)
+void	ft_first_child(t_mdata *data, t_command *cmd, char *path)
 {
 	int	pid;
 	
+	if (!path)
+		return ;
 	pid = fork();
 	if (pid == -1)
 		return (perror("Error fork\n"), exit_mini(data), (void)NULL);
@@ -35,10 +37,12 @@ void	ft_first_child(t_mdata *data, t_command *cmd)
 	}
 }
 
-void	ft_mid_childs(t_mdata *data, t_command *cmd)
+void	ft_mid_childs(t_mdata *data, t_command *cmd, char *path)
 {
 	int	pid;
 	
+	if (!path)
+		return ;
 	pid = fork();
 	if (pid == -1)
 		return (perror("Error fork\n"), exit_mini(data), (void)NULL);
@@ -61,10 +65,12 @@ void	ft_mid_childs(t_mdata *data, t_command *cmd)
 	}
 }
 
-void	ft_last_child(t_mdata *data, t_command *cmd)
+void	ft_last_child(t_mdata *data, t_command *cmd, char *path)
 {
 	int	pid;
 	
+	if (!path)
+		return ;
 	pid = fork();
 	if (pid == -1)
 		return (perror("Error fork\n"), exit_mini(data), (void)NULL);

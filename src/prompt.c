@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 15:53:50 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/09 19:15:32 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/12 14:41:27 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	loop(t_mdata *data, char *cmd)
 	cmd = get_readline(data, "Minishell> ");
 	if (do_line_exist(data->env, "PWD") == -1)
 		add_pwd(data);
-	if (*cmd && ft_strncmp(cmd, "/n", 2) != 0)
+	if (*cmd && ft_strncmp(cmd, "\n\0", 2) != 0)
 	{
 		add_history(cmd);
 		data->cmd = NULL;
