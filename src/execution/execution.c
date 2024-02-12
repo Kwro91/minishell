@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 15:59:33 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/12 15:52:56 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/12 17:55:54 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	solo_cmd(t_mdata *data, t_command *cmd, char *path)
 	int	status;
 
 	if (!path)
-		return ;
+		return (free(path));
 	pid = fork();
 	if (pid == -1)
 		return (ft_error(data, "Error: fork\n", 0));

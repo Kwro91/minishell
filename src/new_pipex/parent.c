@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 17:38:09 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/12 15:30:21 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/12 17:50:41 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ t_command	*rmiddle(t_mdata *data, t_command *cmd)
 	{
 		if (pipe (data->pipes) < 0)
 			ft_error(data, "Error: pipe\n", 1);
-		ft_mid_childs(data, tmp, ft_access_mini(data, cmd->cmd[0]));
+		ft_mid_childs(data, tmp, ft_access_mini(data, tmp->cmd[0]));
 		close(data->pipes[1]);
 		close(data->pipe_save);
 		data->pipe_save = data->pipes[0];

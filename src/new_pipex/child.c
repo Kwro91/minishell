@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 17:40:14 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/12 15:28:42 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/12 17:57:14 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ void	ft_first_child(t_mdata *data, t_command *cmd, char *path)
 	int	pid;
 
 	if (!path)
-		return ;
+		return (free(path));
+	free(path);
 	pid = fork();
 	if (pid == -1)
 		return (perror("Error fork\n"), exit_mini(data), (void) NULL);
@@ -40,7 +41,8 @@ void	ft_mid_childs(t_mdata *data, t_command *cmd, char *path)
 	int	pid;
 
 	if (!path)
-		return ;
+		return (free(path));
+	free(path);
 	pid = fork();
 	if (pid == -1)
 		return (perror("Error fork\n"), exit_mini(data), (void) NULL);
@@ -68,7 +70,8 @@ void	ft_last_child(t_mdata *data, t_command *cmd, char *path)
 	int	pid;
 
 	if (!path)
-		return ;
+		return (free(path));
+	free(path);
 	pid = fork();
 	if (pid == -1)
 		return (perror("Error fork\n"), exit_mini(data), (void) NULL);
