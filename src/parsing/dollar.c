@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dollar.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
+/*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 12:52:09 by afontain          #+#    #+#             */
-/*   Updated: 2024/01/26 16:32:16 by afontain         ###   ########.fr       */
+/*   Updated: 2024/02/12 17:40:29 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ char	*replace_retval(char *cmd, int i)
 	free(resu);
 	free(apres);
 	if (new)
-		printf("newline:%s\n", new);
+		ft_printf("newline:%s\n", new);
 	return (new);
 }
 

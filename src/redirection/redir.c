@@ -6,19 +6,21 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 15:38:43 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/12 15:49:36 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/12 17:16:30 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-char	*dup_word(char	*line, int len)
+char	*dup_word(t_mdata *data, char	*line, int len)
 {
 	char	*word;
 	int		i;
 
 	i = 0;
 	word = malloc(sizeof(char) * len + 1);
+	if (!word)
+		ft_error(data, "Error, malloc\n", 1);
 	while (i < len && line[i])
 	{
 		word[i] = line[i];
@@ -28,7 +30,7 @@ char	*dup_word(char	*line, int len)
 	return (word);
 }
 
-char	*next_word(char *line)
+char	*next_word(t_mdata *data, char *line)
 {
 	int	i;
 	int	count;
@@ -54,28 +56,8 @@ char	*next_word(char *line)
 	}
 	if (count == 0)
 		return (NULL);
-	return (dup_word(&line[i - count], count));
+	return (dup_word(data, &line[i - count], count));
 }
-
-// int	is_here_doc(t_mdata *data, char *line)
-// {
-// 	int		i;
-// 	t_files	*tmp;
-
-// 	i = 0;
-// 	if (data->eof)
-// 		free(data->eof);
-// 	while (line[i + 1])
-// 	{
-// 		if (line[i] == '<' && line[i + 1] == '<')
-// 		{
-
-// 			return (next_word(&line[i + 2]));
-// 		}
-// 		i++;
-// 	}
-// 	return (0);
-// }
 
 int	do_out_redir(t_mdata *data, t_command *cmd)
 {

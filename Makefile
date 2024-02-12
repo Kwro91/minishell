@@ -6,7 +6,7 @@
 #    By: besalort <besalort@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/29 14:05:28 by besalort          #+#    #+#              #
-#    Updated: 2024/02/09 16:34:39 by besalort         ###   ########.fr        #
+#    Updated: 2024/02/12 15:56:45 by besalort         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,17 +30,6 @@ SRC = ./src/main.c \
 	./src/free.c \
 	$(SIGNAL_PATH)signals.c \
 	$(SIGNAL_PATH)signals2.c \
-	$(PIPEX_PATH)pipex.c \
-	$(PIPEX_PATH)ft_free.c \
-	$(PIPEX_PATH)ft_open.c \
-	$(PIPEX_PATH)ft_path.c \
-	$(PIPEX_PATH)ft_load.c \
-	$(PIPEX_PATH)ft_access.c \
-	$(PIPEX_PATH)ft_processes.c \
-	$(PIPEX_PATH)ft_cmd.c \
-	$(PIPEX_PATH)ft_list.c \
-	$(PIPEX_PATH)ft_run.c \
-	$(PIPEX_PATH)ft_here_doc.c \
 	$(EXECUTION_PATH)execution.c \
 	$(REDIRECTION_PATH)redir.c \
 	$(REDIRECTION_PATH)redir_utils.c \
@@ -72,11 +61,7 @@ LIBFT_PATH = ./src/libft/
 
 PIPE_PATH = ./src/new_pipex/
 
-PIPEX_PATH = ./src/pipex/
-
 LIBFT = $(LIBFT_PATH)libft.a
-
-PIPEX = $(PIPEX_PATH)pipex.a
 
 CC = gcc
 
@@ -91,7 +76,6 @@ OBJ = $(SRC:.c=.o)
 
 $(NAME)	:	${OBJ}
 		make -C $(LIBFT_PATH)
-		# make -C $(PIPEX_PATH)
 		$(CC) $(CFLAGS) $(OBJ) $(LIBFT) -o $(NAME) -lreadline
 
 all	:	$(NAME)
@@ -99,12 +83,10 @@ all	:	$(NAME)
 clean :
 		rm -rf $(OBJ)
 		make clean -C $(LIBFT_PATH)
-		make clean -C $(PIPEX_PATH)
 
 fclean :	clean
 		rm -rf $(NAME)
 		make fclean -C $(LIBFT_PATH)
-		make fclean -C $(PIPEX_PATH)
 
 re : fclean all
 

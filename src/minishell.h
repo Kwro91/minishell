@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 14:10:34 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/12 15:23:02 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/12 17:15:22 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,54 @@
 # define MINISHELL_H
 
 # include "./libft/libft.h"
-# include "./pipex/pipex.h"
+# include <sys/types.h>
+# include <sys/wait.h>
+# include <sys/stat.h>
+# include <errno.h>
+# include <fcntl.h>
 # include <signal.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 
 extern int	g_retval;
+
+typedef struct s_files
+{
+	int		here_doc;
+	int		fd;
+	char	*files;
+	void	*next;
+}	t_files;
+
+typedef struct s_envi
+{
+	char			**tab;
+	struct s_envi	*next;
+}t_envi;
+
+typedef struct s_command
+{
+	char	*line;
+	char	**cmd;
+	int		good;
+	t_files	*in;
+	t_files	*out;
+	void	*next;
+}	t_command;
+
+typedef struct s_mdata
+{
+	char		**env;
+	char		**paths;
+	char		**export;
+	char		**unset;
+	char		*pwd;
+	int			nb_cmd;
+	int			pipes[2];
+	int			pipe_save;
+	t_command	*cmd;
+	t_envi		*envi;
+}	t_mdata;
 
 typedef struct s_string
 {
@@ -106,12 +148,15 @@ void		launch_cmd(t_mdata *data, t_command *cmd);
 
 //REDIRECTION
 int			redir(t_mdata *data, t_command *cmd);
-char		*next_word(char *line);
-char		*dup_word(char	*line, int len);
+char		*next_word(t_mdata *data, char *line);
+char		*dup_word(t_mdata *data, char	*line, int len);
 void		sub_files(t_mdata *data, t_command *cmd);
 void		close_all_files(t_mdata *data, t_command *cmd);
 void		close_two(t_mdata *data, int fd1, int fd2);
 void		ft_mhere_doc(t_mdata *data, t_files *file);
+t_files		*get_new_file(t_mdata *data, char *line, int here_doc);
+t_files		*create_new_files(t_mdata *data, t_files *files,
+				char *line, int hd);
 
 // char	*is_here_doc(t_mdata *data, char *line);
 void		is_fd_in(t_mdata *data, t_command *cmd);
@@ -121,6 +166,8 @@ void		ft_open_mfiles(t_mdata *data, t_command *cmd);
 //PARSE
 void		split_parse(t_mdata *data, char *line);
 int			check_before(t_mdata *data, char *line);
+int			check_line_pipe(t_mdata *data, t_command *cmd);
+
 //Parsing
 void		parse_cmd(t_mdata *data, t_command *cmd);
 

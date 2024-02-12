@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 15:29:29 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/12 15:48:25 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/12 17:38:23 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ t_files	*get_new_file(t_mdata *data, char *line, int here_doc)
 	if (!new)
 		ft_error(data, "Error: malloc\n", 1);
 	new->here_doc = here_doc;
-	new->files = next_word(line);
+	new->files = next_word(data, line);
 	new->next = NULL;
 	return (new);
 }
@@ -75,9 +75,12 @@ void	is_fd_out(t_mdata *data, t_command *cmd)
 			squote *= -1;
 		if (cmd->line[i] == '>' && cmd->line[i + 1]
 			&& quote == -1 && squote == -1)
-		cmd->out = get_fd_out(data, cmd, i);
-		if (cmd->line[i + 1] == '>')
-			i++;
+		{
+			cmd->out = get_fd_out(data, cmd, i);
+			if (cmd->line[i + 1] == '>')
+				i++;
+		}
+		i++;
 	}
 }
 

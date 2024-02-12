@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 15:15:57 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/12 15:38:30 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/12 17:39:07 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,11 @@ char	*sub_files_utils(t_mdata *data, t_command *cmd, t_files *tmp, char c)
 	i = 0;
 	one = NULL;
 	two = NULL;
-	while (cmd->line[i] && one == NULL)
+	while (cmd->line[i])
 	{
 		if (one == NULL && cmd->line[i] == c)
 			one = ft_strndup(data, cmd->line, i);
-		else if (ft_strncmp(&cmd->line[i], tmp->files,
+		else if (one != NULL && ft_strncmp(&cmd->line[i], tmp->files,
 				ft_strlen(tmp->files)) == 0)
 		{
 			two = ft_strdup(&cmd->line[i + ft_strlen(tmp->files)]);
@@ -79,5 +79,4 @@ void	sub_files(t_mdata *data, t_command *cmd)
 			cmd->line = sub_files_utils(data, cmd, tmp, '>');
 		tmp = tmp->next;
 	}
-	printf("newline:%s\n", cmd->line);
 }
