@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split_parse.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
+/*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 14:22:53 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/09 19:21:40 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/13 18:19:06 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,10 @@ t_command	*create_command(t_mdata *data, char *lines)
 	new->in = NULL;
 	new->out = NULL;
 	parse_cmd(data, new);
-	new->cmd = ft_split(new->line, ' ');
-	if (!new->cmd)
-		ft_error(data, "Error: malloc", 1);
+	new->cmd = NULL;
+	// new->cmd = ft_split(new->line, ' ');
+	// if (!new->cmd)
+	// 	ft_error(data, "Error: malloc", 1);
 	is_fd_in(data, new);
 	is_fd_out(data, new);
 	new->next = NULL;

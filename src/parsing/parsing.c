@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
+/*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 15:30:01 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/12 15:35:00 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/13 17:58:03 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ void	parse_cmd(t_mdata *data, t_command *cmd)
 			i = parse_dquote(data, cmd, cmd->line, i + 1);
 		else if (cmd->line[i] == '\'')
 			i = parse_squote(data, cmd, cmd->line, i + 1);
-		else if (cmd->line[i] == '$')
-			ft_printf("DETECTION D'UN $\n");
+		// else if (cmd->line[i] == '$')
+		// 	i = handle_dollar(data, cmd);
 		if (i == -1)
 			return ;
 		i++;

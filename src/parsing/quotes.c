@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quotes.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
+/*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 10:40:00 by afontain          #+#    #+#             */
-/*   Updated: 2024/02/12 15:31:03 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/13 18:23:36 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ void	remove_single(char *cmd_total, char *new_cmd, int i, int j)
 	i++;
 }
 
-char	*remove_quotes(char *cmd_total)
+char	*remove_quotes(t_command *cmd)
 {
 	int		i;
 	int		j;
@@ -105,21 +105,27 @@ char	*remove_quotes(char *cmd_total)
 
 	i = 0;
 	j = 0;
-	if (!cmd_total)
+	if (!cmd->line)
 		return (NULL);
-	new_cmd = malloc(sizeof(char) * ft_strlen(cmd_total) - nb_quotes(cmd_total) + 1);
+	// printf("On obtient: %i\n", ((int)ft_strlen(cmd->line) - nb_quotes(cmd->line) + 1));
+	new_cmd = malloc(sizeof(char) * (ft_strlen(cmd->line) - nb_quotes(cmd->line) + 1));
 	if (!new_cmd)
 		return (NULL);
-	while (cmd_total[i++])
+	if (cmd->line[i] == '\'' || cmd->line[i] == '"')
+		i++;
+	while (cmd->line[i])
 	{
-		if (cmd_total[i] == '"')
-			remove_double(cmd_total, new_cmd, i, j);
-		else if (cmd_total[i] == 39)
-			remove_single(cmd_total, new_cmd, i, j);
+		if (cmd->line[i] == '"')
+			remove_double(cmd->line, new_cmd, i, j);
+		else if (cmd->line[i] == 39)
+			remove_single(cmd->line, new_cmd, i, j);
 		else
-			new_cmd[j++] = cmd_total[i];
+			new_cmd[j++] = cmd->line[i];
+		i++;
 	}
 	new_cmd[j] = '\0';
-	// free (cmd_total);
+	printf("%s\n", new_cmd);
+	free (cmd->line);
+	cmd->line = new_cmd;
 	return (new_cmd);
 }

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: besalort <besalort@student.42.fr>          +#+  +:+       +#+         #
+#    By: afontain <afontain@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/29 14:05:28 by besalort          #+#    #+#              #
-#    Updated: 2024/02/12 15:56:45 by besalort         ###   ########.fr        #
+#    Updated: 2024/02/13 18:08:57 by afontain         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,7 @@ SRC = ./src/main.c \
 	$(PARSE_PATH)split_parse.c \
 	$(PARSE_PATH)check_line.c \
 	./src/parsing/quotes.c \
-	./src/parsing/dollar.c \
+	./src/parsing/dollar/dollar.c \
 	$(PIPE_PATH)child.c \
 	$(PIPE_PATH)mpipex.c \
 	$(PIPE_PATH)parent.c \

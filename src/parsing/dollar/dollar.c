@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   dollar.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
+/*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 12:52:09 by afontain          #+#    #+#             */
-/*   Updated: 2024/02/12 17:40:29 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/13 18:09:45 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
 char	*ft_strdupfrom(char *src, int i)
 {
@@ -50,61 +50,51 @@ char	*ft_strdupuntil(char *src, int i)
 	return (dest);
 }
 
-char	*replace_retval(char *cmd, int i)
-{
-	char *retu;
-	char *resu;
-	char *avant;
-	char *apres;
-	char	*new;
-	
-	retu = ft_itoa(g_retval);
-	avant = ft_strdupuntil(cmd, i);
-	resu = ft_strjoin(avant, retu);
-	free(avant);
-	// apres = ft_strdupfrom(resu, i + ft_strlen(retu));
-	apres = ft_strdup(&cmd[i + 2]);
-	new = ft_strjoin(resu, apres);
-	free(retu);
-	free(resu);
-	free(apres);
-	if (new)
-		ft_printf("newline:%s\n", new);
-	return (new);
-}
-
-// char	*replace_dollar(t_envi envi, char *cmd, int i)
+// char	*replace_dollar(t_mdata *data, char *cmd, int i)
 // {
+// 	char *new_cmd;
+// 	char *tmp;
 	
+// 	while (cmd[i+1] >= 48 && cmd[i+1] <= 57)
+// 	{
+// 		i++;
+// 		new_cmd = ft_strdupfrom(cmd, i);
+// 		return (new_cmd);
+// 	}
+// 	if (cmd[i+1] == '"')
+// 		return (cmd);
+// 	else 
+// 	{
+// 		new_cmd = find_var(data, tmp);
+// 	}
 // }
 
-void	handle_dollar(t_mdata *data, char *cmd)
+int	handle_dollar(t_mdata *data, t_command *cmd, int i)
 {
-	char	*res;
-	// int		nb_dollar;
-	int		i;
+	// char	*res;
 
 	(void) data;
-	i = 0;
-	// nb_dollar = 0;
-	while (cmd[i])
+	while (cmd->line[i])
 	{
-		if (cmd[i] == '$')
+		if (cmd->line[i+1] == '?')
 		{
-			// if (nb_dollar == 1)
-			// {
-				if (cmd[i+1] == '?')
-				{
-					res = replace_retval(cmd, i);
-					// free(cmd);
-					cmd = res;
-				}
-				// else
-				// 	res = replace_dollar(data->envi, cmd, i);
-				// free(cmd);
-				// cmd = res;
+			// return (replace_retval(cmd, i));
+			// free(cmd);
+		}
+		else if (ft_isalpha(cmd->line[i+1] == 1))
+		{
+				// return (replace_dollar(data, cmd, i));
+			// free(cmd);
+		}
+		else if (cmd->line[i+1] == '\'' || cmd->line[i+1] == '"')
+		{
+			// return ();// retire les quotes;
+		}
+		else
+		{
+			// return ();// return un truc vide;
 		}
 		i++;	// nb_dollar++;
 	}
-	
+	return (i);
 }

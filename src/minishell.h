@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
+/*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 14:10:34 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/12 17:15:22 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/13 18:10:24 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,11 +172,11 @@ int			check_line_pipe(t_mdata *data, t_command *cmd);
 void		parse_cmd(t_mdata *data, t_command *cmd);
 
 //Dollar
-void		handle_dollar(t_mdata *data, char *cmd);
+int			handle_dollar(t_mdata *data, t_command *cmd, int i);
 
 //Quotes
 int			check_quotes(char *str);
-char		*remove_quotes(char *cmd_total);
+char		*remove_quotes(t_command *cmd);
 void		remove_double(char *cmd_total, char *new_cmd, int i, int j);
 void		remove_single(char *cmd_total, char *new_cmd, int i, int j);
 int			nb_quotes(char *cmd_total);
