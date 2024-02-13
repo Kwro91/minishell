@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 12:11:42 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/08 17:08:09 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/13 16:03:39 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	add_pwd(t_mdata *data)
 		free(data->env[i]);
 		i++;
 	}
-	new[i] = ft_strdup(ft_strjoin("PWD=", data->pwd));
+	new[i] = ft_strjoin("PWD=", data->pwd);
 	new[i + 1] = NULL;
 	free(data->env);
 	data->env = new;

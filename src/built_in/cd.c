@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 15:30:43 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/12 17:36:03 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/13 16:10:57 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,11 @@ void	cd_cmd(t_mdata *data, char *line)
 {
 	char	*modif;
 
+	modif = NULL;
 	if (!line)
-		line = "~";
+		line = "~\0";
 	modif = verif_cd(data, line);
-	if (modif != NULL)
+	if (modif)
 	{
 		if (chdir(modif) != 0)
 			ft_error(data, "Error: chdir\n", 0);
