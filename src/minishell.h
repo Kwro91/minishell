@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
+/*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 14:10:34 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/13 18:10:24 by afontain         ###   ########.fr       */
+/*   Updated: 2024/02/13 18:54:17 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,6 +157,7 @@ void		ft_mhere_doc(t_mdata *data, t_files *file);
 t_files		*get_new_file(t_mdata *data, char *line, int here_doc);
 t_files		*create_new_files(t_mdata *data, t_files *files,
 				char *line, int hd);
+char		*ft_strndup(t_mdata *data, char	*str, int len);
 
 // char	*is_here_doc(t_mdata *data, char *line);
 void		is_fd_in(t_mdata *data, t_command *cmd);
@@ -176,7 +177,8 @@ int			handle_dollar(t_mdata *data, t_command *cmd, int i);
 
 //Quotes
 int			check_quotes(char *str);
-char		*remove_quotes(t_command *cmd);
+// char		*remove_quotes(t_command *cmd);
+void		remove_quotes(t_mdata *data, t_command *cmd);
 void		remove_double(char *cmd_total, char *new_cmd, int i, int j);
 void		remove_single(char *cmd_total, char *new_cmd, int i, int j);
 int			nb_quotes(char *cmd_total);

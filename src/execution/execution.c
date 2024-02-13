@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
+/*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 15:59:33 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/13 18:17:46 by afontain         ###   ########.fr       */
+/*   Updated: 2024/02/13 19:13:18 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,6 @@ void	launch_cmd(t_mdata *data, t_command *cmd)
 {
 	if (cmd->good == -1)
 		return ;
-	remove_quotes(cmd);
-	cmd->cmd = ft_split(cmd->line, ' ');
 	if (data->nb_cmd == 1)
 		if (verif_cmd(data, cmd) == 0)
 			solo_cmd(data, cmd, ft_access_mini(data, cmd->cmd[0]));

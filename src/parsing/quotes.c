@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quotes.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
+/*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 10:40:00 by afontain          #+#    #+#             */
-/*   Updated: 2024/02/13 18:23:36 by afontain         ###   ########.fr       */
+/*   Updated: 2024/02/13 18:49:10 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,35 +97,35 @@ void	remove_single(char *cmd_total, char *new_cmd, int i, int j)
 	i++;
 }
 
-char	*remove_quotes(t_command *cmd)
-{
-	int		i;
-	int		j;
-	char	*new_cmd;
+// char	*remove_quotes(t_command *cmd)
+// {
+// 	int		i;
+// 	int		j;
+// 	char	*new_cmd;
 
-	i = 0;
-	j = 0;
-	if (!cmd->line)
-		return (NULL);
-	// printf("On obtient: %i\n", ((int)ft_strlen(cmd->line) - nb_quotes(cmd->line) + 1));
-	new_cmd = malloc(sizeof(char) * (ft_strlen(cmd->line) - nb_quotes(cmd->line) + 1));
-	if (!new_cmd)
-		return (NULL);
-	if (cmd->line[i] == '\'' || cmd->line[i] == '"')
-		i++;
-	while (cmd->line[i])
-	{
-		if (cmd->line[i] == '"')
-			remove_double(cmd->line, new_cmd, i, j);
-		else if (cmd->line[i] == 39)
-			remove_single(cmd->line, new_cmd, i, j);
-		else
-			new_cmd[j++] = cmd->line[i];
-		i++;
-	}
-	new_cmd[j] = '\0';
-	printf("%s\n", new_cmd);
-	free (cmd->line);
-	cmd->line = new_cmd;
-	return (new_cmd);
-}
+// 	i = 0;
+// 	j = 0;
+// 	if (!cmd->line)
+// 		return (NULL);
+// 	// printf("On obtient: %i\n", ((int)ft_strlen(cmd->line) - nb_quotes(cmd->line) + 1));
+// 	new_cmd = malloc(sizeof(char) * (ft_strlen(cmd->line) - nb_quotes(cmd->line) + 1));
+// 	if (!new_cmd)
+// 		return (NULL);
+// 	if (cmd->line[i] == '\'' || cmd->line[i] == '"')
+// 		i++;
+// 	while (cmd->line[i])
+// 	{
+// 		if (cmd->line[i] == '"')
+// 			remove_double(cmd->line, new_cmd, i, j);
+// 		else if (cmd->line[i] == 39)
+// 			remove_single(cmd->line, new_cmd, i, j);
+// 		else
+// 			new_cmd[j++] = cmd->line[i];
+// 		i++;
+// 	}
+// 	new_cmd[j] = '\0';
+// 	printf("%s\n", new_cmd);
+// 	free (cmd->line);
+// 	cmd->line = new_cmd;
+// 	return (new_cmd);
+// }

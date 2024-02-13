@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
+/*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 15:30:01 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/13 17:58:03 by afontain         ###   ########.fr       */
+/*   Updated: 2024/02/13 19:48:50 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,17 @@ void	parse_cmd(t_mdata *data, t_command *cmd)
 		// else if (cmd->line[i] == '$')
 		// 	i = handle_dollar(data, cmd);
 		if (i == -1)
+		{
+			cmd->good = -1;
 			return ;
+		}
 		i++;
+	}
+	remove_quotes(data, cmd);
+	cmd->cmd = ft_split(cmd->line, ' ');
+	if (!cmd->cmd)
+	{
+		ft_error(data, "Error: split\n", 0);
+		cmd->good = -1;
 	}
 }

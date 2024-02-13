@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: afontain <afontain@student.42.fr>          +#+  +:+       +#+         #
+#    By: besalort <besalort@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/29 14:05:28 by besalort          #+#    #+#              #
-#    Updated: 2024/02/13 18:08:57 by afontain         ###   ########.fr        #
+#    Updated: 2024/02/13 19:16:07 by besalort         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,7 @@ SRC = ./src/main.c \
 	$(REDIRECTION_PATH)redir_rewrite.c \
 	$(REDIRECTION_PATH)redir_close.c \
 	$(REDIRECTION_PATH)here_doc.c \
-	$(PARSE_PATH)split_parse.c \
+	$(PARSE_PATH)create_cmd.c \
 	$(PARSE_PATH)check_line.c \
 	./src/parsing/quotes.c \
 	./src/parsing/dollar/dollar.c \
@@ -46,6 +46,7 @@ SRC = ./src/main.c \
 	$(PIPE_PATH)parent.c \
 	./src/end_loop.c \
 	./src/parsing/parsing.c \
+	./src/parsing/remove_quote.c \
 	
 BUILT_IN_PATH = ./src/built_in/
 
