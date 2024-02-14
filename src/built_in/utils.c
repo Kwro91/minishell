@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 14:15:35 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/12 14:57:17 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/14 15:46:35 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 int	verif_cmd(t_mdata *data, t_command *cmd)
 {
+	if (ft_strncmp(cmd->line, "", 1) == 0)
+		return (0);
 	if (is_echo(cmd->cmd) == 1)
 		return (1);
 	else if (is_pwd(cmd->cmd, data) == 1)

@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 14:10:34 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/13 18:54:17 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/14 15:52:02 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ void		ft_free_mini(t_mdata *data);
 void		ft_free_adr(void *adr);
 void		ft_free_files(t_files *files);
 void		ft_error(t_mdata *data, char *line, int close);
+void		ft_free_me(char *str);
 //IsCmd
 int			verif_cmd(t_mdata *data, t_command *cmd);
 int			is_echo(char **cmd_total);

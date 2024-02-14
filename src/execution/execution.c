@@ -6,11 +6,33 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 15:59:33 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/13 19:13:18 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/14 16:26:21 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+void	error_access_mini(t_mdata *data, char *cmd)
+{
+	char *tmp;
+	char *join;
+
+	join = NULL;
+	tmp = NULL;
+	if (cmd != NULL && ft_strncmp(cmd, "\0", 1) != 0)
+	{
+		tmp = ft_strjoin("minishell: command not found: ", cmd);
+		join = ft_strjoin(tmp, "\n");
+	}
+	else
+	{
+		tmp = ft_strdup("minishell: command not found: ");
+		join = ft_strjoin(tmp, "\n");	
+	}
+	ft_error(data, join, 0);
+	ft_free_me(tmp);
+	ft_free_me(join);
+}
 
 char	*ft_access_mini(t_mdata *data, char *cmd)
 {
@@ -19,22 +41,20 @@ char	*ft_access_mini(t_mdata *data, char *cmd)
 	int		i;
 
 	i = 0;
-	if (access(cmd, X_OK) == 0)
+	if (cmd && access(cmd, X_OK) == 0)
 		return (cmd);
-	while (data->paths && data->paths[i])
+	while (cmd && data->paths && data->paths[i])
 	{
 		tmp = ft_strjoin(data->paths[i], "/");
 		join = ft_strjoin(tmp, cmd);
-		if (access(join, X_OK) == 0)
-			return (free(tmp), join);
-		free(join);
-		free(tmp);
+		if (join && access(join, X_OK) == 0)
+			return (ft_free_me(tmp), join);
+		ft_free_me(join);
+		ft_free_me(tmp);
 		i++;
 	}
-	tmp = ft_strjoin("minishell: command not found: ", cmd);
-	join = ft_strjoin(tmp, "\n");
-	ft_error(data, join, 0);
-	return (free(join), free(tmp), NULL);
+	error_access_mini(data, cmd);
+	return (NULL);
 }
 
 void	solo_cmd(t_mdata *data, t_command *cmd, char *path)
@@ -55,10 +75,12 @@ void	solo_cmd(t_mdata *data, t_command *cmd, char *path)
 		if (value == 0)
 			value = execve(path, cmd->cmd, data->env);
 		end_loop(data);
+		ft_free_me(path);
 		exit(value);
 	}
 	else
 	{
+		ft_free_me(path);
 		waitpid(-1, &status, 0);
 		close_all_files(data, cmd);
 	}
