@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 16:14:52 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/13 16:02:33 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/14 19:16:31 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,12 @@ void	ft_free_lines(char	**lines)
 
 void	ft_free_mini(t_mdata *data)
 {
+	end_loop(data);
 	if (data->env != NULL)
 		ft_free_lines(data->env);
 	ft_free_lines(data->paths);
+	ft_free_lines(data->export);
+	ft_free_lines(data->unset);
 	free(data->pwd);
 	rl_clear_history();
 }

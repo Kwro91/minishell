@@ -6,19 +6,16 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 17:40:14 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/12 17:57:14 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/14 18:59:26 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	ft_first_child(t_mdata *data, t_command *cmd, char *path)
+void	ft_first_child(t_mdata *data, t_command *cmd)
 {
 	int	pid;
 
-	if (!path)
-		return (free(path));
-	free(path);
 	pid = fork();
 	if (pid == -1)
 		return (perror("Error fork\n"), exit_mini(data), (void) NULL);
@@ -36,13 +33,10 @@ void	ft_first_child(t_mdata *data, t_command *cmd, char *path)
 	}
 }
 
-void	ft_mid_childs(t_mdata *data, t_command *cmd, char *path)
+void	ft_mid_childs(t_mdata *data, t_command *cmd)
 {
 	int	pid;
 
-	if (!path)
-		return (free(path));
-	free(path);
 	pid = fork();
 	if (pid == -1)
 		return (perror("Error fork\n"), exit_mini(data), (void) NULL);
@@ -65,13 +59,10 @@ void	ft_mid_childs(t_mdata *data, t_command *cmd, char *path)
 	}
 }
 
-void	ft_last_child(t_mdata *data, t_command *cmd, char *path)
+void	ft_last_child(t_mdata *data, t_command *cmd)
 {
 	int	pid;
 
-	if (!path)
-		return (free(path));
-	free(path);
 	pid = fork();
 	if (pid == -1)
 		return (perror("Error fork\n"), exit_mini(data), (void) NULL);
@@ -83,9 +74,9 @@ void	ft_last_child(t_mdata *data, t_command *cmd, char *path)
 		if (!cmd->in)
 			if (dup2(data->pipe_save, 0) < 0)
 				return (ft_error(data, "Error: dup2\n", -1));
-		launch_cmd(data, cmd);
-		close(data->pipes[1]);
 		close(data->pipes[0]);
+		close(data->pipes[1]);
+		launch_cmd(data, cmd);
 		exit_mini(data);
 	}
 }

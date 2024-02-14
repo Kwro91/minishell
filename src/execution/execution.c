@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 15:59:33 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/14 16:26:21 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/14 20:03:32 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,26 +34,31 @@ void	error_access_mini(t_mdata *data, char *cmd)
 	ft_free_me(join);
 }
 
-char	*ft_access_mini(t_mdata *data, char *cmd)
+char	*ft_access_mini(t_mdata *data, t_command *cmd)
 {
 	char	*join;
 	char	*tmp;
 	int		i;
 
 	i = 0;
-	if (cmd && access(cmd, X_OK) == 0)
-		return (cmd);
-	while (cmd && data->paths && data->paths[i])
+	if (cmd->cmd[0] && access(cmd->cmd[0], X_OK) == 0)
+	{
+		tmp = ft_strdup(cmd->cmd[0]);
+		if (!tmp)
+			ft_error(data, "Error: strdup\n", 1);
+		return (tmp);
+	}
+	while (cmd->cmd[0] && data->paths && data->paths[i])
 	{
 		tmp = ft_strjoin(data->paths[i], "/");
-		join = ft_strjoin(tmp, cmd);
+		join = ft_strjoin(tmp, cmd->cmd[0]);
 		if (join && access(join, X_OK) == 0)
 			return (ft_free_me(tmp), join);
 		ft_free_me(join);
 		ft_free_me(tmp);
 		i++;
 	}
-	error_access_mini(data, cmd);
+	error_access_mini(data, cmd->cmd[0]);
 	return (NULL);
 }
 
@@ -64,7 +69,7 @@ void	solo_cmd(t_mdata *data, t_command *cmd, char *path)
 	int	status;
 
 	if (!path)
-		return (free(path));
+		return (ft_free_me(path));
 	pid = fork();
 	if (pid == -1)
 		return (ft_error(data, "Error: fork\n", 0));
@@ -76,7 +81,7 @@ void	solo_cmd(t_mdata *data, t_command *cmd, char *path)
 			value = execve(path, cmd->cmd, data->env);
 		end_loop(data);
 		ft_free_me(path);
-		exit(value);
+		exit_mini(data);
 	}
 	else
 	{
@@ -88,14 +93,24 @@ void	solo_cmd(t_mdata *data, t_command *cmd, char *path)
 
 void	pipe_cmd(t_mdata *data, t_command *cmd)
 {
-	int	value;
-
-	value = 0;
+	char	*tmp;
+	
+	ft_error(data, "\nAVANT\n", 0);
+	ft_error(data, cmd->cmd[0], 0);
 	if (verif_cmd(data, cmd) == 0)
-		value = execve(ft_access_mini(data,
-					cmd->cmd[0]), cmd->cmd, data->env);
+	{
+		ft_error(data, "DEDANS\n", 0);
+		ft_error(data, cmd->cmd[0], 0);
+		tmp = ft_access_mini(data, cmd);
+		if (tmp)
+			execve(tmp, cmd->cmd, data->env);
+		ft_free_me(tmp);
+	}
 	close_all_files(data, cmd);
-	exit(value);
+	end_loop(data);
+	ft_error(data, "APRES\n", 0);
+	ft_error(data, cmd->cmd[0], 0);
+	exit_mini(data);
 }
 
 void	launch_cmd(t_mdata *data, t_command *cmd)
@@ -104,7 +119,7 @@ void	launch_cmd(t_mdata *data, t_command *cmd)
 		return ;
 	if (data->nb_cmd == 1)
 		if (verif_cmd(data, cmd) == 0)
-			solo_cmd(data, cmd, ft_access_mini(data, cmd->cmd[0]));
+			solo_cmd(data, cmd, ft_access_mini(data, cmd));
 	if (data->nb_cmd > 1)
 		pipe_cmd(data, cmd);
 }

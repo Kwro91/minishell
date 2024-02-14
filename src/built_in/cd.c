@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 15:30:43 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/14 15:06:28 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/14 18:05:24 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,10 @@ void	cd_cmd(t_mdata *data, char *line)
 	else
 	{
 		if (line && chdir(line) != 0 && (ft_strncmp(line, "-\0", 2) != 0))
-			ft_error(data, "Error: chdir\n", 0);
-		else
-			ft_error(data, "Error: no HOME in environment\n", 0);
+			ft_error(data, "Error: no such file or directory\n", 0);
+		else if (!line)
+			ft_error(data, "Error: no such file or directory\n", 0);
 	}
-	if (modif)
-		free(modif);
+	ft_free_me(modif);
 	setup_pwd(data, data->env, 0);
 }

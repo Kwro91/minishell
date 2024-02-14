@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 18:36:45 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/14 16:23:34 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/14 19:47:04 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,8 @@ void	get_removed(t_mdata *data, t_command *cmd, int i)
 
 int	remove_dquote(t_mdata *data, t_command *cmd, int i)
 {
-	if (check_empty_quotes(data, cmd, i) == 1)
-		return (i);
+	// if (check_empty_quotes(data, cmd, i) == 1)
+	// 	return (i);
 	get_removed(data, cmd, i);
 	while (cmd->line[i])
 	{

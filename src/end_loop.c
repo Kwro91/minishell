@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 15:32:02 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/13 19:48:00 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/14 19:15:40 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void	close_end(t_mdata *data)
 		free(tmp);
 		tmp = next;
 	}
+	data->cmd = NULL;
 }
 
 void	end_loop(t_mdata *data)

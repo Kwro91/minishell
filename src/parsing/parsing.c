@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 15:30:01 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/14 15:46:56 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/14 19:09:19 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,6 @@ void	parse_cmd(t_mdata *data, t_command *cmd)
 	}
 	remove_quotes(data, cmd);
 	cmd->cmd = ft_split(cmd->line, ' ');
-	// if (ft_strncmp(cmd->line, "", 1) == 0)
-	// 	cmd->good = -1;
 	if (!cmd->cmd)
 	{
 		ft_error(data, "Error: split\n", 0);
