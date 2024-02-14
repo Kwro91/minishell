@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 15:30:43 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/13 16:10:57 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/14 15:06:28 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ char	*return_home(t_mdata *data)
 
 char	*verif_cd(t_mdata *data, char *line)
 {
-	if (ft_strncmp(line, "~\0", 2) == 0)
+	if (!line || ft_strncmp(line, "~\0", 2) == 0)
 		return (return_home(data));
 	else if (ft_strncmp(line, "-\0", 2) == 0)
 		return (pwd(data), NULL);
@@ -42,19 +42,23 @@ void	cd_cmd(t_mdata *data, char *line)
 	char	*modif;
 
 	modif = NULL;
-	if (!line)
-		line = "~\0";
 	modif = verif_cd(data, line);
 	if (modif)
 	{
 		if (chdir(modif) != 0)
 			ft_error(data, "Error: chdir\n", 0);
+		if (modif)
+			free(modif);
 		return (setup_pwd(data, data->env, 0));
 	}
 	else
 	{
-		if (chdir(line) != 0 && (ft_strncmp(line, "-\0", 2) != 0))
+		if (line && chdir(line) != 0 && (ft_strncmp(line, "-\0", 2) != 0))
 			ft_error(data, "Error: chdir\n", 0);
+		else
+			ft_error(data, "Error: no HOME in environment\n", 0);
 	}
+	if (modif)
+		free(modif);
 	setup_pwd(data, data->env, 0);
 }
