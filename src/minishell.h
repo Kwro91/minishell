@@ -6,7 +6,7 @@
 /*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 14:10:34 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/13 18:10:24 by afontain         ###   ########.fr       */
+/*   Updated: 2024/02/15 13:42:05 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,6 +173,12 @@ void		parse_cmd(t_mdata *data, t_command *cmd);
 
 //Dollar
 int			handle_dollar(t_mdata *data, t_command *cmd, int i);
+char 		*replace_retval(t_command *cmd, int i);
+char		*dollar_left(t_command *cmd, int i);
+char		*suppr_dollar(t_command *cmd, int i);
+char		*ft_strdupuntil(char *src, int i);
+char		*ft_strdupfrom(char *src, int i);
+char		*find_var(t_mdata *data, char *cmd);
 
 //Quotes
 int			check_quotes(char *str);
