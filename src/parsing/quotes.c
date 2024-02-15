@@ -6,96 +6,96 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 10:40:00 by afontain          #+#    #+#             */
-/*   Updated: 2024/02/13 18:49:10 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/15 18:28:49 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+// #include "../minishell.h"
 
-int	check_quotes(char *str)
-{
-	int	i;
+// int	check_quotes(char *str)
+// {
+// 	int	i;
 
-	i = 0;
-	if (!str)
-		return (0);
-	while (str[i])
-	{
-		if (str[i] == '"')
-		{
-			i++;
-			while (str[i] && str[i] != '"')
-				i++;
-			if (str[i] == '\0')
-				return (1);
-		}
-		if (str[i] == 39)
-		{
-			i++;
-			while (str[i] && str[i] != 39)
-				i++;
-			if (str[i] == '\0')
-				return (1);
-		}
-		i++;
-	}
-	return (0);
-}
+// 	i = 0;
+// 	if (!str)
+// 		return (0);
+// 	while (str[i])
+// 	{
+// 		if (str[i] == '"')
+// 		{
+// 			i++;
+// 			while (str[i] && str[i] != '"')
+// 				i++;
+// 			if (str[i] == '\0')
+// 				return (1);
+// 		}
+// 		if (str[i] == 39)
+// 		{
+// 			i++;
+// 			while (str[i] && str[i] != 39)
+// 				i++;
+// 			if (str[i] == '\0')
+// 				return (1);
+// 		}
+// 		i++;
+// 	}
+// 	return (0);
+// }
 
-int	nb_quotes(char *cmd_total)
-{
-	int	count;
-	int i;
+// int	nb_quotes(char *cmd_total)
+// {
+// 	int	count;
+// 	int i;
 
-	i = 0;
-	count = 0;
-	while (cmd_total[i])
-	{
-		if (cmd_total[i] == '"')
-		{
-			i++;
-			while (cmd_total[i] && cmd_total[i] != '"')
-				i++;
-			i++;
-			count += 2;
-		}
-		else if (cmd_total[i] == 39)
-		{
-			i++;
-			while (cmd_total[i] && cmd_total[i] != 39)
-				i++;
-			i++;
-			count += 2;
-		}
-		else if (cmd_total[i])
-			i++;
-	}
-	return (count);
-}
+// 	i = 0;
+// 	count = 0;
+// 	while (cmd_total[i])
+// 	{
+// 		if (cmd_total[i] == '"')
+// 		{
+// 			i++;
+// 			while (cmd_total[i] && cmd_total[i] != '"')
+// 				i++;
+// 			i++;
+// 			count += 2;
+// 		}
+// 		else if (cmd_total[i] == 39)
+// 		{
+// 			i++;
+// 			while (cmd_total[i] && cmd_total[i] != 39)
+// 				i++;
+// 			i++;
+// 			count += 2;
+// 		}
+// 		else if (cmd_total[i])
+// 			i++;
+// 	}
+// 	return (count);
+// }
 
-void	remove_double(char *cmd_total, char *new_cmd, int i, int j)
-{
-	i++;
-	while (cmd_total[i] != '"' && cmd_total[i])
-	{
-		new_cmd[j] = cmd_total[i];
-		i++;
-		j++;
-	}
-	i++;
-}
+// void	remove_double(char *cmd_total, char *new_cmd, int i, int j)
+// {
+// 	i++;
+// 	while (cmd_total[i] != '"' && cmd_total[i])
+// 	{
+// 		new_cmd[j] = cmd_total[i];
+// 		i++;
+// 		j++;
+// 	}
+// 	i++;
+// }
 
-void	remove_single(char *cmd_total, char *new_cmd, int i, int j)
-{
-	i++;
-	while (cmd_total[i] != 39 && cmd_total[i])
-	{
-		new_cmd[j] = cmd_total[i];
-		i++;
-		j++;
-	}
-	i++;
-}
+// void	remove_single(char *cmd_total, char *new_cmd, int i, int j)
+// {
+// 	i++;
+// 	while (cmd_total[i] != 39 && cmd_total[i])
+// 	{
+// 		new_cmd[j] = cmd_total[i];
+// 		i++;
+// 		j++;
+// 	}
+// 	i++;
+// }
 
 // char	*remove_quotes(t_command *cmd)
 // {

@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 15:59:33 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/14 20:03:32 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/15 18:03:29 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ char	*ft_access_mini(t_mdata *data, t_command *cmd)
 	int		i;
 
 	i = 0;
+	if (!cmd->cmd)
+		return (NULL);
 	if (cmd->cmd[0] && access(cmd->cmd[0], X_OK) == 0)
 	{
 		tmp = ft_strdup(cmd->cmd[0]);
@@ -95,27 +97,20 @@ void	pipe_cmd(t_mdata *data, t_command *cmd)
 {
 	char	*tmp;
 	
-	ft_error(data, "\nAVANT\n", 0);
-	ft_error(data, cmd->cmd[0], 0);
 	if (verif_cmd(data, cmd) == 0)
 	{
-		ft_error(data, "DEDANS\n", 0);
-		ft_error(data, cmd->cmd[0], 0);
+		close_all_files(data, cmd);
 		tmp = ft_access_mini(data, cmd);
 		if (tmp)
 			execve(tmp, cmd->cmd, data->env);
 		ft_free_me(tmp);
 	}
-	close_all_files(data, cmd);
-	end_loop(data);
-	ft_error(data, "APRES\n", 0);
-	ft_error(data, cmd->cmd[0], 0);
 	exit_mini(data);
 }
 
 void	launch_cmd(t_mdata *data, t_command *cmd)
 {
-	if (cmd->good == -1)
+	if (!cmd || cmd->good == -1)
 		return ;
 	if (data->nb_cmd == 1)
 		if (verif_cmd(data, cmd) == 0)

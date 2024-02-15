@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 15:53:50 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/12 17:40:07 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/15 17:55:01 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void	loop_utils(t_mdata *data, t_command *tmp, char *cmd)
 		else if (data->nb_cmd > 1)
 			mpipex(data);
 	}
+	reset_redir(data);
 }
 
 void	loop(t_mdata *data, char *cmd)
@@ -59,6 +60,7 @@ void	loop(t_mdata *data, char *cmd)
 		loop_utils(data, tmp, cmd);
 		end_loop(data);
 		free (cmd);
+		cmd = NULL;
 		if (tmp)
 			free (tmp);
 	}
@@ -70,8 +72,11 @@ void	prompt(t_mdata *data, char **env)
 
 	cmd = NULL;
 	data->paths = ft_path_mini(env);
+	data->cmd = NULL;
 	env_setup(data, env);
 	setup_pwd(data, env, 1);
+	data->stdin_back = dup(STDIN_FILENO);
+	data->stdout_back = dup(STDOUT_FILENO);
 	while (1)
 	{
 		if (do_line_exist(data->env, "PWD") == -1)

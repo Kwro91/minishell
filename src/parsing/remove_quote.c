@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 18:36:45 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/14 19:47:04 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/15 18:30:09 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	get_removed(t_mdata *data, t_command *cmd, int i)
 	char	*new;
 	char	*first;
 	char	*second;
-	
+
 	if (!cmd->line)
 		return (ft_error(data, "Error: remove quote1\n", 0));
 	first = "";

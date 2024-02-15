@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 14:10:34 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/14 18:41:48 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/15 16:32:05 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ typedef struct s_mdata
 	int			nb_cmd;
 	int			pipes[2];
 	int			pipe_save;
+	int			stdin_back;
+	int			stdout_back;
 	t_command	*cmd;
 	t_envi		*envi;
 }	t_mdata;
@@ -159,6 +161,7 @@ t_files		*get_new_file(t_mdata *data, char *line, int here_doc);
 t_files		*create_new_files(t_mdata *data, t_files *files,
 				char *line, int hd);
 char		*ft_strndup(t_mdata *data, char	*str, int len);
+void		reset_redir(t_mdata *data);
 
 // char	*is_here_doc(t_mdata *data, char *line);
 void		is_fd_in(t_mdata *data, t_command *cmd);

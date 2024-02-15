@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 17:12:09 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/12 17:16:17 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/15 15:08:19 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	check_line_pipe(t_mdata *data, t_command *cmd)
 	{
 		good = 0;
 		i = 0;
-		while (tmp->line[i])
+		while (tmp->line[i] && good == 0)
 		{
 			if (tmp->line[i] > 32 && tmp->line[i] <= 126)
 				good = 1;

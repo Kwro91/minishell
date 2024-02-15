@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 16:14:52 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/14 19:16:31 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/15 15:12:53 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,12 +58,13 @@ void	ft_free_lines(char	**lines)
 	i = 0;
 	if (lines == NULL)
 		return ;
-	while (lines && lines[i])
+	while (lines[i])
 	{
 		free(lines[i]);
 		i++;
 	}
 	free(lines);
+	lines = NULL;
 }
 
 void	ft_free_mini(t_mdata *data)
