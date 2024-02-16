@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 15:29:29 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/12 17:38:23 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/16 16:24:12 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ t_files	*get_new_file(t_mdata *data, char *line, int here_doc)
 	new = malloc(sizeof(t_files));
 	if (!new)
 		ft_error(data, "Error: malloc\n", 1);
+	new->fd = -1;
 	new->here_doc = here_doc;
 	new->files = next_word(data, line);
 	new->next = NULL;

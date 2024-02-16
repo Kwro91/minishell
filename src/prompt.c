@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 15:53:50 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/15 17:55:01 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/16 17:00:28 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,20 +24,27 @@ char	*get_readline(t_mdata *data, char *str)
 	return (str);
 }
 
-void	loop_utils(t_mdata *data, t_command *tmp, char *cmd)
+void	delete_files_names(t_mdata *data)
 {
-	if (cmd != NULL && check_before(data, cmd) == 1)
+	t_command	*tmp;
+
+	tmp = data->cmd;
+	while (tmp)
+	{
+		sub_files(data, tmp);
+		tmp = tmp->next;
+	}
+}
+
+void	loop_utils(t_mdata *data, char *cmd)
+{
+	if (cmd != NULL)
 	{
 		split_parse(data, cmd);
 		if (data->nb_cmd > 1)
 			if (check_line_pipe(data, data->cmd) == -1)
 				return ;
-		tmp = data->cmd;
-		while (tmp)
-		{
-			sub_files(data, tmp);
-			tmp = tmp->next;
-		}
+		delete_files_names(data);
 		if (data->nb_cmd == 1)
 			launch_cmd(data, data->cmd);
 		else if (data->nb_cmd > 1)
@@ -48,22 +55,17 @@ void	loop_utils(t_mdata *data, t_command *tmp, char *cmd)
 
 void	loop(t_mdata *data, char *cmd)
 {
-	t_command	*tmp;
-
-	tmp = NULL;
 	data->nb_cmd = 0;
 	cmd = get_readline(data, "Minishell> ");
 	if (*cmd && ft_strncmp(cmd, "\n\0", 2) != 0)
 	{
 		add_history(cmd);
 		data->cmd = NULL;
-		loop_utils(data, tmp, cmd);
+		loop_utils(data, cmd);
 		end_loop(data);
-		free (cmd);
-		cmd = NULL;
-		if (tmp)
-			free (tmp);
 	}
+	free (cmd);
+	cmd = NULL;
 }
 
 void	prompt(t_mdata *data, char **env)

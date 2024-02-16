@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 15:15:57 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/12 17:39:07 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/16 16:56:27 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,28 +55,38 @@ char	*sub_files_utils(t_mdata *data, t_command *cmd, t_files *tmp, char c)
 		i++;
 	}
 	new = ft_strjoin(one, two);
+	ft_free_me(one);
+	ft_free_me(two);
 	if (!new)
-		ft_error(data, "Error: malloc\n", 1);
+		ft_error(data, "Error: malloc111\n", 1);
 	return (new);
 }
 
 void	sub_files(t_mdata *data, t_command *cmd)
 {
 	t_files	*tmp;
+	char	*new;
 
-	tmp = NULL;
 	tmp = cmd->in;
 	while (tmp)
 	{
-		if (cmd->in)
-			cmd->line = sub_files_utils(data, cmd, tmp, '<');
+		if (tmp)
+		{
+			new = sub_files_utils(data, cmd, tmp, '<');
+			ft_free_me(cmd->line);
+			cmd->line = new;
+		}
 		tmp = tmp->next;
 	}
 	tmp = cmd->out;
 	while (tmp)
 	{
-		if (cmd->out)
-			cmd->line = sub_files_utils(data, cmd, tmp, '>');
+		if (tmp)
+		{
+			new = sub_files_utils(data, cmd, tmp, '>');
+			ft_free_me(cmd->line);
+			cmd->line = new;
+		}
 		tmp = tmp->next;
 	}
 }
