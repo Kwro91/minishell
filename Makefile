@@ -6,7 +6,7 @@
 #    By: afontain <afontain@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/29 14:05:28 by besalort          #+#    #+#              #
-#    Updated: 2024/02/13 18:08:57 by afontain         ###   ########.fr        #
+#    Updated: 2024/02/16 17:07:41 by afontain         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,13 +40,19 @@ SRC = ./src/main.c \
 	$(PARSE_PATH)split_parse.c \
 	$(PARSE_PATH)check_line.c \
 	./src/parsing/quotes.c \
-	./src/parsing/dollar/dollar.c \
 	$(PIPE_PATH)child.c \
 	$(PIPE_PATH)mpipex.c \
 	$(PIPE_PATH)parent.c \
+	$(DOLLAR_PATH)?.c \
+	$(DOLLAR_PATH)dollar.c \
+	$(DOLLAR_PATH)dollarquote.c \
+	$(DOLLAR_PATH)letter.c \
+	$(DOLLAR_PATH)other.c \
 	./src/end_loop.c \
 	./src/parsing/parsing.c \
-	
+
+DOLLAR_PATH = ./src/parsing/dollar/
+
 BUILT_IN_PATH = ./src/built_in/
 
 EXECUTION_PATH = ./src/execution/

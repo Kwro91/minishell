@@ -6,7 +6,7 @@
 /*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 15:30:01 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/13 17:58:03 by afontain         ###   ########.fr       */
+/*   Updated: 2024/02/16 17:18:36 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,11 @@ void	parse_cmd(t_mdata *data, t_command *cmd)
 			i = parse_dquote(data, cmd, cmd->line, i + 1);
 		else if (cmd->line[i] == '\'')
 			i = parse_squote(data, cmd, cmd->line, i + 1);
-		// else if (cmd->line[i] == '$')
-		// 	i = handle_dollar(data, cmd);
+		else if (cmd->line[i] == '$')
+			i = handle_dollar(data, cmd, i);
 		if (i == -1)
 			return ;
 		i++;
 	}
+	printf("cmd->line :%s:\n", cmd->line);
 }

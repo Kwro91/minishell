@@ -6,7 +6,7 @@
 /*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 17:47:05 by afontain          #+#    #+#             */
-/*   Updated: 2024/02/15 16:40:21 by afontain         ###   ########.fr       */
+/*   Updated: 2024/02/16 16:53:09 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,32 +14,24 @@
 
 //change $x en "" (rien)
 //les cas ou x est pas une lettre et les cas ou x n'existe pas dans env OU n'a pas de valeur
-char	*dollar_left(t_command *cmd, int i)
+int	dollar_left(t_mdata *data, t_command *cmd, int i)
 {
-	char	*str2;
-	char	*str1;
-	int		*j;
+	char	*start;
+	char	*end;
 
-	j = i;
-	if (getenv(cmd->line) == NULL || (getenv(cmd->line) != NULL && getenv(cmd->line[i+2]) == "\0" ))
+	start = ft_strdupuntil(data, cmd->line, i - 1);
+	if (cmd->line[i + 1] == '\0') //cas $\0
+		return (i);
+	else if (cmd->line[i + 2] != '\0') //cas $4coucou
 	{
-		while (cmd->line[i+1] != ' ')
-			i++;
-		str1 = ft_strdupuntil(cmd->line, j - 1);
-		str2 = ft_strdupfrom(cmd->line, i);
-		cmd->line = ft_strjoin(str1, str2);
-		return (cmd->line);
+		end = ft_strdupfrom(data, cmd->line, i + 2);
+		// ft_free_me(cmd->line);
+		cmd->line = ft_strjoin(start, end);
+		// ft_free_me(start);
+		// ft_free_me(end);
+		return (i - 1);
 	}
-	i = j;
-	else
-	{
-		if (ft_isalpha(cmd->line[i+1]) == 0)
-			i++;
-		str1 = ft_strdupuntil(cmd->line, j - 1);
-		str2 = ft_strdupfrom(cmd->line, i);
-		cmd->line = ft_strjoin(str1, str2);
-		return (cmd->line);
-	}
+	// ft_free_me(cmd->line);
+	cmd->line = start; //cas $4
+	return (i - 1);
 }
-
-// char *dollar_env(t_command *cmd, int i)
