@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 15:30:01 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/15 18:28:06 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/16 17:43:53 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	parse_cmd(t_mdata *data, t_command *cmd)
 		else if (cmd->line[i] == '\'')
 			i = parse_squote(data, cmd, cmd->line, i + 1);
 		else if (cmd->line[i] == '$')
-			ft_printf("DETECTION D'UN $\n");
+			i = handle_dollar(data, cmd, i);
 		if (i == -1)
 		{
 			cmd->good = -1;

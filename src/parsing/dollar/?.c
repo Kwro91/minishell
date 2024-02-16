@@ -6,13 +6,13 @@
 /*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 17:45:04 by afontain          #+#    #+#             */
-/*   Updated: 2024/02/13 17:45:29 by afontain         ###   ########.fr       */
+/*   Updated: 2024/02/16 17:15:16 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-int	replace_retval(t_command *cmd, int i)
+int	replace_retval(t_mdata *data, t_command *cmd, int i)
 {
 	char *retu;
 	char *resu;
@@ -21,7 +21,7 @@ int	replace_retval(t_command *cmd, int i)
 	char	*new;
 	
 	retu = ft_itoa(g_retval);
-	avant = ft_strdupuntil(cmd->line, i);
+	avant = ft_strdupuntil(data, cmd->line, i);
 	resu = ft_strjoin(avant, retu);
 	free(avant);
 	// apres = ft_strdupfrom(resu, i + ft_strlen(retu));

@@ -6,13 +6,34 @@
 /*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 12:52:09 by afontain          #+#    #+#             */
-/*   Updated: 2024/02/13 18:09:45 by afontain         ###   ########.fr       */
+/*   Updated: 2024/02/16 17:34:07 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-char	*ft_strdupfrom(char *src, int i)
+char	*ft_strdupfromuntil(t_mdata *data, char *src, int i, int n)
+{
+	char	*dest;
+
+	if (n < 0)
+		return (NULL);
+	if (!src)
+		return (NULL);
+	dest = malloc (sizeof(char) * ft_strlen((const char *)src) - i - n + 1);
+	if (!dest)
+		return (ft_error(data, "Error malloc\n", 1), NULL);
+	while (src[i] && n > 0)
+	{
+		dest[i] = src[i];
+		i++;
+		n--;
+	}
+	dest[i] = '\0';
+	return (dest);
+}
+
+char	*ft_strdupfrom(t_mdata *data, char *src, int i)
 {
 	char	*dest;
 
@@ -20,7 +41,7 @@ char	*ft_strdupfrom(char *src, int i)
 		return (NULL);
 	dest = malloc (sizeof(char) * ft_strlen((const char *)src) - i + 1);
 	if (!dest)
-		return (0);
+		return (ft_error(data, "Error malloc\n", 1), NULL);
 	while (src[i])
 	{
 		dest[i] = src[i];
@@ -30,7 +51,7 @@ char	*ft_strdupfrom(char *src, int i)
 	return (dest);
 }
 
-char	*ft_strdupuntil(char *src, int i)
+char	*ft_strdupuntil(t_mdata *data, char *src, int i)
 {
 	char	*dest;
 	int j;
@@ -40,7 +61,7 @@ char	*ft_strdupuntil(char *src, int i)
 		return (NULL);
 	dest = malloc (sizeof(char) * i + 1);
 	if (!dest)
-		return (0);
+		return (ft_error(data, "Error malloc\n", 1), NULL);
 	while (src[j] && j < i)
 	{
 		dest[j] = src[j];
@@ -50,51 +71,37 @@ char	*ft_strdupuntil(char *src, int i)
 	return (dest);
 }
 
-// char	*replace_dollar(t_mdata *data, char *cmd, int i)
-// {
-// 	char *new_cmd;
-// 	char *tmp;
+int handle_dollar2(t_mdata *data, t_command *cmd, int i)
+{
+	int k;
 	
-// 	while (cmd[i+1] >= 48 && cmd[i+1] <= 57)
-// 	{
-// 		i++;
-// 		new_cmd = ft_strdupfrom(cmd, i);
-// 		return (new_cmd);
-// 	}
-// 	if (cmd[i+1] == '"')
-// 		return (cmd);
-// 	else 
-// 	{
-// 		new_cmd = find_var(data, tmp);
-// 	}
-// }
+	k = 0;
+	if (ft_isalpha(cmd->line[i+1]) == 1)
+		return (handle_letter(data, cmd, i));
+	else
+		return(dollar_left(data, cmd, i));
+	return (k);
+}
 
 int	handle_dollar(t_mdata *data, t_command *cmd, int i)
 {
-	// char	*res;
+	int k;
+	// char	*new;
 
-	(void) data;
-	while (cmd->line[i])
-	{
-		if (cmd->line[i+1] == '?')
-		{
-			// return (replace_retval(cmd, i));
-			// free(cmd);
-		}
-		else if (ft_isalpha(cmd->line[i+1] == 1))
-		{
-				// return (replace_dollar(data, cmd, i));
-			// free(cmd);
-		}
-		else if (cmd->line[i+1] == '\'' || cmd->line[i+1] == '"')
-		{
-			// return ();// retire les quotes;
-		}
-		else
-		{
-			// return ();// return un truc vide;
-		}
-		i++;	// nb_dollar++;
+	k = 0;
+	if (cmd->line[i+1] == '?')
+		return(replace_retval(data, cmd, i));
+	else if (cmd->line[i+1] == '\'' || cmd->line[i+1] == '"')
+	{	
+		cmd->line = suppr_dollar(data, cmd, i);
+		// free(cmd->line);
+		// cmd->line = new;
+		k = ft_strlen(suppr_dollar(data, cmd, i));
 	}
-	return (i);
+	else
+	{
+		printf("qhqhh\n");
+		handle_dollar2(data, cmd, i);
+	}
+	return(i + k);
 }
