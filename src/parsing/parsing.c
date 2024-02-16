@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 15:30:01 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/16 17:43:53 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/16 17:48:04 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	parse_dquote(t_mdata *data, t_command *cmd, char *line, int i)
 		if (line[i] == '"')
 			return (i);
 		else if (line[i] == '$')
-			ft_printf("DETECTION D'UN $ DANS UNE DQUOTE\n");
+			i = handle_dollar(data, cmd, i);
 		i++;
 	}
 	cmd->good = -1;

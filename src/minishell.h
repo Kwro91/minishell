@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 14:10:34 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/16 17:44:24 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/16 19:33:58 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -181,19 +181,20 @@ int			handle_dollar(t_mdata *data, t_command *cmd, int i);
 int			handle_letter(t_mdata *data, t_command *cmd, int i);
 int			replace_retval(t_mdata *data, t_command *cmd, int i);
 int			dollar_left(t_mdata *data, t_command *cmd, int i);
-char		*suppr_dollar(t_mdata *data, t_command *cmd, int i);
+char		*del_qdollar(t_mdata *data, t_command *cmd, int i);
 char		*ft_strdupfromuntil(t_mdata *data, char *src, int i, int n);
 char		*ft_strdupuntil(t_mdata *data, char *src, int i);
-char		*ft_strdupfrom(t_mdata *data, char *src, int i);
+// char		*ft_strdupfrom(t_mdata *data, char *src, int i);
 char		*find_var(t_mdata *data, t_command *cmd, int i);
+void		del_vdollar(t_mdata *data, t_command *cmd, int i, int len);
 
 //Quotes
-int			check_quotes(char *str);
+// int			check_quotes(char *str);
 // char		*remove_quotes(t_command *cmd);
 void		remove_quotes(t_mdata *data, t_command *cmd);
-void		remove_double(char *cmd_total, char *new_cmd, int i, int j);
-void		remove_single(char *cmd_total, char *new_cmd, int i, int j);
-int			nb_quotes(char *cmd_total);
+// void		remove_double(char *cmd_total, char *new_cmd, int i, int j);
+// void		remove_single(char *cmd_total, char *new_cmd, int i, int j);
+// int			nb_quotes(char *cmd_total);
 
 //Pipe
 void		mpipex(t_mdata *data);

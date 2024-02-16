@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   letter.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
+/*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 17:46:08 by afontain          #+#    #+#             */
-/*   Updated: 2024/02/16 17:20:16 by afontain         ###   ########.fr       */
+/*   Updated: 2024/02/16 19:33:34 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,18 @@ char	*find_in_tab(t_mdata *data, char *var, int len, char **tab)
 	int 	k;
 	char	*value;
 
+	(void)data;
 	k = 0;
+	if (!tab)
+		return (NULL);
 	while (ft_strncmp((const char *)var, tab[k], len) != 0 && tab)
 		k++;
 	if (!tab[k])
 		return (NULL);
-	if (tab[k][len+1] != '=' || (tab[k][len+1] == '=' && tab[k][len+2] == '\0'))
+	if (tab[k][len] != '=' || (tab[k][len] == '=' && tab[k][len + 1] == '\0'))
 		return (NULL);
 	else
-		value = ft_strdupfrom(data, tab[k], len+2);
+		value = ft_strdup(&tab[k][len+1]);
 	return (value);
 }
 
@@ -44,6 +47,26 @@ char	*find_goodpart(t_mdata *data, t_command *cmd, int i)
 	return (str1);
 }
 
+void	change_letter(t_mdata *data, t_command *cmd, int i, char *value, int len)
+{
+	char	*tmp;
+	char	*start;
+	char	*end;
+
+	start = ft_strdupuntil(data, cmd->line, i);
+	tmp = ft_strjoin(start, value);
+	end = ft_strdup(&cmd->line[i + len]);
+	if (end)
+		cmd->line = ft_strjoin(tmp, end);
+	else
+		cmd->line = tmp;
+	ft_free_me(start);
+	ft_free_me(end);
+	ft_free_me(tmp);
+	if (!cmd->line)
+		ft_error(data, "Error: malloc\n", 1);
+}
+
 char	*find_var(t_mdata *data, t_command *cmd, int i)
 {
 	int len;
@@ -56,6 +79,10 @@ char	*find_var(t_mdata *data, t_command *cmd, int i)
 	str1 = find_in_tab(data, var, len, data->env);
 	if (!str1)
 		str1 = find_in_tab(data, var, len, data->export);
+	if (!str1)
+		del_vdollar(data, cmd, i, len);
+	else
+		change_letter(data, cmd, i, str1, len);
 	return (str1);
 }
 
@@ -63,29 +90,13 @@ int	handle_letter(t_mdata *data, t_command *cmd, int i)
 {
 	char	*value;
 	char	*start;
-	char	*end;
-	char	*tmp;
 	
 	value = find_var(data, cmd, i);
-	printf("value : %s\n", value);
 	start = ft_strdupuntil(data, cmd->line, i);
-	// if (!start || !end)
-	// ft_free_me(cmd->line);
-	if (!value)
-	{
-		tmp = find_goodpart(data, cmd, i);
-		end = ft_strdupfrom(data, cmd->line, i + ft_strlen(tmp));
-		cmd->line = ft_strjoin(start, end);
-	}
-	else
-	{
-		tmp = ft_strjoin(start, value);
-		end = ft_strdupfrom(data, cmd->line, i + ft_strlen(tmp));
-		cmd->line = ft_strjoin(tmp, end);
-	}
+	if (!start)
+		ft_error(data, "Error: malloc\n", 1);
 	i = ft_strlen(start) + ft_strlen(value); //a verifier
-	// ft_free_me(tmp);
-	// ft_free_me(start);
-	// ft_free_me(end);
-	return (i);
+	ft_free_me(value);
+	ft_free_me(start);
+	return (i - 1);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   other.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
+/*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 17:47:05 by afontain          #+#    #+#             */
-/*   Updated: 2024/02/16 16:53:09 by afontain         ###   ########.fr       */
+/*   Updated: 2024/02/16 18:50:16 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,14 @@ int	dollar_left(t_mdata *data, t_command *cmd, int i)
 		return (i);
 	else if (cmd->line[i + 2] != '\0') //cas $4coucou
 	{
-		end = ft_strdupfrom(data, cmd->line, i + 2);
-		// ft_free_me(cmd->line);
+		end = ft_strdup(&cmd->line[i + 2]);
+		ft_free_me(cmd->line);
 		cmd->line = ft_strjoin(start, end);
-		// ft_free_me(start);
-		// ft_free_me(end);
+		ft_free_me(start);
+		ft_free_me(end);
 		return (i - 1);
 	}
-	// ft_free_me(cmd->line);
+	ft_free_me(cmd->line);
 	cmd->line = start; //cas $4
 	return (i - 1);
 }

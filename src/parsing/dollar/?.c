@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ?.c                                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
+/*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 17:45:04 by afontain          #+#    #+#             */
-/*   Updated: 2024/02/16 17:15:16 by afontain         ###   ########.fr       */
+/*   Updated: 2024/02/16 17:59:19 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,14 @@ int	replace_retval(t_mdata *data, t_command *cmd, int i)
 	retu = ft_itoa(g_retval);
 	avant = ft_strdupuntil(data, cmd->line, i);
 	resu = ft_strjoin(avant, retu);
-	free(avant);
-	// apres = ft_strdupfrom(resu, i + ft_strlen(retu));
+	ft_free_me(avant);
 	apres = ft_strdup(&cmd->line[i + 2]);
 	new = ft_strjoin(resu, apres);
-	free(retu);
-	free(resu);
-	free(apres);
-	// if (new)
-	// 	ft_printf("newline:%s\n", new);
+	i += ft_strlen(retu);
+	ft_free_me(retu);
+	ft_free_me(resu);
+	ft_free_me(apres);
+	ft_free_me(cmd->line);
 	cmd->line = new;
-	return (i + ft_strlen(retu));
+	return (i - 1);
 }

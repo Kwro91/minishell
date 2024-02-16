@@ -6,7 +6,7 @@
 #    By: besalort <besalort@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/29 14:05:28 by besalort          #+#    #+#              #
-#    Updated: 2024/02/16 17:45:16 by besalort         ###   ########.fr        #
+#    Updated: 2024/02/16 19:31:22 by besalort         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,6 +48,7 @@ SRC = ./src/main.c \
 	$(DOLLAR_PATH)dollarquote.c \
 	$(DOLLAR_PATH)letter.c \
 	$(DOLLAR_PATH)other.c \
+	$(DOLLAR_PATH)letter_utils.c \
 	./src/end_loop.c \
 	./src/parsing/parsing.c \
 	./src/parsing/remove_quote.c \
