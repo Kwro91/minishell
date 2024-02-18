@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 14:10:34 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/16 19:33:58 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/18 19:23:18 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -187,6 +187,7 @@ char		*ft_strdupuntil(t_mdata *data, char *src, int i);
 // char		*ft_strdupfrom(t_mdata *data, char *src, int i);
 char		*find_var(t_mdata *data, t_command *cmd, int i);
 void		del_vdollar(t_mdata *data, t_command *cmd, int i, int len);
+void		change_letter(t_mdata *data, t_command *cmd, int i, char *value, int len);
 
 //Quotes
 // int			check_quotes(char *str);

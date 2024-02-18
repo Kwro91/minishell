@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 17:46:08 by afontain          #+#    #+#             */
-/*   Updated: 2024/02/16 19:33:34 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/18 19:07:44 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	*find_in_tab(t_mdata *data, char *var, int len, char **tab)
 	k = 0;
 	if (!tab)
 		return (NULL);
-	while (ft_strncmp((const char *)var, tab[k], len) != 0 && tab)
+	while (tab[k] && ft_strncmp((const char *)var, tab[k], len) != 0)
 		k++;
 	if (!tab[k])
 		return (NULL);
@@ -43,28 +43,8 @@ char	*find_goodpart(t_mdata *data, t_command *cmd, int i)
 	j = i;
 	while (ft_isalnum(cmd->line[i+1]) == 1)
 		i++;
-	str1 = ft_strdupfromuntil(data, cmd->line, j+1, i - j);
+	str1 = ft_strdupfromuntil(data, cmd->line, j+1, (i - j));
 	return (str1);
-}
-
-void	change_letter(t_mdata *data, t_command *cmd, int i, char *value, int len)
-{
-	char	*tmp;
-	char	*start;
-	char	*end;
-
-	start = ft_strdupuntil(data, cmd->line, i);
-	tmp = ft_strjoin(start, value);
-	end = ft_strdup(&cmd->line[i + len]);
-	if (end)
-		cmd->line = ft_strjoin(tmp, end);
-	else
-		cmd->line = tmp;
-	ft_free_me(start);
-	ft_free_me(end);
-	ft_free_me(tmp);
-	if (!cmd->line)
-		ft_error(data, "Error: malloc\n", 1);
 }
 
 char	*find_var(t_mdata *data, t_command *cmd, int i)
@@ -75,7 +55,7 @@ char	*find_var(t_mdata *data, t_command *cmd, int i)
 
 	var = find_goodpart(data, cmd, i);
 	len = ft_strlen(var);
-	i = 0;
+	// i = 0;
 	str1 = find_in_tab(data, var, len, data->env);
 	if (!str1)
 		str1 = find_in_tab(data, var, len, data->export);
@@ -93,10 +73,12 @@ int	handle_letter(t_mdata *data, t_command *cmd, int i)
 	
 	value = find_var(data, cmd, i);
 	start = ft_strdupuntil(data, cmd->line, i);
+	// printf("J'arrive ici\n");
 	if (!start)
 		ft_error(data, "Error: malloc\n", 1);
 	i = ft_strlen(start) + ft_strlen(value); //a verifier
 	ft_free_me(value);
 	ft_free_me(start);
-	return (i - 1);
+	// printf("cmd->line:%s: et i:%i:\n", cmd->line, i);
+	return (i);
 }

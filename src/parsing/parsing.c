@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 15:30:01 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/16 17:48:04 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/18 20:28:21 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,13 @@ int	parse_squote(t_mdata *data, t_command *cmd, char *line, int i)
 void	parse_cmd(t_mdata *data, t_command *cmd)
 {
 	int	i;
+	int	len;
 
 	i = 0;
-	while (i >= 0 && cmd->line[i])
+	len = ft_strlen(cmd->line);
+	while (i >= 0 && cmd->line && i < len)
 	{
+		
 		if (cmd->line[i] == '"')
 			i = parse_dquote(data, cmd, cmd->line, i + 1);
 		else if (cmd->line[i] == '\'')
@@ -57,6 +60,7 @@ void	parse_cmd(t_mdata *data, t_command *cmd)
 			return ;
 		}
 		i++;
+		len = ft_strlen(cmd->line);
 	}
 	remove_quotes(data, cmd);
 }
