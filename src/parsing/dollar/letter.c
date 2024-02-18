@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 17:46:08 by afontain          #+#    #+#             */
-/*   Updated: 2024/02/18 19:07:44 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/18 21:40:17 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,14 +71,12 @@ int	handle_letter(t_mdata *data, t_command *cmd, int i)
 	char	*value;
 	char	*start;
 	
-	value = find_var(data, cmd, i);
 	start = ft_strdupuntil(data, cmd->line, i);
-	// printf("J'arrive ici\n");
+	value = find_var(data, cmd, i);
 	if (!start)
 		ft_error(data, "Error: malloc\n", 1);
 	i = ft_strlen(start) + ft_strlen(value); //a verifier
 	ft_free_me(value);
 	ft_free_me(start);
-	// printf("cmd->line:%s: et i:%i:\n", cmd->line, i);
 	return (i);
 }
