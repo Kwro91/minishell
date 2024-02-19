@@ -6,11 +6,21 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 19:14:10 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/18 22:03:12 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/19 14:48:04 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
+
+int	is_string(char *str)
+{
+	// int i = str[0];
+	// printf("str[0]=:%i:\n", i);
+	if (str)
+		if (str[0] && str[0] != 0 && str[0] != '\0')
+			return (1);
+	return (-1);
+}
 
 void	del_vdollar(t_mdata *data, t_command *cmd, int i, int len)
 {
@@ -18,11 +28,11 @@ void	del_vdollar(t_mdata *data, t_command *cmd, int i, int len)
 	char	*end;
 
 	start = ft_strdupuntil(data, cmd->line, i);
-	end = ft_strdup(&cmd->line[i + len]);
-	if (start)
+	end = ft_strdup(&cmd->line[i + len + 1]);
+	if (is_string(start) == 1)
 	{
 		ft_free_me(cmd->line);
-		if (!end)
+		if (is_string(end) == 0)
 			cmd->line = start;
 		else
 		{
@@ -36,16 +46,6 @@ void	del_vdollar(t_mdata *data, t_command *cmd, int i, int len)
 		ft_free_me(cmd->line);
 		cmd->line = "";
 	}
-}
-
-int	is_string(char *str)
-{
-	int i = str[0];
-	printf("str[0]=:%i:\n", i);
-	if (str)
-		if (str[0] && str[0] != 0 && str[0] != '\0')
-			return (1);
-	return (-1);
 }
 
 void	change_letter(t_mdata *data, t_command *cmd, int i, char *value, int len)
