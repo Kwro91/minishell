@@ -1,20 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   getenv.c                                           :+:      :+:    :+:   */
+/*   free_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
+/*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/15 15:09:30 by afontain          #+#    #+#             */
-/*   Updated: 2024/02/15 15:16:23 by afontain         ###   ########.fr       */
+/*   Created: 2024/02/14 15:50:59 by besalort          #+#    #+#             */
+/*   Updated: 2024/02/19 15:14:59 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
-// int main(int ac, char **av)
-// {
-// 	if (getenv((const char *)av[1]) != 0)
-// 		return (printf("yo\n"), 1);
-// 	return (0);
-// }
+void	ft_free_me(char *str)
+{
+	if (str)
+		free(str);
+}

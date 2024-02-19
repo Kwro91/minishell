@@ -6,13 +6,16 @@
 #    By: besalort <besalort@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/29 14:05:28 by besalort          #+#    #+#              #
-#    Updated: 2024/02/16 19:31:22 by besalort         ###   ########.fr        #
+#    Updated: 2024/02/19 15:14:31 by besalort         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 
 SRC = ./src/main.c \
+	./src/prompt.c \
+	./src/ft_path.c \
+	./src/end_loop.c \
 	$(BUILT_IN_PATH)utils.c \
 	$(BUILT_IN_PATH)init_builtin.c \
 	$(BUILT_IN_PATH)echo.c \
@@ -23,11 +26,10 @@ SRC = ./src/main.c \
 	$(BUILT_IN_PATH)export_bis.c \
 	$(BUILT_IN_PATH)unset.c \
 	$(BUILT_IN_PATH)cd.c \
-	./src/prompt.c \
-	./src/ft_path.c \
-	./src/is_cmd.c \
-	./src/is_cmd2.c \
-	./src/free.c \
+	$(EXECUTION_PATH)is_cmd.c \
+	$(EXECUTION_PATH)is_cmd2.c \
+	$(FREE_PATH)free.c \
+	$(FREE_PATH)free_utils.c \
 	$(SIGNAL_PATH)signals.c \
 	$(SIGNAL_PATH)signals2.c \
 	$(EXECUTION_PATH)execution.c \
@@ -37,9 +39,8 @@ SRC = ./src/main.c \
 	$(REDIRECTION_PATH)redir_rewrite.c \
 	$(REDIRECTION_PATH)redir_close.c \
 	$(REDIRECTION_PATH)here_doc.c \
-	$(PARSE_PATH)create_cmd.c \
-	$(PARSE_PATH)check_line.c \
-	./src/parsing/quotes.c \
+	$(CHECK_CREATE_PATH)create_cmd.c \
+	$(CHECK_CREATE_PATH)check_line.c \
 	$(PIPE_PATH)child.c \
 	$(PIPE_PATH)mpipex.c \
 	$(PIPE_PATH)parent.c \
@@ -49,12 +50,14 @@ SRC = ./src/main.c \
 	$(DOLLAR_PATH)letter.c \
 	$(DOLLAR_PATH)other.c \
 	$(DOLLAR_PATH)letter_utils.c \
-	./src/end_loop.c \
-	./src/parsing/parsing.c \
-	./src/parsing/remove_quote.c \
-	./src/free_utils.c \
+	$(PARSING_PATH)parsing.c \
+	$(PARSING_PATH)remove_quote.c \
 	$(REDIRECTION_PATH)reset_redir.c \
 	
+
+FREE_PATH = ./src/free/
+
+PARSING_PATH = ./src/parsing/
 
 DOLLAR_PATH = ./src/parsing/dollar/
 
@@ -62,7 +65,7 @@ BUILT_IN_PATH = ./src/built_in/
 
 EXECUTION_PATH = ./src/execution/
 
-PARSE_PATH = ./src/parse/
+CHECK_CREATE_PATH = ./src/check_create/
 
 REDIRECTION_PATH = ./src/redirection/
 

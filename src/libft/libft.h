@@ -85,7 +85,7 @@ size_t		ft_strlcat(char *dst, const char *src, size_t size);
 
 ////////////////// GET NEXT LINE ///////////////////
 
-char		*get_next_line(int fd);
+// char		*get_next_line(int fd);
 
 ////////////////////FT_PRINTF /////////////////////////
 

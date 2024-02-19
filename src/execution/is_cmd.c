@@ -6,11 +6,11 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 16:26:03 by besalort          #+#    #+#             */
-/*   Updated: 2024/01/15 13:41:07 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/19 15:14:48 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
 int	is_echo(char **cmd_total)
 {

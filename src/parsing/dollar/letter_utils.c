@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 19:14:10 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/19 14:48:04 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/19 15:02:50 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ void	del_vdollar(t_mdata *data, t_command *cmd, int i, int len)
 
 	start = ft_strdupuntil(data, cmd->line, i);
 	end = ft_strdup(&cmd->line[i + len + 1]);
+	ft_free_me(cmd->line);
 	if (is_string(start) == 1)
 	{
-		ft_free_me(cmd->line);
 		if (is_string(end) == 0)
 			cmd->line = start;
 		else
@@ -42,10 +42,9 @@ void	del_vdollar(t_mdata *data, t_command *cmd, int i, int len)
 		}
 	}
 	else
-	{
-		ft_free_me(cmd->line);
-		cmd->line = "";
-	}
+		cmd->line = ft_strdup("");
+	ft_free_me(start);
+	ft_free_me(end);
 }
 
 void	change_letter(t_mdata *data, t_command *cmd, int i, char *value, int len)

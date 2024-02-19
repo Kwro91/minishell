@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 14:10:34 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/18 19:23:18 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/19 15:01:33 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,7 +163,6 @@ t_files		*create_new_files(t_mdata *data, t_files *files,
 char		*ft_strndup(t_mdata *data, char	*str, int len);
 void		reset_redir(t_mdata *data);
 
-// char	*is_here_doc(t_mdata *data, char *line);
 void		is_fd_in(t_mdata *data, t_command *cmd);
 void		is_fd_out(t_mdata *data, t_command *cmd);
 char		*redir_rewrite(t_mdata *data, t_command *cmd);
@@ -184,18 +183,12 @@ int			dollar_left(t_mdata *data, t_command *cmd, int i);
 char		*del_qdollar(t_mdata *data, t_command *cmd, int i);
 char		*ft_strdupfromuntil(t_mdata *data, char *src, int i, int n);
 char		*ft_strdupuntil(t_mdata *data, char *src, int i);
-// char		*ft_strdupfrom(t_mdata *data, char *src, int i);
 char		*find_var(t_mdata *data, t_command *cmd, int i);
 void		del_vdollar(t_mdata *data, t_command *cmd, int i, int len);
 void		change_letter(t_mdata *data, t_command *cmd, int i, char *value, int len);
 
 //Quotes
-// int			check_quotes(char *str);
-// char		*remove_quotes(t_command *cmd);
 void		remove_quotes(t_mdata *data, t_command *cmd);
-// void		remove_double(char *cmd_total, char *new_cmd, int i, int j);
-// void		remove_single(char *cmd_total, char *new_cmd, int i, int j);
-// int			nb_quotes(char *cmd_total);
 
 //Pipe
 void		mpipex(t_mdata *data);

@@ -6,11 +6,11 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 15:01:29 by afontain          #+#    #+#             */
-/*   Updated: 2024/01/15 13:32:04 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/19 15:14:55 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
 int	is_unset(char **cmd_total, t_mdata *data)
 {

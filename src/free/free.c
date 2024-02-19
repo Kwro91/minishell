@@ -6,11 +6,11 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 16:14:52 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/15 15:12:53 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/19 15:15:03 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
 void	ft_error(t_mdata *data, char *line, int close)
 {

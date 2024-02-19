@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 17:46:08 by afontain          #+#    #+#             */
-/*   Updated: 2024/02/18 21:40:17 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/19 15:04:14 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ char	*find_var(t_mdata *data, t_command *cmd, int i)
 		del_vdollar(data, cmd, i, len);
 	else
 		change_letter(data, cmd, i, str1, len);
+	ft_free_me(var);
 	return (str1);
 }
 
