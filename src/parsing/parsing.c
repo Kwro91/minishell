@@ -6,33 +6,41 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 15:30:01 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/18 20:28:21 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/19 15:27:06 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-int	parse_dquote(t_mdata *data, t_command *cmd, char *line, int i)
+int	parse_dquote(t_mdata *data, t_command *cmd, int i)
 {
-	while (line[i])
+	int	len;
+	
+	len = ft_strlen(cmd->line);
+	while (i < len && cmd->line)
 	{
-		if (line[i] == '"')
+		if (cmd->line[i] == '"')
 			return (i);
-		else if (line[i] == '$')
+		else if (cmd->line[i] == '$')
 			i = handle_dollar(data, cmd, i);
 		i++;
+		len = ft_strlen(cmd->line);
 	}
 	cmd->good = -1;
 	return (ft_error(data, "Error: double quote not closed\n", 0), -2);
 }
 
-int	parse_squote(t_mdata *data, t_command *cmd, char *line, int i)
+int	parse_squote(t_mdata *data, t_command *cmd, int i)
 {
-	while (line[i])
+	int	len;
+	
+	len = ft_strlen(cmd->line);
+	while (i < len && cmd->line)
 	{
-		if (line[i] == '\'')
+		if (cmd->line[i] == '\'')
 			return (i);
 		i++;
+		len = ft_strlen(cmd->line);
 	}
 	cmd->good = -1;
 	return (ft_error(data, "Error: simple quote not closed\n", 0), -2);
@@ -49,9 +57,9 @@ void	parse_cmd(t_mdata *data, t_command *cmd)
 	{
 		
 		if (cmd->line[i] == '"')
-			i = parse_dquote(data, cmd, cmd->line, i + 1);
+			i = parse_dquote(data, cmd, i + 1);
 		else if (cmd->line[i] == '\'')
-			i = parse_squote(data, cmd, cmd->line, i + 1);
+			i = parse_squote(data, cmd, i + 1);
 		else if (cmd->line[i] == '$')
 			i = handle_dollar(data, cmd, i);
 		if (i == -1)

@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 15:38:43 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/15 17:42:33 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/19 15:57:07 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,9 @@ char	*next_word(t_mdata *data, char *line)
 	i = 0;
 	apo = 0;
 	count = 0;
-	while (line[i] && line[i] == ' ')
+	while (ft_strlen(line) > 0 && line[i] == ' ')
 		i++;
-	while (line[i])
+	while (ft_strlen(line) > 0 && line[i])
 	{
 		if (line[i] == '"' && apo == 0)
 		{

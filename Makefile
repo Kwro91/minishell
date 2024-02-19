@@ -6,7 +6,7 @@
 #    By: besalort <besalort@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/29 14:05:28 by besalort          #+#    #+#              #
-#    Updated: 2024/02/19 15:14:31 by besalort         ###   ########.fr        #
+#    Updated: 2024/02/19 15:49:24 by besalort         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,6 @@ NAME = minishell
 SRC = ./src/main.c \
 	./src/prompt.c \
 	./src/ft_path.c \
-	./src/end_loop.c \
 	$(BUILT_IN_PATH)utils.c \
 	$(BUILT_IN_PATH)init_builtin.c \
 	$(BUILT_IN_PATH)echo.c \
@@ -28,6 +27,7 @@ SRC = ./src/main.c \
 	$(BUILT_IN_PATH)cd.c \
 	$(EXECUTION_PATH)is_cmd.c \
 	$(EXECUTION_PATH)is_cmd2.c \
+	$(FREE_PATH)end_loop.c \
 	$(FREE_PATH)free.c \
 	$(FREE_PATH)free_utils.c \
 	$(SIGNAL_PATH)signals.c \
@@ -39,6 +39,7 @@ SRC = ./src/main.c \
 	$(REDIRECTION_PATH)redir_rewrite.c \
 	$(REDIRECTION_PATH)redir_close.c \
 	$(REDIRECTION_PATH)here_doc.c \
+	$(REDIRECTION_PATH)reset_redir.c \
 	$(CHECK_CREATE_PATH)create_cmd.c \
 	$(CHECK_CREATE_PATH)check_line.c \
 	$(PIPE_PATH)child.c \
@@ -52,7 +53,6 @@ SRC = ./src/main.c \
 	$(DOLLAR_PATH)letter_utils.c \
 	$(PARSING_PATH)parsing.c \
 	$(PARSING_PATH)remove_quote.c \
-	$(REDIRECTION_PATH)reset_redir.c \
 	
 
 FREE_PATH = ./src/free/

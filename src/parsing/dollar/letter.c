@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 17:46:08 by afontain          #+#    #+#             */
-/*   Updated: 2024/02/19 15:04:14 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/19 15:53:52 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,5 +79,5 @@ int	handle_letter(t_mdata *data, t_command *cmd, int i)
 	i = ft_strlen(start) + ft_strlen(value); //a verifier
 	ft_free_me(value);
 	ft_free_me(start);
-	return (i);
+	return (i - 1);
 }
