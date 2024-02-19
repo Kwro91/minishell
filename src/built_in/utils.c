@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 14:15:35 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/15 16:51:02 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/19 18:09:53 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,4 +65,33 @@ void	good_print(char	*line)
 	}
 	if (equal == 1)
 		ft_printf("\"");
+}
+
+char	*next_word(t_mdata *data, char *line)
+{
+	int	i;
+	int	count;
+	int	apo;
+
+	i = 0;
+	apo = 0;
+	count = 0;
+	while (ft_strlen(line) > 0 && line[i] == ' ')
+		i++;
+	while ((int)ft_strlen(line) > i && line[i])
+	{
+		if (line[i] == '"' && apo == 0)
+		{
+			apo = 1;
+			i++;
+		}
+		if ((line[i] == '"' && apo == 1)
+			|| (apo == 0 && ft_isalnum(line[i]) == 0))
+			break ;
+		i++;
+		count++;
+	}
+	if (count == 0)
+		return (NULL);
+	return (dup_word(data, &line[i - count], count));
 }

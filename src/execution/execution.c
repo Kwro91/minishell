@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 15:59:33 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/16 17:43:19 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/19 18:27:17 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ char	*ft_access_mini(t_mdata *data, t_command *cmd)
 void	solo_cmd(t_mdata *data, t_command *cmd, char *path)
 {
 	int	pid;
-	int	value;
 	int	status;
 
 	if (!path)
@@ -77,10 +76,8 @@ void	solo_cmd(t_mdata *data, t_command *cmd, char *path)
 		return (ft_error(data, "Error: fork\n", 0));
 	if (pid == 0)
 	{
-		value = redir(data, cmd);
 		close_all_files(data, cmd);
-		if (value == 0)
-			value = execve(path, cmd->cmd, data->env);
+		execve(path, cmd->cmd, data->env);
 		end_loop(data);
 		ft_free_me(path);
 		exit_mini(data);

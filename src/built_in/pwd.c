@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 12:11:42 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/13 16:03:39 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/19 18:19:13 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,5 +73,6 @@ void	setup_pwd(t_mdata *data, char **env, int first)
 
 void	pwd(t_mdata *data)
 {
+	setup_pwd(data, data->env, 0);
 	ft_printf("%s\n", data->pwd);
 }

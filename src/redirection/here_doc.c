@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 16:06:24 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/19 15:43:09 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/19 18:13:01 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,18 @@ void	ft_meof(t_files *file)
 	free(file->files);
 	file->files = ft_strjoin(eof, add);
 	free(eof);
+}
+
+int	is_eof(char	*line, t_files *file)
+{
+	int	len;
+
+	len = ft_strlen(line);
+	if ((int)ft_strlen(file->files) < len)
+		len = (int)ft_strlen(file->files);
+	if (ft_strncmp(line, file->files, len) == 0)
+		return (1);
+	return (0);
 }
 
 void	ft_mhere_doc(t_mdata *data, t_files *file)
@@ -40,7 +52,7 @@ void	ft_mhere_doc(t_mdata *data, t_files *file)
 	{
 		write(1, "> ", 2);
 		line = get_next_line(0);
-		if (ft_strncmp(line, file->files, ft_strlen(file->files)) == 0)
+		if (is_eof(line, file) == 1)
 			break ;
 		write(file->fd, line, ft_strlen(line));
 		free(line);

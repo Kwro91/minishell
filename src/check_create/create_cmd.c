@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 14:22:53 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/13 19:18:40 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/19 18:46:33 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	split_parse(t_mdata *data, char *line)
 
 	new = NULL;
 	i = 0;
-	split = ft_split(line, '|');
+	split = ft_split(line, '|'); // ICI ON OBTIENT LES CMDS
 	while (split && split[i])
 	{
 		if (i == 0)

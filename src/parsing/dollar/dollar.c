@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 12:52:09 by afontain          #+#    #+#             */
-/*   Updated: 2024/02/18 17:06:49 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/19 17:39:00 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*ft_strdupfromuntil(t_mdata *data, char *src, int i, int n)
 	j = 0;
 	if (n < 0)
 		return (NULL);
-	if (!src)
+	if (!src || ((int)ft_strlen(src) < i))
 		return (NULL);
 	tmp = next_word(data, &src[i]);
 	dest = malloc(sizeof(char) * (ft_strlen(tmp) + 1));
