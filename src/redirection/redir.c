@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 15:38:43 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/19 18:46:06 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/19 20:12:21 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ int	redir(t_mdata *data, t_command *cmd)
 	if (cmd->out)
 		do_out_redir(data, cmd);
 	ft_free_lines(cmd->cmd);
-	cmd->cmd = ft_split(cmd->line, ' '); // ICI ON OBTIENT LES ARGS
+	cmd->cmd = split_cmd(data, cmd->line, ' ');
 	if (!cmd->cmd)
 	{
 		ft_error(data, "Error: split\n", 0);

@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 14:10:34 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/19 18:10:22 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/19 20:11:49 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -200,4 +200,10 @@ t_command	*rmiddle(t_mdata *data, t_command *cmd);
 void		rlast(t_mdata *data, t_command *cmd);
 void		mwait_childs(t_mdata *data);
 void		run_all(t_mdata *data);
+
+// SPLIT
+char		**split_cmd(t_mdata *data, char *str, char c);
+int			split_dquote(t_mdata *data, char *line, int i);
+int			split_squote(t_mdata *data, char *line, int i);
+int			count_cmd(t_mdata *data, char *str, char c);
 #endif 

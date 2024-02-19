@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 14:22:53 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/19 18:46:33 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/19 20:19:19 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ t_command	*create_command(t_mdata *data, char *lines)
 	new->cmd = NULL;
 	is_fd_in(data, new);
 	is_fd_out(data, new);
-	parse_cmd(data, new);
 	new->next = NULL;
 	return (new);
 }
@@ -40,7 +39,8 @@ void	split_parse(t_mdata *data, char *line)
 
 	new = NULL;
 	i = 0;
-	split = ft_split(line, '|'); // ICI ON OBTIENT LES CMDS
+	// split = ft_split(line, '|'); // ICI ON OBTIENT LES CMDS
+	split = split_cmd(data, line, '|');
 	while (split && split[i])
 	{
 		if (i == 0)
