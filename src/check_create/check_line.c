@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_line.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
+/*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 17:12:09 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/20 19:58:27 by afontain         ###   ########.fr       */
+/*   Updated: 2024/02/20 20:31:31 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	check_line_pipe(t_mdata *data, t_command *cmd)
 		{
 			ft_error(data, "minishell: ", 2);
 			ft_error(data, "syntax error near token ", 2);
-			return (ft_error(data, "'|'\n", 2), -1); //???
+			return (ft_error(data, "'|'\n", 2), -1);
 		}
 		tmp = tmp->next;
 	}
