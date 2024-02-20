@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
+/*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 15:30:01 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/19 20:48:57 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/20 15:26:27 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,16 @@ int	parse_squote(t_mdata *data, t_command *cmd, int i)
 
 void	remove_all_quotes(t_mdata *data, t_command *cmd)
 {
-	remove_quotes(data, cmd);
+	char	**tab;
+
+	tab = cmd->cmd;
+	if (!cmd)
+		return ;
+	while (*tab)
+	{
+		remove_quotes(data, tab);
+		tab++;
+	}
 }
 
 void	parse_cmd(t_mdata *data, t_command *cmd)
