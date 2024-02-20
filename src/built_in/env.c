@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
+/*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 15:55:35 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/08 17:08:03 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/20 20:16:11 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,5 @@ void	env_cmd(t_mdata *data)
 		ft_printf("%s\n", data->export[i]);
 		i++;
 	}
+	g_retval = 0;
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
+/*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 14:08:19 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/07 16:43:27 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/20 20:16:05 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,5 @@ void	ft_echo(char **text)
 	}
 	if (text && ft_strncmp(text[0], "-n\0", 3) != 0)
 		write(1, "\n", 1);
+	g_retval = 0;
 }

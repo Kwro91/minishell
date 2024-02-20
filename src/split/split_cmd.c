@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split_cmd.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
+/*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 17:43:20 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/20 19:04:47 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/20 20:04:16 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,14 +50,14 @@ char	*fill_cmd(t_mdata *data, char *src, int i, char *cmp)
 			j = split_squote(data, src, j);
 		j++;
 		if (j < 0)
-			ft_error(data, "Error: quote not closed\n", 0);
+			ft_error(data, "Error: quote not closed\n", 127);
 	}
 	if (j < 0)
 		j = i;
 	count = j - i;
 	str = malloc(sizeof(char) * (count + 1));
 	if (!str)
-		ft_error(data, "Error: malloc\n", 1);
+		ft_error(data, "Error: malloc\n", -1);
 	j = 0;
 	while (j < count)
 		str[j++] = src[i++];
@@ -93,7 +93,7 @@ void	split1(t_mdata *data, char **tab, char *str, char *cmp)
 		{
 			tab[j] = fill_cmd(data, str, i, cmp);
 			if (!tab[j])
-				ft_error(data, "Error: malloc\n", 1);
+				ft_error(data, "Error: malloc\n", -1);
 			j++;
 		}
 		i = split2(data, i, str, cmp);

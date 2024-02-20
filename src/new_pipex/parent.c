@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parent.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
+/*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 17:38:09 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/14 19:12:48 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/20 20:00:08 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,7 @@
 void	rfirst(t_mdata *data, t_command *cmd)
 {
 	if (pipe(data->pipes) < 0)
-		return (ft_error(data, "Error: pipe\n", 0),
-			exit_mini(data), (void) NULL);
+		return (ft_error(data, "Error: pipe\n", -1));
 	ft_first_child(data, cmd);
 	close(data->pipes[1]);
 	data->pipe_save = data->pipes[0];
@@ -30,7 +29,7 @@ t_command	*rmiddle(t_mdata *data, t_command *cmd)
 	while (tmp->next)
 	{
 		if (pipe (data->pipes) < 0)
-			ft_error(data, "Error: pipe\n", 1);
+			ft_error(data, "Error: pipe\n", -1);
 		ft_mid_childs(data, tmp);
 		close(data->pipes[1]);
 		close(data->pipe_save);

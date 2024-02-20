@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_line.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
+/*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 17:12:09 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/15 15:08:19 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/20 19:58:27 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ int	check_line_pipe(t_mdata *data, t_command *cmd)
 		}
 		if (good == 0)
 		{
-			ft_error(data, "minishell: ", 0);
-			ft_error(data, "syntax error near token ", 0);
-			return (ft_error(data, "'|'\n", 0), -1);
+			ft_error(data, "minishell: ", 2);
+			ft_error(data, "syntax error near token ", 2);
+			return (ft_error(data, "'|'\n", 2), -1); //???
 		}
 		tmp = tmp->next;
 	}
@@ -69,7 +69,7 @@ int	check_before(t_mdata *data, char *line)
 			good = 1;
 		if (ft_isalnum((int)line[i]) == 0 && is_allowed(line[i]) == 0)
 		{
-			ft_error(data, "Please don't use special character\n", 0);
+			ft_error(data, "Please don't use special character\n", 3);
 			return (0);
 		}
 		i++;

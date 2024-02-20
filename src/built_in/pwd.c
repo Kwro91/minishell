@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
+/*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 12:11:42 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/19 18:19:13 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/20 20:17:17 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	add_pwd(t_mdata *data)
 	lines = nb_word(data->env);
 	new = malloc(sizeof(char *) * (lines + 2));
 	if (!new)
-		return (ft_error(data, "Error: malloc\n", 1));
+		return (ft_error(data, "Error: malloc\n", -1));
 	while (i < lines)
 	{
 		new[i] = ft_strdup(data->env[i]);
@@ -75,4 +75,5 @@ void	pwd(t_mdata *data)
 {
 	setup_pwd(data, data->env, 0);
 	ft_printf("%s\n", data->pwd);
+	g_retval = 0;
 }

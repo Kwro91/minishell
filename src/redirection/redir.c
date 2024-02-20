@@ -6,7 +6,7 @@
 /*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 15:38:43 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/20 15:37:14 by afontain         ###   ########.fr       */
+/*   Updated: 2024/02/20 20:04:04 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*dup_word(t_mdata *data, char	*line, int len)
 	i = 0;
 	word = malloc(sizeof(char) * len + 1);
 	if (!word)
-		ft_error(data, "Error, malloc\n", 1);
+		ft_error(data, "Error, malloc\n", -1);
 	while (i < len && line[i])
 	{
 		word[i] = line[i];
@@ -42,7 +42,7 @@ int	do_out_redir(t_mdata *data, t_command *cmd)
 			if (dup2(tmp->fd, 1) < 0)
 			{
 				cmd->good = -1;
-				return (ft_error(data, "Error: dup2\n", 0), -1);
+				return (ft_error(data, "Error: dup2\n", -1), -1);
 			}
 			close(tmp->fd);
 		}
@@ -63,7 +63,7 @@ int	do_in_redir(t_mdata *data, t_command *cmd)
 			if (dup2(tmp->fd, 0) < 0)
 			{
 				cmd->good = -1;
-				return (ft_error(data, "Error: dup2\n", 0), -1);
+				return (ft_error(data, "Error: dup2\n", -1), -1);
 			}
 			close(tmp->fd);
 		}

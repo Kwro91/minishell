@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
+/*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 14:54:46 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/12 15:51:35 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/20 20:17:03 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	copy_export(t_mdata *data, char **line, int count)
 	count_l = nb_word(line);
 	new = ft_calloc(sizeof(char *), (base + (count_l - count) + 1));
 	if (!new)
-		return (ft_error(data, "Error: calloc\n", 1));
+		return (ft_error(data, "Error: calloc\n", -1));
 	new = copy_add(data, new, data->export, base);
 	new = copy_add(data, new, line, count_l);
 	new[base + (count_l - count)] = NULL;
@@ -91,6 +91,7 @@ void	print_export(t_mdata *data)
 
 void	export_cmd(t_mdata *data, char **line)
 {
+	g_retval = 0;
 	if (!line)
 		return (print_export(data));
 	if (line != NULL)
