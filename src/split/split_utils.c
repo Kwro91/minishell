@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
+/*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 18:51:19 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/20 17:55:00 by afontain         ###   ########.fr       */
+/*   Updated: 2024/02/20 19:13:57 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	split_dquote(t_mdata *data, char *line, int i)
 		len = ft_strlen(line);
 	}
 	// return (ft_error(data, "Error : double quote not closed\n", 0), -2);
-	return (-2);
+	return (i);
 }
 
 int	split_squote(t_mdata *data, char *line, int i)
@@ -59,5 +59,5 @@ int	split_squote(t_mdata *data, char *line, int i)
 		len = ft_strlen(line);
 	}
 	// return (ft_error(data, "Error : single quote not closed\n", 0), -2);
-	return (-2);
+	return (i);
 }
