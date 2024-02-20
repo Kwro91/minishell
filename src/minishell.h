@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
+/*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 14:10:34 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/20 16:15:17 by afontain         ###   ########.fr       */
+/*   Updated: 2024/02/20 19:44:03 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,6 +149,7 @@ void		handle_signals(void);
 //EXECUTION
 char		*ft_access_mini(t_mdata *data, t_command *cmd);
 void		launch_cmd(t_mdata *data, t_command *cmd);
+char		*access_utils(t_mdata *data, t_command *cmd);
 
 //REDIRECTION
 int			redir(t_mdata *data, t_command *cmd);
@@ -185,8 +186,9 @@ char		*ft_strdupfromuntil(t_mdata *data, char *src, int i, int n);
 char		*ft_strdupuntil(t_mdata *data, char *src, int i);
 char		*find_var(t_mdata *data, t_command *cmd, int i);
 void		del_vdollar(t_mdata *data, t_command *cmd, int i, int len);
+char		*find_goodpart(t_mdata *data, t_command *cmd, int i);
 void		change_letter(t_mdata *data, t_command *cmd, int i,
-				char *value, int len);
+				char *value);
 
 //Quotes
 void		remove_quotes(t_mdata *data, char **line);

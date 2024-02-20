@@ -6,7 +6,7 @@
 #    By: besalort <besalort@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/29 14:05:28 by besalort          #+#    #+#              #
-#    Updated: 2024/02/19 19:47:44 by besalort         ###   ########.fr        #
+#    Updated: 2024/02/20 19:34:35 by besalort         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,8 @@ SRC = ./src/main.c \
 	$(BUILT_IN_PATH)export_bis.c \
 	$(BUILT_IN_PATH)unset.c \
 	$(BUILT_IN_PATH)cd.c \
+	$(EXECUTION_PATH)execution.c \
+	$(EXECUTION_PATH)execution_utils.c \
 	$(EXECUTION_PATH)is_cmd.c \
 	$(EXECUTION_PATH)is_cmd2.c \
 	$(FREE_PATH)end_loop.c \
@@ -32,7 +34,6 @@ SRC = ./src/main.c \
 	$(FREE_PATH)free_utils.c \
 	$(SIGNAL_PATH)signals.c \
 	$(SIGNAL_PATH)signals2.c \
-	$(EXECUTION_PATH)execution.c \
 	$(REDIRECTION_PATH)redir.c \
 	$(REDIRECTION_PATH)redir_utils.c \
 	$(REDIRECTION_PATH)redir_in_out.c \

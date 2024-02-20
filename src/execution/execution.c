@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 15:59:33 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/20 19:20:20 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/20 19:32:50 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,7 @@ char	*ft_access_mini(t_mdata *data, t_command *cmd)
 	if (ft_strncmp(cmd->cmd[0], "", 1) == 0)
 		return (ft_error(data, "minishell: command not found: \n", 0), NULL);
 	if (cmd->cmd[0] && access(cmd->cmd[0], X_OK) == 0)
-	{
-		tmp = ft_strdup(cmd->cmd[0]);
-		if (!tmp)
-			ft_error(data, "Error: strdup\n", 1);
-		return (tmp);
-	}
+		return (tmp = access_utils(data, cmd));
 	while (cmd->cmd[0] && data->paths && data->paths[i++])
 	{
 		tmp = ft_strjoin(data->paths[i], "/");
@@ -108,8 +103,8 @@ void	pipe_cmd(t_mdata *data, t_command *cmd)
 
 void	launch_cmd(t_mdata *data, t_command *cmd)
 {
-	// if (!cmd || cmd->good == -1)
-	// 	return ;
+	if (!cmd || cmd->good == -1)
+		return ;
 	if (data->nb_cmd == 1)
 		if (verif_cmd(data, cmd) == 0)
 			solo_cmd(data, cmd, ft_access_mini(data, cmd));

@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 17:43:20 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/20 19:24:00 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/20 19:37:24 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,6 @@ char	*fill_cmd(t_mdata *data, char *src, int i, char *cmp)
 		else if (src[j] == '\'')
 			j = split_squote(data, src, j);
 		j++;
-		// if (j < 0)
-		// 	ft_error(data, "Error: quote not closed\n", 0);
 	}
 	count = j - i;
 	if (count < 0)
@@ -112,12 +110,6 @@ char	**split_cmd(t_mdata *data, char *str, char *cmp)
 	tab = malloc(sizeof(char *) * (count + 1));
 	if (!tab)
 		return (NULL);
-	// if (count == 1)
-	// {
-	// 	tab[0] = ft_strdup(str);
-	// 	tab[1] = NULL;
-	// }
-	// else
 	split1(data, tab, str, cmp);
 	return (tab);
 }

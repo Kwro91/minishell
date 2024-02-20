@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 15:30:01 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/20 18:52:19 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/20 19:38:41 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,11 +60,20 @@ void	remove_all_quotes(t_mdata *data, t_command *cmd)
 	}
 }
 
+void	parse_norm(t_mdata *data, t_command *cmd)
+{
+	char	*cmp;
+
+	ft_free_lines(cmd->cmd);
+	cmp = " \t";
+	cmd->cmd = split_cmd(data, cmd->line, cmp);
+	remove_all_quotes(data, cmd);
+}
+
 void	parse_cmd(t_mdata *data, t_command *cmd)
 {
 	int		i;
 	int		len;
-	char	*cmp;
 
 	i = 0;
 	len = ft_strlen(cmd->line);
@@ -84,8 +93,5 @@ void	parse_cmd(t_mdata *data, t_command *cmd)
 		i++;
 		len = ft_strlen(cmd->line);
 	}
-	ft_free_lines(cmd->cmd);
-	cmp = " \t";
-	cmd->cmd = split_cmd(data, cmd->line, cmp);
-	remove_all_quotes(data, cmd);
+	parse_norm(data, cmd);
 }

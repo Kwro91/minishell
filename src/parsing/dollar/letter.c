@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   letter.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
+/*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 17:46:08 by afontain          #+#    #+#             */
-/*   Updated: 2024/02/20 15:52:42 by afontain         ###   ########.fr       */
+/*   Updated: 2024/02/20 19:43:20 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ char	*find_var(t_mdata *data, t_command *cmd, int i)
 	if (!str1)
 		del_vdollar(data, cmd, i, len);
 	else
-		change_letter(data, cmd, i, str1, len);
+		change_letter(data, cmd, i, str1);
 	ft_free_me(var);
 	return (str1);
 }
