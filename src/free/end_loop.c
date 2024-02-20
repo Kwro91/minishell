@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   end_loop.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
+/*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 15:32:02 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/19 15:49:44 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/20 15:57:04 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	close_end(t_mdata *data)
 		free_cmd(tmp);
 		close_all_files(data, tmp);
 		close_here_doc();
-		free_files(tmp); //ici prob peut etre
+		free_files(tmp);
 		next = tmp->next;
 		free(tmp);
 		tmp = next;

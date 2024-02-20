@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   letter_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
+/*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 19:14:10 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/19 15:02:50 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/20 15:47:36 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 int	is_string(char *str)
 {
-	// int i = str[0];
-	// printf("str[0]=:%i:\n", i);
 	if (str)
 		if (str[0] && str[0] != 0 && str[0] != '\0')
 			return (1);
@@ -56,26 +54,26 @@ void	change_letter(t_mdata *data, t_command *cmd, int i, char *value, int len)
 	start = ft_strdupuntil(data, cmd->line, i);
 	end = ft_strdup(&cmd->line[i + len + 1]);
 	ft_free_me(cmd->line);
-	if (is_string(start) == 1) //start
+	if (is_string(start) == 1)
 	{
 		tmp = ft_strjoin(start, value);
-		if (is_string(end) == 1) //end && start
+		if (is_string(end) == 1)
 		{	
 			cmd->line = ft_strjoin(tmp, end);
 			ft_free_me(tmp);
 		}
-		else //!end && start
+		else
 		{
 			cmd->line = tmp;
 		}
 	}
-	else //!start
+	else
 	{
-		if (is_string(end) == 1) //end && !start
+		if (is_string(end) == 1)
 		{
 			cmd->line = ft_strjoin(value, end);
 		}
-		else //!end && !start
+		else
 			cmd->line = ft_strdup(value);
 	}
 	ft_free_me(start);

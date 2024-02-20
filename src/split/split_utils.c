@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
+/*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 18:51:19 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/19 20:05:52 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/20 15:43:56 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	split_dquote(t_mdata *data, char *line, int i)
 {
 	int	len;
-	
+
 	len = ft_strlen(line);
 	i++;
 	while (i < len && line)
@@ -32,7 +32,7 @@ int	split_dquote(t_mdata *data, char *line, int i)
 int	split_squote(t_mdata *data, char *line, int i)
 {
 	int	len;
-	
+
 	len = ft_strlen(line);
 	i++;
 	while (i < len && line)

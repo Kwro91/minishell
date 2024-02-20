@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
+/*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 15:59:33 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/19 20:49:43 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/20 15:58:35 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	error_access_mini(t_mdata *data, char *cmd)
 {
-	char *tmp;
-	char *join;
+	char	*tmp;
+	char	*join;
 
 	join = NULL;
 	tmp = NULL;
@@ -27,7 +27,7 @@ void	error_access_mini(t_mdata *data, char *cmd)
 	else
 	{
 		tmp = ft_strdup("minishell: command not found: ");
-		join = ft_strjoin(tmp, "\n");	
+		join = ft_strjoin(tmp, "\n");
 	}
 	ft_error(data, join, 0);
 	ft_free_me(tmp);
@@ -50,7 +50,7 @@ char	*ft_access_mini(t_mdata *data, t_command *cmd)
 			ft_error(data, "Error: strdup\n", 1);
 		return (tmp);
 	}
-	while (cmd->cmd[0] && data->paths && data->paths[i])
+	while (cmd->cmd[0] && data->paths && data->paths[i++])
 	{
 		tmp = ft_strjoin(data->paths[i], "/");
 		join = ft_strjoin(tmp, cmd->cmd[0]);
@@ -58,7 +58,6 @@ char	*ft_access_mini(t_mdata *data, t_command *cmd)
 			return (ft_free_me(tmp), join);
 		ft_free_me(join);
 		ft_free_me(tmp);
-		i++;
 	}
 	error_access_mini(data, cmd->cmd[0]);
 	return (NULL);
@@ -93,7 +92,7 @@ void	solo_cmd(t_mdata *data, t_command *cmd, char *path)
 void	pipe_cmd(t_mdata *data, t_command *cmd)
 {
 	char	*tmp;
-	
+
 	if (verif_cmd(data, cmd) == 0)
 	{
 		close_all_files(data, cmd);

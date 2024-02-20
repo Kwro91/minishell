@@ -6,7 +6,7 @@
 /*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 14:10:34 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/20 14:55:26 by afontain         ###   ########.fr       */
+/*   Updated: 2024/02/20 15:42:34 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -185,7 +185,8 @@ char		*ft_strdupfromuntil(t_mdata *data, char *src, int i, int n);
 char		*ft_strdupuntil(t_mdata *data, char *src, int i);
 char		*find_var(t_mdata *data, t_command *cmd, int i);
 void		del_vdollar(t_mdata *data, t_command *cmd, int i, int len);
-void		change_letter(t_mdata *data, t_command *cmd, int i, char *value, int len);
+void		change_letter(t_mdata *data, t_command *cmd, int i,
+				char *value, int len);
 
 //Quotes
 void		remove_quotes(t_mdata *data, char **line);

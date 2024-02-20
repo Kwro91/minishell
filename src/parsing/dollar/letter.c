@@ -3,21 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   letter.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
+/*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 17:46:08 by afontain          #+#    #+#             */
-/*   Updated: 2024/02/19 15:53:52 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/20 15:52:42 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-// $x
-//si x est une lettre on vient ici, on cherche dans l'env et export x, si x existe on remplace $x par var
-//si x n'existe pas ou si la var n'existe pas, on supprime $x ("")
 char	*find_in_tab(t_mdata *data, char *var, int len, char **tab)
 {	
-	int 	k;
+	int		k;
 	char	*value;
 
 	(void)data;
@@ -31,31 +28,30 @@ char	*find_in_tab(t_mdata *data, char *var, int len, char **tab)
 	if (tab[k][len] != '=' || (tab[k][len] == '=' && tab[k][len + 1] == '\0'))
 		return (NULL);
 	else
-		value = ft_strdup(&tab[k][len+1]);
+		value = ft_strdup(&tab[k][len + 1]);
 	return (value);
 }
 
 char	*find_goodpart(t_mdata *data, t_command *cmd, int i)
 {	
-	int j;
-	char *str1;
-	
+	int		j;
+	char	*str1;
+
 	j = i;
-	while (ft_isalnum(cmd->line[i+1]) == 1)
+	while (ft_isalnum(cmd->line[i + 1]) == 1)
 		i++;
-	str1 = ft_strdupfromuntil(data, cmd->line, j+1, (i - j));
+	str1 = ft_strdupfromuntil(data, cmd->line, j + 1, (i - j));
 	return (str1);
 }
 
 char	*find_var(t_mdata *data, t_command *cmd, int i)
 {
-	int len;
-	char *var;
-	char *str1;
+	int		len;
+	char	*var;
+	char	*str1;
 
 	var = find_goodpart(data, cmd, i);
 	len = ft_strlen(var);
-	// i = 0;
 	str1 = find_in_tab(data, var, len, data->env);
 	if (!str1)
 		str1 = find_in_tab(data, var, len, data->export);
@@ -71,12 +67,12 @@ int	handle_letter(t_mdata *data, t_command *cmd, int i)
 {
 	char	*value;
 	char	*start;
-	
+
 	start = ft_strdupuntil(data, cmd->line, i);
 	value = find_var(data, cmd, i);
 	if (!start)
 		ft_error(data, "Error: malloc\n", 1);
-	i = ft_strlen(start) + ft_strlen(value); //a verifier
+	i = ft_strlen(start) + ft_strlen(value);
 	ft_free_me(value);
 	ft_free_me(start);
 	return (i - 1);

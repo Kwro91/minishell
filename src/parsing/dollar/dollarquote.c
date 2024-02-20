@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   dollarquote.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
+/*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 17:50:04 by afontain          #+#    #+#             */
-/*   Updated: 2024/02/16 19:21:23 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/20 15:55:14 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
-
-//dans ce cas on ne supprime QUE le $
 
 char	*del_qdollar(t_mdata *data, t_command *cmd, int i)
 {

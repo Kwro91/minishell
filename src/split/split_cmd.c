@@ -6,13 +6,13 @@
 /*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 17:43:20 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/20 13:05:07 by afontain         ###   ########.fr       */
+/*   Updated: 2024/02/20 15:44:08 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-int str_to_cmp(char c, char *cmp)
+int	str_to_cmp(char c, char *cmp)
 {
 	int	i;
 

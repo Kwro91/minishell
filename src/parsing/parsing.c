@@ -6,7 +6,7 @@
 /*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 15:30:01 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/20 15:39:28 by afontain         ###   ########.fr       */
+/*   Updated: 2024/02/20 15:46:51 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	parse_dquote(t_mdata *data, t_command *cmd, int i)
 {
 	int	len;
-	
+
 	len = ft_strlen(cmd->line);
 	while (i < len && cmd->line)
 	{
@@ -33,7 +33,7 @@ int	parse_dquote(t_mdata *data, t_command *cmd, int i)
 int	parse_squote(t_mdata *data, t_command *cmd, int i)
 {
 	int	len;
-	
+
 	len = ft_strlen(cmd->line);
 	while (i < len && cmd->line)
 	{
@@ -69,7 +69,6 @@ void	parse_cmd(t_mdata *data, t_command *cmd)
 	len = ft_strlen(cmd->line);
 	while (i >= 0 && cmd->line && i < len)
 	{
-		
 		if (cmd->line[i] == '"')
 			i = parse_dquote(data, cmd, i + 1);
 		else if (cmd->line[i] == '\'')
