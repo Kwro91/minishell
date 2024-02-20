@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir_rewrite.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
+/*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 15:15:57 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/16 16:56:27 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/20 16:18:39 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ char	*sub_files_utils(t_mdata *data, t_command *cmd, t_files *tmp, char c)
 	i = 0;
 	one = NULL;
 	two = NULL;
-	while (cmd->line[i])
+	while (cmd->line[i++])
 	{
 		if (one == NULL && cmd->line[i] == c)
 			one = ft_strndup(data, cmd->line, i);
@@ -52,7 +52,6 @@ char	*sub_files_utils(t_mdata *data, t_command *cmd, t_files *tmp, char c)
 			two = ft_strdup(&cmd->line[i + ft_strlen(tmp->files)]);
 			break ;
 		}
-		i++;
 	}
 	new = ft_strjoin(one, two);
 	ft_free_me(one);

@@ -6,7 +6,7 @@
 /*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 14:10:34 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/20 15:42:34 by afontain         ###   ########.fr       */
+/*   Updated: 2024/02/20 16:15:17 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -207,4 +207,5 @@ char		**split_cmd(t_mdata *data, char *str, char *cmp);
 int			split_dquote(t_mdata *data, char *line, int i);
 int			split_squote(t_mdata *data, char *line, int i);
 int			count_cmd(t_mdata *data, char *str, char *cmp);
+int			str_to_cmp(char c, char *cmp);
 #endif 

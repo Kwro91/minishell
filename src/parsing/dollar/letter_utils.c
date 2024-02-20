@@ -6,7 +6,7 @@
 /*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 19:14:10 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/20 15:47:36 by afontain         ###   ########.fr       */
+/*   Updated: 2024/02/20 16:29:29 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int	is_string(char *str)
 			return (1);
 	return (-1);
 }
+
 
 void	del_vdollar(t_mdata *data, t_command *cmd, int i, int len)
 {
@@ -45,9 +46,24 @@ void	del_vdollar(t_mdata *data, t_command *cmd, int i, int len)
 	ft_free_me(end);
 }
 
+char	*change_letter2(t_command *cmd, char *value, char *start, char *end)
+{		
+	char *tmp;
+	
+	tmp = ft_strjoin(start, value);
+	if (is_string(end) == 1)
+	{	
+		cmd->line = ft_strjoin(tmp, end);
+		ft_free_me(tmp);
+	}
+	else
+		cmd->line = tmp;
+	return (cmd->line);
+}
+
 void	change_letter(t_mdata *data, t_command *cmd, int i, char *value, int len)
 {
-	char	*tmp;
+	// char	*tmp;
 	char	*start;
 	char	*end;
 
@@ -56,23 +72,20 @@ void	change_letter(t_mdata *data, t_command *cmd, int i, char *value, int len)
 	ft_free_me(cmd->line);
 	if (is_string(start) == 1)
 	{
-		tmp = ft_strjoin(start, value);
-		if (is_string(end) == 1)
-		{	
-			cmd->line = ft_strjoin(tmp, end);
-			ft_free_me(tmp);
-		}
-		else
-		{
-			cmd->line = tmp;
-		}
+		cmd->line = change_letter2(cmd, value, start, end);
+		// tmp = ft_strjoin(start, value);
+		// if (is_string(end) == 1)
+		// {	
+		// 	cmd->line = ft_strjoin(tmp, end);
+		// 	ft_free_me(tmp);
+		// }
+		// else
+		// 	cmd->line = tmp;
 	}
 	else
 	{
 		if (is_string(end) == 1)
-		{
 			cmd->line = ft_strjoin(value, end);
-		}
 		else
 			cmd->line = ft_strdup(value);
 	}

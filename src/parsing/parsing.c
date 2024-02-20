@@ -6,7 +6,7 @@
 /*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 15:30:01 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/20 15:46:51 by afontain         ###   ########.fr       */
+/*   Updated: 2024/02/20 18:05:29 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	remove_all_quotes(t_mdata *data, t_command *cmd)
 	char	**tab;
 
 	tab = cmd->cmd;
-	if (!cmd)
+	if (!cmd || !*tab)
 		return ;
 	while (*tab)
 	{
@@ -62,11 +62,13 @@ void	remove_all_quotes(t_mdata *data, t_command *cmd)
 
 void	parse_cmd(t_mdata *data, t_command *cmd)
 {
-	int	i;
-	int	len;
+	int		i;
+	int		len;
+	char	*cmp;
 
 	i = 0;
 	len = ft_strlen(cmd->line);
+	printf("BONSOIIIIIR\n");
 	while (i >= 0 && cmd->line && i < len)
 	{
 		if (cmd->line[i] == '"')
@@ -84,6 +86,8 @@ void	parse_cmd(t_mdata *data, t_command *cmd)
 		len = ft_strlen(cmd->line);
 	}
 	ft_free_lines(cmd->cmd);
-	cmd->cmd = split_cmd(data, cmd->line, " \t");
+	cmp = ft_strdup(" \t\0");
+	cmd->cmd = split_cmd(data, cmd->line, cmp);
+	ft_free_me(cmp);
 	remove_all_quotes(data, cmd);
 }

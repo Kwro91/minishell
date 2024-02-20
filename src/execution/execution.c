@@ -6,7 +6,7 @@
 /*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 15:59:33 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/20 15:58:35 by afontain         ###   ########.fr       */
+/*   Updated: 2024/02/20 17:14:17 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,7 @@ void	launch_cmd(t_mdata *data, t_command *cmd)
 {
 	if (!cmd || cmd->good == -1)
 		return ;
+	printf("Bonsoir oui je me lance\n");
 	if (data->nb_cmd == 1)
 		if (verif_cmd(data, cmd) == 0)
 			solo_cmd(data, cmd, ft_access_mini(data, cmd));

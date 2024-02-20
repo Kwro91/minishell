@@ -1,11 +1,12 @@
 src/minishell.h: Error!
 Error: TOO_MANY_ARGS        (line: 189, col:  38):	Function has more than 4 arguments
 src/split/split_cmd.c: Error!
-Error: TOO_MANY_LINES       (line:  80, col:   1):	Function has more than 25 lines
-Error: TOO_MANY_LINES       (line: 110, col:   1):	Function has more than 25 lines
+Error: WRONG_SCOPE_COMMENT  (line:  95, col:  13):	Comment is invalid in this scope
+Error: WRONG_SCOPE_COMMENT  (line:  96, col:  13):	Comment is invalid in this scope
+Error: WRONG_SCOPE_COMMENT  (line:  97, col:  13):	Comment is invalid in this scope
+Error: WRONG_SCOPE_COMMENT  (line:  98, col:  13):	Comment is invalid in this scope
+Error: TOO_MANY_LINES       (line: 103, col:   1):	Function has more than 25 lines
 src/parsing/dollar/letter_utils.c: Error!
 Error: LINE_TOO_LONG        (line:  48, col:  82):	line too long
 Error: TOO_MANY_ARGS        (line:  48, col:  82):	Function has more than 4 arguments
 Error: TOO_MANY_LINES       (line:  83, col:   1):	Function has more than 25 lines
-src/redirection/redir_rewrite.c: Error!
-Error: TOO_MANY_LINES       (line:  63, col:   1):	Function has more than 25 lines
