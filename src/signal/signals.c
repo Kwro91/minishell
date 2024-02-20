@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
+/*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 12:59:04 by afontain          #+#    #+#             */
-/*   Updated: 2024/01/26 16:46:19 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/20 23:57:08 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	handle_sigquit(int sigquit)
 {
 	(void)sigquit;
 	g_retval = 131;
-	write(STDOUT_FILENO, "Quit (core dump)\n", 17);
+	write(STDOUT_FILENO, "Quit core dump\n", 1);
 }
 
 void	handle_sigsegv(int sigsegv)
