@@ -6,7 +6,7 @@
 /*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 14:22:53 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/20 12:55:23 by afontain         ###   ########.fr       */
+/*   Updated: 2024/02/20 15:36:20 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ void	split_parse(t_mdata *data, char *line)
 
 	new = NULL;
 	i = 0;
-	// split = ft_split(line, '|'); // ICI ON OBTIENT LES CMDS
 	split = split_cmd(data, line, "|");
 	while (split && split[i])
 	{

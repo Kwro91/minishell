@@ -6,7 +6,7 @@
 /*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 15:38:43 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/20 12:55:51 by afontain         ###   ########.fr       */
+/*   Updated: 2024/02/20 15:37:14 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,12 +82,5 @@ int	redir(t_mdata *data, t_command *cmd)
 		value = do_in_redir(data, cmd);
 	if (cmd->out)
 		do_out_redir(data, cmd);
-	ft_free_lines(cmd->cmd);
-	cmd->cmd = split_cmd(data, cmd->line, " \t");
-	if (!cmd->cmd)
-	{
-		ft_error(data, "Error: split\n", 0);
-		cmd->good = -1;
-	}
 	return (value);
 }

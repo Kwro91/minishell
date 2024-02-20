@@ -6,7 +6,7 @@
 /*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 15:30:01 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/20 15:26:27 by afontain         ###   ########.fr       */
+/*   Updated: 2024/02/20 15:39:28 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,5 +84,7 @@ void	parse_cmd(t_mdata *data, t_command *cmd)
 		i++;
 		len = ft_strlen(cmd->line);
 	}
+	ft_free_lines(cmd->cmd);
+	cmd->cmd = split_cmd(data, cmd->line, " \t");
 	remove_all_quotes(data, cmd);
 }
