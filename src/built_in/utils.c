@@ -3,37 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
+/*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 14:15:35 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/20 18:16:02 by afontain         ###   ########.fr       */
+/*   Updated: 2024/02/20 18:22:38 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-
-int	verif_cmd(t_mdata *data, t_command *cmd)
-{
-	if (ft_strncmp(cmd->line, "", 1) == 0)
-		return (0);
-	redir(data, cmd);
-	parse_cmd(data, cmd);
-	if (is_echo(cmd->cmd) == 1)
-		return (1);
-	else if (is_pwd(cmd->cmd, data) == 1)
-		return (1);
-	else if (is_exit(cmd->cmd, data) == 1)
-		return (1);
-	else if (is_env(cmd->cmd, data) == 1)
-		return (1);
-	else if (is_export(cmd->cmd, data) == 1)
-		return (1);
-	else if (is_unset(cmd->cmd, data) == 1)
-		return (1);
-	else if (is_cd(cmd->cmd, data) == 1)
-		return (1);
-	return (0);
-}
 
 int	nb_word(char **text)
 {

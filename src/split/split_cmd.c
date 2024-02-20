@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split_cmd.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
+/*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 17:43:20 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/20 18:13:46 by afontain         ###   ########.fr       */
+/*   Updated: 2024/02/20 19:04:47 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,22 +38,23 @@ int	count_cmd(t_mdata *data, char *str, char *cmp)
 char	*fill_cmd(t_mdata *data, char *src, int i, char *cmp)
 {
 	int		j;
-	int		len;
 	int		count;
 	char	*str;
 
 	j = i;
-	len = ft_strlen(src);
-	while (j >= 0 && j < len && (str_to_cmp(src[j], cmp) == 0))
+	while (j >= 0 && src[j] && (str_to_cmp(src[j], cmp) == 0))
 	{
-		printf("j:%i:\n", j);
 		if (src[j] == '"')
 			j = split_dquote(data, src, j);
 		else if (src[j] == '\'')
 			j = split_squote(data, src, j);
 		j++;
+		if (j < 0)
+			ft_error(data, "Error: quote not closed\n", 0);
 	}
-	count = j - i + 1;
+	if (j < 0)
+		j = i;
+	count = j - i;
 	str = malloc(sizeof(char) * (count + 1));
 	if (!str)
 		ft_error(data, "Error: malloc\n", 1);
@@ -66,10 +67,7 @@ char	*fill_cmd(t_mdata *data, char *src, int i, char *cmp)
 
 int	split2(t_mdata *data, int i, char *str, char *cmp)
 {
-	int len;
-
-	len = ft_strlen(str);
-	while (i >= 0 && i < len && str_to_cmp(str[i], cmp) == 0)
+	while (i >= 0 && str[i] && str_to_cmp(str[i], cmp) == 0)
 	{
 		if (str[i] == '"')
 			i = split_dquote(data, str, i);
@@ -87,7 +85,7 @@ void	split1(t_mdata *data, char **tab, char *str, char *cmp)
 
 	i = 0;
 	j = 0;
-	while (str[i])
+	while (i >= 0 && str[i])
 	{
 		while (str[i] && str_to_cmp(str[i], cmp) == 1)
 			i++;
@@ -99,14 +97,6 @@ void	split1(t_mdata *data, char **tab, char *str, char *cmp)
 			j++;
 		}
 		i = split2(data, i, str, cmp);
-		// while (str[i] && str_to_cmp(str[i], cmp) == 0)
-		// {
-			// if (str[i] == '"')
-			// 	i = split_dquote(data, str, i);
-			// else if (str[i] == '\'')
-			// 	i = split_squote(data, str, i);
-			// i++;
-		// }
 	}
 	tab[j] = NULL;
 }
@@ -114,12 +104,20 @@ void	split1(t_mdata *data, char **tab, char *str, char *cmp)
 char	**split_cmd(t_mdata *data, char *str, char *cmp)
 {
 	char	**tab;
+	int		count;
 
+	count = count_cmd(data, str, cmp);
 	if (!str)
 		return (NULL);
-	tab = malloc(sizeof(char *) * (count_cmd(data, str, cmp) + 1));
+	tab = malloc(sizeof(char *) * (count + 1));
 	if (!tab)
 		return (NULL);
+	// if (count == 1)
+	// {
+	// 	tab[0] = ft_strdup(str);
+	// 	tab[1] = NULL;
+	// }
+	// else
 	split1(data, tab, str, cmp);
 	return (tab);
 }

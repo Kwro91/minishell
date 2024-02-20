@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
+/*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 15:59:33 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/20 17:14:17 by afontain         ###   ########.fr       */
+/*   Updated: 2024/02/20 19:10:16 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ char	*ft_access_mini(t_mdata *data, t_command *cmd)
 
 	i = 0;
 	if (!cmd->cmd)
-		return (NULL);
+		return (ft_error(data, "minishell: command not found: ", 0), NULL);
 	if (cmd->cmd[0] && access(cmd->cmd[0], X_OK) == 0)
 	{
 		tmp = ft_strdup(cmd->cmd[0]);
@@ -106,9 +106,8 @@ void	pipe_cmd(t_mdata *data, t_command *cmd)
 
 void	launch_cmd(t_mdata *data, t_command *cmd)
 {
-	if (!cmd || cmd->good == -1)
-		return ;
-	printf("Bonsoir oui je me lance\n");
+	// if (!cmd || cmd->good == -1)
+	// 	return ;
 	if (data->nb_cmd == 1)
 		if (verif_cmd(data, cmd) == 0)
 			solo_cmd(data, cmd, ft_access_mini(data, cmd));
