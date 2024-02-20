@@ -6,7 +6,7 @@
 /*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 14:22:53 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/20 18:05:50 by afontain         ###   ########.fr       */
+/*   Updated: 2024/02/20 19:51:24 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_command	*create_command(t_mdata *data, char *lines)
 	new = NULL;
 	new = malloc(sizeof(t_command));
 	if (!new)
-		ft_error(data, "Error: malloc", 1);
+		ft_error(data, "Error: malloc", -1);
 	new->line = ft_strdup(lines);
 	new->good = 0;
 	new->in = NULL;

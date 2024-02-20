@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir_in_out.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
+/*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 15:29:29 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/16 16:24:12 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/20 19:53:24 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char	**size_my_file(t_mdata *data, char *line, char c)
 	}
 	file = malloc(sizeof(char *) * count + 1);
 	if (!file)
-		ft_error(data, "Error : malloc\n", 1);
+		ft_error(data, "Error : malloc\n", -1);
 	return (file);
 }
 
@@ -38,7 +38,7 @@ t_files	*get_new_file(t_mdata *data, char *line, int here_doc)
 
 	new = malloc(sizeof(t_files));
 	if (!new)
-		ft_error(data, "Error: malloc\n", 1);
+		ft_error(data, "Error: malloc\n", -1);
 	new->fd = -1;
 	new->here_doc = here_doc;
 	new->files = next_word(data, line);

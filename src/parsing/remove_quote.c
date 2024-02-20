@@ -6,7 +6,7 @@
 /*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 18:36:45 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/20 15:46:30 by afontain         ###   ########.fr       */
+/*   Updated: 2024/02/20 20:01:57 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,13 @@ int	check_empty_quotes(t_mdata *data, char **line, int i)
 		{
 			new = ft_strdup(&line[0][i + 2]);
 			if (!line)
-				return (ft_error(data, "Error: remove quote1\n", 0), 1);
+				return (ft_error(data, "Error: remove quote1\n", -1), 1);
 		}
 		else
 		{
 			new = ft_strdup("");
 			if (!line)
-				return (ft_error(data, "Error: remove quote1\n", 0), 1);
+				return (ft_error(data, "Error: remove quote1\n", -1), 1);
 		}
 		*line = new;
 		return (1);
@@ -44,20 +44,20 @@ void	get_removed(t_mdata *data, char **line, int i)
 	char	*second;
 
 	if (!line)
-		return (ft_error(data, "Error: remove quote1\n", 0));
+		return (ft_error(data, "Error: remove quote1\n", -1));
 	first = "";
 	second = "";
 	if (i > 0 && &line[0][i - 1])
 		first = ft_strndup(data, *line, i);
 	if (!first)
-		return (ft_error(data, "Error: remove quote2\n", 0));
+		return (ft_error(data, "Error: remove quote2\n", -1));
 	if (&line[0][i + 1])
 		second = ft_strdup(&line[0][i + 1]);
 	if (!second)
-		return (ft_error(data, "Error: remove quote3\n", 0));
+		return (ft_error(data, "Error: remove quote3\n", -1));
 	new = ft_strjoin(first, second);
 	if (!new)
-		return (ft_error(data, "Error: remove quote4\n", 0));
+		return (ft_error(data, "Error: remove quote4\n", -1));
 	if (first && ft_strncmp(first, "", 1) != 0)
 		free(first);
 	if (second && ft_strncmp(second, "", 1) != 0)

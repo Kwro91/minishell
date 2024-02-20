@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 15:59:33 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/20 19:32:50 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/20 20:25:40 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	error_access_mini(t_mdata *data, char *cmd)
 		tmp = ft_strdup("minishell: command not found: ");
 		join = ft_strjoin(tmp, "\n");
 	}
-	ft_error(data, join, 0);
+	ft_error(data, join, 127);
 	ft_free_me(tmp);
 	ft_free_me(join);
 }
@@ -44,7 +44,7 @@ char	*ft_access_mini(t_mdata *data, t_command *cmd)
 	if (!cmd->cmd)
 		return (NULL);
 	if (ft_strncmp(cmd->cmd[0], "", 1) == 0)
-		return (ft_error(data, "minishell: command not found: \n", 0), NULL);
+		return (ft_error(data, "minishell: command not found: \n", -1), NULL);
 	if (cmd->cmd[0] && access(cmd->cmd[0], X_OK) == 0)
 		return (tmp = access_utils(data, cmd));
 	while (cmd->cmd[0] && data->paths && data->paths[i++])
@@ -69,10 +69,11 @@ void	solo_cmd(t_mdata *data, t_command *cmd, char *path)
 		return (ft_free_me(path));
 	pid = fork();
 	if (pid == -1)
-		return (ft_error(data, "Error: fork\n", 0));
+		return (ft_error(data, "Error: fork\n", -1));
 	if (pid == 0)
 	{
 		close_all_files(data, cmd);
+		g_retval = 0;
 		execve(path, cmd->cmd, data->env);
 		end_loop(data);
 		ft_free_me(path);
@@ -93,6 +94,7 @@ void	pipe_cmd(t_mdata *data, t_command *cmd)
 	if (verif_cmd(data, cmd) == 0)
 	{
 		close_all_files(data, cmd);
+		g_retval = 0;
 		tmp = ft_access_mini(data, cmd);
 		if (tmp)
 			execve(tmp, cmd->cmd, data->env);

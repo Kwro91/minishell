@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 17:46:08 by afontain          #+#    #+#             */
-/*   Updated: 2024/02/20 19:43:20 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/20 20:25:58 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int	handle_letter(t_mdata *data, t_command *cmd, int i)
 	start = ft_strdupuntil(data, cmd->line, i);
 	value = find_var(data, cmd, i);
 	if (!start)
-		ft_error(data, "Error: malloc\n", 1);
+		ft_error(data, "Error: malloc\n", -1);
 	i = ft_strlen(start) + ft_strlen(value);
 	ft_free_me(value);
 	ft_free_me(start);

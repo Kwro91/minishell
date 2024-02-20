@@ -1,19 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit.c                                             :+:      :+:    :+:   */
+/*   split2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
+/*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/06 16:31:41 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/20 19:14:20 by afontain         ###   ########.fr       */
+/*   Created: 2024/02/19 18:51:06 by besalort          #+#    #+#             */
+/*   Updated: 2024/02/19 18:51:07 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
-
-void	exit_mini(t_mdata *data)
-{
-	ft_free_mini(data);
-	exit(g_retval);
-}

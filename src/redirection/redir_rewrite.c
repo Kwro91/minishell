@@ -6,7 +6,7 @@
 /*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 15:15:57 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/20 16:18:39 by afontain         ###   ########.fr       */
+/*   Updated: 2024/02/20 20:03:24 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*ft_strndup(t_mdata *data, char	*str, int len)
 	i = 0;
 	new = malloc(sizeof(char) * len + 1);
 	if (!new)
-		ft_error(data, "Error: malloc\n", 1);
+		ft_error(data, "Error: malloc\n", -1);
 	while (str[i] && i < len)
 	{
 		new[i] = str[i];
@@ -57,7 +57,7 @@ char	*sub_files_utils(t_mdata *data, t_command *cmd, t_files *tmp, char c)
 	ft_free_me(one);
 	ft_free_me(two);
 	if (!new)
-		ft_error(data, "Error: malloc111\n", 1);
+		ft_error(data, "Error: malloc\n", -1);
 	return (new);
 }
 

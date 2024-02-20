@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_bis.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
+/*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 17:24:18 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/12 15:51:06 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/20 20:16:40 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,9 +65,9 @@ int	reset_line(t_mdata *data, char **export, char *line)
 
 void	error_export(t_mdata *data, char *error)
 {
-	ft_error(data, "minishell: export: << ", 0);
-	ft_error(data, error, 0);
-	ft_error(data, " >> is not allowed\n", 0);
+	ft_error(data, "minishell: export: << ", 1);
+	ft_error(data, error, 1);
+	ft_error(data, " >> is not allowed\n", 1);
 }
 
 int	check_export_line(t_mdata *data, char *line, int show)
@@ -79,5 +79,6 @@ int	check_export_line(t_mdata *data, char *line, int show)
 			error_export(data, line);
 		return (-1);
 	}
+	g_retval = 0;
 	return (0);
 }

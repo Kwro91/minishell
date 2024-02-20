@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 19:14:10 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/20 19:43:12 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/20 20:25:49 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	del_vdollar(t_mdata *data, t_command *cmd, int i, int len)
 		{
 			cmd->line = ft_strjoin(start, end);
 			if (!cmd->line)
-				ft_error(data, "Error: malloc\n", 1);
+				ft_error(data, "Error: malloc\n", -1);
 		}
 	}
 	else
@@ -83,5 +83,5 @@ void	change_letter(t_mdata *data, t_command *cmd, int i, char *value)
 	ft_free_me(start);
 	ft_free_me(end);
 	if (!cmd->line)
-		ft_error(data, "Error: malloc\n", 1);
+		ft_error(data, "Error: malloc\n", -1);
 }

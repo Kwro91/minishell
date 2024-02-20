@@ -6,7 +6,7 @@
 /*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 12:52:09 by afontain          #+#    #+#             */
-/*   Updated: 2024/02/20 15:50:07 by afontain         ###   ########.fr       */
+/*   Updated: 2024/02/20 20:02:15 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	*ft_strdupfromuntil(t_mdata *data, char *src, int i, int n)
 	dest = malloc(sizeof(char) * (ft_strlen(tmp) + 1));
 	ft_free_me(tmp);
 	if (!dest)
-		return (ft_error(data, "Error malloc111\n", 1), NULL);
+		return (ft_error(data, "Error malloc\n", -1), NULL);
 	while (src[i] && n > 0)
 	{
 		dest[j++] = src[i++];
@@ -47,7 +47,7 @@ char	*ft_strdupuntil(t_mdata *data, char *src, int i)
 		return (NULL);
 	dest = malloc (sizeof(char) * i + 1);
 	if (!dest)
-		return (ft_error(data, "Error malloc333\n", 1), NULL);
+		return (ft_error(data, "Error malloc\n", -1), NULL);
 	while (src[j] && j < i)
 	{
 		dest[j] = src[j];

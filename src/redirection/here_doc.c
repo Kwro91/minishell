@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   here_doc.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
+/*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 16:06:24 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/19 18:13:01 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/20 20:03:12 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	ft_mhere_doc(t_mdata *data, t_files *file)
 	if (file->fd < 0)
 	{
 		unlink(".here_doc_tmp");
-		return (ft_error(data, "Error, here_doc\n", 0));
+		return (ft_error(data, "Error, here_doc\n", 1));
 	}
 	while (1)
 	{

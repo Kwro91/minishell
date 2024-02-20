@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
+/*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 14:41:18 by afontain          #+#    #+#             */
-/*   Updated: 2024/01/15 13:45:03 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/20 20:17:23 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,5 +110,6 @@ int	ft_unset(char **args, t_mdata *data)
 		unset_utils(data, args[i]);
 		i++;
 	}
+	g_retval = 0;
 	return (0);
 }
