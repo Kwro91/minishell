@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
+/*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 12:59:04 by afontain          #+#    #+#             */
-/*   Updated: 2024/02/20 23:57:08 by afontain         ###   ########.fr       */
+/*   Updated: 2024/02/22 17:28:19 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ void	handle_sigint(int sigint)
 	write(STDOUT_FILENO, "\n", 1);
 	rl_on_new_line();
 	rl_replace_line("", 0);
+	// if (getpid() == 0)
+		// rl_redisplay();
 	rl_redisplay();
 }
 

@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 15:53:50 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/22 15:42:52 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/22 16:48:09 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char	*get_readline(t_mdata *data, char *str)
 {
-	str = readline("Minishell> ");
+	str = readline(str);
 	if (!str)
 	{
 		rl_clear_history();

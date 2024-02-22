@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 12:11:42 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/22 15:43:12 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/22 16:31:19 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,16 @@ void	add_pwd(t_mdata *data)
 	int		lines;
 
 	i = 0;
+	if (!data->pwd)
+		return ;
 	lines = nb_word(data->env);
 	new = malloc(sizeof(char *) * (lines + 2));
 	if (!new)
 		return (ft_error(data, "Error: malloc\n", -1));
 	while (i < lines)
 	{
-		new[i] = ft_strdup(data->env[i]);
+		if (data->env[i])
+			new[i] = ft_strdup(data->env[i]);
 		free(data->env[i]);
 		i++;
 	}
@@ -41,6 +44,8 @@ void	setup_pwd_env(t_mdata *data)
 	int		i;
 
 	i = 0;
+	if (!data->pwd)
+		return ;
 	tmp = ft_strdup("PWD=");
 	if (!data->env)
 		return ;
@@ -64,16 +69,21 @@ void	setup_pwd(t_mdata *data, char **env, int first)
 	}
 	if (data->pwd)
 		free(data->pwd);
-	getcwd(pwd, 150);
-	data->pwd = ft_strdup(pwd);
-	if (!data->pwd)
-		exit_mini(data, NULL);
+	if (!getcwd(pwd, 150))
+		data->pwd = NULL;
+	else
+		data->pwd = ft_strdup(pwd);
 	setup_pwd_env(data);
 }
 
 void	pwd(t_mdata *data)
 {
 	setup_pwd(data, data->env, 0);
-	ft_printf("%s\n", data->pwd);
-	g_retval = 0;
+	if (!data->pwd)
+		ft_error(data, "pwd: error cannot access parent directories\n", 1);
+	else
+	{
+		ft_printf("%s\n", data->pwd);
+		g_retval = 0;
+	}
 }

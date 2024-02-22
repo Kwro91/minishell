@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 15:55:35 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/22 15:43:00 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/22 16:21:30 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ void	env_setup(t_mdata *data, char **env)
 		exit_mini(data, NULL);
 	while (i < nb)
 	{
-		data->env[i] = ft_strdup(env[i]);
+		if (env[i])
+			data->env[i] = ft_strdup(env[i]);
 		i++;
 	}
 	data->env[i] = NULL;
