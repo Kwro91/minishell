@@ -1,0 +1,55 @@
+valgrind --leak-check=full --show-leak-kinds=all --suppressions=supp.supp --track-fds=yes -q ./minishell
+
+# crash sur espaces/
+
+# bash-5.1$ /bin/ls safsafsa
+# /bin/ls: cannot access 'safsafsa': No such file or directory
+# bash-5.1$ echo $?
+# 2
+
+Minishell> /bin/cat
+fsdfds
+fsdfds
+^C
+Minishell> Minishell>
+
+# echo lol | cat -e
+
+# exit (fds ouverts)
+
+# exit 42 (echo $? en dehors doit afficher 42)
+
+echo $USER"mdr""lol"
+
+echo "few"'fewffsa''lol'"xd"
+
+echo $"USER"
+
+# > export Z=3
+# > export Z=5
+# > env
+
+# Minishell> mkdir lol
+# Minishell> cd lol
+# Minishell> rm -rf ../lol
+# Minishell> pwd
+
+Minishell> unset PATH
+Minishell> ls
+
+Minishell> abc |abc | echo lol
+
+Minishell> cat<< eof > xd
+> fsafsa
+> fas
+> fasf
+> s^C
+Minishell> echo $?
+> 
+
+(tester avec ctrl+D aussi)
+
+Minishell> rev << eof
+> abc
+> def
+> xyz
