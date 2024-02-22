@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 16:31:41 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/22 15:47:39 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/22 16:07:23 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int	ft_count_arg(t_mdata *data, char	**arg)
 void	exit_mini(t_mdata *data, char **arg)
 {
 	int	value;
+
 	if (arg == NULL || ft_count_arg(data, &arg[1]) != 1)
 	{
 		ft_free_mini(data);

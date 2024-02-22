@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_bis.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
+/*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 17:24:18 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/22 12:25:30 by afontain         ###   ########.fr       */
+/*   Updated: 2024/02/22 16:06:12 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	reset_line(t_mdata *data, char **export, char *line)
 	j = check_export_line(data, line, 0);
 	if (i != -1 && j == 0)
 	{
-		if (check_export_value(export[i]) == -1)
+		if (check_export_value(line) == -1)
 			return (i);
 		free(export[i]);
 		export[i] = ft_strdup(line);
