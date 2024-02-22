@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: besalort <besalort@student.42.fr>          +#+  +:+       +#+         #
+#    By: afontain <afontain@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/29 14:05:28 by besalort          #+#    #+#              #
-#    Updated: 2024/02/20 19:34:35 by besalort         ###   ########.fr        #
+#    Updated: 2024/02/22 12:30:37 by afontain         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ SRC = ./src/main.c \
 	$(BUILT_IN_PATH)env.c \
 	$(BUILT_IN_PATH)export.c \
 	$(BUILT_IN_PATH)export_bis.c \
+	$(BUILT_IN_PATH)export_ter.c \
 	$(BUILT_IN_PATH)unset.c \
 	$(BUILT_IN_PATH)cd.c \
 	$(EXECUTION_PATH)execution.c \

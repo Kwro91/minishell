@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
+/*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 14:15:35 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/20 18:22:38 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/22 12:39:55 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,14 @@ void	good_print(char	*line)
 		ft_printf("\"");
 }
 
+int	ft_isword(int c)
+{
+	if (ft_isalnum(c) == 1 || c == 46 || c == 45 || c == 95)
+		return (1);
+	return (0);
+}
+
+
 char	*next_word(t_mdata *data, char *line)
 {
 	int	i;
@@ -64,7 +72,7 @@ char	*next_word(t_mdata *data, char *line)
 			i++;
 		}
 		if ((line[i] == '"' && apo == 1)
-			|| (apo == 0 && ft_isalnum(line[i]) == 0))
+			|| (apo == 0 && ft_isword(line[i]) == 0))
 			break ;
 		i++;
 		count++;

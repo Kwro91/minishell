@@ -6,7 +6,7 @@
 /*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 17:24:18 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/20 20:16:40 by afontain         ###   ########.fr       */
+/*   Updated: 2024/02/22 12:25:30 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ int	reset_line(t_mdata *data, char **export, char *line)
 	j = check_export_line(data, line, 0);
 	if (i != -1 && j == 0)
 	{
+		if (check_export_value(export[i]) == -1)
+			return (i);
 		free(export[i]);
 		export[i] = ft_strdup(line);
 		return (i);
@@ -75,6 +77,7 @@ int	check_export_line(t_mdata *data, char *line, int show)
 	(void)data;
 	if (ft_isalpha(line[0]) == 0)
 	{
+		g_retval = 1;
 		if (show == 1)
 			error_export(data, line);
 		return (-1);
