@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parent.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
+/*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 17:38:09 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/20 20:00:08 by afontain         ###   ########.fr       */
+/*   Updated: 2024/02/22 15:53:28 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ void	mwait_childs(t_mdata *data)
 	while (tmp)
 	{
 		waitpid(-1, &status, 0);
+		g_retval = WEXITSTATUS(status);
 		if (count == 0)
 		{
 			close(data->pipes[1]);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
+/*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 15:53:50 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/20 20:13:14 by afontain         ###   ########.fr       */
+/*   Updated: 2024/02/22 15:42:52 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*get_readline(t_mdata *data, char *str)
 	{
 		rl_clear_history();
 		write(STDERR_FILENO, "exit\n", 5);
-		exit_mini(data);
+		exit_mini(data, NULL);
 	}
 	return (str);
 }
@@ -57,7 +57,7 @@ void	loop(t_mdata *data, char *cmd)
 {
 	data->nb_cmd = 0;
 	cmd = get_readline(data, "Minishell> ");
-	if (*cmd && ft_strncmp(cmd, "\n\0", 2) != 0)
+	if (*cmd && is_line_good(cmd) == 1)
 	{
 		add_history(cmd);
 		data->cmd = NULL;

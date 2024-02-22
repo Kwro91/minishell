@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 17:40:14 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/20 20:30:44 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/22 15:44:29 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ft_first_child(t_mdata *data, t_command *cmd)
 
 	pid = fork();
 	if (pid == -1)
-		return (perror("Error fork\n"), exit_mini(data), (void) NULL);
+		return (perror("Error fork\n"), exit_mini(data, NULL), (void) NULL);
 	if (pid == 0)
 	{
 		close(data->pipes[0]);
@@ -30,7 +30,7 @@ void	ft_first_child(t_mdata *data, t_command *cmd)
 			launch_cmd(data, cmd);
 		}
 		ft_free_lines(cmd->cmd);
-		exit_mini(data);
+		exit_mini(data, NULL);
 	}
 }
 
@@ -40,7 +40,7 @@ void	ft_mid_childs(t_mdata *data, t_command *cmd)
 
 	pid = fork();
 	if (pid == -1)
-		return (perror("Error fork\n"), exit_mini(data), (void) NULL);
+		return (perror("Error fork\n"), exit_mini(data, NULL), (void) NULL);
 	if (pid == 0)
 	{
 		if (cmd->good == -1)
@@ -56,7 +56,7 @@ void	ft_mid_childs(t_mdata *data, t_command *cmd)
 		close(data->pipes[1]);
 		launch_cmd(data, cmd);
 		ft_free_lines(cmd->cmd);
-		exit_mini(data);
+		exit_mini(data, NULL);
 	}
 }
 
@@ -66,7 +66,7 @@ void	ft_last_child(t_mdata *data, t_command *cmd)
 
 	pid = fork();
 	if (pid == -1)
-		return (perror("Error fork\n"), exit_mini(data), (void) NULL);
+		return (perror("Error fork\n"), exit_mini(data, NULL), (void) NULL);
 	if (pid == 0)
 	{
 		if (cmd->good == 0)
@@ -79,6 +79,6 @@ void	ft_last_child(t_mdata *data, t_command *cmd)
 			launch_cmd(data, cmd);
 		}
 		ft_free_lines(cmd->cmd);
-		exit_mini(data);
+		exit_mini(data, NULL);
 	}
 }

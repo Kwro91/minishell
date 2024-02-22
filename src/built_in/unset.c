@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
+/*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 14:41:18 by afontain          #+#    #+#             */
-/*   Updated: 2024/02/20 20:17:23 by afontain         ###   ########.fr       */
+/*   Updated: 2024/02/22 15:43:18 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ char	**erase_it(t_mdata *data, char **tab, int nb)
 		len++;
 	newtab = malloc(sizeof(char *) * len);
 	if (!newtab)
-		exit_mini(data);
+		exit_mini(data, NULL);
 	while (tab[j])
 	{
 		if (j != nb)

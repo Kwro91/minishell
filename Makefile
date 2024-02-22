@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: afontain <afontain@student.42.fr>          +#+  +:+       +#+         #
+#    By: besalort <besalort@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/29 14:05:28 by besalort          #+#    #+#              #
-#    Updated: 2024/02/22 12:30:37 by afontain         ###   ########.fr        #
+#    Updated: 2024/02/22 15:19:32 by besalort         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,7 @@ NAME = minishell
 SRC = ./src/main.c \
 	./src/prompt.c \
 	./src/ft_path.c \
+	./src/check_prompt.c \
 	$(BUILT_IN_PATH)utils.c \
 	$(BUILT_IN_PATH)init_builtin.c \
 	$(BUILT_IN_PATH)echo.c \
@@ -85,7 +86,7 @@ LIBFT = $(LIBFT_PATH)libft.a
 
 CC = gcc
 
-CFLAGS = -Wall -Werror -Wextra -g3
+CFLAGS = -Wall -Werror -Wextra
 
 AR =  ar rcs
 

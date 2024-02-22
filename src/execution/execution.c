@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 15:59:33 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/20 20:25:40 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/22 15:52:24 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,16 +73,17 @@ void	solo_cmd(t_mdata *data, t_command *cmd, char *path)
 	if (pid == 0)
 	{
 		close_all_files(data, cmd);
-		g_retval = 0;
-		execve(path, cmd->cmd, data->env);
+		g_retval = execve(path, cmd->cmd, data->env);
+		printf("gretval:%i:\n", g_retval);
 		end_loop(data);
 		ft_free_me(path);
-		exit_mini(data);
+		exit_mini(data, NULL);
 	}
 	else
 	{
 		ft_free_me(path);
 		waitpid(-1, &status, 0);
+		g_retval = WEXITSTATUS(status);
 		close_all_files(data, cmd);
 	}
 }
@@ -94,13 +95,12 @@ void	pipe_cmd(t_mdata *data, t_command *cmd)
 	if (verif_cmd(data, cmd) == 0)
 	{
 		close_all_files(data, cmd);
-		g_retval = 0;
 		tmp = ft_access_mini(data, cmd);
 		if (tmp)
-			execve(tmp, cmd->cmd, data->env);
+			g_retval = execve(tmp, cmd->cmd, data->env);
 		ft_free_me(tmp);
 	}
-	exit_mini(data);
+	exit_mini(data, NULL);
 }
 
 void	launch_cmd(t_mdata *data, t_command *cmd)

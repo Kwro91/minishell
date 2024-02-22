@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
+/*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 12:11:42 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/20 20:17:17 by afontain         ###   ########.fr       */
+/*   Updated: 2024/02/22 15:43:12 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	setup_pwd(t_mdata *data, char **env, int first)
 	getcwd(pwd, 150);
 	data->pwd = ft_strdup(pwd);
 	if (!data->pwd)
-		exit_mini(data);
+		exit_mini(data, NULL);
 	setup_pwd_env(data);
 }
 

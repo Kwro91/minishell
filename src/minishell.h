@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
+/*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 14:10:34 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/22 12:31:00 by afontain         ###   ########.fr       */
+/*   Updated: 2024/02/22 15:40:38 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ void		init_built_int(t_mdata *data);
 void		prompt(t_mdata *data, char **env);
 void		end_loop(t_mdata *data);
 void		close_end(t_mdata *data);
+int			is_line_good(char *line);
 //Path
 void		ft_path_all(t_mdata *data, char **paths);
 void		ft_path_no_env(t_mdata *data);
@@ -128,7 +129,7 @@ void		pwd(t_mdata *data);
 void		add_pwd(t_mdata *data);
 
 //Exit
-void		exit_mini(t_mdata *data);
+void		exit_mini(t_mdata *data, char **arg);
 
 //Unset
 int			ft_unset(char **args, t_mdata *mdata);

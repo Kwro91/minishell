@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
+/*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 16:14:52 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/20 19:48:41 by afontain         ###   ########.fr       */
+/*   Updated: 2024/02/22 15:43:34 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	ft_error(t_mdata *data, char *line, int close)
 		i++;
 	}
 	if (close == -1)
-		exit_mini(data);
+		exit_mini(data, NULL);
 }
 
 void	ft_free_files(t_files *files)

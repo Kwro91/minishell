@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 16:26:03 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/20 18:46:20 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/22 15:40:14 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	is_exit(char **cmd_total, t_mdata *data)
 	if (ft_strncmp(name0, cmd_total[0], 5) == 0
 		|| ft_strncmp(namen, cmd_total[0], 6) == 0)
 	{
-		exit_mini(data);
+		exit_mini(data, cmd_total);
 		return (1);
 	}
 	return (-1);
