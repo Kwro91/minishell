@@ -6,7 +6,7 @@
 /*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 14:15:35 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/22 12:39:55 by afontain         ###   ########.fr       */
+/*   Updated: 2024/02/22 12:42:36 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ int	ft_isword(int c)
 		return (1);
 	return (0);
 }
-
 
 char	*next_word(t_mdata *data, char *line)
 {
