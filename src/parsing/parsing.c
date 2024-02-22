@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
+/*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 15:30:01 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/20 20:30:58 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/22 12:55:29 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	parse_dquote(t_mdata *data, t_command *cmd, int i)
 		len = ft_strlen(cmd->line);
 	}
 	cmd->good = -1;
-	return (ft_error(data, "Error: double quote not closed\n", 127), -2);
+	return (ft_error(data, "Error: double quote not closed\n", 2), -2);
 }
 
 int	parse_squote(t_mdata *data, t_command *cmd, int i)
@@ -43,7 +43,7 @@ int	parse_squote(t_mdata *data, t_command *cmd, int i)
 		len = ft_strlen(cmd->line);
 	}
 	cmd->good = -1;
-	return (ft_error(data, "Error: simple quote not closed\n", 127), -2);
+	return (ft_error(data, "Error: simple quote not closed\n", 2), -2);
 }
 
 void	remove_all_quotes(t_mdata *data, t_command *cmd)
