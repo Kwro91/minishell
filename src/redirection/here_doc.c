@@ -6,7 +6,7 @@
 /*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 16:06:24 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/20 20:03:12 by afontain         ###   ########.fr       */
+/*   Updated: 2024/02/23 00:55:32 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ void	ft_mhere_doc(t_mdata *data, t_files *file)
 		unlink(".here_doc_tmp");
 		return (ft_error(data, "Error, here_doc\n", 1));
 	}
+	signal(SIGINT, handle_sighere);
 	while (1)
 	{
 		write(1, "> ", 2);
@@ -60,4 +61,5 @@ void	ft_mhere_doc(t_mdata *data, t_files *file)
 	free(line);
 	close(file->fd);
 	file->fd = open(".here_doc_tmp", O_RDONLY);
+	handle_signals();
 }

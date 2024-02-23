@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
+/*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 15:59:33 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/22 15:52:24 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/23 01:15:40 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,6 @@ void	solo_cmd(t_mdata *data, t_command *cmd, char *path)
 	{
 		close_all_files(data, cmd);
 		g_retval = execve(path, cmd->cmd, data->env);
-		printf("gretval:%i:\n", g_retval);
 		end_loop(data);
 		ft_free_me(path);
 		exit_mini(data, NULL);
@@ -92,6 +91,7 @@ void	pipe_cmd(t_mdata *data, t_command *cmd)
 {
 	char	*tmp;
 
+	// signal(SIGQUIT, handle_sigquit);
 	if (verif_cmd(data, cmd) == 0)
 	{
 		close_all_files(data, cmd);
@@ -107,9 +107,11 @@ void	launch_cmd(t_mdata *data, t_command *cmd)
 {
 	if (!cmd || cmd->good == -1)
 		return ;
+	handle_sigint_exec();
 	if (data->nb_cmd == 1)
 		if (verif_cmd(data, cmd) == 0)
 			solo_cmd(data, cmd, ft_access_mini(data, cmd));
 	if (data->nb_cmd > 1)
 		pipe_cmd(data, cmd);
+	handle_signals();
 }

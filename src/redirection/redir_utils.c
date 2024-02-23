@@ -6,7 +6,7 @@
 /*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 15:54:38 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/20 20:03:48 by afontain         ###   ########.fr       */
+/*   Updated: 2024/02/23 01:12:57 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void	open_in_files(t_mdata *data, t_command *cmd)
 	if (cmd->in == NULL)
 		return ;
 	tmp = cmd->in;
+	// signal(SIGINT, handle_sighere);
 	while (tmp)
 	{
 		if (tmp->here_doc == 0)
