@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
+/*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 15:59:33 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/23 01:15:40 by afontain         ###   ########.fr       */
+/*   Updated: 2024/02/23 14:19:54 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ void	solo_cmd(t_mdata *data, t_command *cmd, char *path)
 		return (ft_error(data, "Error: fork\n", -1));
 	if (pid == 0)
 	{
+		signal(SIGQUIT, handle_sigquit);
 		close_all_files(data, cmd);
 		g_retval = execve(path, cmd->cmd, data->env);
 		end_loop(data);
@@ -91,7 +92,7 @@ void	pipe_cmd(t_mdata *data, t_command *cmd)
 {
 	char	*tmp;
 
-	// signal(SIGQUIT, handle_sigquit);
+	signal(SIGQUIT, handle_sigquit);
 	if (verif_cmd(data, cmd) == 0)
 	{
 		close_all_files(data, cmd);
