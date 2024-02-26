@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 15:53:50 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/22 16:48:09 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/23 16:09:26 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ void	loop_utils(t_mdata *data, char *cmd)
 	if (cmd != NULL)
 	{
 		split_parse(data, cmd);
+		// if (data->cmd->line == NULL)
+		// 	return ;
 		if (data->nb_cmd > 1)
 			if (check_line_pipe(data, data->cmd) == -1)
 				return ;

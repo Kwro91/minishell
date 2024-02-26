@@ -6,7 +6,7 @@
 #    By: besalort <besalort@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/29 14:05:28 by besalort          #+#    #+#              #
-#    Updated: 2024/02/22 15:19:32 by besalort         ###   ########.fr        #
+#    Updated: 2024/02/26 16:06:26 by besalort         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,6 +56,7 @@ SRC = ./src/main.c \
 	$(DOLLAR_PATH)letter_utils.c \
 	$(PARSING_PATH)parsing.c \
 	$(PARSING_PATH)remove_quote.c \
+	$(PARSING_PATH)remove_quote_utils.c \
 	$(SPLIT_PATH)split_cmd.c \
 	$(SPLIT_PATH)split_utils.c \
 	
@@ -86,7 +87,7 @@ LIBFT = $(LIBFT_PATH)libft.a
 
 CC = gcc
 
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra -g3
 
 AR =  ar rcs
 

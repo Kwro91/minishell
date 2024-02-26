@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   remove_quote.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
+/*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 18:36:45 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/20 20:01:57 by afontain         ###   ########.fr       */
+/*   Updated: 2024/02/26 16:10:15 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,34 +35,6 @@ int	check_empty_quotes(t_mdata *data, char **line, int i)
 		return (1);
 	}
 	return (0);
-}
-
-void	get_removed(t_mdata *data, char **line, int i)
-{
-	char	*new;
-	char	*first;
-	char	*second;
-
-	if (!line)
-		return (ft_error(data, "Error: remove quote1\n", -1));
-	first = "";
-	second = "";
-	if (i > 0 && &line[0][i - 1])
-		first = ft_strndup(data, *line, i);
-	if (!first)
-		return (ft_error(data, "Error: remove quote2\n", -1));
-	if (&line[0][i + 1])
-		second = ft_strdup(&line[0][i + 1]);
-	if (!second)
-		return (ft_error(data, "Error: remove quote3\n", -1));
-	new = ft_strjoin(first, second);
-	if (!new)
-		return (ft_error(data, "Error: remove quote4\n", -1));
-	if (first && ft_strncmp(first, "", 1) != 0)
-		free(first);
-	if (second && ft_strncmp(second, "", 1) != 0)
-		free(second);
-	*line = new;
 }
 
 int	remove_dquote(t_mdata *data, char **line, int i)
@@ -108,7 +80,8 @@ void	remove_quotes(t_mdata *data, char **line)
 			i = remove_dquote(data, line, i);
 		else if (line[0][i] && line[0][i] == '\'')
 			i = remove_squote(data, line, i);
-		i++;
+		else
+			i++;
 		len = ft_strlen(line[0]);
 	}
 }

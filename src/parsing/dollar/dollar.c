@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dollar.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
+/*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 12:52:09 by afontain          #+#    #+#             */
-/*   Updated: 2024/02/20 20:02:15 by afontain         ###   ########.fr       */
+/*   Updated: 2024/02/26 14:33:31 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	handle_dollar2(t_mdata *data, t_command *cmd, int i)
 	int	k;
 
 	k = 0;
-	if (ft_isalpha(cmd->line[i + 1]) == 1)
+	if (ft_isalnum(cmd->line[i + 1]) == 1)
 		return (handle_letter(data, cmd, i));
 	else
 		return (dollar_left(data, cmd, i));
@@ -77,10 +77,7 @@ int	handle_dollar(t_mdata *data, t_command *cmd, int i)
 	if (cmd->line[i + 1] == '?')
 		return (replace_retval(data, cmd, i));
 	else if (cmd->line[i + 1] == '\'' || cmd->line[i + 1] == '"')
-	{	
-		cmd->line = del_qdollar(data, cmd, i);
-		k = ft_strlen(del_qdollar(data, cmd, i));
-	}
+		return (i);
 	else
 		i = handle_dollar2(data, cmd, i);
 	return (i + k);

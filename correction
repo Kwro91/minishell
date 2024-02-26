@@ -8,11 +8,11 @@ Minishell> Minishell>
 
 # exit 42 (echo $? en dehors doit afficher 42)
 
-echo $USER"mdr""lol"
+# echo $USER"mdr""lol"
 
-echo "few"'fewffsa''lol'"xd"
+# echo "few"'fewffsa''lol'"xd"
 
-echo $"USER"
+# echo $"USER"
 
 # > export Z=3
 # > export Z=5
