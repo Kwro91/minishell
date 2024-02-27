@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 14:10:34 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/26 16:53:28 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/27 17:22:55 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,9 +88,10 @@ void		end_loop(t_mdata *data);
 void		close_end(t_mdata *data);
 int			is_line_good(char *line);
 //Path
+void		setup_path(t_mdata *data);
 void		ft_path_all(t_mdata *data, char **paths);
 void		ft_path_no_env(t_mdata *data);
-char		**ft_path_mini(char **env);
+char		**ft_path_mini(t_mdata *data);
 void		ft_free_lines(char	**lines);
 
 //Free

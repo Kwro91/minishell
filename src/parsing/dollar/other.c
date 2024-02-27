@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 17:47:05 by afontain          #+#    #+#             */
-/*   Updated: 2024/02/26 14:22:24 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/27 15:47:56 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,11 @@ int	dollar_left(t_mdata *data, t_command *cmd, int i)
 		return (i);
 	else if (cmd->line[i + 2] != '\0')
 	{
-		start = ft_strdupuntil(data, cmd->line, i - 1);
-		end = ft_strdup(&cmd->line[i + 2]);
+		start = ft_strdupuntil(data, cmd->line, i);
+		if (ft_isdigit(cmd->line[i + 1]) == 1)
+			end = ft_strdup(&cmd->line[i + 2]);
+		else
+			end = ft_strdup(&cmd->line[i + 1]);
 		ft_free_me(cmd->line);
 		cmd->line = ft_strjoin(start, end);
 		ft_free_me(start);

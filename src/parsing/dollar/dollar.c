@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 12:52:09 by afontain          #+#    #+#             */
-/*   Updated: 2024/02/26 14:33:31 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/27 15:49:45 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	handle_dollar2(t_mdata *data, t_command *cmd, int i)
 	int	k;
 
 	k = 0;
-	if (ft_isalnum(cmd->line[i + 1]) == 1)
+	if (ft_isalpha(cmd->line[i + 1]) == 1)
 		return (handle_letter(data, cmd, i));
 	else
 		return (dollar_left(data, cmd, i));

@@ -6,21 +6,35 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 16:06:15 by besalort          #+#    #+#             */
-/*   Updated: 2023/08/31 16:28:33 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/27 17:22:15 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	**ft_path_mini(char **env)
+void	setup_path(t_mdata *data)
+{
+		if (data->paths)
+			ft_free_lines(data->paths);
+		data->paths = ft_path_mini(data);
+}
+
+char	**ft_path_mini(t_mdata *data)
 {
 	int		i;
 
 	i = 0;
-	while (env[i])
+	while (data->env && data->env[i])
 	{
-		if (ft_strncmp(env[i], "PATH=", 5) == 0)
-			return (ft_split(env[i] + 5, ':'));
+		if (ft_strncmp(data->env[i], "PATH=", 5) == 0)
+			return (ft_split(data->env[i] + 5, ':'));
+		i++;
+	}
+	i = 0;
+	while (data->export && data->export[i])
+	{
+		if (ft_strncmp(data->export[i], "PATH=", 5) == 0)
+			return (ft_split(data->export[i] + 5, ':'));
 		i++;
 	}
 	return (NULL);
