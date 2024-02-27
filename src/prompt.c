@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
+/*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 15:53:50 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/23 16:09:26 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/23 17:23:10 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,6 @@ void	loop_utils(t_mdata *data, char *cmd)
 	if (cmd != NULL)
 	{
 		split_parse(data, cmd);
-		// if (data->cmd->line == NULL)
-		// 	return ;
 		if (data->nb_cmd > 1)
 			if (check_line_pipe(data, data->cmd) == -1)
 				return ;
@@ -75,6 +73,8 @@ void	prompt(t_mdata *data, char **env)
 	char	*cmd;
 
 	cmd = NULL;
+	if (data->paths)
+		ft_free_lines(data->paths);
 	data->paths = ft_path_mini(env);
 	data->cmd = NULL;
 	env_setup(data, env);

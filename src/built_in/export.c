@@ -6,7 +6,7 @@
 /*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 14:54:46 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/20 20:17:03 by afontain         ###   ########.fr       */
+/*   Updated: 2024/02/23 18:20:28 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,12 @@ void	copy_export(t_mdata *data, char **line, int count)
 	new[base + (count_l - count)] = NULL;
 	ft_free_lines(data->export);
 	data->export = new;
+
+
+
+	// Solution temporaire, voir correction.txt EXPORT
+	ft_free_lines(data->env);
+	data->env = new;
 }
 
 void	init_export(t_mdata *data, char **line)

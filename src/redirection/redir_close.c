@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir_close.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
+/*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 16:15:18 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/16 16:15:53 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/23 18:41:45 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ void	close_all_files(t_mdata *data, t_command *cmd)
 void	close_two(t_mdata *data, int fd1, int fd2)
 {
 	(void)data;
+	(void)fd1;
+	(void)fd2;
 	if (fd1 >= 0)
 		close(fd1);
 	if (fd2 >= 0)
