@@ -6,7 +6,7 @@
 /*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 15:38:43 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/29 13:25:56 by afontain         ###   ########.fr       */
+/*   Updated: 2024/02/29 16:09:11 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,6 @@ int	redir(t_mdata *data, t_command *cmd)
 	int	value;
 
 	value = 0;
-	//ajouter une return value dans le cas ou le heredoc a gretval = 128
 	ft_open_mfiles(data, cmd);
 	if (cmd->in)
 		value = do_in_redir(data, cmd);

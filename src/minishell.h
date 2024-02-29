@@ -6,7 +6,7 @@
 /*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 14:10:34 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/29 13:40:49 by afontain         ###   ########.fr       */
+/*   Updated: 2024/02/29 16:26:21 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,12 +170,13 @@ char		*dup_word(t_mdata *data, char	*line, int len);
 void		sub_files(t_mdata *data, t_command *cmd);
 void		close_all_files(t_mdata *data, t_command *cmd);
 void		close_two(t_mdata *data, int fd1, int fd2);
-void		ft_mhere_doc(t_mdata *data, t_files *file);
+int			ft_mhere_doc(t_mdata *data, t_files *file);
 t_files		*get_new_file(t_mdata *data, char *line, int here_doc);
 t_files		*create_new_files(t_mdata *data, t_files *files,
 				char *line, int hd);
 char		*ft_strndup(t_mdata *data, char	*str, int len);
 void		reset_redir(t_mdata *data);
+void		error_open(t_mdata *data, t_command *cmd, t_files *tmp, int c);
 
 void		is_fd_in(t_mdata *data, t_command *cmd);
 void		is_fd_out(t_mdata *data, t_command *cmd);

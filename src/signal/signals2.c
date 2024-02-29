@@ -6,7 +6,7 @@
 /*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 15:25:23 by afontain          #+#    #+#             */
-/*   Updated: 2024/02/29 13:30:46 by afontain         ###   ########.fr       */
+/*   Updated: 2024/02/29 15:56:07 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	handle_siginthere(int sig_segv)
 	(void)sig_segv;
 	close(STDIN_FILENO);
 	write(2, "\n", 1);
-	g_retval = 128;
+	g_retval = 130;
 	return ;
 }
 

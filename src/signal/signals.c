@@ -6,7 +6,7 @@
 /*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 12:59:04 by afontain          #+#    #+#             */
-/*   Updated: 2024/02/29 13:30:27 by afontain         ###   ########.fr       */
+/*   Updated: 2024/02/29 16:02:04 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,9 @@ void	signal_heredoc(int sig)
 {
 	(void)sig;
 	close(STDIN_FILENO);
-	g_retval = 128;
+	g_retval = 130;
 	return ;
 }
-
 
 void	error_signal()
 {
