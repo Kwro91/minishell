@@ -6,7 +6,7 @@
 /*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 16:06:24 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/29 15:56:31 by afontain         ###   ########.fr       */
+/*   Updated: 2024/02/29 16:40:03 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int	ft_mhere_doc(t_mdata *data, t_files *file)
 		close(stdin_copy);
 		close(file->fd);
 		file->fd = open(".here_doc_tmp", O_RDONLY);
-		return (g_retval); //valeur de retour erreur pour CTRL-C
+		return (g_retval);
 	}
 	close(stdin_copy);
 	free(line);

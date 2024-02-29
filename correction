@@ -62,7 +62,6 @@ HEREDOC
 
 	cat << EOF | cat << EOF -> ferme les 2 en meme temps au lieu d'attendre un EOF pour chacun
 
-
 ECHO 
 	echo -nnnnnnnnnn blablabla (pas obligatoire mais normalement ca considere comme -n)
 
@@ -89,7 +88,6 @@ EXIT
 		exit s
 		exit s 213
 		exit 213 s
-
 
 REDIR 
 
