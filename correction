@@ -23,10 +23,10 @@ Minishell> Minishell>
 # Minishell> rm -rf ../lol
 # Minishell> pwd
 
-Minishell> unset PATH
-Minishell> ls
+# Minishell> unset PATH
+# Minishell> ls
 
-Minishell> abc |abc | echo lol
+# Minishell> abc |abc | echo lol
 
 Minishell> cat<< eof > xd
 > fsafsa
@@ -45,8 +45,8 @@ Minishell> echo $?
 
 
 PRIO 
-	unset PATH into une commande ls par ex fonctionne alors que path n'existe plus
-	votre copie de env n'est pas changee lors d'un unset
+	# unset PATH into une commande ls par ex fonctionne alors que path n'existe plus
+	# votre copie de env n'est pas changee lors d'un unset
 
 
 
@@ -63,10 +63,10 @@ HEREDOC
 	cat << EOF | cat << EOF -> ferme les 2 en meme temps au lieu d'attendre un EOF pour chacun
 
 
-ECHO 
-	echo -nnnnnnnnnn blablabla (pas obligatoire mais normalement ca considere comme -n)
+# ECHO 
+# 	echo -nnnnnnnnnn blablabla (pas obligatoire mais normalement ca considere comme -n)
 
-	echo $HOME = ${HOME}, gerer les ${VAR} 
+# 	echo $HOME = ${HOME}, gerer les ${VAR} 
 
 EXPORT 
 	export sdgsdg#d=gh devrait renvoyer message d'erreur + return value, check pour tous les autres characteres speciaux non autorises

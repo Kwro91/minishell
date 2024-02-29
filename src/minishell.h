@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
+/*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 14:10:34 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/29 13:40:49 by afontain         ###   ########.fr       */
+/*   Updated: 2024/02/29 14:58:09 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,6 +143,7 @@ int			check_export_line(t_mdata *data, char *line, int show);
 void		error_export(t_mdata *data, char *error);
 int			check_export_value(char *var);
 int			nb_char_equal(char	*line);
+int			is_export_good(char	*line);
 
 //Cd
 void		cd_cmd(t_mdata *data, char *line);
