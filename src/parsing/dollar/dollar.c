@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 12:52:09 by afontain          #+#    #+#             */
-/*   Updated: 2024/02/27 15:49:45 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/29 12:18:57 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,10 @@ int	handle_dollar(t_mdata *data, t_command *cmd, int i)
 	if (cmd->line[i + 1] == '?')
 		return (replace_retval(data, cmd, i));
 	else if (cmd->line[i + 1] == '\'' || cmd->line[i + 1] == '"')
-		return (i);
+	{	
+		cmd->line = del_qdollar(data, cmd, i);
+		k = ft_strlen(del_qdollar(data, cmd, i));
+	}
 	else
 		i = handle_dollar2(data, cmd, i);
 	return (i + k);

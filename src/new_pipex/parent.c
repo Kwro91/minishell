@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parent.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
+/*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 17:38:09 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/22 15:53:28 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/23 18:42:09 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ void	mwait_childs(t_mdata *data)
 	while (tmp)
 	{
 		waitpid(-1, &status, 0);
+		// avoir le pid de tout les enfants pour attendre que tout les process soient termine
+		// et psa stop apres la fin d'un seul
 		g_retval = WEXITSTATUS(status);
 		if (count == 0)
 		{
@@ -67,6 +69,8 @@ void	mwait_childs(t_mdata *data)
 		count++;
 		tmp = tmp->next;
 	}
+	handle_signals();
+	
 }
 
 void	run_all(t_mdata *data)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
+/*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 15:30:43 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/22 17:39:49 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/23 19:13:08 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ char	*return_home(t_mdata *data)
 	}
 	return (NULL);
 }
-
 char	*verif_cd(t_mdata *data, char *line)
 {
 	if (!line || ft_strncmp(line, "~\0", 2) == 0)
@@ -53,7 +52,11 @@ void	cd_cmd(t_mdata *data, char *line)
 	}
 	else
 	{
-		if (line && chdir(line) != 0 && (ft_strncmp(line, "-\0", 2) != 0))
+		if (access(line, F_OK) == -1)
+			ft_error(data, "Error: no such file or directory\n", 1);
+		else if (access(line, R_OK | X_OK | W_OK) == -1)
+			ft_error(data, "Error: not a directory\n", 1);
+		else if (line && chdir(line) != 0 && (ft_strncmp(line, "-\0", 2) != 0))
 			ft_error(data, "Error: no such file or directory\n", 1);
 		else if (!line)
 			ft_error(data, "Error: no such file or directory\n", 1);

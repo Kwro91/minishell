@@ -1,0 +1,120 @@
+valgrind --leak-check=full --show-leak-kinds=all --suppressions=supp.supp --track-fds=yes --trace-children=yes -q ./minishell
+
+Minishell> Minishell>
+
+# echo lol | cat -e
+
+# exit (fds ouverts)
+
+# exit 42 (echo $? en dehors doit afficher 42)
+
+#echo $USER"mdr""lol"
+
+#echo "few"'fewffsa''lol'"xd"
+
+#echo $"USER"
+
+# > export Z=3
+# > export Z=5
+# > env
+
+# Minishell> mkdir lol
+# Minishell> cd lol
+# Minishell> rm -rf ../lol
+# Minishell> pwd
+
+# Minishell> unset PATH
+# Minishell> ls
+
+Minishell> abc |abc | echo lol
+
+Minishell> cat<< eof > xd
+> fsafsa
+> fas
+> fasf
+> s^C
+Minishell> echo $? 
+
+
+(tester avec ctrl+D aussi)
+
+# Minishell> rev << eof
+# > abc
+# > def
+# > xyz
+
+
+# PRIO 
+# 	unset PATH into une commande ls par ex fonctionne alors que path n'existe plus
+#	votre copie de env n'est pas changee lors d'un unset
+
+
+
+
+//	CD :
+//	
+//		cd.c | ligne 55 rajouter verif if access(line, F_OK | X_OK) != 0 -> not a directory
+//		pour un cd Makefile par exemple 
+
+
+HEREDOC 
+ -> plusieurs heredoc dans differents pipe leaks
+
+	open les herredoc avant de rentrer dans un process child et sauvergarder chaque fd open pour faire le lien entre process n avec heredoc_fd[n]
+
+	cat << EOF | cat << EOF2 le deuxieme prend tout le contenu du premier heredoc au lieu de choper juste la suite a partir de >EOF
+
+	cat << EOF | cat << EOF -> ferme les 2 en meme temps au lieu d'attendre un EOF pour chacun
+
+
+ECHO 
+	echo -nnnnnnnnnn blablabla (pas obligatoire mais normalement ca considere comme -n)
+
+	echo $HOME = ${HOME}, gerer les ${VAR} 
+
+EXPORT 
+	export sdgsdg#d=gh devrait renvoyer message d'erreur + return value, check pour tous les autres characteres speciaux non autorises
+
+	Pourquoi y a un char **env utilise pour les cmd (PATH=) et modifie sur unset ET un export uniquement modifier sur export var=value
+	-> unset PATH
+	-> export PATH=/mnt/nfs/homes/afontain/.local/funcheck/host:/mnt/nfs/homes/afontain/bin:/mnt/nfs/homes/afontain/.local/funcheck/host:/mnt/nfs/homes/afontain/bin:/mnt/nfs/homes/afontain/.local/funcheck/host:/mnt/nfs/homes/afontain/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+	-> ls (devrait fonctioner mais cmd not found)
+
+
+//EXIT
+//	exit s
+
+//	- expected :
+//		bash: exit: s: numeric argument required
+//		➜  minishell git:(main) ✗ echo $?
+//		2
+
+//	au lieu de exit avrc return value 0
+
+//	A comparer et implementer si besoin :
+		
+//		exit s
+//		exit s 213
+//		exit 213 s
+
+
+REDIR 
+
+	IN :
+		cat < sdjkghds (existe pas/permission denied ...) faut exit l'exec du cat
+
+		!(surement resolu en meme temps que precedent)!
+		> echo "sdfsdfs" > file (no permission) should print Persmission denied with return value of 1 isntead of printing sdfsdfs on terminal
+		- add protection des open (partout) + print message d'erreur
+
+		CA APPAREMENT C IMPORTANT 
+
+
+//QUOTE
+//	1)commande avec quote (bonne ou pas)
+
+//	2)a)puis commande (non builtin) qui ne fonctionne pas
+//	2)b)ou builtin tout court avec pipe fait masse de leaks a cause de remove quotes qui n'a pas tout free
+
+//SIGNAL
+//	SIGKILL (CTRL-\) dans l'execution d'une commande cat ou sleep devrait stopper l'execution   
