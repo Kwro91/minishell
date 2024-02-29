@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 15:53:50 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/27 17:23:50 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/29 18:43:59 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ char	*get_readline(t_mdata *data, char *str)
 	{
 		rl_clear_history();
 		write(STDERR_FILENO, "exit\n", 5);
+		printf("bonsoir\n");
 		exit_mini(data, NULL);
 	}
 	return (str);
@@ -79,10 +80,12 @@ void	prompt(t_mdata *data, char **env)
 	env_setup(data, env);
 	setup_pwd(data, env, 1);
 	data->paths = NULL;
-	data->stdin_back = dup(STDIN_FILENO);
-	data->stdout_back = dup(STDOUT_FILENO);
 	while (1)
 	{
+		data->stdin_back = dup(STDIN_FILENO);
+		data->stdout_back = dup(STDOUT_FILENO);
+		printf("stdin = %i\n", data->stdin_back);
+		printf("stdout = %i\n", data->stdout_back);
 		setup_path(data);
 		if (do_line_exist(data->env, "PWD") == -1)
 			add_pwd(data);

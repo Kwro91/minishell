@@ -50,10 +50,10 @@ PRIO
 
 
 
-CD :
+# CD :
 
-	cd.c | ligne 55 rajouter verif if access(line, F_OK | X_OK) != 0 -> not a directory
-	pour un cd Makefile par exemple 
+# 	cd.c | ligne 55 rajouter verif if access(line, F_OK | X_OK) != 0 -> not a directory
+# 	pour un cd Makefile par exemple 
 
 HEREDOC 
  -> plusieurs heredoc dans differents pipe leaks
@@ -68,11 +68,11 @@ HEREDOC
 
 # 	echo $HOME = ${HOME}, gerer les ${VAR} 
 
-EXPORT 
-	export sdgsdg#d=gh devrait renvoyer message d'erreur + return value, check pour tous les autres characteres speciaux non autorises
+# EXPORT 
+# 	export sdgsdg#d=gh devrait renvoyer message d'erreur + return value, check pour tous les autres characteres speciaux non autorises
 
 
-UNSET ne fait rien
+# UNSET ne fait rien
 
 EXIT
 	exit s

@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 14:10:34 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/29 14:58:09 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/29 18:14:40 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ typedef struct s_command
 	char	*line;
 	char	**cmd;
 	int		good;
+	int		nb;
 	t_files	*in;
 	t_files	*out;
 	void	*next;
@@ -171,7 +172,8 @@ char		*dup_word(t_mdata *data, char	*line, int len);
 void		sub_files(t_mdata *data, t_command *cmd);
 void		close_all_files(t_mdata *data, t_command *cmd);
 void		close_two(t_mdata *data, int fd1, int fd2);
-void		ft_mhere_doc(t_mdata *data, t_files *file);
+void		ft_mhere_doc(t_mdata *data, t_command *cmd, t_files *file);
+char		*get_hdoc_name(t_mdata *data, t_command *cmd);
 t_files		*get_new_file(t_mdata *data, char *line, int here_doc);
 t_files		*create_new_files(t_mdata *data, t_files *files,
 				char *line, int hd);

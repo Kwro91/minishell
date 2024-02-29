@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   end_loop.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
+/*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 15:32:02 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/20 15:57:04 by afontain         ###   ########.fr       */
+/*   Updated: 2024/02/29 19:03:57 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,16 +43,19 @@ void	free_cmd(t_command *cmd)
 		ft_free_lines(cmd->cmd);
 }
 
-void	close_here_doc(void)
+void	close_here_doc(t_mdata *data, t_command	*cmd)
 {
-	int	fd;
+	int		fd;
+	char	*name;
 
-	fd = open(".here_doc_tmp", O_RDONLY);
+	name = get_hdoc_name(data, cmd);
+	fd = open(name, O_RDONLY);
 	if (fd >= 0)
 	{
 		close(fd);
-		unlink(".here_doc_tmp");
+		unlink(name);
 	}
+	ft_free_me(name);
 }
 
 void	close_end(t_mdata *data)
@@ -68,7 +71,7 @@ void	close_end(t_mdata *data)
 	{
 		free_cmd(tmp);
 		close_all_files(data, tmp);
-		close_here_doc();
+		close_here_doc(data, tmp);
 		free_files(tmp);
 		next = tmp->next;
 		free(tmp);

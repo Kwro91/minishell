@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
+/*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 15:59:33 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/29 13:15:45 by afontain         ###   ########.fr       */
+/*   Updated: 2024/02/29 19:03:09 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ void	pipe_cmd(t_mdata *data, t_command *cmd)
 		close_all_files(data, cmd);
 		tmp = ft_access_mini(data, cmd);
 		if (tmp)
-			g_retval = execve(tmp, cmd->cmd, data->env);
+			g_retval = execve(ft_access_mini(data, cmd), cmd->cmd, data->env);
 		ft_free_me(tmp);
 	}
 	exit_mini(data, NULL);

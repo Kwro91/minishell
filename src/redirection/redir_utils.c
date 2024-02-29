@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
+/*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 15:54:38 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/23 01:12:57 by afontain         ###   ########.fr       */
+/*   Updated: 2024/02/29 17:27:07 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	open_in_files(t_mdata *data, t_command *cmd)
 		if (tmp->here_doc == 0)
 			tmp->fd = open(tmp->files, O_RDONLY);
 		else
-			ft_mhere_doc(data, tmp);
+			ft_mhere_doc(data, cmd, tmp);
 		if (tmp->fd < 0)
 		{
 			cmd->good = -1;

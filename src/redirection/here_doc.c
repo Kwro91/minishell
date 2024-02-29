@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   here_doc.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
+/*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 16:06:24 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/29 13:25:12 by afontain         ###   ########.fr       */
+/*   Updated: 2024/02/29 18:58:42 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,17 +38,33 @@ int	is_eof(char	*line, t_files *file)
 	return (0);
 }
 
-void	ft_mhere_doc(t_mdata *data, t_files *file)
+char	*get_hdoc_name(t_mdata *data, t_command *cmd)
+{
+	char	*name;
+	char	*number;
+	
+	number = ft_itoa(cmd->nb);
+	if (!number)
+		ft_error(data, "Error: malloc\n", -1);
+	name = ft_strjoin(".here_doc", number);
+	if (!name)
+		ft_error(data, "Error: malloc\n", -1);
+	ft_free_me(number);
+	return (name);
+}
+
+void	ft_mhere_doc(t_mdata *data, t_command *cmd, t_files *file)
 {
 	char	*line;
-
+	char	*name;
+	
+	name = get_hdoc_name(data, cmd);
 	ft_meof(file);
-	int stdin_copy = dup(STDIN_FILENO);
-	file->fd = open(".here_doc_tmp",
+	file->fd = open(name,
 			O_CREAT | O_WRONLY | O_TRUNC, 0000644);
 	if (file->fd < 0)
 	{
-		unlink(".here_doc_tmp");
+		unlink(name);
 		return (ft_error(data, "Error, here_doc\n", 1));
 	}
 	signal(SIGINT, &handle_siginthere);
@@ -63,16 +79,17 @@ void	ft_mhere_doc(t_mdata *data, t_files *file)
 	}
 	if (g_retval == 128)
 	{
-		dup2(stdin_copy, 0);
+		dup2(data->stdin_back, 0);
 		handle_signals();
-		close(stdin_copy);
+		close(data->stdin_back);
 		close(file->fd);
-		file->fd = open(".here_doc_tmp", O_RDONLY);
+		file->fd = open(name, O_RDONLY);
 		return ; //valeur de retour erreur pour CTRL-C
 	}
-	close(stdin_copy);
+	close(data->stdin_back);
 	free(line);
 	close(file->fd);
-	file->fd = open(".here_doc_tmp", O_RDONLY);
+	file->fd = open(name, O_RDONLY);
+	ft_free_me(name);
 	handle_signals();
 }

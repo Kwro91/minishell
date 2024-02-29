@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 16:14:52 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/22 17:14:23 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/29 18:19:25 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,23 +27,23 @@ void	ft_error(t_mdata *data, char *line, int close)
 		exit_mini(data, NULL);
 }
 
-void	ft_free_files(t_files *files)
-{
-	t_files	*tmp;
+// void	ft_free_files(t_files *files)
+// {
+// 	t_files	*tmp;
 
-	tmp = files;
-	while (tmp)
-	{
-		if (tmp->here_doc == 1)
-			unlink(".here_doc_tmp");
-		if (tmp->fd > 1)
-			close(tmp->fd);
-		if (tmp->files)
-			free(tmp->files);
-		free(tmp);
-		tmp = tmp->next;
-	}
-}
+// 	tmp = files;
+// 	while (tmp)
+// 	{
+// 		if (tmp->here_doc == 1)
+// 			unlink(".here_doc_tmp");
+// 		if (tmp->fd > 1)
+// 			close(tmp->fd);
+// 		if (tmp->files)
+// 			free(tmp->files);
+// 		free(tmp);
+// 		tmp = tmp->next;
+// 	}
+// }
 
 void	ft_free_adr(void *adr)
 {
