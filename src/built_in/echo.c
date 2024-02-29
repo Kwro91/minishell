@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
+/*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 14:08:19 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/20 20:16:05 by afontain         ###   ########.fr       */
+/*   Updated: 2024/02/29 12:02:40 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,19 +41,16 @@ void	ft_echo(char **text)
 	nb = nb_word(text);
 	if (echo_bis(text, nb) == 1)
 		return ;
-	if (text && ft_strncmp(text[0], "-n\0", 3) == 0)
+	while (text && text[i] && ft_strncmp(text[i], "-n", 2) == 0)
 		i++;
 	while (text[i])
 	{
-		if (i != nb - 1)
-			write(1, text[i], ft_strlen(text[i]));
-		else
-			write(1, text[i], ft_strlen(text[i]));
+		write(1, text[i], ft_strlen(text[i]));
 		i++;
 		if (text[i])
 			write(1, " ", 1);
 	}
-	if (text && ft_strncmp(text[0], "-n\0", 3) != 0)
+	if (text && ft_strncmp(text[0], "-n", 2) != 0)
 		write(1, "\n", 1);
 	g_retval = 0;
 }
