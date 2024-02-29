@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_path.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
+/*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 16:06:15 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/27 17:22:15 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/29 13:34:32 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	ft_path_all(t_mdata *data, char **paths)
 		i++;
 	data->paths = ft_calloc(sizeof(char *), (i + 1));
 	if (!data->paths)
-		ft_free_mini(data);
+		ft_error(data, "Error: calloc\n", -1);
 	if (paths == NULL || *paths == NULL)
 		return ;
 	i = 0;

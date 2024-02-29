@@ -6,18 +6,19 @@
 /*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 15:25:23 by afontain          #+#    #+#             */
-/*   Updated: 2024/02/22 22:52:09 by afontain         ###   ########.fr       */
+/*   Updated: 2024/02/29 13:30:46 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	handle_sighere(int sig_segv)
+void	handle_siginthere(int sig_segv)
 {
 	(void)sig_segv;
-	ft_printf("\n");
-	g_retval = 139;
-	close(0);
+	close(STDIN_FILENO);
+	write(2, "\n", 1);
+	g_retval = 128;
+	return ;
 }
 
 void	handle_sigint_exec(void)
@@ -29,5 +30,4 @@ void	handle_exec(int sig_int)
 {
 	(void)sig_int;
 	g_retval = 130;
-	ft_printf("\n");
 }

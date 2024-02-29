@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
+/*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 14:10:34 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/27 17:22:55 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/29 13:40:49 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,12 +149,15 @@ void		cd_cmd(t_mdata *data, char *line);
 
 //Signal
 void		handle_signals(void);
-void		handle_sighere(int sig_int);
+// void		handle_sighere(int sig_int);
 void		handle_sigint_exec(void);
 void		handle_exec(int sig_int);
 void		handle_sigquit(int sig_quit);
 void		handle_sigsegv(int sig_segv);
 void		handle_sigint(int sig_int);
+void		handle_siginthere(int sig_segv);
+void		error_signal();
+void		handle_signals_exec(void);
 
 //EXECUTION
 char		*ft_access_mini(t_mdata *data, t_command *cmd);
