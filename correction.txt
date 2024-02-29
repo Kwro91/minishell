@@ -72,13 +72,13 @@ ECHO
 
 	echo $HOME = ${HOME}, gerer les ${VAR} 
 
-EXPORT 
-	export sdgsdg#d=gh devrait renvoyer message d'erreur + return value, check pour tous les autres characteres speciaux non autorises
-
-	Pourquoi y a un char **env utilise pour les cmd (PATH=) et modifie sur unset ET un export uniquement modifier sur export var=value
-	-> unset PATH
-	-> export PATH=/mnt/nfs/homes/afontain/.local/funcheck/host:/mnt/nfs/homes/afontain/bin:/mnt/nfs/homes/afontain/.local/funcheck/host:/mnt/nfs/homes/afontain/bin:/mnt/nfs/homes/afontain/.local/funcheck/host:/mnt/nfs/homes/afontain/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
-	-> ls (devrait fonctioner mais cmd not found)
+//EXPORT 
+//	export sdgsdg#d=gh devrait renvoyer message d'erreur + return value, check pour tous les autres characteres speciaux non autorises
+//
+//	Pourquoi y a un char **env utilise pour les cmd (PATH=) et modifie sur unset ET un export uniquement modifier sur export var=value
+//	-> unset PATH
+//	-> export PATH=/mnt/nfs/homes/afontain/.local/funcheck/host:/mnt/nfs/homes/afontain/bin:/mnt/nfs/homes/afontain/.local/funcheck/host:/mnt/nfs/homes/afontain/bin:/mnt/nfs/homes/afontain/.local/funcheck/host:/mnt/nfs/homes/afontain/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+//	-> ls (devrait fonctioner mais cmd not found)
 
 
 //EXIT
