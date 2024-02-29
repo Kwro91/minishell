@@ -6,7 +6,7 @@
 /*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 16:06:24 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/27 15:49:38 by afontain         ###   ########.fr       */
+/*   Updated: 2024/02/29 15:03:32 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,5 +76,3 @@ void	ft_mhere_doc(t_mdata *data, t_files *file)
 	file->fd = open(".here_doc_tmp", O_RDONLY);
 	handle_signals();
 }
-
-// Ouile fichier a bc changer mdrr pour implementer les ctrl dedans
