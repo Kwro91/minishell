@@ -107,3 +107,5 @@ QUOTE
 
 SIGNAL
 	SIGKILL (CTRL-\) dans l'execution d'une commande cat ou sleep devrait stopper l'execution
+
+okok
