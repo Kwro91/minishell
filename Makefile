@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: afontain <afontain@student.42.fr>          +#+  +:+       +#+         #
+#    By: besalort <besalort@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/29 14:05:28 by besalort          #+#    #+#              #
-#    Updated: 2024/02/23 14:27:55 by afontain         ###   ########.fr        #
+#    Updated: 2024/02/29 12:39:04 by besalort         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,6 +43,7 @@ SRC = ./src/main.c \
 	$(REDIRECTION_PATH)redir_close.c \
 	$(REDIRECTION_PATH)here_doc.c \
 	$(REDIRECTION_PATH)reset_redir.c \
+	$(PARSING_PATH)remove_quotes_utils.c \
 	$(CHECK_CREATE_PATH)create_cmd.c \
 	$(CHECK_CREATE_PATH)check_line.c \
 	$(PIPE_PATH)child.c \

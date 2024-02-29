@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 14:10:34 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/29 12:19:14 by besalort         ###   ########.fr       */
+/*   Updated: 2024/02/29 12:38:25 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -208,6 +208,7 @@ void		change_letter(t_mdata *data, t_command *cmd, int i,
 
 //Quotes
 void		remove_quotes(t_mdata *data, char **line);
+void    	get_removed(t_mdata *data, char **line, int i);
 
 //Pipe
 void		mpipex(t_mdata *data);
