@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 16:06:24 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/29 18:58:42 by besalort         ###   ########.fr       */
+/*   Updated: 2024/03/01 18:17:27 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,6 @@ void	ft_mhere_doc(t_mdata *data, t_command *cmd, t_files *file)
 		file->fd = open(name, O_RDONLY);
 		return ; //valeur de retour erreur pour CTRL-C
 	}
-	close(data->stdin_back);
 	free(line);
 	close(file->fd);
 	file->fd = open(name, O_RDONLY);
