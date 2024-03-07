@@ -3,30 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   redir.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
+/*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 15:38:43 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/29 13:25:56 by afontain         ###   ########.fr       */
+/*   Updated: 2024/03/07 18:37:25 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-char	*dup_word(t_mdata *data, char	*line, int len)
+char	*dup_word(t_mdata *data, t_command *cmd, int len, int i)
 {
 	char	*word;
-	int		i;
+	int		j;
 
-	i = 0;
+	j = 0;
 	word = malloc(sizeof(char) * len + 1);
 	if (!word)
 		ft_error(data, "Error, malloc\n", -1);
-	while (i < len && line[i])
+	while (j < len && cmd->line[i])
 	{
-		word[i] = line[i];
+		word[j] = cmd->line[i];
 		i++;
+		j++;
 	}
-	word[i] = '\0';
+	word[j] = '\0';
 	return (word);
 }
 

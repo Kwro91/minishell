@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 14:10:34 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/29 18:14:40 by besalort         ###   ########.fr       */
+/*   Updated: 2024/03/07 17:30:31 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,12 @@
 # include <readline/history.h>
 
 extern int	g_retval;
+
+typedef struct s_ifiles
+{
+	int	hd;
+	int	i;
+}	t_ifiles;
 
 typedef struct s_files
 {
@@ -116,7 +122,7 @@ int			is_cd(char **cmd_total, t_mdata *data);
 //Utils
 int			nb_word(char **text);
 void		good_print(char	*line);
-char		*next_word(t_mdata *data, char *line);
+char		*next_word(t_mdata *data, t_command *cmd, int i);
 
 //Echo
 void		ft_echo(char **text);
@@ -168,15 +174,15 @@ char		*access_utils(t_mdata *data, t_command *cmd);
 
 //REDIRECTION
 int			redir(t_mdata *data, t_command *cmd);
-char		*dup_word(t_mdata *data, char	*line, int len);
+char		*dup_word(t_mdata *data, t_command *cmd, int len, int i);
 void		sub_files(t_mdata *data, t_command *cmd);
 void		close_all_files(t_mdata *data, t_command *cmd);
 void		close_two(t_mdata *data, int fd1, int fd2);
 void		ft_mhere_doc(t_mdata *data, t_command *cmd, t_files *file);
 char		*get_hdoc_name(t_mdata *data, t_command *cmd);
-t_files		*get_new_file(t_mdata *data, char *line, int here_doc);
+t_files		*get_new_file(t_mdata *data, t_command *cmd, t_ifiles *i);
 t_files		*create_new_files(t_mdata *data, t_files *files,
-				char *line, int hd);
+				t_command *cmd, t_ifiles *i);
 char		*ft_strndup(t_mdata *data, char	*str, int len);
 void		reset_redir(t_mdata *data);
 
@@ -198,7 +204,7 @@ int			handle_letter(t_mdata *data, t_command *cmd, int i);
 int			replace_retval(t_mdata *data, t_command *cmd, int i);
 int			dollar_left(t_mdata *data, t_command *cmd, int i);
 char		*del_qdollar(t_mdata *data, t_command *cmd, int i);
-char		*ft_strdupfromuntil(t_mdata *data, char *src, int i, int n);
+char		*ft_strdupfromuntil(t_mdata *data, t_command *cmd, int i, int n);
 char		*ft_strdupuntil(t_mdata *data, char *src, int i);
 char		*find_var(t_mdata *data, t_command *cmd, int i);
 void		del_vdollar(t_mdata *data, t_command *cmd, int i, int len);

@@ -6,7 +6,7 @@
 #    By: besalort <besalort@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/29 14:05:28 by besalort          #+#    #+#              #
-#    Updated: 2024/02/26 16:06:26 by besalort         ###   ########.fr        #
+#    Updated: 2024/03/07 14:31:50 by besalort         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,6 +43,7 @@ SRC = ./src/main.c \
 	$(REDIRECTION_PATH)redir_close.c \
 	$(REDIRECTION_PATH)here_doc.c \
 	$(REDIRECTION_PATH)reset_redir.c \
+	$(REDIRECTION_PATH)sub_files.c \
 	$(CHECK_CREATE_PATH)create_cmd.c \
 	$(CHECK_CREATE_PATH)check_line.c \
 	$(PIPE_PATH)child.c \

@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 17:46:08 by afontain          #+#    #+#             */
-/*   Updated: 2024/02/26 14:20:12 by besalort         ###   ########.fr       */
+/*   Updated: 2024/03/07 15:13:15 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ char	*find_goodpart(t_mdata *data, t_command *cmd, int i)
 	j = i;
 	while (ft_isalnum(cmd->line[i + 1]) == 1)
 		i++;
-	str1 = ft_strdupfromuntil(data, cmd->line, j + 1, (i - j));
+	str1 = ft_strdupfromuntil(data, cmd, j + 1, (i - j));
 	return (str1);
 }
 

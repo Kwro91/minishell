@@ -6,11 +6,27 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 18:36:45 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/26 16:10:15 by besalort         ###   ########.fr       */
+/*   Updated: 2024/03/07 13:17:59 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+int	parse_quotes(t_mdata *data, char *line, int i, char c)
+{
+	int	len;
+
+	(void)data;
+	len = ft_strlen(line);
+	while (i < len && line)
+	{
+		if (line[i] == c)
+			return (i);
+		i++;
+		len = ft_strlen(line);
+	}
+	return (-2);
+}
 
 int	check_empty_quotes(t_mdata *data, char **line, int i)
 {
@@ -41,6 +57,8 @@ int	remove_dquote(t_mdata *data, char **line, int i)
 {
 	if (check_empty_quotes(data, line, i) == 1)
 		return (i);
+	if (parse_quotes(data, *line, i + 1, '"') == -2)
+		return (i + 1);
 	get_removed(data, line, i);
 	while (*line && line[0][i])
 	{
@@ -55,6 +73,8 @@ int	remove_squote(t_mdata *data, char **line, int i)
 {
 	if (check_empty_quotes(data, line, i) == 1)
 		return (i);
+	if (parse_quotes(data, *line, i + 1, '\'') == -2)
+		return (i + 1);
 	get_removed(data, line, i);
 	while (*line && line[0][i])
 	{

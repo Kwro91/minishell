@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
+/*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 16:31:41 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/29 13:12:09 by afontain         ###   ########.fr       */
+/*   Updated: 2024/03/07 17:10:26 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	ft_count_arg(t_mdata *data, char **arg)
 
 void	exit_mini(t_mdata *data, char **arg)
 {
-	if (arg == NULL || ft_count_arg(data, &arg[1]) != 1)
+	if (arg == NULL || arg[1] == NULL || ft_count_arg(data, &arg[1]) != 1)
 	{
 		if (arg && arg[1] && ft_isdigit(arg[1][0]) == 1)
 		{

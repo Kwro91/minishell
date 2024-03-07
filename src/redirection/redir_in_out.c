@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir_in_out.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
+/*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 15:29:29 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/20 19:53:24 by afontain         ###   ########.fr       */
+/*   Updated: 2024/03/07 17:03:37 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ char	**size_my_file(t_mdata *data, char *line, char c)
 	return (file);
 }
 
-t_files	*get_new_file(t_mdata *data, char *line, int here_doc)
+t_files	*get_new_file(t_mdata *data, t_command *cmd, t_ifiles *i)
 {
 	t_files	*new;
 
@@ -40,42 +40,44 @@ t_files	*get_new_file(t_mdata *data, char *line, int here_doc)
 	if (!new)
 		ft_error(data, "Error: malloc\n", -1);
 	new->fd = -1;
-	new->here_doc = here_doc;
-	new->files = next_word(data, line);
+	new->here_doc = i->hd;
+	new->files = next_word(data, cmd, i->i);
 	new->next = NULL;
 	return (new);
 }
 
 t_files	*get_fd_out(t_mdata *data, t_command *cmd, int i)
 {
+	t_ifiles	new;
+	
+	new.hd = 0;
+	new.i = (i + 1);
 	if (cmd->line[i + 1] == '>')
 	{
-		i++;
-		return (create_new_files(data, cmd->out, &cmd->line[i + 1], 1));
+		new.i += 1;
+		new.hd = 1;
 	}
-	else
-		return (create_new_files(data, cmd->out, &cmd->line[i + 1], 0));
+	return (create_new_files(data, cmd->out, cmd, &new));
 }
 
 void	is_fd_out(t_mdata *data, t_command *cmd)
 {
-	int		i;
-	int		quote;
-	int		squote;
+	int			i;
+	t_quotes	quote;
 
 	i = 0;
-	quote = -1;
-	squote = -1;
+	quote.quote = -1;
+	quote.squote = -1;
 	if (!cmd)
 		return ;
 	while (cmd->line[i])
 	{
-		if (cmd->line[i] == '"')
-			quote *= -1;
-		if (cmd->line[i] == '\'')
-			squote *= -1;
+		if (quote.squote == -1 && cmd->line[i] == '"')
+			quote.quote *= -1;
+		if (quote.quote == -1 && cmd->line[i] == '\'')
+			quote.squote *= -1;
 		if (cmd->line[i] == '>' && cmd->line[i + 1]
-			&& quote == -1 && squote == -1)
+			&& quote.quote == -1 && quote.squote == -1)
 		{
 			cmd->out = get_fd_out(data, cmd, i);
 			if (cmd->line[i + 1] == '>')
@@ -87,29 +89,29 @@ void	is_fd_out(t_mdata *data, t_command *cmd)
 
 void	is_fd_in(t_mdata *data, t_command *cmd)
 {
-	int			i;
 	t_quotes	quote;
+	t_ifiles	new;
 
-	i = 0;
 	quote.quote = -1;
 	quote.squote = -1;
-	while (cmd->line[i])
+	new.hd = 0;
+	new.i = 0;
+	while (cmd->line[new.i])
 	{
-		if (cmd->line[i] == '"')
+		if (quote.squote == -1 && cmd->line[new.i] == '"')
 			quote.quote *= -1;
-		if (cmd->line[i] == '\'')
+		if (quote.quote == -1 && cmd->line[new.i] == '\'')
 			quote.squote *= -1;
-		if (cmd->line[i] == '<' && cmd->line[i + 1]
+		if (cmd->line[new.i] == '<' && cmd->line[new.i + 1]
 			&& quote.quote == -1 && quote.squote == -1)
 		{
-			if (cmd->line[i + 1] == '<')
+			if (cmd->line[new.i + 1] == '<')
 			{
-				i++;
-				cmd->in = create_new_files(data, cmd->in, &cmd->line[i + 1], 1);
+				new.i += 1;
+				new.hd = 1;
 			}
-			else
-				cmd->in = create_new_files(data, cmd->in, &cmd->line[i + 1], 0);
+			cmd->in = create_new_files(data, cmd->in, cmd, &new);
 		}
-		i++;
+		new.i++;
 	}
 }

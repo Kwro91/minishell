@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 15:53:50 by besalort          #+#    #+#             */
-/*   Updated: 2024/03/05 17:09:54 by besalort         ###   ########.fr       */
+/*   Updated: 2024/03/07 13:52:21 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	loop_utils(t_mdata *data, char *cmd)
 		if (data->nb_cmd > 1)
 			if (check_line_pipe(data, data->cmd) == -1)
 				return ;
-		delete_files_names(data);
+		// delete_files_names(data);
 		if (data->nb_cmd == 1)
 			launch_cmd(data, data->cmd);
 		else if (data->nb_cmd > 1)

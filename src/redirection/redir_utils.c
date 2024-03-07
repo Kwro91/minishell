@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 15:54:38 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/29 17:27:07 by besalort         ###   ########.fr       */
+/*   Updated: 2024/03/07 16:34:59 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,14 +62,14 @@ void	ft_open_mfiles(t_mdata *data, t_command *cmd)
 	open_out_files(data, cmd);
 }
 
-t_files	*create_new_files(t_mdata *data, t_files *files, char *line, int hd)
+t_files	*create_new_files(t_mdata *data, t_files *files, t_command *cmd, t_ifiles *i)
 {
 	t_files	*new;
 	t_files	*tmp;
 
-	new = get_new_file(data, line, 0);
+	new = get_new_file(data, cmd, i);
 	tmp = files;
-	new->here_doc = hd;
+	new->here_doc = i->hd;
 	if (!tmp)
 		return (new);
 	else

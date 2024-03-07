@@ -6,13 +6,13 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 12:52:09 by afontain          #+#    #+#             */
-/*   Updated: 2024/02/27 15:49:45 by besalort         ###   ########.fr       */
+/*   Updated: 2024/03/07 18:07:09 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-char	*ft_strdupfromuntil(t_mdata *data, char *src, int i, int n)
+char	*ft_strdupfromuntil(t_mdata *data, t_command *cmd, int i, int n)
 {
 	char	*dest;
 	char	*tmp;
@@ -21,19 +21,19 @@ char	*ft_strdupfromuntil(t_mdata *data, char *src, int i, int n)
 	j = 0;
 	if (n < 0)
 		return (NULL);
-	if (!src || ((int)ft_strlen(src) < i))
+	if (!cmd->line || ((int)ft_strlen(cmd->line) < i))
 		return (NULL);
-	tmp = next_word(data, &src[i]);
+	tmp = next_word(data, cmd, i);
 	dest = malloc(sizeof(char) * (ft_strlen(tmp) + 1));
-	ft_free_me(tmp);
 	if (!dest)
 		return (ft_error(data, "Error malloc\n", -1), NULL);
-	while (src[i] && n > 0)
+	while (cmd->line[i] && n > 0)
 	{
-		dest[j++] = src[i++];
+		dest[j++] = cmd->line[i++];
 		n--;
 	}
 	dest[j] = '\0';
+	ft_free_me(tmp);
 	return (dest);
 }
 
