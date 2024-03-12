@@ -6,7 +6,7 @@
 /*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 15:54:38 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/29 16:29:57 by afontain         ###   ########.fr       */
+/*   Updated: 2024/03/07 17:33:59 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,13 @@ void	open_out_files(t_mdata *data, t_command *cmd)
 		else
 			tmp->fd = open(tmp->files, O_RDWR | O_APPEND | O_CREAT, S_IRWXU);
 		if (tmp->fd < 0)
-				error_open(data, cmd, tmp, 1);
+			error_open(data, cmd, tmp, 1);
 		tmp = tmp->next;
 	}
 }
 
 void	error_open(t_mdata *data, t_command *cmd, t_files *tmp, int c)
 {
-	
 	if (access(tmp->files, F_OK) == 0)
 	{
 		ft_error(data, "minishell: ", 1);

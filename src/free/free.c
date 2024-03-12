@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
+/*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 16:14:52 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/22 17:14:23 by besalort         ###   ########.fr       */
+/*   Updated: 2024/03/12 16:26:38 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,11 @@
 
 void	ft_error(t_mdata *data, char *line, int close)
 {
-	int	i;
+	int len;
 
-	i = 0;
 	g_retval = close;
-	while (line[i])
-	{
-		write(2, &line[i], 1);
-		i++;
-	}
+	len = ft_strlen(line);
+	write(2, line, len);
 	if (close == -1)
 		exit_mini(data, NULL);
 }

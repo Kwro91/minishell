@@ -6,7 +6,7 @@
 /*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 15:30:43 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/29 13:11:26 by afontain         ###   ########.fr       */
+/*   Updated: 2024/03/12 15:33:49 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,21 +28,21 @@ char	*return_home(t_mdata *data)
 	return (NULL);
 }
 
-char	*verif_cd(t_mdata *data, char *line)
+char	*verif_cd(t_mdata *data, char **cmd)
 {
-	if (!line || ft_strncmp(line, "~\0", 2) == 0)
+	if (!cmd || ft_strncmp(cmd[0], "~\0", 2) == 0)
 		return (return_home(data));
-	else if (ft_strncmp(line, "-\0", 2) == 0)
+	else if (ft_strncmp(cmd[0], "-\0", 2) == 0)
 		return (pwd(data), NULL);
 	return (NULL);
 }
 
-void	cd_cmd(t_mdata *data, char *line)
+void	cd_cmd(t_mdata *data, char **cmd)
 {
 	char	*modif;
 
 	modif = NULL;
-	modif = verif_cd(data, line);
+	modif = verif_cd(data, cmd);
 	if (modif)
 	{
 		if (chdir(modif) != 0)
@@ -53,13 +53,13 @@ void	cd_cmd(t_mdata *data, char *line)
 	}
 	else
 	{
-		if (access(line, F_OK) == -1)
+		if (access(cmd[0], F_OK) == -1)
 			ft_error(data, "Error: no such file or directory\n", 1);
-		else if (access(line, R_OK | X_OK | W_OK) == -1)
+		else if (access(cmd[0], R_OK | X_OK | W_OK) == -1)
 			ft_error(data, "Error: not a directory\n", 1);
-		else if (line && chdir(line) != 0 && (ft_strncmp(line, "-\0", 2) != 0))
+		else if (cmd[0] && chdir(cmd[0]) != 0 && (ft_strncmp(cmd[0], "-\0", 2) != 0))
 			ft_error(data, "Error: no such file or directory\n", 1);
-		else if (!line)
+		else if (!cmd[0])
 			ft_error(data, "Error: no such file or directory\n", 1);
 	}
 	ft_free_me(modif);

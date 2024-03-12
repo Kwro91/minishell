@@ -6,7 +6,7 @@
 /*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 14:10:34 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/29 16:26:21 by afontain         ###   ########.fr       */
+/*   Updated: 2024/03/12 16:35:10 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <errno.h>
 # include <fcntl.h>
 # include <signal.h>
+# include <dirent.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 
@@ -145,7 +146,7 @@ int			check_export_value(char *var);
 int			nb_char_equal(char	*line);
 
 //Cd
-void		cd_cmd(t_mdata *data, char *line);
+void		cd_cmd(t_mdata *data, char **cmd);
 
 //Signal
 void		handle_signals(void);
@@ -156,13 +157,14 @@ void		handle_sigquit(int sig_quit);
 void		handle_sigsegv(int sig_segv);
 void		handle_sigint(int sig_int);
 void		handle_siginthere(int sig_segv);
-void		error_signal();
+void		error_signal(void);
 void		handle_signals_exec(void);
 
 //EXECUTION
 char		*ft_access_mini(t_mdata *data, t_command *cmd);
 void		launch_cmd(t_mdata *data, t_command *cmd);
 char		*access_utils(t_mdata *data, t_command *cmd);
+void		loop_directory(t_mdata *data, t_command *cmd, char *path, DIR *dir);
 
 //REDIRECTION
 int			redir(t_mdata *data, t_command *cmd);

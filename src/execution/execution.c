@@ -6,7 +6,7 @@
 /*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 15:59:33 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/29 13:15:45 by afontain         ###   ########.fr       */
+/*   Updated: 2024/03/12 16:39:32 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,6 @@ char	*ft_access_mini(t_mdata *data, t_command *cmd)
 		return (ft_error(data, "minishell: command not found: \n", 127), NULL);
 	if (cmd->cmd[0] && access(cmd->cmd[0], X_OK) == 0)
 		return (tmp = access_utils(data, cmd));
-	// if (data->paths)
-	// 	ft_free_lines(data->paths);
-	// data->paths = ft_path_mini(data->env);
 	while (cmd->cmd[0] && data->paths && data->paths[i])
 	{
 		tmp = ft_strjoin(data->paths[i], "/");
@@ -88,9 +85,8 @@ void	solo_cmd(t_mdata *data, t_command *cmd, char *path)
 		ft_free_me(path);
 		signal(SIGINT, SIG_IGN);
 		waitpid(-1, &status, 0);
-		if (WIFEXITED(status)){
+		if (WIFEXITED(status))
 			g_retval = WEXITSTATUS(status);
-		}
 		else if (WIFSIGNALED(status))
 		{
 			g_retval = 128 + WTERMSIG(status);
@@ -102,13 +98,27 @@ void	solo_cmd(t_mdata *data, t_command *cmd, char *path)
 
 void	pipe_cmd(t_mdata *data, t_command *cmd)
 {
+	DIR		*dir;
 	char	*tmp;
 
 	if (verif_cmd(data, cmd) == 0)
 	{
 		close_all_files(data, cmd);
 		tmp = ft_access_mini(data, cmd);
-		if (tmp)
+		dir = opendir(tmp);
+		loop_directory(data, cmd, tmp, dir);
+		// if (access(tmp, F_OK) != -1)
+		// {
+		// 	if (dir != NULL)
+		// 	{
+		// 		closedir(dir);
+		// 		cmd->good = -1;
+		// 		ft_error(data, "minishell : ", 126);
+		// 		ft_error(data, tmp, 126);
+		// 		ft_error(data, ": Is a directory\n", 126);
+		// 	}
+		// }
+		if (tmp && cmd->good != -1)
 			g_retval = execve(tmp, cmd->cmd, data->env);
 		ft_free_me(tmp);
 	}
@@ -117,12 +127,33 @@ void	pipe_cmd(t_mdata *data, t_command *cmd)
 
 void	launch_cmd(t_mdata *data, t_command *cmd)
 {
+	DIR		*dir;
+	char	*path;
+	
 	if (!cmd || cmd->good == -1)
 		return ;
 	handle_signals();
+	redir(data, cmd);
+	parse_cmd(data, cmd);
+	dir = opendir(cmd->line);
+	path = ft_access_mini(data, cmd);
 	if (data->nb_cmd == 1)
-		if (verif_cmd(data, cmd) == 0)
-			solo_cmd(data, cmd, ft_access_mini(data, cmd));
+	{
+		loop_directory(data, cmd, path, dir);
+		// if (access(path, F_OK) != -1)
+		// {
+		// 	if (dir != NULL)
+		// 	{
+		// 		closedir(dir);
+		// 		cmd->good = -1;
+		// 		ft_error(data, "minishell : ", 126);
+		// 		ft_error(data, path, 126);
+		// 		ft_error(data, ": Is a directory\n", 126);
+		// 	}
+		// }
+		if (cmd->good != -1 && verif_cmd(data, cmd) == 0)
+			solo_cmd(data, cmd, path);
+	}
 	if (data->nb_cmd > 1)
 		pipe_cmd(data, cmd);
 	handle_signals();

@@ -6,7 +6,7 @@
 /*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 17:38:09 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/29 13:21:37 by afontain         ###   ########.fr       */
+/*   Updated: 2024/03/07 17:33:00 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,6 @@ void	mwait_childs(t_mdata *data)
 	while (tmp)
 	{
 		waitpid(-1, &status, 0);
-		// avoir le pid de tout les enfants pour attendre que tout les process soient termine
-		// et psa stop apres la fin d'un seul
 		g_retval = WEXITSTATUS(status);
 		if (count == 0)
 		{

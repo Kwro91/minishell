@@ -6,7 +6,7 @@
 /*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 16:06:24 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/29 16:40:03 by afontain         ###   ########.fr       */
+/*   Updated: 2024/03/07 17:47:37 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,23 @@ int	is_eof(char	*line, t_files *file)
 	return (0);
 }
 
+// void	ft_mhere_doc2(char *line, int stdin_copy, t_files *file)
+// {
+
+// }
+
+// int	ft_mhere_doc1(int stdin_copy, t_files *file)
+// {
+	
+// }
+
 int	ft_mhere_doc(t_mdata *data, t_files *file)
 {
 	char	*line;
+	int		stdin_copy;
 
 	ft_meof(file);
-	int stdin_copy = dup(STDIN_FILENO);
+	stdin_copy = dup(STDIN_FILENO);
 	file->fd = open(".here_doc_tmp",
 			O_CREAT | O_WRONLY | O_TRUNC, 0000644);
 	if (file->fd < 0)
@@ -60,6 +71,7 @@ int	ft_mhere_doc(t_mdata *data, t_files *file)
 		write(file->fd, line, ft_strlen(line));
 		write(file->fd, "\n", 1);
 		free(line);
+		// ft_mhere_doc2(line, stdin_copy, file);
 	}
 	if (g_retval == 130)
 	{
@@ -67,8 +79,9 @@ int	ft_mhere_doc(t_mdata *data, t_files *file)
 		handle_signals();
 		close(stdin_copy);
 		close(file->fd);
-		file->fd = open(".here_doc_tmp", O_RDONLY);
+			file->fd = open(".here_doc_tmp", O_RDONLY);
 		return (g_retval);
+		// ft_mhere_doc1(stdin_copy, file);
 	}
 	close(stdin_copy);
 	free(line);

@@ -1,6 +1,6 @@
 valgrind --leak-check=full --show-leak-kinds=all --suppressions=supp.supp --track-fds=yes --trace-children=yes -q ./minishell
 
-Minishell> Minishell>
+# Minishell> Minishell>
 
 # echo lol | cat -e
 
@@ -23,20 +23,20 @@ Minishell> Minishell>
 # Minishell> rm -rf ../lol
 # Minishell> pwd
 
-Minishell> unset PATH
-Minishell> ls
+# Minishell> unset PATH
+# Minishell> ls
 
-Minishell> abc |abc | echo lol
+# Minishell> abc |abc | echo lol
 
-Minishell> cat<< eof > xd
-> fsafsa
-> fas
-> fasf
-> s^C
-Minishell> echo $?
-> 
+# Minishell> cat<< eof > xd
+# > fsafsa
+# > fas
+# > fasf
+# > s^C
+# Minishell> echo $?
+# > 
 
-(tester avec ctrl+D aussi)
+# (tester avec ctrl+D aussi)
 
 # Minishell> rev << eof
 # > abc
@@ -44,16 +44,16 @@ Minishell> echo $?
 # > xyz
 
 
-PRIO 
-	unset PATH into une commande ls par ex fonctionne alors que path n'existe plus
-	votre copie de env n'est pas changee lors d'un unset
+# PRIO 
+# 	unset PATH into une commande ls par ex fonctionne alors que path n'existe plus
+# 	votre copie de env n'est pas changee lors d'un unset
 
 
 
-CD :
+# CD :
 
-	cd.c | ligne 55 rajouter verif if access(line, F_OK | X_OK) != 0 -> not a directory
-	pour un cd Makefile par exemple 
+# 	cd.c | ligne 55 rajouter verif if access(line, F_OK | X_OK) != 0 -> not a directory
+# 	pour un cd Makefile par exemple 
 
 HEREDOC 
  -> plusieurs heredoc dans differents pipe leaks
@@ -67,41 +67,46 @@ ECHO
 
 	echo $HOME = ${HOME}, gerer les ${VAR} 
 
-EXPORT 
-	export sdgsdg#d=gh devrait renvoyer message d'erreur + return value, check pour tous les autres characteres speciaux non autorises
+# EXPORT 
+# 	export sdgsdg#d=gh devrait renvoyer message d'erreur + return value, check pour tous les autres characteres speciaux non autorises
 
 
-UNSET ne fait rien
+# UNSET ne fait rien
 
-EXIT
-	exit s
+# EXIT
+# 	exit s
 
-	- expected :
-		bash: exit: s: numeric argument required
-		➜  minishell git:(main) ✗ echo $?
-		2
+# 	- expected :
+# 		bash: exit: s: numeric argument required
+# 		➜  minishell git:(main) ✗ echo $?
+# 		2
 
-	au lieu de exit avrc return value 0
+# 	au lieu de exit avrc return value 0
 
-	A comparer et implementer si besoin :
+# 	A comparer et implementer si besoin :
 		
-		exit s
-		exit s 213
-		exit 213 s
+# 		exit s
+# 		exit s 213
+# 		exit 213 s
 
-REDIR 
+# REDIR 
 
-	IN :
-		cat < sdjkghds (existe pas/permission denied ...) faut exit l'exec du cat
+# 	IN :
+# 		cat < sdjkghds (existe pas/permission denied ...) faut exit l'exec du cat
 
-		!(surement resolu en meme temps que precedent)!
-		> echo "sdfsdfs" > file (no permission) should print Persmission denied with return value of 1 isntead of printing sdfsdfs on terminal
-		- add protection des open (partout) + print message d'erreur
+# 		!(surement resolu en meme temps que precedent)!
+# 		> echo "sdfsdfs" > file (no permission) should print Persmission denied with return value of 1 isntead of printing sdfsdfs on terminal
+# 		- add protection des open (partout) + print message d'erreur
 
 
-QUOTE
-	commande avec quote (bonne ou pas)
-	puis commande (non builtin) qui ne fonctionne pas ou builtin tout court avec pipe fait masse de leaks a cause de remove quotes qui n'a pas tout free 
+# QUOTE
+# 	commande avec quote (bonne ou pas)
+# 	puis commande (non builtin) qui ne fonctionne pas ou builtin tout court avec pipe fait masse de leaks a cause de remove quotes qui n'a pas tout free 
 
-SIGNAL
-	SIGKILL (CTRL-\) dans l'execution d'une commande cat ou sleep devrait stopper l'execution
+# SIGNAL
+# 	SIGKILL (CTRL-\) dans l'execution d'une commande cat ou sleep devrait stopper l'execution
+
+CD : cd pwd hi ->too many argument
+
+Cmd = $VAR -> return Is a directory + $? = 126 au lieux de rien et 255. ->access
+

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   remove_quote_utils.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
+/*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 16:01:50 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/26 16:06:42 by besalort         ###   ########.fr       */
+/*   Updated: 2024/03/07 17:33:20 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	*get_removed_first(t_mdata *data, char **line, int i)
 		if (!first)
 			return (ft_error(data, "Error: remove quote\n", -1), NULL);
 	}
-	return first;
+	return (first);
 }
 
 char	*get_removed_second(t_mdata *data, char **line, int i)

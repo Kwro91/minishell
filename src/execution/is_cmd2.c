@@ -6,7 +6,7 @@
 /*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 15:01:29 by afontain          #+#    #+#             */
-/*   Updated: 2024/02/29 15:46:21 by afontain         ###   ########.fr       */
+/*   Updated: 2024/03/12 16:20:37 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	is_cd(char **cmd_total, t_mdata *data)
 	if (ft_strncmp(name0, cmd_total[0], 2) == 0
 		|| ft_strncmp(namen, cmd_total[0], 3) == 0)
 	{
-		cd_cmd(data, cmd_total[1]);
+		cd_cmd(data, cmd_total);
 		return (1);
 	}
 	return (-1);
@@ -48,8 +48,6 @@ int	verif_cmd(t_mdata *data, t_command *cmd)
 {
 	if (ft_strncmp(cmd->line, "", 1) == 0)
 		return (0);
-	redir(data, cmd);
-	parse_cmd(data, cmd);
 	if (cmd->good < 0)
 		return (-1);
 	if (is_echo(cmd->cmd) == 1)
