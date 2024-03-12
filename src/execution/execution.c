@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 15:59:33 by besalort          #+#    #+#             */
-/*   Updated: 2024/03/07 15:00:49 by besalort         ###   ########.fr       */
+/*   Updated: 2024/03/12 16:29:27 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,6 @@ char	*ft_access_mini(t_mdata *data, t_command *cmd)
 		return (ft_error(data, "minishell: command not found: \n", 127), NULL);
 	if (cmd->cmd[0] && access(cmd->cmd[0], X_OK) == 0)
 		return (tmp = access_utils(data, cmd));
-	// if (data->paths)
-	// 	ft_free_lines(data->paths);
-	// data->paths = ft_path_mini(data->env);
 	while (cmd->cmd[0] && data->paths && data->paths[i])
 	{
 		tmp = ft_strjoin(data->paths[i], "/");
@@ -134,5 +131,4 @@ void	launch_cmd(t_mdata *data, t_command *cmd)
 	if (data->nb_cmd > 1)
 		pipe_cmd(data, cmd);
 	handle_signals();
-	// ft_free_me(path);
 }

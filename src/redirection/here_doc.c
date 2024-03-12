@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 16:06:24 by besalort          #+#    #+#             */
-/*   Updated: 2024/03/01 18:17:27 by besalort         ###   ########.fr       */
+/*   Updated: 2024/03/12 17:44:38 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	ft_mhere_doc(t_mdata *data, t_command *cmd, t_files *file)
 	name = get_hdoc_name(data, cmd);
 	ft_meof(file);
 	file->fd = open(name,
-			O_CREAT | O_WRONLY | O_TRUNC, 0000644);
+			O_CREAT | O_WRONLY | O_TRUNC, 0000777);
 	if (file->fd < 0)
 	{
 		unlink(name);
@@ -79,16 +79,15 @@ void	ft_mhere_doc(t_mdata *data, t_command *cmd, t_files *file)
 	}
 	if (g_retval == 128)
 	{
-		dup2(data->stdin_back, 0);
 		handle_signals();
-		close(data->stdin_back);
 		close(file->fd);
 		file->fd = open(name, O_RDONLY);
-		return ; //valeur de retour erreur pour CTRL-C
+		return ;
 	}
 	free(line);
 	close(file->fd);
 	file->fd = open(name, O_RDONLY);
+	printf("On open en O_RDONLY :%s=%i:\n", name, file->fd);
 	ft_free_me(name);
 	handle_signals();
 }
