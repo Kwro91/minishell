@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 16:06:24 by besalort          #+#    #+#             */
-/*   Updated: 2024/03/12 17:44:38 by besalort         ###   ########.fr       */
+/*   Updated: 2024/03/12 19:44:28 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	ft_mhere_doc(t_mdata *data, t_command *cmd, t_files *file)
 	name = get_hdoc_name(data, cmd);
 	ft_meof(file);
 	file->fd = open(name,
-			O_CREAT | O_WRONLY | O_TRUNC, 0000777);
+			O_CREAT | O_WRONLY | O_TRUNC, 0000644);
 	if (file->fd < 0)
 	{
 		unlink(name);
@@ -70,7 +70,7 @@ void	ft_mhere_doc(t_mdata *data, t_command *cmd, t_files *file)
 	signal(SIGINT, &handle_siginthere);
 	while (1)
 	{
-		line = readline(">");
+		line = readline("> ");
 		if (is_eof(line, file) == 1)
 			break ;
 		write(file->fd, line, ft_strlen(line));

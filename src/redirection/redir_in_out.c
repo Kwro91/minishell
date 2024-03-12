@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 15:29:29 by besalort          #+#    #+#             */
-/*   Updated: 2024/03/12 15:22:12 by besalort         ###   ########.fr       */
+/*   Updated: 2024/03/12 19:11:11 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ t_files	*get_new_file(t_mdata *data, t_command *cmd, t_ifiles *i)
 	new->here_doc = i->hd;
 	new->files = next_word(data, cmd, i->i);
 	new->next = NULL;
-	printf("\nNew file:\nfiles:%s:\nhere_doc:%i:\ni->i:%i:\nline:%s:\n", new->files, new->here_doc, i->i, cmd->line);
+	// printf("\nNew file:\nfiles:%s:\nhere_doc:%i:\ni->i:%i:\nline:%s:\n", new->files, new->here_doc, i->i, cmd->line);
 	return (new);
 }
 
