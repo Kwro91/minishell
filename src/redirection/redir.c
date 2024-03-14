@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 15:38:43 by besalort          #+#    #+#             */
-/*   Updated: 2024/03/14 16:00:16 by besalort         ###   ########.fr       */
+/*   Updated: 2024/03/14 17:16:50 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	do_in_redir(t_mdata *data, t_command *cmd)
 		if (tmp->next == NULL && tmp->fd >= 0)
 		{
 			printf("tmp->files:%s:\nfd:%i:\n", tmp->files, tmp->fd);
-			if (dup2(tmp->fd, STDIN_FILENO) < 0)
+			if (dup2(tmp->fd, 0) < 0)
 			{
 				cmd->good = -1;
 				return (ft_error(data, "Error: dup26\n", -1), -1);
