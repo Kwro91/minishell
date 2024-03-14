@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 15:54:38 by besalort          #+#    #+#             */
-/*   Updated: 2024/03/14 14:05:55 by besalort         ###   ########.fr       */
+/*   Updated: 2024/03/14 14:09:23 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,7 @@ void	open_in_files(t_mdata *data, t_command *cmd)
 				error_open(data, cmd, tmp, 0);
 		}
 		else
-			if (ft_mhere_doc(data, tmp) != 0)
-				cmd->good = -1;
+			ft_mhere_doc(data, cmd, tmp);
 		tmp = tmp->next;
 	}
 }

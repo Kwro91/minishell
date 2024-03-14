@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 15:59:33 by besalort          #+#    #+#             */
-/*   Updated: 2024/03/12 16:29:27 by besalort         ###   ########.fr       */
+/*   Updated: 2024/03/14 14:31:26 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,37 +98,46 @@ void	solo_cmd(t_mdata *data, t_command *cmd, char *path)
 	}
 }
 
-void	pipe_cmd(t_mdata *data, t_command *cmd)
+void    pipe_cmd(t_mdata *data, t_command *cmd)
 {
-	char	*tmp;
+    DIR		*dir;
+    char	*tmp;
 
-	if (verif_cmd(data, cmd) == 0)
-	{
-		close_all_files(data, cmd);
+    if (verif_cmd(data, cmd) == 0)
+    {
+        close_all_files(data, cmd);
 		close(data->stdin_back);
 		close(data->stdout_back);
-		tmp = ft_access_mini(data, cmd);
-		if (tmp)
-			g_retval = execve(ft_access_mini(data, cmd), cmd->cmd, data->env);
-		ft_free_me(tmp);
-	}
-	exit_mini(data, NULL);
+        tmp = ft_access_mini(data, cmd);
+        dir = opendir(tmp);
+        loop_directory(data, cmd, tmp, dir);
+        if (tmp && cmd->good != -1)
+            g_retval = execve(tmp, cmd->cmd, data->env);
+        ft_free_me(tmp);
+    }
+    exit_mini(data, NULL);
 }
 
-void	launch_cmd(t_mdata *data, t_command *cmd)
+void    launch_cmd(t_mdata *data, t_command *cmd)
 {
-	char	*path;
-
-	if (!cmd || cmd->good == -1)
-		return ;
-	handle_signals();
-	if (data->nb_cmd == 1)
-		if (verif_cmd(data, cmd) == 0)
-		{
-			path = ft_access_mini(data, cmd);
-			solo_cmd(data, cmd, path);
-		}
-	if (data->nb_cmd > 1)
-		pipe_cmd(data, cmd);
-	handle_signals();
+    DIR		*dir;
+    char	*path;
+    
+    if (!cmd || cmd->good == -1)
+        return ;
+    handle_signals();
+    redir(data, cmd);
+	sub_files(data, cmd);
+    parse_cmd(data, cmd);
+    dir = opendir(cmd->line);
+    path = ft_access_mini(data, cmd);
+    if (data->nb_cmd == 1)
+    {
+        loop_directory(data, cmd, path, dir);
+        if (cmd->good != -1 && verif_cmd(data, cmd) == 0)
+            solo_cmd(data, cmd, path);
+    }
+    if (data->nb_cmd > 1)
+        pipe_cmd(data, cmd);
+    handle_signals();
 }

@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 14:10:34 by besalort          #+#    #+#             */
-/*   Updated: 2024/03/14 14:06:22 by besalort         ###   ########.fr       */
+/*   Updated: 2024/03/14 14:26:20 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include <signal.h>
 # include <readline/readline.h>
 # include <readline/history.h>
+# include <dirent.h>
 
 extern int	g_retval;
 
@@ -171,6 +172,7 @@ void		handle_signals_exec(void);
 char		*ft_access_mini(t_mdata *data, t_command *cmd);
 void		launch_cmd(t_mdata *data, t_command *cmd);
 char		*access_utils(t_mdata *data, t_command *cmd);
+void		loop_directory(t_mdata *data, t_command *cmd, char *path, DIR *dir);
 
 //REDIRECTION
 int			redir(t_mdata *data, t_command *cmd);

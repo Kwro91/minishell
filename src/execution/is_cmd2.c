@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 15:01:29 by afontain          #+#    #+#             */
-/*   Updated: 2024/03/14 14:03:08 by besalort         ###   ########.fr       */
+/*   Updated: 2024/03/14 14:23:47 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,28 +44,25 @@ int	is_cd(char **cmd_total, t_mdata *data)
 	return (-1);
 }
 
-int	verif_cmd(t_mdata *data, t_command *cmd)
+int    verif_cmd(t_mdata *data, t_command *cmd)
 {
-	if (ft_strncmp(cmd->line, "", 1) == 0)
-		return (0);
-	redir(data, cmd);
-	sub_files(data, cmd);
-	parse_cmd(data, cmd);
-	if (cmd->good < 0)
-		return (-1);
-	if (is_echo(cmd->cmd) == 1)
-		return (1);
-	else if (is_pwd(cmd->cmd, data) == 1)
-		return (1);
-	else if (is_exit(cmd->cmd, data) == 1)
-		return (1);
-	else if (is_env(cmd->cmd, data) == 1)
-		return (1);
-	else if (is_export(cmd->cmd, data) == 1)
-		return (1);
-	else if (is_unset(cmd->cmd, data) == 1)
-		return (1);
-	else if (is_cd(cmd->cmd, data) == 1)
-		return (1);
-	return (0);
+    if (ft_strncmp(cmd->line, "", 1) == 0)
+        return (0);
+    if (cmd->good < 0)
+        return (-1);
+    if (is_echo(cmd->cmd) == 1)
+        return (1);
+    else if (is_pwd(cmd->cmd, data) == 1)
+        return (1);
+    else if (is_exit(cmd->cmd, data) == 1)
+        return (1);
+    else if (is_env(cmd->cmd, data) == 1)
+        return (1);
+    else if (is_export(cmd->cmd, data) == 1)
+        return (1);
+    else if (is_unset(cmd->cmd, data) == 1)
+        return (1);
+    else if (is_cd(cmd->cmd, data) == 1)
+        return (1);
+    return (0);
 }
