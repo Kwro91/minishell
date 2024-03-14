@@ -6,7 +6,7 @@
 /*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 15:59:33 by besalort          #+#    #+#             */
-/*   Updated: 2024/03/12 16:39:32 by afontain         ###   ########.fr       */
+/*   Updated: 2024/03/14 14:22:41 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,17 +107,6 @@ void	pipe_cmd(t_mdata *data, t_command *cmd)
 		tmp = ft_access_mini(data, cmd);
 		dir = opendir(tmp);
 		loop_directory(data, cmd, tmp, dir);
-		// if (access(tmp, F_OK) != -1)
-		// {
-		// 	if (dir != NULL)
-		// 	{
-		// 		closedir(dir);
-		// 		cmd->good = -1;
-		// 		ft_error(data, "minishell : ", 126);
-		// 		ft_error(data, tmp, 126);
-		// 		ft_error(data, ": Is a directory\n", 126);
-		// 	}
-		// }
 		if (tmp && cmd->good != -1)
 			g_retval = execve(tmp, cmd->cmd, data->env);
 		ft_free_me(tmp);
@@ -140,17 +129,6 @@ void	launch_cmd(t_mdata *data, t_command *cmd)
 	if (data->nb_cmd == 1)
 	{
 		loop_directory(data, cmd, path, dir);
-		// if (access(path, F_OK) != -1)
-		// {
-		// 	if (dir != NULL)
-		// 	{
-		// 		closedir(dir);
-		// 		cmd->good = -1;
-		// 		ft_error(data, "minishell : ", 126);
-		// 		ft_error(data, path, 126);
-		// 		ft_error(data, ": Is a directory\n", 126);
-		// 	}
-		// }
 		if (cmd->good != -1 && verif_cmd(data, cmd) == 0)
 			solo_cmd(data, cmd, path);
 	}
