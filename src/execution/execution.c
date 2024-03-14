@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 15:59:33 by besalort          #+#    #+#             */
-/*   Updated: 2024/03/14 14:31:26 by besalort         ###   ########.fr       */
+/*   Updated: 2024/03/14 15:52:22 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@ void	error_access_mini(t_mdata *data, char *cmd)
 	tmp = NULL;
 	if (cmd != NULL && ft_strncmp(cmd, "\0", 1) != 0)
 	{
-		tmp = ft_strjoin("minishell: command not found: ", cmd);
+		tmp = ft_strjoin("minishell: command not found222: ", cmd);
 		join = ft_strjoin(tmp, "\n");
 	}
 	else
 	{
-		tmp = ft_strdup("minishell: command not found: ");
+		tmp = ft_strdup("minishell: command not found444: ");
 		join = ft_strjoin(tmp, "\n");
 	}
 	ft_error(data, join, 127);
@@ -103,11 +103,11 @@ void    pipe_cmd(t_mdata *data, t_command *cmd)
     DIR		*dir;
     char	*tmp;
 
+	do_redir(data, cmd);
     if (verif_cmd(data, cmd) == 0)
     {
         close_all_files(data, cmd);
-		close(data->stdin_back);
-		close(data->stdout_back);
+		close_two(data, data->stdin_back, data->stdout_back);
         tmp = ft_access_mini(data, cmd);
         dir = opendir(tmp);
         loop_directory(data, cmd, tmp, dir);
@@ -126,16 +126,19 @@ void    launch_cmd(t_mdata *data, t_command *cmd)
     if (!cmd || cmd->good == -1)
         return ;
     handle_signals();
-    redir(data, cmd);
-	sub_files(data, cmd);
-    parse_cmd(data, cmd);
-    dir = opendir(cmd->line);
-    path = ft_access_mini(data, cmd);
     if (data->nb_cmd == 1)
     {
-        loop_directory(data, cmd, path, dir);
+		redir(data, cmd);
+		sub_files(data, cmd);
+		parse_cmd(data, cmd);
+		dir = opendir(cmd->line);
+		do_redir(data, cmd);
         if (cmd->good != -1 && verif_cmd(data, cmd) == 0)
+		{
+			path = ft_access_mini(data, cmd);
+        	loop_directory(data, cmd, path, dir);
             solo_cmd(data, cmd, path);
+		}
     }
     if (data->nb_cmd > 1)
         pipe_cmd(data, cmd);

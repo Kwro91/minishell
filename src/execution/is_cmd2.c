@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 15:01:29 by afontain          #+#    #+#             */
-/*   Updated: 2024/03/14 14:23:47 by besalort         ###   ########.fr       */
+/*   Updated: 2024/03/14 16:20:04 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,10 @@ int	is_cd(char **cmd_total, t_mdata *data)
 
 	name0 = "cd\0";
 	namen = "cd\n\0";
-	if (ft_strncmp(name0, cmd_total[0], 2) == 0
-		|| ft_strncmp(namen, cmd_total[0], 3) == 0)
+	if (ft_strncmp(name0, cmd_total[0], 3) == 0
+		|| ft_strncmp(namen, cmd_total[0], 4) == 0)
 	{
-		cd_cmd(data, cmd_total[1]);
+		cd_cmd(data, cmd_total);
 		return (1);
 	}
 	return (-1);

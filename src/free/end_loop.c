@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 15:32:02 by besalort          #+#    #+#             */
-/*   Updated: 2024/03/12 16:56:51 by besalort         ###   ########.fr       */
+/*   Updated: 2024/03/14 14:38:42 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ void	close_here_doc(t_mdata *data, t_command	*cmd)
 	{
 		close(fd);
 		unlink(name);
-		printf("unlink :%s:\n", name);
 	}
 	ft_free_me(name);
 }

@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 14:15:35 by besalort          #+#    #+#             */
-/*   Updated: 2024/03/12 15:52:17 by besalort         ###   ########.fr       */
+/*   Updated: 2024/03/14 14:39:48 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,5 @@ char	*next_word(t_mdata *data, t_command *cmd, int i)
 	}
 	if (count == 0)
 		return (NULL);
-	printf("cmd->line:%s:\ncount:%i:\ni:%i:\n", cmd->line, count, i);
 	return (dup_word(data, cmd, count, (i - count)));
 }

@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 14:10:34 by besalort          #+#    #+#             */
-/*   Updated: 2024/03/14 14:26:20 by besalort         ###   ########.fr       */
+/*   Updated: 2024/03/14 16:21:16 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,7 +154,7 @@ int			nb_char_equal(char	*line);
 int			is_export_good(char	*line);
 
 //Cd
-void		cd_cmd(t_mdata *data, char *line);
+void		cd_cmd(t_mdata *data, char **line);
 
 //Signal
 void		handle_signals(void);
@@ -176,6 +176,7 @@ void		loop_directory(t_mdata *data, t_command *cmd, char *path, DIR *dir);
 
 //REDIRECTION
 int			redir(t_mdata *data, t_command *cmd);
+int			do_redir(t_mdata *data, t_command *cmd);
 char		*dup_word(t_mdata *data, t_command *cmd, int len, int i);
 void		sub_files(t_mdata *data, t_command *cmd);
 void		close_all_files(t_mdata *data, t_command *cmd);

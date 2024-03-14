@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
+/*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 15:30:43 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/29 13:11:26 by afontain         ###   ########.fr       */
+/*   Updated: 2024/03/14 16:26:00 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,12 @@ char	*verif_cd(t_mdata *data, char *line)
 	return (NULL);
 }
 
-void	cd_cmd(t_mdata *data, char *line)
+void	cd_cmd(t_mdata *data, char **line)
 {
 	char	*modif;
 
 	modif = NULL;
-	modif = verif_cd(data, line);
+	modif = verif_cd(data, line[1]);
 	if (modif)
 	{
 		if (chdir(modif) != 0)
@@ -53,13 +53,15 @@ void	cd_cmd(t_mdata *data, char *line)
 	}
 	else
 	{
-		if (access(line, F_OK) == -1)
+		if (line[2])
+            ft_error(data, "minishell : too many arguments\n", 1);
+		else if (access(line[1], F_OK) == -1)
 			ft_error(data, "Error: no such file or directory\n", 1);
-		else if (access(line, R_OK | X_OK | W_OK) == -1)
+		else if (access(line[1], R_OK | X_OK | W_OK) == -1)
 			ft_error(data, "Error: not a directory\n", 1);
-		else if (line && chdir(line) != 0 && (ft_strncmp(line, "-\0", 2) != 0))
+		else if (line[1] && chdir(line[1]) != 0 && (ft_strncmp(line[1], "-\0", 2) != 0))
 			ft_error(data, "Error: no such file or directory\n", 1);
-		else if (!line)
+		else if (!line[1])
 			ft_error(data, "Error: no such file or directory\n", 1);
 	}
 	ft_free_me(modif);

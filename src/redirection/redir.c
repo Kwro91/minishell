@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 15:38:43 by besalort          #+#    #+#             */
-/*   Updated: 2024/03/14 14:06:02 by besalort         ###   ########.fr       */
+/*   Updated: 2024/03/14 16:00:16 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	do_out_redir(t_mdata *data, t_command *cmd)
 			if (dup2(tmp->fd, 1) < 0)
 			{
 				cmd->good = -1;
-				return (ft_error(data, "Error: dup2\n", -1), -1);
+				return (ft_error(data, "Error: dup25\n", -1), -1);
 			}
 			close(tmp->fd);
 		}
@@ -61,11 +61,11 @@ int	do_in_redir(t_mdata *data, t_command *cmd)
 	{
 		if (tmp->next == NULL && tmp->fd >= 0)
 		{
-			printf("On dup2:fd=%i:\n", tmp->fd);
+			printf("tmp->files:%s:\nfd:%i:\n", tmp->files, tmp->fd);
 			if (dup2(tmp->fd, STDIN_FILENO) < 0)
 			{
 				cmd->good = -1;
-				return (ft_error(data, "Error: dup2\n", -1), -1);
+				return (ft_error(data, "Error: dup26\n", -1), -1);
 			}
 			close(tmp->fd);
 		}
@@ -74,15 +74,20 @@ int	do_in_redir(t_mdata *data, t_command *cmd)
 	return (0);
 }
 
-int	redir(t_mdata *data, t_command *cmd)
+int	do_redir(t_mdata *data, t_command *cmd)
 {
 	int	value;
 
 	value = 0;
-	ft_open_mfiles(data, cmd);
 	if (cmd->in)
 		value = do_in_redir(data, cmd);
 	if (cmd->out)
 		do_out_redir(data, cmd);
 	return (value);
+}
+
+int	redir(t_mdata *data, t_command *cmd)
+{
+	ft_open_mfiles(data, cmd);
+	return (0);
 }

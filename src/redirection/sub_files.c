@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 14:25:43 by besalort          #+#    #+#             */
-/*   Updated: 2024/03/12 19:33:02 by besalort         ###   ########.fr       */
+/*   Updated: 2024/03/14 14:38:58 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,8 @@ char	*remove_string(t_mdata *data, t_command *cmd, t_files *tmp, int *i)
 
 
 	new = NULL;
-	// printf("filename = :%s:\n", tmp->files);
 	while (cmd->line && cmd->line[*i])
 	{
-		printf("tmp->files:%s:\n", tmp->files);
 		if (ft_strncmp(&cmd->line[*i], tmp->files, get_file_len(tmp->files)) == 0)
 		{
 			one = ft_strndup(data, cmd->line, *i);

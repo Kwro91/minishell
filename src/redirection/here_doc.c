@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 16:06:24 by besalort          #+#    #+#             */
-/*   Updated: 2024/03/14 14:09:40 by besalort         ###   ########.fr       */
+/*   Updated: 2024/03/14 14:39:12 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,6 @@ void	ft_mhere_doc(t_mdata *data, t_command *cmd, t_files *file)
 	free(line);
 	close(file->fd);
 	file->fd = open(name, O_RDONLY);
-	printf("On open en O_RDONLY :%s=%i:\n", name, file->fd);
 	ft_free_me(name);
 	handle_signals();
 }
