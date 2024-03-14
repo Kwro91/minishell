@@ -1,3 +1,0 @@
-filename = :out:
-cmd->line :echo coucou  :
-coucou
