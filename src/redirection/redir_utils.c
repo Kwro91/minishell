@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 15:54:38 by besalort          #+#    #+#             */
-/*   Updated: 2024/03/12 17:58:56 by besalort         ###   ########.fr       */
+/*   Updated: 2024/03/14 14:05:55 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,28 @@ void	open_out_files(t_mdata *data, t_command *cmd)
 					S_IRWXU);
 		else
 			tmp->fd = open(tmp->files, O_RDWR | O_APPEND | O_CREAT, S_IRWXU);
+		if (tmp->fd < 0)
+				error_open(data, cmd, tmp, 1);
 		tmp = tmp->next;
 	}
+}
+
+void	error_open(t_mdata *data, t_command *cmd, t_files *tmp, int c)
+{
+	
+	if (access(tmp->files, F_OK) == 0)
+	{
+		ft_error(data, "minishell: ", 1);
+		ft_error(data, tmp->files, 1);
+		ft_error(data, ": permission denied\n", 1);
+	}
+	else if (c == 0)
+	{
+		ft_error(data, "minishell: ", 1);
+		ft_error(data, tmp->files, 1);
+		ft_error(data, ": no such file or directory\n", 1);
+	}
+	cmd->good = -1;
 }
 
 void	open_in_files(t_mdata *data, t_command *cmd)
@@ -38,21 +58,17 @@ void	open_in_files(t_mdata *data, t_command *cmd)
 	if (cmd->in == NULL)
 		return ;
 	tmp = cmd->in;
-	// signal(SIGINT, handle_sighere);
 	while (tmp)
 	{
 		if (tmp->here_doc == 0)
-			tmp->fd = open(tmp->files, O_RDONLY);
-		else
-			ft_mhere_doc(data, cmd, tmp);
-		if (tmp->fd < 0)
 		{
-			cmd->good = -1;
-			ft_error(data, "minishell: ", 1);
-			ft_error(data, tmp->files, 1);
-			ft_error(data, ": no such file or directory\n", 1);
-			break ;
+			tmp->fd = open(tmp->files, O_RDONLY);
+			if (tmp->fd < 0)
+				error_open(data, cmd, tmp, 0);
 		}
+		else
+			if (ft_mhere_doc(data, tmp) != 0)
+				cmd->good = -1;
 		tmp = tmp->next;
 	}
 }

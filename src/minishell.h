@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 14:10:34 by besalort          #+#    #+#             */
-/*   Updated: 2024/03/07 17:30:31 by besalort         ###   ########.fr       */
+/*   Updated: 2024/03/14 14:06:22 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -185,6 +185,7 @@ t_files		*create_new_files(t_mdata *data, t_files *files,
 				t_command *cmd, t_ifiles *i);
 char		*ft_strndup(t_mdata *data, char	*str, int len);
 void		reset_redir(t_mdata *data);
+void		error_open(t_mdata *data, t_command *cmd, t_files *tmp, int c);
 
 void		is_fd_in(t_mdata *data, t_command *cmd);
 void		is_fd_out(t_mdata *data, t_command *cmd);
