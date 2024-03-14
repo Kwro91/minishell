@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 15:53:50 by besalort          #+#    #+#             */
-/*   Updated: 2024/03/07 13:52:21 by besalort         ###   ########.fr       */
+/*   Updated: 2024/03/14 16:58:58 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,8 @@ void	loop(t_mdata *data, char *cmd)
 	{
 		add_history(cmd);
 		data->cmd = NULL;
-		loop_utils(data, cmd);
+		if (is_unallowed_char(data, cmd) == 0)
+			loop_utils(data, cmd);
 		end_loop(data);
 	}
 	free (cmd);
