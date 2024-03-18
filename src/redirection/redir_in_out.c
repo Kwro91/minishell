@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 15:29:29 by besalort          #+#    #+#             */
-/*   Updated: 2024/03/12 19:11:11 by besalort         ###   ########.fr       */
+/*   Updated: 2024/03/18 17:54:31 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,10 +95,10 @@ void	is_fd_in(t_mdata *data, t_command *cmd)
 
 	quote.quote = -1;
 	quote.squote = -1;
-	new.hd = 0;
 	new.i = 0;
 	while (cmd->line[new.i])
 	{
+		new.hd = 0;
 		if (quote.squote == -1 && cmd->line[new.i] == '"')
 			quote.quote *= -1;
 		if (quote.quote == -1 && cmd->line[new.i] == '\'')

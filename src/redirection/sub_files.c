@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 14:25:43 by besalort          #+#    #+#             */
-/*   Updated: 2024/03/14 14:38:58 by besalort         ###   ########.fr       */
+/*   Updated: 2024/03/18 16:29:38 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,9 @@ char	*remove_string(t_mdata *data, t_command *cmd, t_files *tmp, int *i)
 		if (ft_strncmp(&cmd->line[*i], tmp->files, get_file_len(tmp->files)) == 0)
 		{
 			one = ft_strndup(data, cmd->line, *i);
+			// printf("dans string one:%s:\n", one);
 			two = ft_strdup(&cmd->line[*i + get_file_len(tmp->files)]);
+			// printf("dans string two:%s:\n", two);
 			if (!two || !one)
 				return (ft_error(data, "Error, strdup\n", -1), NULL);
 			new = ft_strjoin(one, two);
@@ -45,6 +47,7 @@ char	*remove_string(t_mdata *data, t_command *cmd, t_files *tmp, int *i)
 				return (ft_error(data, "Error, strjoin\n", -1), NULL);
 			ft_free_me(one);
 			ft_free_me(two);
+			return (new);
 		}
 		*i = *i + 1;
 	}
@@ -65,9 +68,12 @@ char	*remove_c(t_mdata *data, t_command *cmd, char c, int *i)
 			one = ft_strndup(data, cmd->line, *i);
 			if (cmd->line[*i + 1] == c)
 				*i = *i + 1;
+			if (!&cmd->line[*i + 1])
+				return (one);
+			// printf("line:%s:\n", &cmd->line[*i + 1]);
 			two = ft_strdup(&cmd->line[*i + 1]);
 			if (!two || !one)
-				return (ft_error(data, "Error, strdup\n", -1), NULL);
+				return (ft_free_me(two), ft_error(data, "Error, strdup11111\n", -1), NULL);
 			new = ft_strjoin(one, two);
 			if (!new)
 				return (ft_error(data, "Error, strjoin\n", -1), NULL);
@@ -90,9 +96,12 @@ void	sub_files_utils(t_mdata *data, t_command *cmd, t_files *tmp, char c)
 	one = NULL;
 	two = NULL;
 	one = remove_c(data, cmd, c, &i);
+	// printf("one :%s:\n", one);
 	ft_free_me(cmd->line);
 	cmd->line = one;
+	// printf("avant two i=:%i:\n", i);
 	two = remove_string(data, cmd, tmp, &i);
+	printf("two :%s:\n", two);
 	ft_free_me(one);
 	cmd->line = ft_strdup(two);
 	ft_free_me(two);
@@ -106,7 +115,10 @@ void	sub_files(t_mdata *data, t_command *cmd)
 	while (tmp)
 	{
 		if (tmp)
+		{
 			sub_files_utils(data, cmd, tmp, '<');
+			printf("cmd->line :%s:\n", cmd->line);
+		}
 		tmp = tmp->next;
 	}
 	tmp = cmd->out;
@@ -115,7 +127,6 @@ void	sub_files(t_mdata *data, t_command *cmd)
 		if (tmp)
 		{
 			sub_files_utils(data, cmd, tmp, '>');
-			// printf("cmd->line :%s:\n", cmd->line);
 		}
 		tmp = tmp->next;
 	}

@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 15:59:33 by besalort          #+#    #+#             */
-/*   Updated: 2024/03/14 15:52:22 by besalort         ###   ########.fr       */
+/*   Updated: 2024/03/18 16:15:34 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,6 +131,7 @@ void    launch_cmd(t_mdata *data, t_command *cmd)
 		redir(data, cmd);
 		sub_files(data, cmd);
 		parse_cmd(data, cmd);
+		// printf("line:%s:\n", cmd->line);
 		dir = opendir(cmd->line);
 		do_redir(data, cmd);
         if (cmd->good != -1 && verif_cmd(data, cmd) == 0)
