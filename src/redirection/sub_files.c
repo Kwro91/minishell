@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 14:25:43 by besalort          #+#    #+#             */
-/*   Updated: 2024/03/18 16:29:38 by besalort         ###   ########.fr       */
+/*   Updated: 2024/03/19 16:37:45 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,10 @@ char	*remove_string(t_mdata *data, t_command *cmd, t_files *tmp, int *i)
 			two = ft_strdup(&cmd->line[*i + get_file_len(tmp->files)]);
 			// printf("dans string two:%s:\n", two);
 			if (!two || !one)
-				return (ft_error(data, "Error, strdup\n", -1), NULL);
+				return (ft_error(data, "Error: strdup\n", -1), NULL);
 			new = ft_strjoin(one, two);
 			if (!new)
-				return (ft_error(data, "Error, strjoin\n", -1), NULL);
+				return (ft_error(data, "Error: strjoin\n", -1), NULL);
 			ft_free_me(one);
 			ft_free_me(two);
 			return (new);
@@ -72,11 +72,17 @@ char	*remove_c(t_mdata *data, t_command *cmd, char c, int *i)
 				return (one);
 			// printf("line:%s:\n", &cmd->line[*i + 1]);
 			two = ft_strdup(&cmd->line[*i + 1]);
-			if (!two || !one)
-				return (ft_free_me(two), ft_error(data, "Error, strdup11111\n", -1), NULL);
-			new = ft_strjoin(one, two);
-			if (!new)
-				return (ft_error(data, "Error, strjoin\n", -1), NULL);
+			if (!one && two)
+				return (two);
+			if (two && one)
+			{
+				new = ft_strjoin(one, two);
+				printf("oui !!!\n");
+				if (!new)
+					return (ft_error(data, "Error: strjoin\n", -1), NULL);
+			}
+			else
+				cmd->good = -1;
 			ft_free_me(one);
 			ft_free_me(two);
 			return (new);
@@ -100,10 +106,14 @@ void	sub_files_utils(t_mdata *data, t_command *cmd, t_files *tmp, char c)
 	ft_free_me(cmd->line);
 	cmd->line = one;
 	// printf("avant two i=:%i:\n", i);
-	two = remove_string(data, cmd, tmp, &i);
-	printf("two :%s:\n", two);
+	if (one)
+		two = remove_string(data, cmd, tmp, &i);
+	// printf("two :%s:\n", two);
 	ft_free_me(one);
-	cmd->line = ft_strdup(two);
+	if (two)
+		cmd->line = ft_strdup(two);
+	else
+		cmd->line = NULL;
 	ft_free_me(two);
 }
 

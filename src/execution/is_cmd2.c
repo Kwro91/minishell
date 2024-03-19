@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 15:01:29 by afontain          #+#    #+#             */
-/*   Updated: 2024/03/14 16:20:04 by besalort         ###   ########.fr       */
+/*   Updated: 2024/03/19 16:54:56 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,9 @@ int	is_cd(char **cmd_total, t_mdata *data)
 
 int    verif_cmd(t_mdata *data, t_command *cmd)
 {
-    if (ft_strncmp(cmd->line, "", 1) == 0)
-        return (0);
     if (cmd->good < 0)
+        return (-1);
+    if (!cmd->cmd || cmd->cmd[0] == NULL || ft_strncmp(cmd->line, "", 1) == 0)
         return (-1);
     if (is_echo(cmd->cmd) == 1)
         return (1);

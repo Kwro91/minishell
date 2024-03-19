@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 15:29:29 by besalort          #+#    #+#             */
-/*   Updated: 2024/03/18 17:54:31 by besalort         ###   ########.fr       */
+/*   Updated: 2024/03/19 16:57:48 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,11 @@ t_files	*get_new_file(t_mdata *data, t_command *cmd, t_ifiles *i)
 	new->fd = -1;
 	new->here_doc = i->hd;
 	new->files = next_word(data, cmd, i->i);
+	if (new->files == NULL)
+	{
+		ft_error(data, "Error: syntax\n", 2);
+		cmd->good = -1;
+	}
 	new->next = NULL;
 	// printf("\nNew file:\nfiles:%s:\nhere_doc:%i:\ni->i:%i:\nline:%s:\n", new->files, new->here_doc, i->i, cmd->line);
 	return (new);

@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 15:30:01 by besalort          #+#    #+#             */
-/*   Updated: 2024/03/07 15:01:01 by besalort         ###   ########.fr       */
+/*   Updated: 2024/03/19 16:51:24 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,12 @@ void	parse_cmd(t_mdata *data, t_command *cmd)
 	int		len;
 
 	i = 0;
+	printf("line:%s:\n", cmd->line);
+	if (!cmd->line)
+	{
+		cmd->good = -1;
+		return ;
+	}
 	len = ft_strlen(cmd->line);
 	while (i >= 0 && cmd->line && i < len)
 	{
