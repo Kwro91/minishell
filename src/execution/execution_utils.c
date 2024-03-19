@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
+/*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 19:26:57 by besalort          #+#    #+#             */
-/*   Updated: 2024/03/14 14:27:30 by besalort         ###   ########.fr       */
+/*   Updated: 2024/03/14 17:27:00 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void    loop_directory(t_mdata *data, t_command *cmd, char *path, DIR *dir)
 {
-    if (access(path, F_OK) != -1)
+    if (path && access(path, F_OK) != -1)
     {
         if (dir != NULL)
         {

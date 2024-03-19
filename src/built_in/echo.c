@@ -3,14 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
+/*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 14:08:19 by besalort          #+#    #+#             */
-/*   Updated: 2024/03/07 13:19:48 by besalort         ###   ########.fr       */
+/*   Updated: 2024/03/19 15:58:20 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+int	verif_echo(char *text)
+{
+	int i;
+
+	i = 1;
+	if (ft_strncmp(text, "-n", 2) != 0)
+			return (0);
+	while (text && text[i] == 'n' )
+		i++;
+	if (text[i] == '\0')
+		return (1);
+	return (0);
+}
 
 int	echo_bis(char **text, int nb)
 {
@@ -41,8 +55,8 @@ void	ft_echo(char **text)
 	nb = nb_word(text);
 	if (echo_bis(text, nb) == 1)
 		return ;
-	if (text && ft_strncmp(text[0], "-n\0", 3) == 0)
-		i++;
+	while (text && text[i] && verif_echo(text[i]) == 1)
+			i++;
 	while (text[i])
 	{
 		if (i != nb - 1)
@@ -54,6 +68,9 @@ void	ft_echo(char **text)
 			write(1, " ", 1);
 	}
 	if (text && ft_strncmp(text[0], "-n\0", 3) != 0)
-		write(1, "\n", 1);
+	{
+		if (verif_echo(text[0]) == 0)
+			write(1, "\n", 1);
+	}
 	g_retval = 0;
 }
