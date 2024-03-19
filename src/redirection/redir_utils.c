@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 15:54:38 by besalort          #+#    #+#             */
-/*   Updated: 2024/03/14 14:09:23 by besalort         ###   ########.fr       */
+/*   Updated: 2024/03/19 15:44:15 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ t_files	*create_new_files(t_mdata *data, t_files *files, t_command *cmd, t_ifile
 
 	new = get_new_file(data, cmd, i);
 	tmp = files;
-	new->here_doc = i->hd;
+	// new->here_doc = i->hd;
 	if (!tmp)
 		return (new);
 	else

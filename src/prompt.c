@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 15:53:50 by besalort          #+#    #+#             */
-/*   Updated: 2024/03/14 16:58:58 by besalort         ###   ########.fr       */
+/*   Updated: 2024/03/19 15:32:13 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ void	loop(t_mdata *data, char *cmd)
 		data->cmd = NULL;
 		if (is_unallowed_char(data, cmd) == 0)
 			loop_utils(data, cmd);
+		ft_error(data, "ICI ON CLOSE TOUT\n",0);
 		end_loop(data);
 	}
 	free (cmd);

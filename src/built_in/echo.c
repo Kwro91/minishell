@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 14:08:19 by besalort          #+#    #+#             */
-/*   Updated: 2024/03/07 13:19:48 by besalort         ###   ########.fr       */
+/*   Updated: 2024/03/19 16:02:15 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	echo_bis(char **text, int nb)
 	}
 	if (nb == 1)
 	{
-		if (strncmp(text[0], word0, 3) == 0 || strncmp(text[0], wordn, 3) == 0)
+		if (ft_strncmp(text[0], word0, 3) == 0 || ft_strncmp(text[0], wordn, 3) == 0)
 			return (1);
 	}
 	return (0);

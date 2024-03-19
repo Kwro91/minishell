@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 15:38:43 by besalort          #+#    #+#             */
-/*   Updated: 2024/03/18 18:58:01 by besalort         ###   ########.fr       */
+/*   Updated: 2024/03/19 15:33:41 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,9 +73,13 @@ int	do_in_redir(t_mdata *data, t_command *cmd)
 			// ft_error(data, "\n", 0);
 			if (fcntl(tmp->fd, F_GETFL) == -1) //FCT NON AUTORISEE A RETIRER !!!
 			{
-				ft_error(data, "le fichier est ferme:", 0);
-				printf("%i", tmp->fd);
-				ft_error(data, ":\n", 0);
+				char *itoa = ft_itoa(tmp->fd);
+				ft_error(data, "le fichier:", 0);
+				ft_error(data, tmp->files, 0);
+				ft_error(data, "=", 0);
+				ft_error(data, itoa, 0);
+				ft_error(data, ": est ferme\n", 0);
+				ft_free_me(itoa);
 			}
 			if (dup2(tmp->fd, 0) < 0)
 			{
