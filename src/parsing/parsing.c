@@ -6,11 +6,25 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 15:30:01 by besalort          #+#    #+#             */
-/*   Updated: 2024/03/19 19:11:01 by besalort         ###   ########.fr       */
+/*   Updated: 2024/03/21 17:37:42 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+void	delete_files_names(t_mdata *data)
+{
+	t_command	*tmp;
+
+	tmp = data->cmd;
+	while (tmp)
+	{
+		printf("On va effacer file sur ligne :%s:\n", tmp->line);
+		sub_files(data, tmp);
+		printf("ligne apres :%s:\n", tmp->line);
+		tmp = tmp->next;
+	}
+}
 
 int	*create_tab(t_mdata *data)
 {

@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 14:10:34 by besalort          #+#    #+#             */
-/*   Updated: 2024/03/14 16:59:21 by besalort         ###   ########.fr       */
+/*   Updated: 2024/03/21 17:34:29 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,9 +106,10 @@ void		ft_free_lines(char	**lines);
 //Free
 void		ft_free_mini(t_mdata *data);
 void		ft_free_adr(void *adr);
-void		ft_free_files(t_files *files);
+// void		ft_free_files(t_files *files);
 void		ft_error(t_mdata *data, char *line, int close);
 void		ft_free_me(char *str);
+int			ft_close_me(int fd);
 //IsCmd
 int			verif_cmd(t_mdata *data, t_command *cmd);
 int			is_echo(char **cmd_total);
@@ -176,7 +177,7 @@ char		*access_utils(t_mdata *data, t_command *cmd);
 void		loop_directory(t_mdata *data, t_command *cmd, char *path, DIR *dir);
 
 //REDIRECTION
-int			redir(t_mdata *data, t_command *cmd);
+int			redir(t_mdata *data);
 int			do_redir(t_mdata *data, t_command *cmd);
 char		*dup_word(t_mdata *data, t_command *cmd, int len, int i);
 void		sub_files(t_mdata *data, t_command *cmd);
@@ -197,8 +198,9 @@ char		*redir_rewrite(t_mdata *data, t_command *cmd);
 void		ft_open_mfiles(t_mdata *data, t_command *cmd);
 //PARSE
 void		split_parse(t_mdata *data, char *line);
-int			check_before(t_mdata *data, char *line);
+// int			check_before(t_mdata *data, char *line);
 int			check_line_pipe(t_mdata *data, t_command *cmd);
+void		delete_files_names(t_mdata *data);
 
 //Parsing
 void		parse_cmd(t_mdata *data, t_command *cmd);

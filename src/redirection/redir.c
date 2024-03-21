@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 15:38:43 by besalort          #+#    #+#             */
-/*   Updated: 2024/03/19 15:33:41 by besalort         ###   ########.fr       */
+/*   Updated: 2024/03/21 17:24:52 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,16 +61,6 @@ int	do_in_redir(t_mdata *data, t_command *cmd)
 	{
 		if (tmp->next == NULL && tmp->fd >= 0)
 		{
-			// char *itoa = ft_itoa(tmp->here_doc);
-			// int i = 0;
-			// ft_error(data, "tmp->files:", 0);
-			// ft_error(data, tmp->files, 0);
-			// ft_error(data, "fd:", 0);
-			// ft_error(data, itoa, 0);
-			// ft_free_me(itoa);
-			// ft_error(data, "i=", 0);
-			// ft_error(data, ft_itoa(i), 0);
-			// ft_error(data, "\n", 0);
 			if (fcntl(tmp->fd, F_GETFL) == -1) //FCT NON AUTORISEE A RETIRER !!!
 			{
 				char *itoa = ft_itoa(tmp->fd);
@@ -84,6 +74,7 @@ int	do_in_redir(t_mdata *data, t_command *cmd)
 			if (dup2(tmp->fd, 0) < 0)
 			{
 				cmd->good = -1;
+				printf("broken fd %d", tmp->fd);
 				return (ft_error(data, "Error: dup26\n", -1), -1);
 			}
 			close(tmp->fd);
@@ -105,8 +96,22 @@ int	do_redir(t_mdata *data, t_command *cmd)
 	return (value);
 }
 
-int	redir(t_mdata *data, t_command *cmd)
+// int	redir(t_mdata *data, t_command *cmd)
+// {
+// 	ft_open_mfiles(data, cmd);
+// 	return (0);
+// }
+
+int	redir(t_mdata *data)
 {
-	ft_open_mfiles(data, cmd);
+	t_command *tmp;
+
+	tmp = data->cmd;
+	while (tmp)
+	{
+		ft_open_mfiles(data, tmp);
+		tmp = tmp->next;
+	}
+	delete_files_names(data);
 	return (0);
 }

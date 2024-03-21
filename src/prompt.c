@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 15:53:50 by besalort          #+#    #+#             */
-/*   Updated: 2024/03/19 16:09:18 by besalort         ###   ########.fr       */
+/*   Updated: 2024/03/21 17:38:20 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,23 +24,12 @@ char	*get_readline(t_mdata *data, char *str)
 	return (str);
 }
 
-void	delete_files_names(t_mdata *data)
-{
-	t_command	*tmp;
-
-	tmp = data->cmd;
-	while (tmp)
-	{
-		sub_files(data, tmp);
-		tmp = tmp->next;
-	}
-}
-
 void	loop_utils(t_mdata *data, char *cmd)
 {
 	if (cmd != NULL)
 	{
 		split_parse(data, cmd);
+		redir(data);
 		// if (data->cmd->line == NULL)
 		// 	return ;
 		if (data->nb_cmd > 1)
