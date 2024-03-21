@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 15:32:02 by besalort          #+#    #+#             */
-/*   Updated: 2024/03/14 14:38:42 by besalort         ###   ########.fr       */
+/*   Updated: 2024/03/21 18:38:29 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,4 +83,7 @@ void	close_end(t_mdata *data)
 void	end_loop(t_mdata *data)
 {
 	close_end(data);
+	data->pipes[0] = -1;
+	data->pipes[1] = -1;
+	data->pipe_save = -1;
 }

@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 14:25:43 by besalort          #+#    #+#             */
-/*   Updated: 2024/03/19 16:37:45 by besalort         ###   ########.fr       */
+/*   Updated: 2024/03/21 18:32:59 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ char	*remove_c(t_mdata *data, t_command *cmd, char c, int *i)
 			if (two && one)
 			{
 				new = ft_strjoin(one, two);
-				printf("oui !!!\n");
+				// printf("oui !!!\n");
 				if (!new)
 					return (ft_error(data, "Error: strjoin\n", -1), NULL);
 			}
@@ -127,7 +127,7 @@ void	sub_files(t_mdata *data, t_command *cmd)
 		if (tmp)
 		{
 			sub_files_utils(data, cmd, tmp, '<');
-			printf("cmd->line :%s:\n", cmd->line);
+			// printf("cmd->line :%s:\n", cmd->line);
 		}
 		tmp = tmp->next;
 	}

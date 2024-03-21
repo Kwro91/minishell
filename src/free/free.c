@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 16:14:52 by besalort          #+#    #+#             */
-/*   Updated: 2024/03/19 16:16:27 by besalort         ###   ########.fr       */
+/*   Updated: 2024/03/21 18:47:09 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,9 @@
 
 void	ft_error(t_mdata *data, char *line, int close)
 {
-	int	i;
-
-	i = 0;
 	g_retval = close;
-	while (line[i])
-	{
-		write(2, &line[i], 1);
-		i++;
-	}
+	if (line)
+		write(2, line, ft_strlen(line));
 	if (close == -1)
 		exit_mini(data, NULL);
 }

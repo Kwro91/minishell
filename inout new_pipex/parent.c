@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parent.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
+/*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 17:38:09 by besalort          #+#    #+#             */
-/*   Updated: 2024/03/21 19:40:40 by besalort         ###   ########.fr       */
+/*   Updated: 2024/03/07 17:33:00 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 
 void	rfirst(t_mdata *data, t_command *cmd)
 {
-	// redir(data, cmd);
-	// sub_files(data, cmd);
-	parse_cmd(data, cmd);
 	if (pipe(data->pipes) < 0)
 		return (ft_error(data, "Error: pipe\n", -1));
 	ft_first_child(data, cmd);
@@ -33,9 +30,6 @@ t_command	*rmiddle(t_mdata *data, t_command *cmd)
 	{
 		if (pipe (data->pipes) < 0)
 			ft_error(data, "Error: pipe\n", -1);
-		// redir(data, cmd);
-		// sub_files(data, cmd);
-		parse_cmd(data, tmp);
 		ft_mid_childs(data, tmp);
 		close(data->pipes[1]);
 		close(data->pipe_save);
@@ -47,11 +41,8 @@ t_command	*rmiddle(t_mdata *data, t_command *cmd)
 
 void	rlast(t_mdata *data, t_command *cmd)
 {
-	// redir(data, cmd);
-	// sub_files(data, cmd);
-	parse_cmd(data, cmd);
 	ft_last_child(data, cmd);
-	// close_two(data, data->pipes[0], data->pipes[1]);
+	close_two(data, data->pipes[0], data->pipes[1]);
 	close(data->pipe_save);
 }
 
@@ -67,8 +58,6 @@ void	mwait_childs(t_mdata *data)
 	while (tmp)
 	{
 		waitpid(-1, &status, 0);
-		// avoir le pid de tout les enfants pour attendre que tout les process soient termine
-		// et psa stop apres la fin d'un seul
 		g_retval = WEXITSTATUS(status);
 		if (count == 0)
 		{

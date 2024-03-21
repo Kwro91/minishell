@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 15:30:01 by besalort          #+#    #+#             */
-/*   Updated: 2024/03/21 17:37:42 by besalort         ###   ########.fr       */
+/*   Updated: 2024/03/21 18:32:25 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,7 @@ void	delete_files_names(t_mdata *data)
 	tmp = data->cmd;
 	while (tmp)
 	{
-		printf("On va effacer file sur ligne :%s:\n", tmp->line);
 		sub_files(data, tmp);
-		printf("ligne apres :%s:\n", tmp->line);
 		tmp = tmp->next;
 	}
 }
@@ -168,10 +166,10 @@ void	remove_all_quotes(t_mdata *data, t_command *cmd, int *tab)
 		i++;
 	}
 	i = 0;
-	printf("line:%s:\n", cmd->line);
+	// printf("line:%s:\n", cmd->line);
 	while (i < 4096 && tab[i] > -1)
 	{
-		printf("On splitera a :cmd->line[%i]=%c:\n", tab[i] + 1, cmd->line[tab[i] + 1]);
+		// printf("On splitera a :cmd->line[%i]=%c:\n", tab[i] + 1, cmd->line[tab[i] + 1]);
 		i++;
 	}
 }
