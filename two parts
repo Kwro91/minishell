@@ -1,3 +1,0 @@
-filename = :two parts:
-cmd->line :echo hey  :
-hey
