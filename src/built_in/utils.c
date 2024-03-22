@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 14:15:35 by besalort          #+#    #+#             */
-/*   Updated: 2024/03/15 18:16:46 by besalort         ###   ########.fr       */
+/*   Updated: 2024/03/22 17:47:40 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,7 @@ char	*next_word(t_mdata *data, t_command *cmd, int i)
 		if (cmd->line[i] == '$')
 			return (find_var(data, cmd, i));
 		if (cmd->line[i] == '"' && apo == 0)
-		{
 			apo = 1;
-			i++;
-		}
 		if ((cmd->line[i] == '"' && apo == 1)
 			|| (apo == 0 && ft_isword(cmd->line[i]) == 0))
 			break ;

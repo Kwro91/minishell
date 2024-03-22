@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 15:53:50 by besalort          #+#    #+#             */
-/*   Updated: 2024/03/22 12:28:44 by besalort         ###   ########.fr       */
+/*   Updated: 2024/03/22 17:45:03 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,12 @@ void	loop(t_mdata *data, char *cmd)
 		add_history(cmd);
 		data->cmd = NULL;
 		if (is_unallowed_char(data, cmd) == 0)
-			loop_utils(data, cmd);
+		{
+			if (cmd != NULL && ft_strlen(cmd) > 4096)
+				ft_error(data, "Error: line too long\n", 127);
+			else
+				loop_utils(data, cmd);
+		}
 		// ft_error(data, "ICI ON CLOSE TOUT\n",0);
 	}
 	end_loop(data);
