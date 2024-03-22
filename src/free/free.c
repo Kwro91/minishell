@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
+/*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 16:14:52 by besalort          #+#    #+#             */
-/*   Updated: 2024/03/22 12:31:57 by besalort         ###   ########.fr       */
+/*   Updated: 2024/03/22 13:59:52 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,24 +20,6 @@ void	ft_error(t_mdata *data, char *line, int close)
 	if (close == -1)
 		exit_mini(data, NULL);
 }
-
-// void	ft_free_files(t_files *files)
-// {
-// 	t_files	*tmp;
-
-// 	tmp = files;
-// 	while (tmp)
-// 	{
-// 		if (tmp->here_doc == 1)
-// 			unlink(".here_doc_tmp");
-// 		if (tmp->fd > 1)
-// 			close(tmp->fd);
-// 		if (tmp->files)
-// 			free(tmp->files);
-// 		free(tmp);
-// 		tmp = tmp->next;
-// 	}
-// }
 
 void	ft_free_adr(void *adr)
 {

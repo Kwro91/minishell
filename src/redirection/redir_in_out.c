@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir_in_out.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
+/*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 15:29:29 by besalort          #+#    #+#             */
-/*   Updated: 2024/03/19 16:57:48 by besalort         ###   ########.fr       */
+/*   Updated: 2024/03/22 14:19:20 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,14 +48,13 @@ t_files	*get_new_file(t_mdata *data, t_command *cmd, t_ifiles *i)
 		cmd->good = -1;
 	}
 	new->next = NULL;
-	// printf("\nNew file:\nfiles:%s:\nhere_doc:%i:\ni->i:%i:\nline:%s:\n", new->files, new->here_doc, i->i, cmd->line);
 	return (new);
 }
 
 t_files	*get_fd_out(t_mdata *data, t_command *cmd, int i)
 {
 	t_ifiles	new;
-	
+
 	new.hd = 0;
 	new.i = (i + 1);
 	if (cmd->line[i + 1] == '>')
@@ -63,7 +62,7 @@ t_files	*get_fd_out(t_mdata *data, t_command *cmd, int i)
 		new.i += 1;
 		new.hd = 1;
 	}
-	return (create_new_files(data, cmd->out, cmd, &new));
+	return (create_n_f(data, cmd->out, cmd, &new));
 }
 
 void	is_fd_out(t_mdata *data, t_command *cmd)
@@ -116,7 +115,7 @@ void	is_fd_in(t_mdata *data, t_command *cmd)
 				new.i += 1;
 				new.hd = 1;
 			}
-			cmd->in = create_new_files(data, cmd->in, cmd, &new);
+			cmd->in = create_n_f(data, cmd->in, cmd, &new);
 		}
 		new.i++;
 	}

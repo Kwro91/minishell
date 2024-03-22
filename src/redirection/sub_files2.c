@@ -1,46 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   signals2.c                                         :+:      :+:    :+:   */
+/*   sub_files2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/30 15:25:23 by afontain          #+#    #+#             */
-/*   Updated: 2024/03/22 13:58:06 by afontain         ###   ########.fr       */
+/*   Created: 2024/03/22 15:12:03 by afontain          #+#    #+#             */
+/*   Updated: 2024/03/22 15:12:15 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	handle_siginthere(int sig_segv)
+int	get_file_len(char *str)
 {
-	(void)sig_segv;
-	close(STDIN_FILENO);
-	write(2, "\n", 1);
-	g_retval = 130;
-	return ;
-}
+	int	i;
 
-void	handle_sigint_exec(void)
-{
-	signal(SIGINT, handle_exec);
-}
-
-void	handle_exec(int sig_int)
-{
-	(void)sig_int;
-	g_retval = 130;
-}
-
-void	handle_sigquit(int sigquit)
-{
-	(void)sigquit;
-	g_retval = 131;
-	write(STDOUT_FILENO, "Quit core dump\n", 1);
-}
-
-void	handle_sigsegv(int sigsegv)
-{
-	(void)sigsegv;
-	exit(1);
+	i = 0;
+	while (str && str[i])
+		i++;
+	if (str[i - 1] == '\n')
+		i -= 1;
+	return (i);
 }

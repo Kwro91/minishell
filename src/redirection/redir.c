@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
+/*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 15:38:43 by besalort          #+#    #+#             */
-/*   Updated: 2024/03/21 19:09:38 by besalort         ###   ########.fr       */
+/*   Updated: 2024/03/22 15:23:15 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,20 +61,9 @@ int	do_in_redir(t_mdata *data, t_command *cmd)
 	{
 		if (tmp->next == NULL && tmp->fd >= 0)
 		{
-			if (fcntl(tmp->fd, F_GETFL) == -1) //FCT NON AUTORISEE A RETIRER !!!
-			{
-				char *itoa = ft_itoa(tmp->fd);
-				ft_error(data, "le fichier:", 0);
-				ft_error(data, tmp->files, 0);
-				ft_error(data, "=", 0);
-				ft_error(data, itoa, 0);
-				ft_error(data, ": est ferme\n", 0);
-				ft_free_me(itoa);
-			}
 			if (dup2(tmp->fd, 0) < 0)
 			{
 				cmd->good = -1;
-				printf("broken fd %d", tmp->fd);
 				return (ft_error(data, "Error: dup26\n", -1), -1);
 			}
 			close(tmp->fd);
@@ -104,7 +93,7 @@ int	do_redir(t_mdata *data, t_command *cmd)
 
 int	redir(t_mdata *data)
 {
-	t_command *tmp;
+	t_command	*tmp;
 
 	tmp = data->cmd;
 	while (tmp)

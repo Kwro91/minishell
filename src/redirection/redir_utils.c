@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
+/*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 15:54:38 by besalort          #+#    #+#             */
-/*   Updated: 2024/03/19 15:44:15 by besalort         ###   ########.fr       */
+/*   Updated: 2024/03/22 14:19:41 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,13 @@ void	open_out_files(t_mdata *data, t_command *cmd)
 		else
 			tmp->fd = open(tmp->files, O_RDWR | O_APPEND | O_CREAT, S_IRWXU);
 		if (tmp->fd < 0)
-				error_open(data, cmd, tmp, 1);
+			error_open(data, cmd, tmp, 1);
 		tmp = tmp->next;
 	}
 }
 
 void	error_open(t_mdata *data, t_command *cmd, t_files *tmp, int c)
 {
-	
 	if (access(tmp->files, F_OK) == 0)
 	{
 		ft_error(data, "minishell: ", 1);
@@ -78,14 +77,13 @@ void	ft_open_mfiles(t_mdata *data, t_command *cmd)
 	open_out_files(data, cmd);
 }
 
-t_files	*create_new_files(t_mdata *data, t_files *files, t_command *cmd, t_ifiles *i)
+t_files	*create_n_f(t_mdata *data, t_files *files, t_command *cmd, t_ifiles *i)
 {
 	t_files	*new;
 	t_files	*tmp;
 
 	new = get_new_file(data, cmd, i);
 	tmp = files;
-	// new->here_doc = i->hd;
 	if (!tmp)
 		return (new);
 	else

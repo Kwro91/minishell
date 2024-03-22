@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
+/*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 15:53:50 by besalort          #+#    #+#             */
-/*   Updated: 2024/03/22 12:28:44 by besalort         ###   ########.fr       */
+/*   Updated: 2024/03/22 17:49:19 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,9 @@ void	loop_utils(t_mdata *data, char *cmd)
 	{
 		split_parse(data, cmd);
 		redir(data);
-		// if (data->cmd->line == NULL)
-		// 	return ;
 		if (data->nb_cmd > 1)
 			if (check_line_pipe(data, data->cmd) == -1)
 				return ;
-		// delete_files_names(data);
 		if (data->nb_cmd == 1)
 			launch_cmd(data, data->cmd);
 		else if (data->nb_cmd > 1)
@@ -53,8 +50,12 @@ void	loop(t_mdata *data, char *cmd)
 		add_history(cmd);
 		data->cmd = NULL;
 		if (is_unallowed_char(data, cmd) == 0)
-			loop_utils(data, cmd);
-		// ft_error(data, "ICI ON CLOSE TOUT\n",0);
+		{
+            if (cmd != NULL && ft_strlen(cmd) > 4096)
+                ft_error(data, "Error: line too long\n", 127);
+            else
+                loop_utils(data, cmd);
+		}
 	}
 	end_loop(data);
 	free (cmd);

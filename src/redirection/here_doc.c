@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   here_doc.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
+/*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 16:06:24 by besalort          #+#    #+#             */
-/*   Updated: 2024/03/20 17:13:15 by besalort         ###   ########.fr       */
+/*   Updated: 2024/03/22 15:17:46 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ char	*get_hdoc_name(t_mdata *data, t_command *cmd)
 {
 	char	*name;
 	char	*number;
-	
+
 	number = ft_itoa(cmd->nb);
 	if (!number)
 		ft_error(data, "Error: malloc\n", -1);
@@ -53,11 +53,28 @@ char	*get_hdoc_name(t_mdata *data, t_command *cmd)
 	return (name);
 }
 
+void	ft_mhere_doc2(char *name, char *line, t_command *cmd, t_files *file)
+{
+	if (g_retval == 130)
+	{
+		cmd->good = -1;
+		handle_signals();
+		close(file->fd);
+		file->fd = open(name, O_RDONLY);
+		return ;
+	}
+	free(line);
+	close(file->fd);
+	file->fd = open(name, O_RDONLY);
+	ft_free_me(name);
+	handle_signals();
+}
+
 void	ft_mhere_doc(t_mdata *data, t_command *cmd, t_files *file)
 {
 	char	*line;
 	char	*name;
-	
+
 	name = get_hdoc_name(data, cmd);
 	ft_meof(file);
 	file->fd = open(name,
@@ -77,18 +94,5 @@ void	ft_mhere_doc(t_mdata *data, t_command *cmd, t_files *file)
 		write(file->fd, "\n", 1);
 		free(line);
 	}
-	if (g_retval == 130)
-	{
-		cmd->good = -1;
-		handle_signals();
-		close(file->fd);
-		file->fd = open(name, O_RDONLY);
-		return ;
-	}
-	free(line);
-	close(file->fd);
-	file->fd = open(name, O_RDONLY);
-	printf("OPEN :%s=%i: RD_ONLY\n", name, file->fd);
-	ft_free_me(name);
-	handle_signals();
+	ft_mhere_doc2(name, line, cmd, file);
 }

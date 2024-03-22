@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
+/*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 14:10:34 by besalort          #+#    #+#             */
-/*   Updated: 2024/03/21 17:34:29 by besalort         ###   ########.fr       */
+/*   Updated: 2024/03/22 15:52:48 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,7 +167,7 @@ void		handle_sigquit(int sig_quit);
 void		handle_sigsegv(int sig_segv);
 void		handle_sigint(int sig_int);
 void		handle_siginthere(int sig_segv);
-void		error_signal();
+void		error_signal(void);
 void		handle_signals_exec(void);
 
 //EXECUTION
@@ -175,6 +175,8 @@ char		*ft_access_mini(t_mdata *data, t_command *cmd);
 void		launch_cmd(t_mdata *data, t_command *cmd);
 char		*access_utils(t_mdata *data, t_command *cmd);
 void		loop_directory(t_mdata *data, t_command *cmd, char *path, DIR *dir);
+void		error_access_mini(t_mdata *data, char *cmd);
+char		*ft_access_mini(t_mdata *data, t_command *cmd);
 
 //REDIRECTION
 int			redir(t_mdata *data);
@@ -186,11 +188,12 @@ void		close_two(t_mdata *data, int fd1, int fd2);
 void		ft_mhere_doc(t_mdata *data, t_command *cmd, t_files *file);
 char		*get_hdoc_name(t_mdata *data, t_command *cmd);
 t_files		*get_new_file(t_mdata *data, t_command *cmd, t_ifiles *i);
-t_files		*create_new_files(t_mdata *data, t_files *files,
+t_files		*create_n_f(t_mdata *data, t_files *files,
 				t_command *cmd, t_ifiles *i);
 char		*ft_strndup(t_mdata *data, char	*str, int len);
 void		reset_redir(t_mdata *data);
 void		error_open(t_mdata *data, t_command *cmd, t_files *tmp, int c);
+int			get_file_len(char *str);
 
 void		is_fd_in(t_mdata *data, t_command *cmd);
 void		is_fd_out(t_mdata *data, t_command *cmd);
@@ -204,6 +207,14 @@ void		delete_files_names(t_mdata *data);
 
 //Parsing
 void		parse_cmd(t_mdata *data, t_command *cmd);
+void		delete_files_names(t_mdata *data);
+int			*create_tab(t_mdata *data);
+void		add_tab(int *tab, int value);
+void		update_tab(int	*tab, int j);
+int			parse_dquote(t_mdata *data, t_command *cmd, int i, int *tab);
+int			parse_squote(t_mdata *data, t_command *cmd, int i, int *tab);
+void		remove_char(t_mdata *data, t_command *cmd, int i);
+void		remove_all_quotes(t_mdata *data, t_command *cmd, int *tab);
 
 //Dollar
 int			handle_dollar(t_mdata *data, t_command *cmd, int i);

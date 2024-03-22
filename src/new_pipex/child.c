@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   child.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
+/*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 17:40:14 by besalort          #+#    #+#             */
-/*   Updated: 2024/03/21 19:42:59 by besalort         ###   ########.fr       */
+/*   Updated: 2024/03/22 13:59:31 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,10 +76,6 @@ void	ft_last_child(t_mdata *data, t_command *cmd)
 				if (dup2(data->pipe_save, 0) < 0)
 					return (ft_error(data, "Error: dup24\n", -1));
 			close(data->pipe_save);
-			// printf("fd pipe0: %d\n", data->pipes[0]);
-			// printf("fd pipe1: %d\n", data->pipes[1]);
-			// data->pipes[0] = ft_close_me(data->pipes[0]);
-			// data->pipes[1] = ft_close_me(data->pipes[1]);
 			launch_cmd(data, cmd);
 		}
 		ft_free_lines(cmd->cmd);

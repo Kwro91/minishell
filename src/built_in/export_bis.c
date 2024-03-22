@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_bis.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
+/*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 17:24:18 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/29 14:58:16 by besalort         ###   ########.fr       */
+/*   Updated: 2024/03/22 14:21:23 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	error_export(t_mdata *data, char *error)
 int	check_export_line(t_mdata *data, char *line, int show)
 {
 	(void)data;
-	if (ft_isalpha(line[0]) == 0 || is_export_good(line) ==  -1)
+	if (ft_isalpha(line[0]) == 0 || is_export_good(line) == -1)
 	{
 		g_retval = 1;
 		if (show == 1)

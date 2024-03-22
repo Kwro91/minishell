@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir_rewrite.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
+/*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 15:15:57 by besalort          #+#    #+#             */
-/*   Updated: 2024/03/07 14:26:17 by besalort         ###   ########.fr       */
+/*   Updated: 2024/03/22 14:07:18 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,3 @@ char	*ft_strndup(t_mdata *data, char	*str, int len)
 	new[i] = '\0';
 	return (new);
 }
-

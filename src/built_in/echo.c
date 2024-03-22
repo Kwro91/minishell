@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
+/*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 14:08:19 by besalort          #+#    #+#             */
-/*   Updated: 2024/03/19 18:33:33 by besalort         ###   ########.fr       */
+/*   Updated: 2024/03/22 14:25:40 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,11 @@
 
 int	verif_echo(char *text)
 {
-	int i;
+	int	i;
 
 	i = 1;
-	// printf("\non check %s\n", text);
 	if (ft_strncmp(text, "-n", 2) != 0)
-			return (0);
+		return (0);
 	while (text && text[i] == 'n' )
 		i++;
 	if (text[i] == '\0')
@@ -41,7 +40,8 @@ int	echo_bis(char **text, int nb)
 	}
 	if (nb == 1)
 	{
-		if (ft_strncmp(text[0], word0, 3) == 0 || ft_strncmp(text[0], wordn, 3) == 0)
+		if (ft_strncmp(text[0], word0, 3) == 0
+			|| ft_strncmp(text[0], wordn, 3) == 0)
 			return (1);
 	}
 	return (0);
@@ -69,6 +69,6 @@ void	ft_echo(char **text)
 			write(1, " ", 1);
 	}
 	if (text && verif_echo(text[0]) == 0)
-			write(1, "\n", 1);
+		write(1, "\n", 1);
 	g_retval = 0;
 }

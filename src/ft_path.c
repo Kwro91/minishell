@@ -6,7 +6,7 @@
 /*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 16:06:15 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/29 13:34:32 by afontain         ###   ########.fr       */
+/*   Updated: 2024/03/22 13:56:13 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	setup_path(t_mdata *data)
 {
-		if (data->paths)
-			ft_free_lines(data->paths);
-		data->paths = ft_path_mini(data);
+	if (data->paths)
+		ft_free_lines(data->paths);
+	data->paths = ft_path_mini(data);
 }
 
 char	**ft_path_mini(t_mdata *data)

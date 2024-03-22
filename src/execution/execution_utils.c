@@ -3,28 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   execution_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
+/*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 19:26:57 by besalort          #+#    #+#             */
-/*   Updated: 2024/03/20 16:17:49 by besalort         ###   ########.fr       */
+/*   Updated: 2024/03/22 14:10:57 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void    loop_directory(t_mdata *data, t_command *cmd, char *path, DIR *dir)
+void	loop_directory(t_mdata *data, t_command *cmd, char *path, DIR *dir)
 {
-    if (path && access(path, F_OK) != -1)
-    {
-        if (dir != NULL)
-        {
-            closedir(dir);
-            cmd->good = -1;
-            ft_error(data, "minishell : ", 126);
-            ft_error(data, path, 126);
-            ft_error(data, ": is a directory\n", 126);
-        }
-    }
+	if (path && access(path, F_OK) != -1)
+	{
+		if (dir != NULL)
+		{
+			closedir(dir);
+			cmd->good = -1;
+			ft_error(data, "minishell : ", 126);
+			ft_error(data, path, 126);
+			ft_error(data, ": is a directory\n", 126);
+		}
+	}
 }
 
 char	*access_utils(t_mdata *data, t_command *cmd)

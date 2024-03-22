@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: besalort <besalort@student.42.fr>          +#+  +:+       +#+         #
+#    By: afontain <afontain@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/29 14:05:28 by besalort          #+#    #+#              #
-#    Updated: 2024/03/20 14:47:58 by besalort         ###   ########.fr        #
+#    Updated: 2024/03/22 15:53:01 by afontain         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,7 @@ SRC = ./src/main.c \
 	$(BUILT_IN_PATH)unset.c \
 	$(BUILT_IN_PATH)cd.c \
 	$(EXECUTION_PATH)execution.c \
+	$(EXECUTION_PATH)execution2.c \
 	$(EXECUTION_PATH)execution_utils.c \
 	$(EXECUTION_PATH)is_cmd.c \
 	$(EXECUTION_PATH)is_cmd2.c \
@@ -44,6 +45,7 @@ SRC = ./src/main.c \
 	$(REDIRECTION_PATH)here_doc.c \
 	$(REDIRECTION_PATH)reset_redir.c \
 	$(REDIRECTION_PATH)sub_files.c \
+	$(REDIRECTION_PATH)sub_files2.c \
 	$(CHECK_CREATE_PATH)create_cmd.c \
 	$(CHECK_CREATE_PATH)check_line.c \
 	$(PIPE_PATH)child.c \
@@ -56,6 +58,8 @@ SRC = ./src/main.c \
 	$(DOLLAR_PATH)other.c \
 	$(DOLLAR_PATH)letter_utils.c \
 	$(PARSING_PATH)parsing.c \
+	$(PARSING_PATH)parsing2.c \
+	$(PARSING_PATH)parsing3.c \
 	$(PARSING_PATH)remove_quote.c \
 	$(PARSING_PATH)remove_quote_utils.c \
 	$(SPLIT_PATH)split_cmd.c \
