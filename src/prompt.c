@@ -6,7 +6,7 @@
 /*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 15:53:50 by besalort          #+#    #+#             */
-/*   Updated: 2024/03/22 17:49:19 by afontain         ###   ########.fr       */
+/*   Updated: 2024/03/22 18:12:23 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,10 @@ void	loop(t_mdata *data, char *cmd)
 		data->cmd = NULL;
 		if (is_unallowed_char(data, cmd) == 0)
 		{
-            if (cmd != NULL && ft_strlen(cmd) > 4096)
-                ft_error(data, "Error: line too long\n", 127);
-            else
-                loop_utils(data, cmd);
+			if (cmd != NULL && ft_strlen(cmd) > 4096)
+				ft_error(data, "Error: line too long\n", 127);
+			else
+				loop_utils(data, cmd);
 		}
 	}
 	end_loop(data);

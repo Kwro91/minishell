@@ -6,7 +6,7 @@
 /*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 14:54:46 by besalort          #+#    #+#             */
-/*   Updated: 2024/03/22 18:04:19 by afontain         ###   ########.fr       */
+/*   Updated: 2024/03/22 18:11:55 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,8 @@ void	init_export(t_mdata *data, char **line)
 	while (line[i])
 	{
 		if (check_export_line(data, line[i], 1) == -1
-			|| (do_line_exist((data->export), line[i]) > -1 && do_line_exist((data->export), line[i]) > -1))
+			|| (do_line_exist((data->export), line[i]) > -1
+				&& do_line_exist((data->export), line[i]) > -1))
 			count++;
 		i++;
 	}
