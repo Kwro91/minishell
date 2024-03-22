@@ -6,7 +6,7 @@
 /*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 15:54:38 by besalort          #+#    #+#             */
-/*   Updated: 2024/03/22 14:19:41 by afontain         ###   ########.fr       */
+/*   Updated: 2024/03/22 18:31:06 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ void	open_out_files(t_mdata *data, t_command *cmd)
 	tmp = cmd->out;
 	while (tmp)
 	{
-		if (tmp->here_doc == 0)
+		if (tmp->here_doc == 0 && cmd->good != -1)
 			tmp->fd = open(tmp->files, O_RDWR | O_TRUNC | O_CREAT,
 					S_IRWXU);
-		else
+		else if (cmd->good != -1)
 			tmp->fd = open(tmp->files, O_RDWR | O_APPEND | O_CREAT, S_IRWXU);
 		if (tmp->fd < 0)
 			error_open(data, cmd, tmp, 1);
@@ -39,7 +39,7 @@ void	error_open(t_mdata *data, t_command *cmd, t_files *tmp, int c)
 	{
 		ft_error(data, "minishell: ", 1);
 		ft_error(data, tmp->files, 1);
-		ft_error(data, ": permission denied\n", 1);
+		ft_error(data, ": Permission denied\n", 1);
 	}
 	else if (c == 0)
 	{
@@ -61,6 +61,11 @@ void	open_in_files(t_mdata *data, t_command *cmd)
 	{
 		if (tmp->here_doc == 0)
 		{
+			if (cmd->good != -1 && access(tmp->files, R_OK) != 0)
+			{
+				cmd->good = -1;
+				tmp->fd = -1;
+			}
 			tmp->fd = open(tmp->files, O_RDONLY);
 			if (tmp->fd < 0)
 				error_open(data, cmd, tmp, 0);
