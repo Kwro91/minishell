@@ -6,7 +6,7 @@
 /*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 14:54:46 by besalort          #+#    #+#             */
-/*   Updated: 2024/02/20 20:17:03 by afontain         ###   ########.fr       */
+/*   Updated: 2024/03/22 18:04:19 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,9 @@ char	**copy_add(t_mdata *data, char **base, char **add, int size)
 		j++;
 	while (add && add[i] && i < size)
 	{
-		if (reset_line(data, base, add[i]) == -1)
+		if (do_line_exist(data->env, add[i]) > -1)
+			reset_line(data, data->env, add[i]);
+		else if (reset_line(data, base, add[i]) == -1)
 		{
 			if (check_export_line(data, add[i], 0) == 0)
 			{
@@ -66,7 +68,7 @@ void	init_export(t_mdata *data, char **line)
 	while (line[i])
 	{
 		if (check_export_line(data, line[i], 1) == -1
-			|| do_line_exist((data->export), line[i]) > -1)
+			|| (do_line_exist((data->export), line[i]) > -1 && do_line_exist((data->export), line[i]) > -1))
 			count++;
 		i++;
 	}
