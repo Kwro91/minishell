@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 16:14:52 by besalort          #+#    #+#             */
-/*   Updated: 2024/03/21 18:47:09 by besalort         ###   ########.fr       */
+/*   Updated: 2024/03/22 12:31:57 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,5 @@ void	ft_free_mini(t_mdata *data)
 	ft_free_lines(data->export);
 	ft_free_lines(data->unset);
 	free(data->pwd);
-	close(data->stdin_back);
-	close(data->stdout_back);
 	rl_clear_history();
 }
