@@ -6,7 +6,7 @@
 /*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 15:59:33 by besalort          #+#    #+#             */
-/*   Updated: 2024/03/22 17:16:26 by afontain         ###   ########.fr       */
+/*   Updated: 2024/03/24 18:40:53 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,9 @@ void	launch_cmd(t_mdata *data, t_command *cmd)
 	DIR		*dir;
 	char	*path;
 
-	if (!cmd || cmd->good == -1)
+	printf("blokc :%i\n", data->block);
+	ft_error(data, "block\n", 0);
+	if (!cmd || cmd->good == -1 || data->block == -1)
 		return ;
 	handle_signals();
 	if (data->nb_cmd == 1)

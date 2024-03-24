@@ -6,7 +6,7 @@
 /*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 14:10:34 by besalort          #+#    #+#             */
-/*   Updated: 2024/03/22 15:52:48 by afontain         ###   ########.fr       */
+/*   Updated: 2024/03/24 18:33:32 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ typedef struct s_mdata
 	char		**export;
 	char		**unset;
 	char		*pwd;
+	int			block;
 	int			nb_cmd;
 	int			pipes[2];
 	int			pipe_save;

@@ -6,7 +6,7 @@
 /*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 15:30:01 by besalort          #+#    #+#             */
-/*   Updated: 2024/03/22 14:48:55 by afontain         ###   ########.fr       */
+/*   Updated: 2024/03/24 18:19:14 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	parse_cmd(t_mdata *data, t_command *cmd)
 	if (!cmd->line)
 	{
 		cmd->good = -1;
-		return ;
+		return (free(tab));
 	}
 	len = ft_strlen(cmd->line);
 	while (i >= 0 && cmd->line && i < len)
@@ -58,7 +58,7 @@ void	parse_cmd(t_mdata *data, t_command *cmd)
 		if (i < 0)
 		{
 			cmd->good = -1;
-			return ;
+			return (free(tab));
 		}
 		i++;
 		len = ft_strlen(cmd->line);

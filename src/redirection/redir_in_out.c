@@ -6,7 +6,7 @@
 /*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 15:29:29 by besalort          #+#    #+#             */
-/*   Updated: 2024/03/22 14:19:20 by afontain         ###   ########.fr       */
+/*   Updated: 2024/03/24 18:35:09 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ t_files	*get_new_file(t_mdata *data, t_command *cmd, t_ifiles *i)
 	{
 		ft_error(data, "Error: syntax\n", 2);
 		cmd->good = -1;
+		data->block = -1;
 	}
 	new->next = NULL;
 	return (new);

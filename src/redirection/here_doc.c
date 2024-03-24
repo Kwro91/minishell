@@ -6,7 +6,7 @@
 /*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 16:06:24 by besalort          #+#    #+#             */
-/*   Updated: 2024/03/22 15:17:46 by afontain         ###   ########.fr       */
+/*   Updated: 2024/03/24 18:15:05 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,8 @@ void	ft_mhere_doc(t_mdata *data, t_command *cmd, t_files *file)
 	char	*line;
 	char	*name;
 
+	if (cmd->good == -1)
+		return ;
 	name = get_hdoc_name(data, cmd);
 	ft_meof(file);
 	file->fd = open(name,

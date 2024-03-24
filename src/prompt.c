@@ -6,7 +6,7 @@
 /*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 15:53:50 by besalort          #+#    #+#             */
-/*   Updated: 2024/03/22 18:12:23 by afontain         ###   ########.fr       */
+/*   Updated: 2024/03/24 18:44:05 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	loop_utils(t_mdata *data, char *cmd)
 		if (data->nb_cmd > 1)
 			if (check_line_pipe(data, data->cmd) == -1)
 				return ;
+		printf("nbcmd: %i\n", data->nb_cmd);
 		if (data->nb_cmd == 1)
 			launch_cmd(data, data->cmd);
 		else if (data->nb_cmd > 1)
@@ -43,6 +44,7 @@ void	loop_utils(t_mdata *data, char *cmd)
 
 void	loop(t_mdata *data, char *cmd)
 {
+	data->block = 0;
 	data->nb_cmd = 0;
 	cmd = get_readline(data, "Minishell> ");
 	if (*cmd && is_line_good(cmd) == 1)

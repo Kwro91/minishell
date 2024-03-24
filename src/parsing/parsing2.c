@@ -6,7 +6,7 @@
 /*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 14:03:32 by afontain          #+#    #+#             */
-/*   Updated: 2024/03/22 14:03:55 by afontain         ###   ########.fr       */
+/*   Updated: 2024/03/24 18:13:25 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,16 @@
 void	delete_files_names(t_mdata *data)
 {
 	t_command	*tmp;
-
+	int			ok;
+	
+	ok = 0;
 	tmp = data->cmd;
-	while (tmp)
+	while (tmp && ok == 0)
 	{
-		sub_files(data, tmp);
+		if (tmp->good == -1)
+			ok = -1;
+		if (ok == 0)
+			sub_files(data, tmp);
 		tmp = tmp->next;
 	}
 }
