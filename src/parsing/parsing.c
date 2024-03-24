@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 15:30:01 by besalort          #+#    #+#             */
-/*   Updated: 2024/03/21 18:32:25 by besalort         ###   ########.fr       */
+/*   Updated: 2024/03/24 19:11:52 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,13 @@ void	update_tab(int	*tab, int j)
 	int	i;
 
 	i = 0;
-	while (i < 4096 && tab[i])
+	while (i < 4096 && tab[i] > -1)
 	{
-		if (i >= j)
+		if (i > j)
+		{
+			printf("UPDATE_TAB: on a tab[%i]:%i: -= 1\n", i, tab[i]);
 			tab[i] -= 1;
+		}
 		i++;
 	}
 }
@@ -157,7 +160,7 @@ void	remove_all_quotes(t_mdata *data, t_command *cmd, int *tab)
 	int	i;
 
 	i = 0;
-	while(i < 4096 && tab[i] >= 0)
+	while(i < 4096 && tab[i] > -1)
 	{
 		// printf("line:%s:\n", cmd->line);
 		// printf("char a retirer :cmd->line[%i]=[%c]:\n", tab[i], cmd->line[tab[i]]);
@@ -177,7 +180,9 @@ void	remove_all_quotes(t_mdata *data, t_command *cmd, int *tab)
 void	parse_norm(t_mdata *data, t_command *cmd, int *tab)
 {
 	char	*cmp;
+	int		count;
 
+	count = 0;
 	ft_free_lines(cmd->cmd);
 	if (!cmd->line)
 	{
@@ -185,7 +190,9 @@ void	parse_norm(t_mdata *data, t_command *cmd, int *tab)
 		return ;
 	}
 	cmp = " \t";
+	count = count_cmd(data, cmd->line, " \t");
 	remove_all_quotes(data, cmd, tab);
+	split_tab(data, cmd->line, tab, count);
 	cmd->cmd = split_cmd(data, cmd->line, cmp);
 }
 

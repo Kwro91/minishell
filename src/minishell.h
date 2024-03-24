@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 14:10:34 by besalort          #+#    #+#             */
-/*   Updated: 2024/03/21 17:34:29 by besalort         ###   ########.fr       */
+/*   Updated: 2024/03/24 19:12:22 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,13 @@
 # include <dirent.h>
 
 extern int	g_retval;
+
+typedef struct s_arg
+{
+	int		pos;
+	int		len;
+	void	*next;
+} t_arg;
 
 typedef struct s_ifiles
 {
@@ -240,4 +247,7 @@ int			split_dquote(t_mdata *data, char *line, int i);
 int			split_squote(t_mdata *data, char *line, int i);
 int			count_cmd(t_mdata *data, char *str, char *cmp);
 int			str_to_cmp(char c, char *cmp);
+
+t_arg		*get_arg(t_mdata *data, int *tab, int nb);
+char		**split_tab(t_mdata *data, char *str, int *tab, int len);
 #endif 

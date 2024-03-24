@@ -6,7 +6,7 @@
 #    By: besalort <besalort@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/29 14:05:28 by besalort          #+#    #+#              #
-#    Updated: 2024/03/20 14:47:58 by besalort         ###   ########.fr        #
+#    Updated: 2024/03/24 17:02:41 by besalort         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,6 +60,8 @@ SRC = ./src/main.c \
 	$(PARSING_PATH)remove_quote_utils.c \
 	$(SPLIT_PATH)split_cmd.c \
 	$(SPLIT_PATH)split_utils.c \
+	$(SPLIT_PATH)split_tab.c \
+	$(SPLIT_PATH)split_tab_utils.c \
 	
 
 SPLIT_PATH = ./src/split/
