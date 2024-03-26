@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
+/*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 16:31:41 by besalort          #+#    #+#             */
-/*   Updated: 2024/03/22 14:21:54 by afontain         ###   ########.fr       */
+/*   Updated: 2024/03/26 15:00:49 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	exit_error(t_mdata *data, char **arg)
 	ft_error(data, "minishell: exit: ", 2);
 	ft_error(data, arg[0], 2);
 	ft_error(data, ": numeric argument required\n", 2);
+	ft_free_mini(data);
 	exit(g_retval);
 }
 

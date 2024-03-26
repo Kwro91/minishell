@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
+/*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 15:38:43 by besalort          #+#    #+#             */
-/*   Updated: 2024/03/22 15:23:15 by afontain         ###   ########.fr       */
+/*   Updated: 2024/03/26 15:22:16 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	do_out_redir(t_mdata *data, t_command *cmd)
 			if (dup2(tmp->fd, 1) < 0)
 			{
 				cmd->good = -1;
-				return (ft_error(data, "Error: dup25\n", -1), -1);
+				return (ft_error(data, "Error: dup2\n", -1), -1);
 			}
 			close(tmp->fd);
 		}
@@ -64,7 +64,7 @@ int	do_in_redir(t_mdata *data, t_command *cmd)
 			if (dup2(tmp->fd, 0) < 0)
 			{
 				cmd->good = -1;
-				return (ft_error(data, "Error: dup26\n", -1), -1);
+				return (ft_error(data, "Error: dup2\n", -1), -1);
 			}
 			close(tmp->fd);
 		}

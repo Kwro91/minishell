@@ -3,37 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   here_doc.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
+/*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 16:06:24 by besalort          #+#    #+#             */
-/*   Updated: 2024/03/24 18:15:05 by afontain         ###   ########.fr       */
+/*   Updated: 2024/03/26 15:38:25 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-
-void	ft_meof(t_files *file)
-{
-	char	*eof;
-	char	*add;
-
-	add = "\n";
-	eof = ft_strdup(file->files);
-	free(file->files);
-	file->files = ft_strjoin(eof, add);
-	free(eof);
-}
 
 int	is_eof(char	*line, t_files *file)
 {
 	int	len;
 
 	len = ft_strlen(line);
-	if ((int)ft_strlen(file->files) < len)
-		len = (int)ft_strlen(file->files);
+	if (len == 0)
+		return (1);
+	if ((int)ft_strlen(file->files) != len)
+		return (0);
 	if (line && !ft_strlen(line))
 		return (0);
-	if (ft_strncmp(line, file->files, len) == 0)
+	if (ft_strncmp(line, file->files, ft_strlen(file->files)) == 0)
 		return (1);
 	return (0);
 }
@@ -61,6 +51,7 @@ void	ft_mhere_doc2(char *name, char *line, t_command *cmd, t_files *file)
 		handle_signals();
 		close(file->fd);
 		file->fd = open(name, O_RDONLY);
+		ft_free_me(name);
 		return ;
 	}
 	free(line);
@@ -78,7 +69,6 @@ void	ft_mhere_doc(t_mdata *data, t_command *cmd, t_files *file)
 	if (cmd->good == -1)
 		return ;
 	name = get_hdoc_name(data, cmd);
-	ft_meof(file);
 	file->fd = open(name,
 			O_CREAT | O_WRONLY | O_TRUNC, 0000644);
 	if (file->fd < 0)

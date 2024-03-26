@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
+/*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 14:10:34 by besalort          #+#    #+#             */
-/*   Updated: 2024/03/24 18:33:32 by afontain         ###   ########.fr       */
+/*   Updated: 2024/03/26 16:36:38 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,6 @@ void		ft_free_lines(char	**lines);
 //Free
 void		ft_free_mini(t_mdata *data);
 void		ft_free_adr(void *adr);
-// void		ft_free_files(t_files *files);
 void		ft_error(t_mdata *data, char *line, int close);
 void		ft_free_me(char *str);
 int			ft_close_me(int fd);
@@ -161,7 +160,6 @@ void		cd_cmd(t_mdata *data, char **line);
 
 //Signal
 void		handle_signals(void);
-// void		handle_sighere(int sig_int);
 void		handle_sigint_exec(void);
 void		handle_exec(int sig_int);
 void		handle_sigquit(int sig_quit);
@@ -198,24 +196,18 @@ int			get_file_len(char *str);
 
 void		is_fd_in(t_mdata *data, t_command *cmd);
 void		is_fd_out(t_mdata *data, t_command *cmd);
-char		*redir_rewrite(t_mdata *data, t_command *cmd);
 void		ft_open_mfiles(t_mdata *data, t_command *cmd);
 //PARSE
+int			parse_line(t_mdata *data, char *str);
 void		split_parse(t_mdata *data, char *line);
-// int			check_before(t_mdata *data, char *line);
 int			check_line_pipe(t_mdata *data, t_command *cmd);
 void		delete_files_names(t_mdata *data);
 
 //Parsing
 void		parse_cmd(t_mdata *data, t_command *cmd);
 void		delete_files_names(t_mdata *data);
-int			*create_tab(t_mdata *data);
-void		add_tab(int *tab, int value);
-void		update_tab(int	*tab, int j);
-int			parse_dquote(t_mdata *data, t_command *cmd, int i, int *tab);
-int			parse_squote(t_mdata *data, t_command *cmd, int i, int *tab);
-void		remove_char(t_mdata *data, t_command *cmd, int i);
-void		remove_all_quotes(t_mdata *data, t_command *cmd, int *tab);
+int			parse_dquote(t_mdata *data, t_command *cmd, int i);
+int			parse_squote(t_mdata *data, t_command *cmd, int i);
 
 //Dollar
 int			handle_dollar(t_mdata *data, t_command *cmd, int i);

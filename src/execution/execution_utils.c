@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
+/*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 19:26:57 by besalort          #+#    #+#             */
-/*   Updated: 2024/03/22 14:10:57 by afontain         ###   ########.fr       */
+/*   Updated: 2024/03/26 15:17:12 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,6 @@ char	*access_utils(t_mdata *data, t_command *cmd)
 
 	tmp = ft_strdup(cmd->cmd[0]);
 	if (!tmp)
-		ft_error(data, "Error: strdup\n", 1);
+		ft_error(data, "Error: strdup\n", -1);
 	return (tmp);
 }

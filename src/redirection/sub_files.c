@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sub_files.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
+/*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 14:25:43 by besalort          #+#    #+#             */
-/*   Updated: 2024/03/22 16:49:02 by afontain         ###   ########.fr       */
+/*   Updated: 2024/03/26 15:22:41 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,42 +89,6 @@ char	*remove_c(t_mdata *data, t_command *cmd, char c, int *i)
 	}
 	return (new);
 }
-
-// char    *remove_c(t_mdata *data, t_command *cmd, char c, int *i)
-// {
-//     char    *one;
-//     char    *two;
-//     char    *new;
-
-//     new = NULL;
-//     while (cmd->line && cmd->line[*i])
-//     {
-//         if (cmd->line[*i] == c)
-//         {
-//             one = ft_strndup(data, cmd->line, *i);
-//             if (cmd->line[*i + 1] == c)
-//                 *i = *i + 1;
-//             if (!&cmd->line[*i + 1])
-//                 return (one);
-//             two = ft_strdup(&cmd->line[*i + 1]);
-//             if (!one && two)
-//                 return (two);
-//             if (two && one)
-//             {
-//                 new = ft_strjoin(one, two);
-//                 if (!new)
-//                     return (ft_error(data, "Error: strjoin\n", -1), NULL);
-//             }
-//             else
-//                 cmd->good = -1;
-//             ft_free_me(one);
-//             ft_free_me(two);
-//             return (new);
-//         }
-//         *i = *i + 1;
-//     }
-//     return (new);
-// }
 
 void	sub_files_utils(t_mdata *data, t_command *cmd, t_files *tmp, char c)
 {

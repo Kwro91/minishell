@@ -3,19 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
+/*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 15:30:01 by besalort          #+#    #+#             */
-/*   Updated: 2024/03/24 18:19:14 by afontain         ###   ########.fr       */
+/*   Updated: 2024/03/26 16:34:26 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	parse_norm(t_mdata *data, t_command *cmd, int *tab)
+void	parse_norm(t_mdata *data, t_command *cmd)
 {
 	char	*cmp;
+	int		i;
 
+	i = 0;
 	ft_free_lines(cmd->cmd);
 	if (!cmd->line)
 	{
@@ -23,16 +25,20 @@ void	parse_norm(t_mdata *data, t_command *cmd, int *tab)
 		return ;
 	}
 	cmp = " \t";
-	remove_all_quotes(data, cmd, tab);
 	cmd->cmd = split_cmd(data, cmd->line, cmp);
+	while (cmd->cmd[i])
+	{
+		remove_quotes(data, &cmd->cmd[i]);
+		i++;
+	}
 }
 
-int	parse_cmd2(int i, t_command *cmd, t_mdata *data, int *tab)
+int	parse_cmd2(int i, t_command *cmd, t_mdata *data)
 {
 	if (cmd->line[i] == '"')
-		i = parse_dquote(data, cmd, i + 1, tab);
+		i = parse_dquote(data, cmd, i + 1);
 	else if (cmd->line[i] == '\'')
-		i = parse_squote(data, cmd, i + 1, tab);
+		i = parse_squote(data, cmd, i + 1);
 	else if (cmd->line[i] == '$')
 		i = handle_dollar(data, cmd, i);
 	return (i);
@@ -41,28 +47,25 @@ int	parse_cmd2(int i, t_command *cmd, t_mdata *data, int *tab)
 void	parse_cmd(t_mdata *data, t_command *cmd)
 {
 	int		i;
-	int		*tab;
 	int		len;
 
 	i = 0;
-	tab = create_tab(data);
 	if (!cmd->line)
 	{
 		cmd->good = -1;
-		return (free(tab));
+		return ;
 	}
 	len = ft_strlen(cmd->line);
 	while (i >= 0 && cmd->line && i < len)
 	{
-		i = parse_cmd2(i, cmd, data, tab);
+		i = parse_cmd2(i, cmd, data);
 		if (i < 0)
 		{
 			cmd->good = -1;
-			return (free(tab));
+			return ;
 		}
 		i++;
 		len = ft_strlen(cmd->line);
 	}
-	parse_norm(data, cmd, tab);
-	free(tab);
+	parse_norm(data, cmd);
 }

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: afontain <afontain@student.42.fr>          +#+  +:+       +#+         #
+#    By: besalort <besalort@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/29 14:05:28 by besalort          #+#    #+#              #
-#    Updated: 2024/03/22 15:53:01 by afontain         ###   ########.fr        #
+#    Updated: 2024/03/26 16:36:04 by besalort         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,6 +58,7 @@ SRC = ./src/main.c \
 	$(DOLLAR_PATH)other.c \
 	$(DOLLAR_PATH)letter_utils.c \
 	$(PARSING_PATH)parsing.c \
+	$(PARSING_PATH)parse_prompt.c \
 	$(PARSING_PATH)parsing2.c \
 	$(PARSING_PATH)parsing3.c \
 	$(PARSING_PATH)remove_quote.c \

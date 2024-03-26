@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
+/*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 15:52:02 by afontain          #+#    #+#             */
-/*   Updated: 2024/03/22 17:16:36 by afontain         ###   ########.fr       */
+/*   Updated: 2024/03/26 15:11:32 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@ void	error_access_mini(t_mdata *data, char *cmd)
 	tmp = NULL;
 	if (cmd != NULL && ft_strncmp(cmd, "\0", 1) != 0)
 	{
-		tmp = ft_strjoin("minishell: command not found222: ", cmd);
+		tmp = ft_strjoin("minishell: command not found: ", cmd);
 		join = ft_strjoin(tmp, "\n");
 	}
 	else
 	{
-		tmp = ft_strdup("minishell: command not found444: ");
+		tmp = ft_strdup("minishell: command not found: ");
 		join = ft_strjoin(tmp, "\n");
 	}
 	ft_error(data, join, 127);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
+/*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 15:59:33 by besalort          #+#    #+#             */
-/*   Updated: 2024/03/24 18:40:53 by afontain         ###   ########.fr       */
+/*   Updated: 2024/03/26 16:19:54 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,11 @@ void	pipe_cmd(t_mdata *data, t_command *cmd)
 		close_all_files(data, cmd);
 		close_two(data, data->stdin_back, data->stdout_back);
 		tmp = ft_access_mini(data, cmd);
-		dir = opendir(tmp);
-		loop_directory(data, cmd, tmp, dir);
+		if (tmp)
+		{
+			dir = opendir(tmp);
+			loop_directory(data, cmd, tmp, dir);
+		}
 		if (tmp && cmd->good != -1)
 			g_retval = execve(tmp, cmd->cmd, data->env);
 		ft_free_me(tmp);
@@ -75,8 +78,6 @@ void	launch_cmd(t_mdata *data, t_command *cmd)
 	DIR		*dir;
 	char	*path;
 
-	printf("blokc :%i\n", data->block);
-	ft_error(data, "block\n", 0);
 	if (!cmd || cmd->good == -1 || data->block == -1)
 		return ;
 	handle_signals();

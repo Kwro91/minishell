@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
+/*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 15:53:50 by besalort          #+#    #+#             */
-/*   Updated: 2024/03/24 18:44:05 by afontain         ###   ########.fr       */
+/*   Updated: 2024/03/26 16:09:13 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ void	loop_utils(t_mdata *data, char *cmd)
 		if (data->nb_cmd > 1)
 			if (check_line_pipe(data, data->cmd) == -1)
 				return ;
-		printf("nbcmd: %i\n", data->nb_cmd);
 		if (data->nb_cmd == 1)
 			launch_cmd(data, data->cmd);
 		else if (data->nb_cmd > 1)
@@ -51,11 +50,9 @@ void	loop(t_mdata *data, char *cmd)
 	{
 		add_history(cmd);
 		data->cmd = NULL;
-		if (is_unallowed_char(data, cmd) == 0)
+		if (is_unallowed_char(data, cmd) == 0 && parse_line(data, cmd) > -1)
 		{
-			if (cmd != NULL && ft_strlen(cmd) > 4096)
-				ft_error(data, "Error: line too long\n", 127);
-			else
+			if (data->block == 0)
 				loop_utils(data, cmd);
 		}
 	}

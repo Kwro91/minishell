@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parent.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
+/*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 17:38:09 by besalort          #+#    #+#             */
-/*   Updated: 2024/03/22 14:01:20 by afontain         ###   ########.fr       */
+/*   Updated: 2024/03/26 14:37:32 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,8 @@ void	run_all(t_mdata *data)
 {
 	t_command	*tmp;
 
+	if (data->block == -1)
+		return ;
 	tmp = data->cmd;
 	rfirst(data, tmp);
 	tmp = tmp->next;
