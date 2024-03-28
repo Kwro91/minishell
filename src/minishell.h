@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 14:10:34 by besalort          #+#    #+#             */
-/*   Updated: 2024/03/24 19:12:22 by besalort         ###   ########.fr       */
+/*   Updated: 2024/03/25 17:28:07 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ extern int	g_retval;
 
 typedef struct s_arg
 {
+	int		tab;
 	int		pos;
 	int		len;
 	void	*next;
@@ -249,5 +250,5 @@ int			count_cmd(t_mdata *data, char *str, char *cmp);
 int			str_to_cmp(char c, char *cmp);
 
 t_arg		*get_arg(t_mdata *data, int *tab, int nb);
-char		**split_tab(t_mdata *data, char *str, int *tab, int len);
+char		**split_arg(t_mdata *data, char *str, int *tab, int len);
 #endif 

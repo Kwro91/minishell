@@ -6,7 +6,7 @@
 /*   By: besalort <besalort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 15:30:01 by besalort          #+#    #+#             */
-/*   Updated: 2024/03/24 19:11:52 by besalort         ###   ########.fr       */
+/*   Updated: 2024/03/25 17:28:39 by besalort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -192,7 +192,7 @@ void	parse_norm(t_mdata *data, t_command *cmd, int *tab)
 	cmp = " \t";
 	count = count_cmd(data, cmd->line, " \t");
 	remove_all_quotes(data, cmd, tab);
-	split_tab(data, cmd->line, tab, count);
+	split_arg(data, cmd->line, tab, count);
 	cmd->cmd = split_cmd(data, cmd->line, cmp);
 }
 
